@@ -46,47 +46,63 @@
   <circle cx="300" cy="300" r="225" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
 
   <!-- ============================================================
-       4. ПУЛЬСИРУЮЩИЕ КОНЦЕНТРИЧЕСКИЕ КОЛЬЦА
+       4. ПУЛЬСИРУЮЩИЕ КОНЦЕНТРИЧЕСКИЕ КОЛЬЦА (v.2.1 — плавная)
        Концепция: от эпицентра в центре расходятся «сейсмические
        волны» — кольца, которые расширяются и затухают.
-       Анимация: 5 колец, каждое со сдвигом 0.4 сек,
-       цикл 3 секунды — распространение волны.
+       Анимация: 5 колец, цикл 4 сек, сдвиг 0.8 сек.
+       Плавный fade-in (0 → 0.85 за первые 15%) и fade-out.
+       Кривая: spline с natural ease-out.
        ============================================================ -->
   <g fill="none" stroke-linecap="round">
 
     <!-- Кольцо 1 (ближайшее к центру, самое тёмное) -->
-    <circle cx="300" cy="300" r="22" stroke="#003366" stroke-width="2.5" opacity="0.95">
-      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="0s"/>
-      <animate attributeName="opacity" from="0.95" to="0" dur="3s" repeatCount="indefinite" begin="0s"/>
-      <animate attributeName="stroke-width" from="2.5" to="0.5" dur="3s" repeatCount="indefinite" begin="0s"/>
+    <circle cx="300" cy="300" r="22" stroke="#003366" stroke-width="2.5" opacity="0">
+      <animate attributeName="r" from="22" to="160" dur="4s" repeatCount="indefinite" begin="0s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
+      <animate attributeName="opacity" values="0;0.85;0" dur="4s" repeatCount="indefinite" begin="0s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94" keyTimes="0;0.15;1"/>
+      <animate attributeName="stroke-width" from="2.5" to="0.5" dur="4s" repeatCount="indefinite" begin="0s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
     </circle>
 
     <!-- Кольцо 2 -->
-    <circle cx="300" cy="300" stroke="#00549F" stroke-width="2" opacity="0.85">
-      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="0.6s"/>
-      <animate attributeName="opacity" from="0.85" to="0" dur="3s" repeatCount="indefinite" begin="0.6s"/>
-      <animate attributeName="stroke-width" from="2" to="0.4" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+    <circle cx="300" cy="300" r="22" stroke="#00549F" stroke-width="2" opacity="0">
+      <animate attributeName="r" from="22" to="160" dur="4s" repeatCount="indefinite" begin="0.8s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
+      <animate attributeName="opacity" values="0;0.85;0" dur="4s" repeatCount="indefinite" begin="0.8s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94" keyTimes="0;0.15;1"/>
+      <animate attributeName="stroke-width" from="2" to="0.4" dur="4s" repeatCount="indefinite" begin="0.8s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
     </circle>
 
     <!-- Кольцо 3 -->
-    <circle cx="300" cy="300" stroke="#00549F" stroke-width="1.8" opacity="0.7">
-      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="1.2s"/>
-      <animate attributeName="opacity" from="0.7" to="0" dur="3s" repeatCount="indefinite" begin="1.2s"/>
-      <animate attributeName="stroke-width" from="1.8" to="0.4" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+    <circle cx="300" cy="300" r="22" stroke="#00549F" stroke-width="1.8" opacity="0">
+      <animate attributeName="r" from="22" to="160" dur="4s" repeatCount="indefinite" begin="1.6s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
+      <animate attributeName="opacity" values="0;0.85;0" dur="4s" repeatCount="indefinite" begin="1.6s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94" keyTimes="0;0.15;1"/>
+      <animate attributeName="stroke-width" from="1.8" to="0.4" dur="4s" repeatCount="indefinite" begin="1.6s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
     </circle>
 
     <!-- Кольцо 4 -->
-    <circle cx="300" cy="300" stroke="#4A6378" stroke-width="1.5" opacity="0.55">
-      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="1.8s"/>
-      <animate attributeName="opacity" from="0.55" to="0" dur="3s" repeatCount="indefinite" begin="1.8s"/>
-      <animate attributeName="stroke-width" from="1.5" to="0.3" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+    <circle cx="300" cy="300" r="22" stroke="#4A6378" stroke-width="1.5" opacity="0">
+      <animate attributeName="r" from="22" to="160" dur="4s" repeatCount="indefinite" begin="2.4s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
+      <animate attributeName="opacity" values="0;0.85;0" dur="4s" repeatCount="indefinite" begin="2.4s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94" keyTimes="0;0.15;1"/>
+      <animate attributeName="stroke-width" from="1.5" to="0.3" dur="4s" repeatCount="indefinite" begin="2.4s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
     </circle>
 
     <!-- Кольцо 5 -->
-    <circle cx="300" cy="300" stroke="#4A6378" stroke-width="1.2" opacity="0.4">
-      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="2.4s"/>
-      <animate attributeName="opacity" from="0.4" to="0" dur="3s" repeatCount="indefinite" begin="2.4s"/>
-      <animate attributeName="stroke-width" from="1.2" to="0.2" dur="3s" repeatCount="indefinite" begin="2.4s"/>
+    <circle cx="300" cy="300" r="22" stroke="#4A6378" stroke-width="1.2" opacity="0">
+      <animate attributeName="r" from="22" to="160" dur="4s" repeatCount="indefinite" begin="3.2s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
+      <animate attributeName="opacity" values="0;0.85;0" dur="4s" repeatCount="indefinite" begin="3.2s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94;0.25 0.46 0.45 0.94" keyTimes="0;0.15;1"/>
+      <animate attributeName="stroke-width" from="1.2" to="0.2" dur="4s" repeatCount="indefinite" begin="3.2s"
+               calcMode="spline" keySplines="0.25 0.46 0.45 0.94" keyTimes="0;1"/>
     </circle>
 
     <!-- Статичные тонкие опорные кольца (для визуальной структуры,
@@ -97,9 +113,12 @@
     <circle cx="300" cy="300" r="114" stroke="#00549F" stroke-width="0.6" opacity="0.08"/>
   </g>
 
-  <!-- 5. Эпицентр — красная точка с пульсацией -->
+  <!-- 5. Эпицентр — красная точка с мягкой пульсацией -->
   <circle cx="300" cy="300" r="6" fill="#C8102E">
-    <animate attributeName="r" values="6;7.5;6" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="6;7.2;6" dur="2.5s" repeatCount="indefinite"
+             calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.5;1"/>
+    <animate attributeName="opacity" values="1;0.8;1" dur="2.5s" repeatCount="indefinite"
+             calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" keyTimes="0;0.5;1"/>
   </circle>
   <circle cx="300" cy="300" r="3" fill="#FFFFFF"/>
 
