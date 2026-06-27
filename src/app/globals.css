@@ -160,19 +160,86 @@
   background-size: 48px 48px;
 }
 
-/* Animated seismic waveform (CSS only, lightweight) */
-@keyframes wave-pulse {
-  0%, 100% { opacity: 0.5; transform: scaleY(0.92); }
-  50%      { opacity: 1;   transform: scaleY(1.08); }
-}
-.wave-line {
+/* Animated seismic pulse rings (SROSS® v.2.0)
+   5 колец расходятся от эпицентра и затухают — как сейсмическая волна.
+   Цикл 3s, задержка между кольцами 0.6s.
+*/
+
+/* ---- Эмблема в шапке (маленькая, viewBox 100×100) ---- */
+.pulse-ring {
   transform-origin: center;
-  animation: wave-pulse 3.6s ease-in-out infinite;
+  transform-box: fill-box;
+  animation: pulse-ring-anim 3s ease-out infinite;
+  opacity: 0;
 }
-.wave-line:nth-child(2) { animation-delay: 0.2s; }
-.wave-line:nth-child(3) { animation-delay: 0.4s; }
-.wave-line:nth-child(4) { animation-delay: 0.6s; }
+.pulse-ring-1 { animation-delay: 0s;   }
+.pulse-ring-2 { animation-delay: 0.6s; }
+.pulse-ring-3 { animation-delay: 1.2s; }
+.pulse-ring-4 { animation-delay: 1.8s; }
+.pulse-ring-5 { animation-delay: 2.4s; }
+
+@keyframes pulse-ring-anim {
+  0%   { r: 4;  opacity: 0.95; stroke-width: 0.8; }
+  80%  { opacity: 0.1; }
+  100% { r: 24; opacity: 0; stroke-width: 0.15; }
+}
+
+/* Эпицентр — мягкая пульсация красной точки */
+.epicenter-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: epicenter-anim 1.5s ease-in-out infinite;
+}
+@keyframes epicenter-anim {
+  0%, 100% { r: 1.2; opacity: 1; }
+  50%      { r: 1.6; opacity: 0.7; }
+}
+
+/* ---- Hero-эмблема (крупная, viewBox 600×600) ---- */
+.hero-pulse-ring {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: hero-pulse-ring-anim 3s ease-out infinite;
+  opacity: 0;
+}
+.hero-pulse-ring-1 { animation-delay: 0s;   }
+.hero-pulse-ring-2 { animation-delay: 0.6s; }
+.hero-pulse-ring-3 { animation-delay: 1.2s; }
+.hero-pulse-ring-4 { animation-delay: 1.8s; }
+.hero-pulse-ring-5 { animation-delay: 2.4s; }
+
+@keyframes hero-pulse-ring-anim {
+  0%   { r: 22;  opacity: 0.95; stroke-width: 2.5; }
+  80%  { opacity: 0.1; }
+  100% { r: 150; opacity: 0; stroke-width: 0.4; }
+}
+
+.hero-epicenter-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: hero-epicenter-anim 1.5s ease-in-out infinite;
+}
+@keyframes hero-epicenter-anim {
+  0%, 100% { r: 6;   opacity: 1;   }
+  50%      { r: 7.5; opacity: 0.75; }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .wave-line { animation: none; }
+  .pulse-ring,
+  .hero-pulse-ring,
+  .epicenter-pulse,
+  .hero-epicenter-pulse,
+  .seismogram-line {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Seismogram running line (under hero) — мягкое мерцание*/
+.seismogram-line {
+  animation: seismogram-fade 2.4s ease-in-out infinite;
+}
+@keyframes seismogram-fade {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 1; }
 }

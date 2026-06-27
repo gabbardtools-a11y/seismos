@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
   <!-- ============================================================
-       ЭМБЛЕМА СРОСС®  —  Круглый медальон
-       Компиляция мотивов: ООН-Хабитат (синий круг, международный
-       статус) + сейсмограмма (волны от эпицентра) + название
-       СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ / СРОСС®
-       Стиль: строгий, официально-научный
+       ЭМБЛЕМА СРОСС®  —  Круглый медальон (v.2.0)
+       Без волн. Только концентрические кольца вокруг эпицентра.
+       Кольца пульсируют: расширяются от центра и затухают —
+       как распространение сейсмической волны.
+       Стиль: строгий, официально-научный.
        ============================================================ -->
 
   <defs>
@@ -13,8 +13,17 @@
     <!-- UN Blue   #00549F  основной -->
     <!-- Deep Navy #003366  акцентный -->
     <!-- Steel     #4A6378  вспомогательный -->
-    <!-- Cream     #FAF7F2  нейтральный фон -->
-    <!-- Alert     #C8102E  точка-эпицентр (минимум) -->
+    <!-- Alert     #C8102E  эпицентр -->
+
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#00549F"/>
+      <stop offset="100%" stop-color="#003366"/>
+    </linearGradient>
+
+    <radialGradient id="centerGrad" cx="50%" cy="45%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F2F4F7"/>
+    </radialGradient>
 
     <!-- Тонкая дуга для текста (верхняя, надпись "СРОСС") -->
     <path id="topArc"
@@ -24,18 +33,6 @@
     <path id="bottomArc"
           d="M 140,335 A 160,160 0 0 0 460,335"
           fill="none"/>
-
-    <!-- Линейный градиент для синего кольца -->
-    <linearGradient id="ringGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#00549F"/>
-      <stop offset="100%" stop-color="#003366"/>
-    </linearGradient>
-
-    <!-- Радиальный градиент для центрального поля -->
-    <radialGradient id="centerGrad" cx="50%" cy="45%" r="60%">
-      <stop offset="0%"   stop-color="#FFFFFF"/>
-      <stop offset="100%" stop-color="#F2F4F7"/>
-    </radialGradient>
   </defs>
 
   <!-- 1. Внешний синий круг (медальон) -->
@@ -49,45 +46,61 @@
   <circle cx="300" cy="300" r="225" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
 
   <!-- ============================================================
-       4. ЦЕНТРАЛЬНЫЙ СЕЙСМИЧЕСКИЙ МОТИФ
-       Концепция: эпицентр (точка) в центре, от него расходятся
-       концентрические волны разной амплитуды. Геометрия строгая.
+       4. ПУЛЬСИРУЮЩИЕ КОНЦЕНТРИЧЕСКИЕ КОЛЬЦА
+       Концепция: от эпицентра в центре расходятся «сейсмические
+       волны» — кольца, которые расширяются и затухают.
+       Анимация: 5 колец, каждое со сдвигом 0.4 сек,
+       цикл 3 секунды — распространение волны.
        ============================================================ -->
+  <g fill="none" stroke-linecap="round">
 
-  <!-- Концентрические окружности (распространение волны) -->
-  <g fill="none" stroke="#00549F" stroke-linecap="round">
-    <circle cx="300" cy="300" r="22"  stroke-width="2.2"/>
-    <circle cx="300" cy="300" r="42"  stroke-width="1.6" opacity="0.85"/>
-    <circle cx="300" cy="300" r="64"  stroke-width="1.3" opacity="0.7"/>
-    <circle cx="300" cy="300" r="88"  stroke-width="1.1" opacity="0.55"/>
-    <circle cx="300" cy="300" r="114" stroke-width="0.9" opacity="0.4"/>
+    <!-- Кольцо 1 (ближайшее к центру, самое тёмное) -->
+    <circle cx="300" cy="300" r="22" stroke="#003366" stroke-width="2.5" opacity="0.95">
+      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="0s"/>
+      <animate attributeName="opacity" from="0.95" to="0" dur="3s" repeatCount="indefinite" begin="0s"/>
+      <animate attributeName="stroke-width" from="2.5" to="0.5" dur="3s" repeatCount="indefinite" begin="0s"/>
+    </circle>
+
+    <!-- Кольцо 2 -->
+    <circle cx="300" cy="300" stroke="#00549F" stroke-width="2" opacity="0.85">
+      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+      <animate attributeName="opacity" from="0.85" to="0" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+      <animate attributeName="stroke-width" from="2" to="0.4" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+    </circle>
+
+    <!-- Кольцо 3 -->
+    <circle cx="300" cy="300" stroke="#00549F" stroke-width="1.8" opacity="0.7">
+      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+      <animate attributeName="opacity" from="0.7" to="0" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+      <animate attributeName="stroke-width" from="1.8" to="0.4" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+    </circle>
+
+    <!-- Кольцо 4 -->
+    <circle cx="300" cy="300" stroke="#4A6378" stroke-width="1.5" opacity="0.55">
+      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+      <animate attributeName="opacity" from="0.55" to="0" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+      <animate attributeName="stroke-width" from="1.5" to="0.3" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+    </circle>
+
+    <!-- Кольцо 5 -->
+    <circle cx="300" cy="300" stroke="#4A6378" stroke-width="1.2" opacity="0.4">
+      <animate attributeName="r" from="22" to="130" dur="3s" repeatCount="indefinite" begin="2.4s"/>
+      <animate attributeName="opacity" from="0.4" to="0" dur="3s" repeatCount="indefinite" begin="2.4s"/>
+      <animate attributeName="stroke-width" from="1.2" to="0.2" dur="3s" repeatCount="indefinite" begin="2.4s"/>
+    </circle>
+
+    <!-- Статичные тонкие опорные кольца (для визуальной структуры,
+         когда анимация не воспроизводится — на печати/в PNG) -->
+    <circle cx="300" cy="300" r="42"  stroke="#00549F" stroke-width="1" opacity="0.25"/>
+    <circle cx="300" cy="300" r="64"  stroke="#00549F" stroke-width="0.8" opacity="0.18"/>
+    <circle cx="300" cy="300" r="88"  stroke="#00549F" stroke-width="0.7" opacity="0.13"/>
+    <circle cx="300" cy="300" r="114" stroke="#00549F" stroke-width="0.6" opacity="0.08"/>
   </g>
 
-  <!-- Сейсмические волны — 4 горизонтальные синусоиды разной амплитуды,
-       наложенные на концентрические окружности (как на настоящей
-       сейсмограмме: волны затухают с расстоянием от эпицентра) -->
-  <g fill="none" stroke="#003366" stroke-linecap="round">
-    <!-- Верхняя волна (макс амплитуда) -->
-    <path d="M 175,215
-             Q 200,180 225,215 T 275,215 T 325,215 T 375,215 T 425,215"
-          stroke-width="2.2" opacity="0.95"/>
-    <!-- Средне-верхняя -->
-    <path d="M 165,260
-             Q 200,228 235,260 T 305,260 T 375,260 T 435,260"
-          stroke-width="1.8" opacity="0.75"/>
-    <!-- Средне-нижняя (симметрия) -->
-    <path d="M 165,340
-             Q 200,372 235,340 T 305,340 T 375,340 T 435,340"
-          stroke-width="1.8" opacity="0.75"/>
-    <!-- Нижняя волна (симметричная верхней) -->
-    <path d="M 175,385
-             Q 200,420 225,385 T 275,385 T 325,385 T 375,385 T 425,385"
-          stroke-width="2.2" opacity="0.95"/>
-  </g>
-
-  <!-- 5. Эпицентр — небольшая точка красного цвета (строгий акцент,
-       как на картах сейсмической опасности) -->
-  <circle cx="300" cy="300" r="6" fill="#C8102E"/>
+  <!-- 5. Эпицентр — красная точка с пульсацией -->
+  <circle cx="300" cy="300" r="6" fill="#C8102E">
+    <animate attributeName="r" values="6;7.5;6" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
   <circle cx="300" cy="300" r="3" fill="#FFFFFF"/>
 
   <!-- ============================================================

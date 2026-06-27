@@ -133,7 +133,7 @@ export function SiteHeader() {
 
 /**
  * Inline-SVG эмблема СРОСС® для шапки.
- * Минималистичная версия: концентрические окружности + 4 волны + эпицентр.
+ * v.2.0 — без волн, с пульсирующими концентрическими кольцами.
  */
 export function SrossemblemMark({ className }: { className?: string }) {
   return (
@@ -153,37 +153,62 @@ export function SrossemblemMark({ className }: { className?: string }) {
         stroke="#003366"
         strokeWidth="0.4"
       />
-      <g fill="none" stroke="#00549F" strokeLinecap="round">
-        <circle cx="50" cy="50" r="4" strokeWidth="0.8" />
-        <circle cx="50" cy="50" r="7.5" strokeWidth="0.6" opacity="0.85" />
-        <circle cx="50" cy="50" r="11" strokeWidth="0.5" opacity="0.7" />
-        <circle cx="50" cy="50" r="15" strokeWidth="0.4" opacity="0.55" />
-        <circle cx="50" cy="50" r="19" strokeWidth="0.35" opacity="0.4" />
-      </g>
-      <g fill="none" stroke="#003366" strokeLinecap="round">
-        <path
-          d="M 30 42 Q 35 38 40 42 T 50 42 T 60 42 T 70 42"
-          strokeWidth="0.7"
-          opacity="0.95"
+
+      {/* Пульсирующие кольца (CSS-анимация) */}
+      <g fill="none" strokeLinecap="round">
+        <circle
+          cx="50"
+          cy="50"
+          r="4"
+          stroke="#003366"
+          strokeWidth="0.8"
+          className="pulse-ring pulse-ring-1"
         />
-        <path
-          d="M 28 46 Q 35 42 42 46 T 56 46 T 72 46"
+        <circle
+          cx="50"
+          cy="50"
+          r="4"
+          stroke="#00549F"
           strokeWidth="0.6"
-          opacity="0.75"
+          className="pulse-ring pulse-ring-2"
         />
-        <path
-          d="M 28 54 Q 35 58 42 54 T 56 54 T 72 54"
-          strokeWidth="0.6"
-          opacity="0.75"
+        <circle
+          cx="50"
+          cy="50"
+          r="4"
+          stroke="#00549F"
+          strokeWidth="0.5"
+          className="pulse-ring pulse-ring-3"
         />
-        <path
-          d="M 30 58 Q 35 62 40 58 T 50 58 T 60 58 T 70 58"
-          strokeWidth="0.7"
-          opacity="0.95"
+        <circle
+          cx="50"
+          cy="50"
+          r="4"
+          stroke="#4A6378"
+          strokeWidth="0.4"
+          className="pulse-ring pulse-ring-4"
         />
+        <circle
+          cx="50"
+          cy="50"
+          r="4"
+          stroke="#4A6378"
+          strokeWidth="0.3"
+          className="pulse-ring pulse-ring-5"
+        />
+
+        {/* Статичные опорные кольца (видны при отключённой анимации) */}
+        <circle cx="50" cy="50" r="7.5" stroke="#00549F" strokeWidth="0.4" opacity="0.25" />
+        <circle cx="50" cy="50" r="11" stroke="#00549F" strokeWidth="0.3" opacity="0.18" />
+        <circle cx="50" cy="50" r="15" stroke="#00549F" strokeWidth="0.25" opacity="0.13" />
+        <circle cx="50" cy="50" r="19" stroke="#00549F" strokeWidth="0.2" opacity="0.08" />
       </g>
-      <circle cx="50" cy="50" r="1.2" fill="#C8102E" />
+
+      {/* Эпицентр (с пульсацией) */}
+      <circle cx="50" cy="50" r="1.2" fill="#C8102E" className="epicenter-pulse" />
       <circle cx="50" cy="50" r="0.5" fill="#FFFFFF" />
+
+      {/* Внешняя кайма */}
       <circle
         cx="50"
         cy="50"

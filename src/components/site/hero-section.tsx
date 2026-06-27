@@ -187,7 +187,7 @@ function HeroEmblemLarge() {
           opacity="0.6"
         />
 
-        {/* Концентрические окружности */}
+        {/* Концентрические опорные окружности (статичные) */}
         <g fill="none" stroke="#00549F" strokeLinecap="round">
           <circle cx="300" cy="300" r="22" strokeWidth="2.2" />
           <circle cx="300" cy="300" r="42" strokeWidth="1.6" opacity="0.85" />
@@ -196,36 +196,38 @@ function HeroEmblemLarge() {
           <circle cx="300" cy="300" r="114" strokeWidth="0.9" opacity="0.4" />
         </g>
 
-        {/* Сейсмические волны (анимированные) */}
-        <g fill="none" stroke="#003366" strokeLinecap="round">
-          <path
-            className="wave-line"
-            d="M 175,215 Q 200,180 225,215 T 275,215 T 325,215 T 375,215 T 425,215"
-            strokeWidth="2.2"
-            opacity="0.95"
+        {/* Пульсирующие кольца (5 волн с задержкой) — распространение
+            сейсмической волны от эпицентра. CSS-анимация, легко. */}
+        <g fill="none" strokeLinecap="round">
+          <circle
+            cx="300" cy="300" r="22"
+            stroke="#003366" strokeWidth="2.5"
+            className="hero-pulse-ring hero-pulse-ring-1"
           />
-          <path
-            className="wave-line"
-            d="M 165,260 Q 200,228 235,260 T 305,260 T 375,260 T 435,260"
-            strokeWidth="1.8"
-            opacity="0.75"
+          <circle
+            cx="300" cy="300" r="22"
+            stroke="#00549F" strokeWidth="2"
+            className="hero-pulse-ring hero-pulse-ring-2"
           />
-          <path
-            className="wave-line"
-            d="M 165,340 Q 200,372 235,340 T 305,340 T 375,340 T 435,340"
-            strokeWidth="1.8"
-            opacity="0.75"
+          <circle
+            cx="300" cy="300" r="22"
+            stroke="#00549F" strokeWidth="1.8"
+            className="hero-pulse-ring hero-pulse-ring-3"
           />
-          <path
-            className="wave-line"
-            d="M 175,385 Q 200,420 225,385 T 275,385 T 325,385 T 375,385 T 425,385"
-            strokeWidth="2.2"
-            opacity="0.95"
+          <circle
+            cx="300" cy="300" r="22"
+            stroke="#4A6378" strokeWidth="1.5"
+            className="hero-pulse-ring hero-pulse-ring-4"
+          />
+          <circle
+            cx="300" cy="300" r="22"
+            stroke="#4A6378" strokeWidth="1.2"
+            className="hero-pulse-ring hero-pulse-ring-5"
           />
         </g>
 
-        {/* Эпицентр */}
-        <circle cx="300" cy="300" r="6" fill="#C8102E" />
+        {/* Эпицентр — пульсирующая красная точка */}
+        <circle cx="300" cy="300" r="6" fill="#C8102E" className="hero-epicenter-pulse" />
         <circle cx="300" cy="300" r="3" fill="#FFFFFF" />
 
         {/* Текст по дуге */}
@@ -309,7 +311,7 @@ function SeismogramDivider() {
             strokeWidth="1.4"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="wave-line"
+            className="seismogram-line"
           />
         </svg>
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#00549F] font-bold whitespace-nowrap">
