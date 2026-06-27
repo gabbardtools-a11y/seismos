@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>СРОСС® · СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ · Бренд-лист</title>
+  <link rel="icon" type="image/png" href="favicon_32.png" />
+  <style>
+    /* ============================================================
+       СРОСС® Brand Sheet — строгое оформление, UN-aligned
+       ============================================================ */
+
+    :root {
+      --un-blue:    #00549F;
+      --deep-navy:  #003366;
+      --steel:      #4A6378;
+      --alert:      #C8102E;
+      --cream:      #FAF7F2;
+      --paper:      #FFFFFF;
+      --line:       #D6DCE3;
+      --ink:        #1A1A1A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'PT Sans', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+    /* ====== Шапка бренд-листа ====== */
+    .topbar {
+      background: var(--deep-navy);
+      color: var(--paper);
+      padding: 14px 0;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar .left  { font-weight: 700; }
+    .topbar .right { font-weight: 400; opacity: 0.7; }
+
+    /* ====== HERO ====== */
+    .hero {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero img.emblem {
+      width: 280px;
+      height: 280px;
+      display: block;
+      margin: 0 auto 40px;
+    }
+    .hero h1 {
+      font-family: 'PT Sans Narrow', 'PT Sans', Arial, sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: var(--un-blue);
+      margin-bottom: 8px;
+    }
+    .hero h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--deep-navy);
+      margin-bottom: 4px;
+    }
+    .hero .sub {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--steel);
+      margin-bottom: 24px;
+    }
+    .hero .meta {
+      display: inline-flex;
+      gap: 0;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      overflow: hidden;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--steel);
+    }
+    .hero .meta span {
+      padding: 8px 16px;
+      border-right: 1px solid var(--line);
+    }
+    .hero .meta span:last-child { border-right: none; }
+    .hero .meta span strong { color: var(--un-blue); font-weight: 700; }
+
+    /* ====== Секция ====== */
+    section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+    section h3.section-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--un-blue);
+      margin-bottom: 8px;
+    }
+    section h4.section-sub {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--deep-navy);
+      margin-bottom: 8px;
+    }
+    section p.section-desc {
+      font-size: 15px;
+      color: var(--steel);
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
+
+    /* ====== Сетка вариантов ====== */
+    .variants {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .variant {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 340px;
+    }
+    .variant.tall { min-height: 480px; }
+    .variant img {
+      max-width: 100%;
+      max-height: 280px;
+      display: block;
+      margin: 0 auto;
+    }
+    .variant .label {
+      margin-top: 20px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--steel);
+      text-align: center;
+    }
+    .variant .label strong { color: var(--un-blue); display: block; margin-bottom: 4px; }
+
+    /* ====== Цветовая палитра ====== */
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .swatch {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .swatch .color {
+      height: 110px;
+    }
+    .swatch .info {
+      padding: 14px 16px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .swatch .info .name {
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .swatch .info .hex {
+      color: var(--steel);
+      font-family: 'PT Mono', 'Courier New', monospace;
+    }
+    .swatch .info .role {
+      color: var(--steel);
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    /* ====== Шапка сайта (мокап) ====== */
+    .site-mock {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .site-mock .browser-bar {
+      background: #F4F6F8;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .site-mock .browser-bar .dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: #D6DCE3;
+    }
+    .site-mock .browser-bar .url {
+      flex: 1;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--steel);
+      letter-spacing: 1px;
+    }
+    .site-mock .site-header {
+      padding: 24px 40px;
+      border-bottom: 2px solid var(--un-blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--paper);
+    }
+    .site-mock .site-header img {
+      height: 70px;
+      width: auto;
+    }
+    .site-mock .site-header nav {
+      display: flex;
+      gap: 28px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--deep-navy);
+      font-weight: 600;
+    }
+    .site-mock .site-header nav span { cursor: default; }
+    .site-mock .site-header nav span.active { color: var(--un-blue); border-bottom: 2px solid var(--un-blue); padding-bottom: 4px; }
+    .site-mock .site-body {
+      padding: 60px 40px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 100%);
+    }
+    .site-mock .site-body .tagline {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--un-blue);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .site-mock .site-body h1 {
+      font-family: 'PT Sans Narrow', Arial, sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--deep-navy);
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .site-mock .site-body p {
+      font-size: 16px;
+      color: var(--steel);
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+    .site-mock .site-body .cta {
+      display: inline-block;
+      background: var(--un-blue);
+      color: var(--paper);
+      padding: 14px 28px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: none;
+    }
+
+    /* ====== Favicon-сетка ====== */
+    .favicons {
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .favicon-item {
+      text-align: center;
+    }
+    .favicon-item .box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 96px;
+      height: 96px;
+    }
+    .favicon-item img { display: block; }
+    .favicon-item .size {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--steel);
+      margin-top: 8px;
+      font-family: 'PT Mono', 'Courier New', monospace;
+    }
+
+    /* ====== Подвал ====== */
+    footer {
+      background: var(--deep-navy);
+      color: var(--paper);
+      padding: 40px 0;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer .right { opacity: 0.6; }
+
+    /* ====== Адаптивность ====== */
+    @media (max-width: 900px) {
+      .variants { grid-template-columns: 1fr; }
+      .palette  { grid-template-columns: repeat(2, 1fr); }
+      .hero h1  { font-size: 42px; letter-spacing: 4px; }
+      .site-mock .site-header { flex-direction: column; gap: 16px; }
+      .site-mock .site-header nav { gap: 16px; font-size: 11px; }
+    }
+
+    @media print {
+      body { background: white; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка бренд-листа -->
+  <div class="topbar">
+    <div class="container">
+      <div class="left">СРОСС® · СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</div>
+      <div class="right">Бренд-лист · v.1.0 · 2026</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <img src="sross_emblem.png" alt="Эмблема СРОСС®" class="emblem" />
+      <h1>СРОСС®</h1>
+      <h2>СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</h2>
+      <div class="sub">информационная система · SEISMO.RU</div>
+      <div class="meta">
+        <span><strong>2009—2026</strong></span>
+        <span>Патент · ТЗ «червяк»</span>
+        <span>Международный проект УР</span>
+        <span>UN-Habitat aligned</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Варианты компоновки -->
+  <section>
+    <div class="container">
+      <h3 class="section-title">01 — Варианты компоновки</h3>
+      <h4 class="section-sub">Эмблема · горизонтальный · вертикальный · монохром</h4>
+      <p class="section-desc">
+        Четыре базовых формата эмблемы СРОСС®. Все четыре скомпилированы из
+        мотивов исходной референс-таблицы: синий медальон в духе ООН-Хабитат
+        (международный статус в системе ООН), сейсмический мотив в центре
+        (концентрические волны от эпицентра — суть проекта), название системы
+        СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ / SEISMO.RU.
+      </p>
+
+      <div class="variants">
+        <div class="variant">
+          <img src="sross_emblem.png" alt="Круглая эмблема" />
+          <div class="label"><strong>КРУГЛАЯ ЭМБЛЕМА</strong>Медальон · для документов и фавиконок</div>
+        </div>
+
+        <div class="variant">
+          <img src="sross_logo_horizontal.png" alt="Горизонтальный логотип" />
+          <div class="label"><strong>ГОРИЗОНТАЛЬНЫЙ ЛОГОТИП</strong>Шапка сайта · деловая переписка</div>
+        </div>
+
+        <div class="variant tall">
+          <img src="sross_logo_vertical.png" alt="Вертикальная компоновка" />
+          <div class="label"><strong>ВЕРТИКАЛЬНАЯ КОМПОНОВКА</strong>Титульные листы · обложки · плакаты</div>
+        </div>
+
+        <div class="variant">
+          <img src="sross_emblem_mono.png" alt="Монохромная версия" />
+          <div class="label"><strong>МОНОХРОМНАЯ ВЕРСИЯ</strong>Печать · факсимиле · тиснение</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Цветовая палитра -->
+  <section>
+    <div class="container">
+      <h3 class="section-title">02 — Цветовая палитра</h3>
+      <h4 class="section-sub">Пять основных тонов строгой официальной палитры</h4>
+      <p class="section-desc">
+        В основе палитры — официальный синий ООН (#00549F), усиленный глубоким
+        тёмно-синим #003366 для акцентов. Стальной серый #4A6378 — вспомогательный
+        тон для подзаголовков и метаданных. Сигнальный красный #C8102E используется
+        точечно и только для маркировки эпицентра (как на настоящих картах
+        сейсмической опасности).
+      </p>
+
+      <div class="palette">
+        <div class="swatch">
+          <div class="color" style="background:#00549F;"></div>
+          <div class="info">
+            <div class="name">UN Blue</div>
+            <div class="hex">#00549F</div>
+            <div class="role">Основной</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="color" style="background:#003366;"></div>
+          <div class="info">
+            <div class="name">Deep Navy</div>
+            <div class="hex">#003366</div>
+            <div class="role">Акцентный</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="color" style="background:#4A6378;"></div>
+          <div class="info">
+            <div class="name">Steel</div>
+            <div class="hex">#4A6378</div>
+            <div class="role">Вспомогательный</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="color" style="background:#C8102E;"></div>
+          <div class="info">
+            <div class="name">Alert</div>
+            <div class="hex">#C8102E</div>
+            <div class="role">Эпицентр (точечно)</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="color" style="background:#FAF7F2;border-bottom:1px solid #D6DCE3;"></div>
+          <div class="info">
+            <div class="name">Cream</div>
+            <div class="hex">#FAF7F2</div>
+            <div class="role">Нейтральный фон</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Пример шапки сайта -->
+  <section>
+    <div class="container">
+      <h3 class="section-title">03 — Применение: шапка сайта seismo.ru</h3>
+      <h4 class="section-sub">Как логотип ложится в действующий интерфейс</h4>
+      <p class="section-desc">
+        Пример размещения горизонтального логотипа в шапке сайта. Эмблема и
+        типографика образуют единый визуальный блок, который без адаптации
+        встаёт в действующую шапку seismo.ru. Справа — навигация по основным
+        разделам будущего сайта.
+      </p>
+
+      <div class="site-mock">
+        <div class="browser-bar">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="url">https://seismo.ru/</div>
+        </div>
+        <div class="site-header">
+          <img src="sross_logo_horizontal.png" alt="Логотип СРОСС®" />
+          <nav>
+            <span class="active">Главная</span>
+            <span>О системе</span>
+            <span>Карта рисков</span>
+            <span>Публикации</span>
+            <span>Партнёры</span>
+            <span>EN</span>
+          </nav>
+        </div>
+        <div class="site-body">
+          <div class="tagline">Международный проект по устойчивому развитию</div>
+          <h1>Сейсмобезопасность территорий России — через открытые данные и науку</h1>
+          <p>Информационная система СРОСС® объединяет данные о сейсмической
+             опасности, методологию оценки рисков и инструменты целевого
+             планирования градостроительной деятельности. Проект развивается
+             с 2009 года на базе патентованной технологии сейсмологического
+             мониторинга.</p>
+          <button class="cta">Перейти к карте рисков →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Favicon-набор -->
+  <section>
+    <div class="container">
+      <h3 class="section-title">04 — Favicon и иконки</h3>
+      <h4 class="section-sub">Набор размеров для веба и мобильных устройств</h4>
+      <p class="section-desc">
+        Все размеры сгенерированы из единого SVG-источника эмблемы — это
+        гарантирует полную идентичность отображения на любом устройстве и при
+        любом разрешении. SVG-исходники редактируемы.
+      </p>
+
+      <div class="favicons">
+        <div class="favicon-item">
+          <div class="box"><img src="favicon_16.png" width="16" height="16" alt="" /></div>
+          <div class="size">16 × 16</div>
+        </div>
+        <div class="favicon-item">
+          <div class="box"><img src="favicon_32.png" width="32" height="32" alt="" /></div>
+          <div class="size">32 × 32</div>
+        </div>
+        <div class="favicon-item">
+          <div class="box"><img src="favicon_64.png" width="64" height="64" alt="" /></div>
+          <div class="size">64 × 64</div>
+        </div>
+        <div class="favicon-item">
+          <div class="box"><img src="favicon_180.png" width="64" height="64" alt="" /></div>
+          <div class="size">180 × 180</div>
+        </div>
+        <div class="favicon-item">
+          <div class="box"><img src="favicon_192.png" width="64" height="64" alt="" /></div>
+          <div class="size">192 × 192</div>
+        </div>
+        <div class="favicon-item">
+          <div class="box"><img src="favicon_512.png" width="72" height="72" alt="" /></div>
+          <div class="size">512 × 512</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer>
+    <div class="container">
+      <div class="left">СРОСС® · СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ · seismo.ru</div>
+      <div class="right">© 2009—2026 · Патент · ТЗ «червяк» · Все права защищены</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400" width="1400" height="400">
+  <!-- ============================================================
+       ГОРИЗОНТАЛЬНЫЙ ЛОГОТИП СРОСС®
+       Эмблема (слева) + текстовый блок (справа)
+       Подходит для шапки сайта seismo.ru и деловой переписки
+       ============================================================ -->
+
+  <defs>
+    <linearGradient id="ringGradH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#00549F"/>
+      <stop offset="100%" stop-color="#003366"/>
+    </linearGradient>
+    <radialGradient id="centerGradH" cx="50%" cy="45%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F2F4F7"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ====== ЛЕВАЯ ЧАСТЬ: Эмблема (упрощённая версия медальона) ====== -->
+  <g transform="translate(200,200)">
+    <!-- Внешний синий круг -->
+    <circle cx="0" cy="0" r="180" fill="url(#ringGradH)"/>
+    <!-- Внутреннее поле -->
+    <circle cx="0" cy="0" r="138" fill="url(#centerGradH)"/>
+    <circle cx="0" cy="0" r="138" fill="none" stroke="#003366" stroke-width="0.8"/>
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#FFFFFF" stroke-width="0.7" opacity="0.6"/>
+
+    <!-- Концентрические окружности -->
+    <g fill="none" stroke="#00549F" stroke-linecap="round">
+      <circle cx="0" cy="0" r="14"  stroke-width="1.6"/>
+      <circle cx="0" cy="0" r="27"  stroke-width="1.2" opacity="0.85"/>
+      <circle cx="0" cy="0" r="42"  stroke-width="1.0" opacity="0.7"/>
+      <circle cx="0" cy="0" r="58"  stroke-width="0.9" opacity="0.55"/>
+      <circle cx="0" cy="0" r="74"  stroke-width="0.8" opacity="0.4"/>
+    </g>
+
+    <!-- Сейсмические волны (4 синусоиды) -->
+    <g fill="none" stroke="#003366" stroke-linecap="round">
+      <path d="M -82,-55  Q -65,-78 -48,-55 T -14,-55 T 20,-55 T 54,-55 T 82,-55"
+            stroke-width="1.6" opacity="0.95"/>
+      <path d="M -88,-30  Q -65,-52 -42,-30 T 4,-30 T 50,-30 T 88,-30"
+            stroke-width="1.3" opacity="0.75"/>
+      <path d="M -88,30   Q -65,52 -42,30  T 4,30  T 50,30  T 88,30"
+            stroke-width="1.3" opacity="0.75"/>
+      <path d="M -82,55   Q -65,78 -48,55  T -14,55 T 20,55 T 54,55 T 82,55"
+            stroke-width="1.6" opacity="0.95"/>
+    </g>
+
+    <!-- Эпицентр -->
+    <circle cx="0" cy="0" r="4" fill="#C8102E"/>
+    <circle cx="0" cy="0" r="2" fill="#FFFFFF"/>
+
+    <!-- Тонкая внешняя кайма -->
+    <circle cx="0" cy="0" r="178" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity="0.4"/>
+    <circle cx="0" cy="0" r="183" fill="none" stroke="#003366" stroke-width="0.5"/>
+  </g>
+
+  <!-- ====== ПРАВАЯ ЧАСТЬ: Текстовый блок ====== -->
+  <g transform="translate(420,0)">
+
+    <!-- Тонкая вертикальная линия-разделитель (опционально, добавляет строгости) -->
+    <line x1="0" y1="80" x2="0" y2="320" stroke="#00549F" stroke-width="2" opacity="0.45"/>
+    <line x1="3" y1="80" x2="3" y2="320" stroke="#00549F" stroke-width="0.5" opacity="0.25"/>
+
+    <g transform="translate(40,0)">
+      <!-- Латиница — крупная, акцентный цвет (UN Blue) -->
+      <text x="0" y="155"
+            font-family="'PT Sans Narrow','Helvetica Neue',Arial,sans-serif"
+            font-size="72" font-weight="700" letter-spacing="3"
+            fill="#00549F">SEISMO.RU</text>
+
+      <!-- Крупный русский заголовок — глубокий тёмно-синий -->
+      <text x="0" y="215"
+            font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+            font-size="38" font-weight="700" letter-spacing="5"
+            fill="#003366">СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</text>
+
+      <!-- Подзаголовок -->
+      <text x="0" y="252"
+            font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+            font-size="22" font-weight="400" letter-spacing="3"
+            fill="#4A6378">информационная система</text>
+
+      <!-- Декоративная полоса + знак регистрации -->
+      <line x1="0" y1="275" x2="120" y2="275" stroke="#00549F" stroke-width="2"/>
+      <text x="0" y="305"
+            font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+            font-size="16" font-weight="600" letter-spacing="2.5"
+            fill="#00549F">СРОСС® · СИСТЕМА · 2009—2026</text>
+
+      <!-- Английская подстрока (международная проекция) -->
+      <text x="0" y="335"
+            font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+            font-size="14" font-weight="400" letter-spacing="2"
+            fill="#4A6378">SEISMIC SAFETY OF RUSSIA · INFORMATION SYSTEM</text>
+    </g>
+  </g>
+</svg>

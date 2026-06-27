@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <!-- ============================================================
+       ВЕРТИКАЛЬНАЯ КОМПОНОВКА СРОСС® (для титула / обложки)
+       Эмблема сверху + название снизу
+       ============================================================ -->
+
+  <defs>
+    <linearGradient id="ringGradV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#00549F"/>
+      <stop offset="100%" stop-color="#003366"/>
+    </linearGradient>
+    <radialGradient id="centerGradV" cx="50%" cy="45%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F2F4F7"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ====== ЭМБЛЕМА (центрирована сверху) ====== -->
+  <g transform="translate(300,260)">
+    <circle cx="0" cy="0" r="220" fill="url(#ringGradV)"/>
+    <circle cx="0" cy="0" r="170" fill="url(#centerGradV)"/>
+    <circle cx="0" cy="0" r="170" fill="none" stroke="#003366" stroke-width="1"/>
+    <circle cx="0" cy="0" r="172" fill="none" stroke="#FFFFFF" stroke-width="0.8" opacity="0.6"/>
+
+    <g fill="none" stroke="#00549F" stroke-linecap="round">
+      <circle cx="0" cy="0" r="17"  stroke-width="2"/>
+      <circle cx="0" cy="0" r="33"  stroke-width="1.5" opacity="0.85"/>
+      <circle cx="0" cy="0" r="51"  stroke-width="1.2" opacity="0.7"/>
+      <circle cx="0" cy="0" r="70"  stroke-width="1.0" opacity="0.55"/>
+      <circle cx="0" cy="0" r="90"  stroke-width="0.9" opacity="0.4"/>
+    </g>
+
+    <g fill="none" stroke="#003366" stroke-linecap="round">
+      <path d="M -100,-66 Q -80,-95 -60,-66 T -20,-66 T 20,-66 T 60,-66 T 100,-66"
+            stroke-width="2" opacity="0.95"/>
+      <path d="M -108,-36 Q -80,-64 -52,-36 T 4,-36 T 60,-36 T 108,-36"
+            stroke-width="1.6" opacity="0.75"/>
+      <path d="M -108,36  Q -80,64  -52,36  T 4,36  T 60,36  T 108,36"
+            stroke-width="1.6" opacity="0.75"/>
+      <path d="M -100,66  Q -80,95  -60,66  T -20,66 T 20,66 T 60,66 T 100,66"
+            stroke-width="2" opacity="0.95"/>
+    </g>
+
+    <circle cx="0" cy="0" r="5" fill="#C8102E"/>
+    <circle cx="0" cy="0" r="2.5" fill="#FFFFFF"/>
+
+    <circle cx="0" cy="0" r="218" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="0" cy="0" r="223" fill="none" stroke="#003366" stroke-width="0.6"/>
+  </g>
+
+  <!-- ====== ТЕКСТОВЫЙ БЛОК ====== -->
+  <text x="300" y="600"
+        text-anchor="middle"
+        font-family="'PT Sans Narrow','Helvetica Neue',Arial,sans-serif"
+        font-size="56" font-weight="700" letter-spacing="6"
+        fill="#00549F">SEISMO.RU</text>
+
+  <text x="300" y="650"
+        text-anchor="middle"
+        font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+        font-size="26" font-weight="700" letter-spacing="4"
+        fill="#003366">СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</text>
+
+  <text x="300" y="680"
+        text-anchor="middle"
+        font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+        font-size="18" font-weight="400" letter-spacing="3"
+        fill="#4A6378">информационная система</text>
+
+  <!-- Декоративная разделительная полоса -->
+  <line x1="220" y1="700" x2="380" y2="700" stroke="#00549F" stroke-width="1.5"/>
+
+  <text x="300" y="730"
+        text-anchor="middle"
+        font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+        font-size="16" font-weight="600" letter-spacing="3"
+        fill="#00549F">СРОСС® · СИСТЕМА · 2009—2026</text>
+
+  <text x="300" y="760"
+        text-anchor="middle"
+        font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+        font-size="13" font-weight="400" letter-spacing="2"
+        fill="#4A6378">SEISMIC SAFETY OF RUSSIA · INFORMATION SYSTEM</text>
+</svg>

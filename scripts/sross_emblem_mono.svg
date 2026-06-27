@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- ============================================================
+       МОНОХРОМНАЯ ВЕРСИЯ ЭМБЛЕМЫ СРОСС®
+       Для печати на документах, факсимиле, чёрно-белой печати,
+       тиснения. Все тона — серый/чёрный на белом.
+       ============================================================ -->
+
+  <defs>
+    <radialGradient id="monoGrad" cx="50%" cy="45%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E8EBEE"/>
+    </radialGradient>
+    <path id="topArcMono"    d="M 130,300 A 170,170 0 0 1 470,300" fill="none"/>
+    <path id="bottomArcMono" d="M 140,335 A 160,160 0 0 0 460,335" fill="none"/>
+  </defs>
+
+  <!-- Внешний круг -->
+  <circle cx="300" cy="300" r="290" fill="#1A1A1A"/>
+  <circle cx="300" cy="300" r="220" fill="url(#monoGrad)"/>
+  <circle cx="300" cy="300" r="220" fill="none" stroke="#1A1A1A" stroke-width="1.2"/>
+  <circle cx="300" cy="300" r="225" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+
+  <!-- Концентрические окружности -->
+  <g fill="none" stroke="#1A1A1A" stroke-linecap="round">
+    <circle cx="300" cy="300" r="22"  stroke-width="2.2"/>
+    <circle cx="300" cy="300" r="42"  stroke-width="1.6" opacity="0.85"/>
+    <circle cx="300" cy="300" r="64"  stroke-width="1.3" opacity="0.7"/>
+    <circle cx="300" cy="300" r="88"  stroke-width="1.1" opacity="0.55"/>
+    <circle cx="300" cy="300" r="114" stroke-width="0.9" opacity="0.4"/>
+  </g>
+
+  <!-- Сейсмические волны -->
+  <g fill="none" stroke="#1A1A1A" stroke-linecap="round">
+    <path d="M 175,215 Q 200,180 225,215 T 275,215 T 325,215 T 375,215 T 425,215"
+          stroke-width="2.2" opacity="0.95"/>
+    <path d="M 165,260 Q 200,228 235,260 T 305,260 T 375,260 T 435,260"
+          stroke-width="1.8" opacity="0.75"/>
+    <path d="M 165,340 Q 200,372 235,340 T 305,340 T 375,340 T 435,340"
+          stroke-width="1.8" opacity="0.75"/>
+    <path d="M 175,385 Q 200,420 225,385 T 275,385 T 325,385 T 375,385 T 425,385"
+          stroke-width="2.2" opacity="0.95"/>
+  </g>
+
+  <!-- Эпицентр (в монохроме — чёрный) -->
+  <circle cx="300" cy="300" r="6" fill="#1A1A1A"/>
+  <circle cx="300" cy="300" r="3" fill="#FFFFFF"/>
+
+  <!-- Текст по дуге -->
+  <text font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+        font-size="38" font-weight="700" letter-spacing="6"
+        fill="#FFFFFF" text-anchor="middle">
+    <textPath href="#topArcMono" startOffset="50%">СРОСС®</textPath>
+  </text>
+
+  <text font-family="'PT Sans','Helvetica Neue',Arial,sans-serif"
+        font-size="20" font-weight="600" letter-spacing="3"
+        fill="#FFFFFF" text-anchor="middle">
+    <textPath href="#bottomArcMono" startOffset="50%">СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</textPath>
+  </text>
+
+  <g fill="#FFFFFF">
+    <circle cx="300" cy="80"  r="3.5"/>
+    <circle cx="300" cy="520" r="3.5"/>
+    <circle cx="80"  cy="300" r="3.5"/>
+    <circle cx="520" cy="300" r="3.5"/>
+  </g>
+
+  <circle cx="300" cy="300" r="288" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.3"/>
+  <circle cx="300" cy="300" r="293" fill="none" stroke="#1A1A1A" stroke-width="0.8"/>
+</svg>
