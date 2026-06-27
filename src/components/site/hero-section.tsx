@@ -62,9 +62,9 @@ export function HeroSection() {
                 size="lg"
                 className="bg-[#00549F] hover:bg-[#003366] text-white text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
               >
-                <Link href="#about">
-                  О системе
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Link href="#map">
+                  <Map className="mr-2 h-4 w-4" />
+                  Карта рисков
                 </Link>
               </Button>
               <Button
@@ -73,9 +73,9 @@ export function HeroSection() {
                 variant="outline"
                 className="border-[#00549F] text-[#00549F] hover:bg-[#E7EEF6] hover:text-[#003366] text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
               >
-                <Link href="#publications">
-                  <FileText className="mr-2 h-4 w-4" />
-                  Публикации
+                <Link href="#about">
+                  О системе
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>

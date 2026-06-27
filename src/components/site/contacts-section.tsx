@@ -32,7 +32,7 @@ export function ContactsSection() {
         <div className="mb-12 max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-[#00549F]" />
-            <span className="eyebrow">05 · Контакты</span>
+            <span className="eyebrow">06 · Контакты</span>
           </div>
           <h2 className="text-[32px] sm:text-[42px] lg:text-[48px] font-bold tracking-[-0.015em] text-[#003366] mb-6 leading-[1.1]">
             Связаться с командой СРОСС®
