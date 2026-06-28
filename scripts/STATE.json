@@ -1,0 +1,47 @@
+{
+  "bros": [
+    {
+      "id": "iznaki-chat",
+      "scope": "iznaki.ru",
+      "port": 3001,
+      "folder": "/var/www/iznaki/",
+      "pm2_name": "iznaki",
+      "domain": "iznaki.ru",
+      "started_at": "2026-06-27T22:00:00Z",
+      "status": "active"
+    },
+    {
+      "id": "mktu-chat",
+      "scope": "мкту.рус",
+      "port": 3000,
+      "folder": "/var/www/mktu/",
+      "pm2_name": "mktu",
+      "domain": "xn--j1adte.xn--p1acf",
+      "started_at": "2026-06-27T22:00:00Z",
+      "status": "active"
+    },
+    {
+      "id": "naytea-chat",
+      "scope": "naytea.ru",
+      "port": 3002,
+      "port_secondary": 3003,
+      "folder": "/var/www/naytea/",
+      "pm2_name": "naytea",
+      "pm2_name_secondary": "naytea-full",
+      "domain": "naytea.ru",
+      "started_at": "2026-06-27T22:00:00Z",
+      "status": "active"
+    },
+    {
+      "id": "seismos-chat",
+      "scope": "seismos.ru",
+      "port": 3004,
+      "folder": "/var/www/seismos/",
+      "pm2_name": "seismos",
+      "domain": "seismos.ru",
+      "started_at": "2026-06-28T18:40:00Z",
+      "status": "registering"
+    }
+  ],
+  "locks": {}
+}

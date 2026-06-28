@@ -52,3 +52,23 @@ prompt
 server.log
 # Skills directory
 /skills/
+# VPS credentials (NEVER COMMIT!)
+scripts/ssh_exec.py
+.vps-credentials
+*.pem
+
+# Deploy artifacts
+download/seismos-deploy.tar.gz
+out/
+next-service-dist/
+
+# Brand assets (large PNG/SVG)
+download/sross-brand/*.png
+download/sross-brand/*.tar.gz
+
+# Build logs
+build.log
+dev.log
+server.log
+keep-running.log
+keep-alive.log
