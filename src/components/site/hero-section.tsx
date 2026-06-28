@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, FileText, Map, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
+import { SoundToggle } from "./sound-toggle";
 
 /**
  * HERO — главный экран.
@@ -81,11 +82,44 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* ====== Правая колонка: крупная эмблема ====== */}
+          {/* ====== Правая колонка: 3 варианта эмблемы ====== */}
           <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center justify-center">
-            <HeroEmblemLarge />
+            {/* Заголовок блока + кнопка звука */}
+            <div className="mb-6 flex flex-col items-center gap-3">
+              <div className="flex items-center gap-4">
+                <SoundToggle />
+                <div className="text-center">
+                  <div className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#4A6378]">
+                    Три варианта · Концепция оправы
+                  </div>
+                </div>
+              </div>
+              <div className="h-px w-12 bg-[#00549F]" />
+              <div className="text-[10px] tracking-[0.14em] uppercase text-[#4A6378]/70 max-w-xs text-center">
+                Включите эмбиент для полного эффекта присутствия
+              </div>
+            </div>
 
-            {/* Подпись под эмблемой */}
+            {/* Сетка из 3 эмблем */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-3 items-start">
+              <HeroEmblemLarge
+                variant="soft"
+                label="Soft"
+                description="Спокойная объёмность"
+              />
+              <HeroEmblemLarge
+                variant="medium"
+                label="Medium"
+                description="Сбалансированная выпуклость"
+              />
+              <HeroEmblemLarge
+                variant="strong"
+                label="Strong"
+                description="Металлическая оправа"
+              />
+            </div>
+
+            {/* Подпись под эмблемами */}
             <div className="mt-8 text-center max-w-sm">
               <div className="text-[15px] font-bold tracking-[0.18em] text-[#00549F] uppercase">
                 СРОСС®
@@ -132,157 +166,171 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 /**
  * Крупная эмблема СРОСС® для hero — с тонкой анимацией волн.
+ * variant: "soft" | "medium" | "strong" — управляет контрастом оправы.
  */
-function HeroEmblemLarge() {
+function HeroEmblemLarge({
+  variant = "medium",
+  label = "Текущая",
+  description,
+}: {
+  variant?: "soft" | "medium" | "strong";
+  label?: string;
+  description?: string;
+}) {
+  // Три варианта градиента оправы — от мягкого к усиленному
+  const gradients = {
+    soft: {
+      ring: "heroRingGrad-soft",
+      // Минимальный контраст — спокойная объёмность
+      stops: [
+        { offset: "0%", color: "#3A7AB5" },
+        { offset: "50%", color: "#00549F" },
+        { offset: "100%", color: "#003366" },
+      ],
+    },
+    medium: {
+      ring: "heroRingGrad-medium",
+      // Текущая версия — сбалансированная выпуклость
+      stops: [
+        { offset: "0%", color: "#5BA8DB" },
+        { offset: "50%", color: "#00549F" },
+        { offset: "100%", color: "#001A33" },
+      ],
+    },
+    strong: {
+      ring: "heroRingGrad-strong",
+      // Максимальный контраст — выраженная металлическая оправа
+      stops: [
+        { offset: "0%", color: "#9DCEEA" },
+        { offset: "50%", color: "#00549F" },
+        { offset: "100%", color: "#000A1A" },
+      ],
+    },
+  } as const;
+
+  const g = gradients[variant];
+  // Уникальные id для center и path — чтобы 3 эмблемы на странице не конфликтовали
+  const centerId = `heroCenterGrad-${variant}`;
+  const topArcId = `heroTopArc-${variant}`;
+  const bottomArcId = `heroBottomArc-${variant}`;
+
   return (
-    <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] lg:w-[380px] lg:h-[380px]">
-      {/* Внешнее свечение — едва заметное */}
-      <div className="absolute inset-0 rounded-full bg-[#00549F]/8 blur-2xl" />
+    <div className="flex flex-col items-center">
+      <div className="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] lg:w-[280px] lg:h-[280px]">
+        {/* Внешнее свечение — едва заметное */}
+        <div className="absolute inset-0 rounded-full bg-[#00549F]/8 blur-2xl" />
 
-      <svg
-        viewBox="0 0 600 600"
-        className="relative w-full h-full"
-        role="img"
-        aria-label="Эмблема СРОСС®"
-      >
-        {/* Внешний синий круг */}
-        <defs>
-          <linearGradient id="heroRingGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#00549F" />
-            <stop offset="100%" stopColor="#003366" />
-          </linearGradient>
-          <radialGradient id="heroCenterGrad" cx="50%" cy="45%" r="60%">
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="100%" stopColor="#F2F4F7" />
-          </radialGradient>
-          <path
-            id="heroTopArc"
-            d="M 130,300 A 170,170 0 0 1 470,300"
-            fill="none"
-          />
-          <path
-            id="heroBottomArc"
-            d="M 140,335 A 160,160 0 0 0 460,335"
-            fill="none"
-          />
-        </defs>
-
-        <circle cx="300" cy="300" r="290" fill="url(#heroRingGrad)" />
-        <circle cx="300" cy="300" r="220" fill="url(#heroCenterGrad)" />
-        <circle
-          cx="300"
-          cy="300"
-          r="220"
-          fill="none"
-          stroke="#003366"
-          strokeWidth="1.2"
-        />
-        <circle
-          cx="300"
-          cy="300"
-          r="225"
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth="1"
-          opacity="0.6"
-        />
-
-        {/* Концентрические опорные окружности (статичные) */}
-        <g fill="none" stroke="#00549F" strokeLinecap="round">
-          <circle cx="300" cy="300" r="22" strokeWidth="2.2" />
-          <circle cx="300" cy="300" r="42" strokeWidth="1.6" opacity="0.85" />
-          <circle cx="300" cy="300" r="64" strokeWidth="1.3" opacity="0.7" />
-          <circle cx="300" cy="300" r="88" strokeWidth="1.1" opacity="0.55" />
-          <circle cx="300" cy="300" r="114" strokeWidth="0.9" opacity="0.4" />
-        </g>
-
-        {/* Пульсирующие кольца (5 волн с задержкой) — распространение
-            сейсмической волны от эпицентра. CSS-анимация, легко. */}
-        <g fill="none" strokeLinecap="round">
-          <circle
-            cx="300" cy="300" r="22"
-            stroke="#003366" strokeWidth="2.5"
-            className="hero-pulse-ring hero-pulse-ring-1"
-          />
-          <circle
-            cx="300" cy="300" r="22"
-            stroke="#00549F" strokeWidth="2"
-            className="hero-pulse-ring hero-pulse-ring-2"
-          />
-          <circle
-            cx="300" cy="300" r="22"
-            stroke="#00549F" strokeWidth="1.8"
-            className="hero-pulse-ring hero-pulse-ring-3"
-          />
-          <circle
-            cx="300" cy="300" r="22"
-            stroke="#4A6378" strokeWidth="1.5"
-            className="hero-pulse-ring hero-pulse-ring-4"
-          />
-          <circle
-            cx="300" cy="300" r="22"
-            stroke="#4A6378" strokeWidth="1.2"
-            className="hero-pulse-ring hero-pulse-ring-5"
-          />
-        </g>
-
-        {/* Эпицентр — пульсирующая красная точка */}
-        <circle cx="300" cy="300" r="6" fill="#C8102E" className="hero-epicenter-pulse" />
-        <circle cx="300" cy="300" r="3" fill="#FFFFFF" />
-
-        {/* Текст по дуге */}
-        <text
-          fontFamily="'PT Sans', Arial, sans-serif"
-          fontSize="38"
-          fontWeight="700"
-          letterSpacing="6"
-          fill="#FFFFFF"
-          textAnchor="middle"
+        <svg
+          viewBox="0 0 600 600"
+          className="relative w-full h-full"
+          role="img"
+          aria-label={`Эмблема СРОСС® — вариант ${label}`}
         >
-          <textPath href="#heroTopArc" startOffset="50%">
-            СРОСС®
-          </textPath>
-        </text>
+          <defs>
+            {/* Convex metallic frame — radial gradient из центра */}
+            <radialGradient id={g.ring} cx="50%" cy="50%" r="55%">
+              {g.stops.map((s, i) => (
+                <stop key={i} offset={s.offset} stopColor={s.color} />
+              ))}
+            </radialGradient>
+            {/* Convex lens — radial gradient из центра */}
+            <radialGradient id={centerId} cx="50%" cy="50%" r="55%">
+              <stop offset="0%"   stopColor="#FFFFFF" />
+              <stop offset="55%"  stopColor="#FAFCFE" />
+              <stop offset="100%" stopColor="#E8EEF4" />
+            </radialGradient>
+            <path
+              id={topArcId}
+              d="M 130,300 A 170,170 0 0 1 470,300"
+              fill="none"
+            />
+            <path
+              id={bottomArcId}
+              d="M 140,335 A 160,160 0 0 0 460,335"
+              fill="none"
+            />
+          </defs>
 
-        <text
-          fontFamily="'PT Sans', Arial, sans-serif"
-          fontSize="20"
-          fontWeight="600"
-          letterSpacing="3"
-          fill="#FFFFFF"
-          textAnchor="middle"
-        >
-          <textPath href="#heroBottomArc" startOffset="50%">
-            СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ
-          </textPath>
-        </text>
+          {/* Внешний синий круг (медальон) — convex metallic frame */}
+          <circle cx="300" cy="300" r="290" fill={`url(#${g.ring})`} />
 
-        {/* Декоративные точки по сторонам света */}
-        <g fill="#FFFFFF">
-          <circle cx="300" cy="80" r="3.5" />
-          <circle cx="300" cy="520" r="3.5" />
-          <circle cx="80" cy="300" r="3.5" />
-          <circle cx="520" cy="300" r="3.5" />
-        </g>
+          {/* Внутреннее поле — convex lens */}
+          <circle cx="300" cy="300" r="220" fill={`url(#${centerId})`} />
+          <circle cx="300" cy="300" r="220" fill="none" stroke="#003366" strokeWidth="1.2" />
+          <circle cx="300" cy="300" r="225" fill="none" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
 
-        <circle
-          cx="300"
-          cy="300"
-          r="288"
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth="2"
-          opacity="0.4"
-        />
-        <circle
-          cx="300"
-          cy="300"
-          r="293"
-          fill="none"
-          stroke="#003366"
-          strokeWidth="0.8"
-        />
-      </svg>
+          {/* Статичные внешние концентрические круги внутри синего кольца */}
+          <circle cx="300" cy="300" r="140" fill="none" stroke="#00549F" strokeWidth="1.4" opacity="0.55" />
+          <circle cx="300" cy="300" r="175" fill="none" stroke="#00549F" strokeWidth="1.2" opacity="0.4" />
+
+          {/* Концентрические опорные окружности (статичные) */}
+          <g fill="none" stroke="#00549F" strokeLinecap="round">
+            <circle cx="300" cy="300" r="22" strokeWidth="2.2" />
+            <circle cx="300" cy="300" r="42" strokeWidth="1.6" opacity="0.85" />
+            <circle cx="300" cy="300" r="64" strokeWidth="1.3" opacity="0.7" />
+            <circle cx="300" cy="300" r="88" strokeWidth="1.1" opacity="0.55" />
+            <circle cx="300" cy="300" r="114" strokeWidth="0.9" opacity="0.4" />
+          </g>
+
+          {/* Пульсирующие кольца (5 волн с задержкой) — расходятся за пределы статичных кругов */}
+          <g fill="none" strokeLinecap="round">
+            <circle cx="300" cy="300" r="22" stroke="#003366" strokeWidth="2.5" className="hero-pulse-ring hero-pulse-ring-1" />
+            <circle cx="300" cy="300" r="22" stroke="#00549F" strokeWidth="2"   className="hero-pulse-ring hero-pulse-ring-2" />
+            <circle cx="300" cy="300" r="22" stroke="#00549F" strokeWidth="1.8" className="hero-pulse-ring hero-pulse-ring-3" />
+            <circle cx="300" cy="300" r="22" stroke="#4A6378" strokeWidth="1.5" className="hero-pulse-ring hero-pulse-ring-4" />
+            <circle cx="300" cy="300" r="22" stroke="#4A6378" strokeWidth="1.2" className="hero-pulse-ring hero-pulse-ring-5" />
+          </g>
+
+          {/* Эпицентр — пульсирующая красная точка (±3%) */}
+          <circle cx="300" cy="300" r="6" fill="#C8102E" className="hero-epicenter-pulse" />
+          <circle cx="300" cy="300" r="3" fill="#FFFFFF" />
+
+          {/* Текст по дуге */}
+          <text
+            fontFamily="'PT Sans', Arial, sans-serif"
+            fontSize="38"
+            fontWeight="700"
+            letterSpacing="6"
+            fill="#FFFFFF"
+            textAnchor="middle"
+          >
+            <textPath href={`#${topArcId}`} startOffset="50%">СРОСС®</textPath>
+          </text>
+          <text
+            fontFamily="'PT Sans', Arial, sans-serif"
+            fontSize="20"
+            fontWeight="600"
+            letterSpacing="3"
+            fill="#FFFFFF"
+            textAnchor="middle"
+          >
+            <textPath href={`#${bottomArcId}`} startOffset="50%">СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</textPath>
+          </text>
+
+          {/* Декоративные точки по сторонам света */}
+          <g fill="#FFFFFF">
+            <circle cx="300" cy="80" r="3.5" />
+            <circle cx="300" cy="520" r="3.5" />
+            <circle cx="80" cy="300" r="3.5" />
+            <circle cx="520" cy="300" r="3.5" />
+          </g>
+
+          <circle cx="300" cy="300" r="288" fill="none" stroke="#FFFFFF" strokeWidth="2" opacity="0.4" />
+          <circle cx="300" cy="300" r="293" fill="none" stroke="#003366" strokeWidth="0.8" />
+        </svg>
+      </div>
+
+      {/* Подпись под эмблемой */}
+      <div className="mt-5 text-center">
+        <div className="text-[11px] tracking-[0.2em] uppercase font-bold text-[#00549F]">
+          {label}
+        </div>
+        {description && (
+          <div className="text-[10px] tracking-[0.1em] uppercase text-[#4A6378] mt-1.5 max-w-[220px]">
+            {description}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
