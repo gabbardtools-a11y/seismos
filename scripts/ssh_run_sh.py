@@ -2,14 +2,14 @@
 import sys
 import paramiko
 
-HOST = '91.219.151.57'
+HOST = '188.127.227.250'
 USER = 'root'
-PASSWORD = 'iY4nY2rV7hqL'
+PASSWORD = 'bF2bB7eT4wdZ'
 
 def run(cmd, timeout=600):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(HOST, username=USER, password=PASSWORD, timeout=15, allow_agent=False, look_for_keys=False)
+    client.connect(HOST, username=USER, password=PASSWORD, timeout=30, banner_timeout=30, auth_timeout=30, allow_agent=False, look_for_keys=False)
     stdin, stdout, stderr = client.exec_command(cmd, timeout=timeout, get_pty=True)
     out = stdout.read().decode('utf-8', errors='replace')
     err = stderr.read().decode('utf-8', errors='replace')
