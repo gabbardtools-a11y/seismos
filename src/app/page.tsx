@@ -3,8 +3,9 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { HeroSection } from "@/components/site/hero-section";
 import { AboutSection } from "@/components/site/about-section";
 import { DirectionsSection } from "@/components/site/directions-section";
-import { SeismicMapSection } from "@/components/site/seismic-map-section";
 import { PartnersSection } from "@/components/site/partners-section";
+import { PatentsSection } from "@/components/site/patents-section";
+import { AuthorSection } from "@/components/site/author-section";
 import { PublicationsSection } from "@/components/site/publications-section";
 import { ContactsSection } from "@/components/site/contacts-section";
 
@@ -16,8 +17,9 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <DirectionsSection />
-        <SeismicMapSection />
         <PartnersSection />
+        <PatentsSection />
+        <AuthorSection />
         <PublicationsSection />
         <ContactsSection />
       </main>

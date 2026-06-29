@@ -9,8 +9,9 @@ const NAV_ITEMS = [
   { label: "Главная", href: "#hero" },
   { label: "О системе", href: "#about" },
   { label: "Направления", href: "#directions" },
-  { label: "Карта рисков", href: "#map" },
   { label: "Партнёры", href: "#partners" },
+  { label: "Патенты", href: "#patents" },
+  { label: "Автор", href: "#author" },
   { label: "Публикации", href: "#publications" },
   { label: "Контакты", href: "#contacts" },
 ];
