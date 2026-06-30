@@ -121,16 +121,35 @@ export function HeroSection() {
                 variant="silver"
                 label="Silver"
                 description="Серебро+синий"
+                lensStops={[
+                  { offset: "0%", color: "#FFFFFF" },
+                  { offset: "45%", color: "#F0F4F8" },
+                  { offset: "80%", color: "#D0DCE8" },
+                  { offset: "100%", color: "#C0D0DC" },
+                ]}
               />
               <HeroEmblemLarge
                 variant="platinum"
                 label="Platinum"
-                description="Платина"
+                description="Платина+кристалл"
+                lensStops={[
+                  { offset: "0%", color: "#FFFFFF" },
+                  { offset: "30%", color: "#F4F8FC" },
+                  { offset: "60%", color: "#E0E8F0" },
+                  { offset: "85%", color: "#C8D4E0" },
+                  { offset: "100%", color: "#B8C8D4" },
+                ]}
               />
               <HeroEmblemLarge
                 variant="chrome"
                 label="Chrome"
-                description="Хром. серебро"
+                description="Хром+мороз"
+                lensStops={[
+                  { offset: "0%", color: "#FAFCFE" },
+                  { offset: "35%", color: "#EEF2F6" },
+                  { offset: "70%", color: "#D8E0E8" },
+                  { offset: "100%", color: "#C5D2DE" },
+                ]}
               />
             </div>
 
@@ -187,12 +206,14 @@ function HeroEmblemLarge({
   variant = "medium",
   label = "Текущая",
   description,
+  lensStops,
 }: {
   variant?: "soft" | "medium" | "strong" | "silver" | "platinum" | "chrome";
   label?: string;
   description?: string;
+  lensStops?: { offset: string; color: string }[];
 }) {
-  // Три варианта градиента оправы — от мягкого к усиленному
+  // Шесть вариантов градиента оправы — от мягкого к хрому
   const gradients = {
     soft: {
       ring: "heroRingGrad-soft",
@@ -256,10 +277,18 @@ function HeroEmblemLarge({
   } as const;
 
   const g = gradients[variant];
-  // Уникальные id для center и path — чтобы 3 эмблемы на странице не конфликтовали
+  // Уникальные id для center и path — чтобы эмблемы на странице не конфликтовали
   const centerId = `heroCenterGrad-${variant}`;
   const topArcId = `heroTopArc-${variant}`;
   const bottomArcId = `heroBottomArc-${variant}`;
+
+  // Варианты объёма линзы
+  const defaultLens = [
+    { offset: "0%", color: "#FFFFFF" },
+    { offset: "55%", color: "#FAFCFE" },
+    { offset: "100%", color: "#E8EEF4" },
+  ];
+  const lensStopsFinal = lensStops || defaultLens;
 
   return (
     <div className="flex flex-col items-center">
@@ -280,11 +309,11 @@ function HeroEmblemLarge({
                 <stop key={i} offset={s.offset} stopColor={s.color} />
               ))}
             </radialGradient>
-            {/* Convex lens — radial gradient из центра */}
+            {/* Convex lens — radial gradient из центра (варьируется по вариантам) */}
             <radialGradient id={centerId} cx="50%" cy="50%" r="55%">
-              <stop offset="0%"   stopColor="#FFFFFF" />
-              <stop offset="55%"  stopColor="#FAFCFE" />
-              <stop offset="100%" stopColor="#E8EEF4" />
+              {lensStopsFinal.map((s, i) => (
+                <stop key={i} offset={s.offset} stopColor={s.color} />
+              ))}
             </radialGradient>
             <path
               id={topArcId}
