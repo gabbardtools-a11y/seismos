@@ -100,27 +100,32 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Сетка из 4 эмблем */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-3 items-start">
+            {/* Сетка из 5 эмблем */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-2 items-start">
               <HeroEmblemLarge
                 variant="soft"
                 label="Soft"
-                description="Спокойная объёмность"
+                description="Спокойная"
               />
               <HeroEmblemLarge
                 variant="medium"
                 label="Medium"
-                description="Сбалансированная выпуклость"
+                description="Сбалансированная"
               />
               <HeroEmblemLarge
                 variant="strong"
                 label="Strong"
-                description="Металлическая оправа"
+                description="Металлик"
               />
               <HeroEmblemLarge
                 variant="silver"
                 label="Silver"
-                description="Серебряно-синяя оправа лупы"
+                description="Серебро+синий"
+              />
+              <HeroEmblemLarge
+                variant="chrome"
+                label="Chrome"
+                description="Хром. серебро"
               />
             </div>
 
@@ -171,14 +176,14 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 /**
  * Крупная эмблема СРОСС® для hero — с тонкой анимацией волн.
- * variant: "soft" | "medium" | "strong" | "silver" — управляет контрастом оправы.
+ * variant: "soft" | "medium" | "strong" | "silver" | "chrome" — управляет контрастом оправы.
  */
 function HeroEmblemLarge({
   variant = "medium",
   label = "Текущая",
   description,
 }: {
-  variant?: "soft" | "medium" | "strong" | "silver";
+  variant?: "soft" | "medium" | "strong" | "silver" | "chrome";
   label?: string;
   description?: string;
 }) {
@@ -219,6 +224,17 @@ function HeroEmblemLarge({
         { offset: "35%", color: "#5BA8DB" },
         { offset: "70%", color: "#00549F" },
         { offset: "100%", color: "#00111F" },
+      ],
+    },
+    chrome: {
+      ring: "heroRingGrad-chrome",
+      // Хромированная оправа — максимум серебра с лёгким синим оттенком
+      stops: [
+        { offset: "0%", color: "#F0F4F8" },
+        { offset: "25%", color: "#C8D8E8" },
+        { offset: "50%", color: "#8BB4D8" },
+        { offset: "80%", color: "#2A6BA8" },
+        { offset: "100%", color: "#0A1A2E" },
       ],
     },
   } as const;
