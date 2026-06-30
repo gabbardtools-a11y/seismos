@@ -100,8 +100,8 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Сетка из 5 эмблем */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-2 items-start">
+            {/* Сетка из 6 эмблем */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-2 items-start">
               <HeroEmblemLarge
                 variant="soft"
                 label="Soft"
@@ -121,6 +121,11 @@ export function HeroSection() {
                 variant="silver"
                 label="Silver"
                 description="Серебро+синий"
+              />
+              <HeroEmblemLarge
+                variant="platinum"
+                label="Platinum"
+                description="Платина"
               />
               <HeroEmblemLarge
                 variant="chrome"
@@ -176,14 +181,14 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 /**
  * Крупная эмблема СРОСС® для hero — с тонкой анимацией волн.
- * variant: "soft" | "medium" | "strong" | "silver" | "chrome" — управляет контрастом оправы.
+ * variant: "soft" | "medium" | "strong" | "silver" | "platinum" | "chrome" — управляет контрастом оправы.
  */
 function HeroEmblemLarge({
   variant = "medium",
   label = "Текущая",
   description,
 }: {
-  variant?: "soft" | "medium" | "strong" | "silver" | "chrome";
+  variant?: "soft" | "medium" | "strong" | "silver" | "platinum" | "chrome";
   label?: string;
   description?: string;
 }) {
@@ -224,6 +229,17 @@ function HeroEmblemLarge({
         { offset: "35%", color: "#5BA8DB" },
         { offset: "70%", color: "#00549F" },
         { offset: "100%", color: "#00111F" },
+      ],
+    },
+    platinum: {
+      ring: "heroRingGrad-platinum",
+      // Платина — среднее между Silver и Chrome: больше серебра, мягче переход
+      stops: [
+        { offset: "0%", color: "#E8EEF4" },
+        { offset: "30%", color: "#BCD0E4" },
+        { offset: "55%", color: "#6FA0CC" },
+        { offset: "80%", color: "#1A5A99" },
+        { offset: "100%", color: "#05101E" },
       ],
     },
     chrome: {
