@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
 import { SoundToggle } from "./sound-toggle";
 import { FinalEmblem } from "./final-emblem";
+import { FinalEmblemV2 } from "./final-emblem-v2";
 
 /**
  * HERO — главный экран.
@@ -174,6 +175,7 @@ export function HeroSection() {
 
       {/* Финальная эмблема */}
       <FinalEmblem />
+      <FinalEmblemV2 />
 
       {/* Нижняя «сейсмограмма» — бегущая волна как разделитель */}
       <SeismogramDivider />
