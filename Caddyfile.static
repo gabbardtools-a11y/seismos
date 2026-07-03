@@ -1,0 +1,5 @@
+:3000 {
+	root * /home/z/my-project/out
+	file_server
+	try_files {path} /index.html
+}

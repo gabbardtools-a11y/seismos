@@ -425,25 +425,38 @@ function SeismogramDivider() {
   return (
     <div className="relative border-t border-[#D6DCE3] bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-4">
-        <span className="text-[10px] tracking-[0.18em] uppercase text-[#4A6378] font-semibold whitespace-nowrap">
+        <span className="text-[10px] tracking-[0.18em] uppercase text-[#4A6378] font-semibold whitespace-nowrap flex items-center gap-2">
+          <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
           Live · Сейсмический мониторинг
         </span>
-        <svg
-          viewBox="0 0 800 40"
-          className="flex-1 h-8"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <path
-            d="M 0 20 L 80 20 L 90 8 L 100 32 L 110 12 L 120 28 L 130 20 L 200 20 L 210 4 L 220 36 L 230 14 L 240 26 L 250 20 L 380 20 L 390 10 L 400 30 L 410 16 L 420 24 L 430 20 L 560 20 L 570 6 L 580 34 L 590 12 L 600 28 L 610 20 L 740 20 L 750 10 L 760 30 L 770 14 L 780 26 L 800 20"
-            fill="none"
-            stroke="#00549F"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="seismogram-line"
-          />
-        </svg>
+        <div className="flex-1 h-10 overflow-hidden relative">
+          <svg
+            viewBox="0 0 1600 40"
+            className="h-10 absolute seismogram-scroll"
+            preserveAspectRatio="none"
+            aria-hidden
+            style={{ width: "200%" }}
+          >
+            {/* Повторяющийся паттерн ломаной линии — сейсмическая активность */}
+            <path
+              d="M 0 20 L 60 20 L 70 8 L 80 32 L 90 10 L 100 30 L 110 18 L 120 24 L 130 20 L 200 20 L 210 4 L 220 36 L 230 14 L 240 28 L 250 20 L 350 20 L 360 12 L 370 28 L 380 6 L 390 34 L 400 20 L 500 20 L 510 10 L 520 30 L 530 16 L 540 24 L 550 20 L 650 20 L 660 8 L 670 32 L 680 14 L 690 26 L 700 20 L 800 20 L 810 20 L 820 8 L 830 32 L 840 10 L 850 30 L 860 18 L 870 24 L 880 20 L 950 20 L 960 4 L 970 36 L 980 14 L 990 28 L 1000 20 L 1100 20 L 1110 12 L 1120 28 L 1130 6 L 1140 34 L 1150 20 L 1250 20 L 1260 10 L 1270 30 L 1280 16 L 1290 24 L 1300 20 L 1400 20 L 1410 8 L 1420 32 L 1430 14 L 1440 26 L 1450 20 L 1600 20"
+              fill="none"
+              stroke="#00549F"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Дубликат для бесшовной прокрутки */}
+            <path
+              d="M 1600 20 L 1660 20 L 1670 8 L 1680 32 L 1690 10 L 1700 30 L 1710 18 L 1720 24 L 1730 20 L 1800 20 L 1810 4 L 1820 36 L 1830 14 L 1840 28 L 1850 20 L 1950 20 L 1960 12 L 1970 28 L 1980 6 L 1990 34 L 2000 20 L 2100 20 L 2110 10 L 2120 30 L 2130 16 L 2140 24 L 2150 20 L 2250 20 L 2260 8 L 2270 32 L 2280 14 L 2290 26 L 2300 20 L 2400 20 L 2410 20 L 2420 8 L 2430 32 L 2440 10 L 2450 30 L 2460 18 L 2470 24 L 2480 20 L 2550 20 L 2560 4 L 2570 36 L 2580 14 L 2590 28 L 2600 20 L 2700 20 L 2710 12 L 2720 28 L 2730 6 L 2740 34 L 2750 20 L 2850 20 L 2860 10 L 2870 30 L 2880 16 L 2890 24 L 2900 20 L 3000 20 L 3010 8 L 3020 32 L 3030 14 L 3040 26 L 3050 20 L 3200 20"
+              fill="none"
+              stroke="#00549F"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#00549F] font-bold whitespace-nowrap">
           ОК · 0 событий
         </span>

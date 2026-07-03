@@ -267,3 +267,15 @@
   0%, 100% { transform: scale(1); opacity: 1; }
   50%      { transform: scale(1.4); opacity: 0.7; }
 }
+
+/* Динамическая сейсмограмма — бегущая ломаная линия */
+.seismogram-scroll {
+  animation: seismogram-scroll 20s linear infinite;
+}
+@keyframes seismogram-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seismogram-scroll { animation: none; }
+}
