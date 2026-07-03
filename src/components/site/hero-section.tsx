@@ -3,6 +3,7 @@ import { ArrowRight, FileText, Map, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
 import { SoundToggle } from "./sound-toggle";
+import { FinalEmblem } from "./final-emblem";
 
 /**
  * HERO — главный экран.
@@ -170,6 +171,9 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Финальная эмблема */}
+      <FinalEmblem />
 
       {/* Нижняя «сейсмограмма» — бегущая волна как разделитель */}
       <SeismogramDivider />
