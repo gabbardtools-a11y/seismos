@@ -1,0 +1,94 @@
+name: Deploy seismos
+
+# ВНИМАНИЕ: автозапуск по push ВЫКЛЮЧЕН — репо может отставать от продакшена
+# (прод обновлялся напрямую при ремонте). Порядок включения для сайта-агента:
+#   1) подтянуть в репо актуальный код (next 16.1.1 и правки), сверить с продом;
+#   2) раскомментировать push-блок ниже — и деплой поедет автоматически, как у эталонного сайта.
+# Пока запуск вручную: вкладка Actions -> Deploy seismos -> Run workflow.
+on:
+  workflow_dispatch: {}
+  # push:
+  #   branches: [main]
+
+concurrency:
+  group: deploy-seismos
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build
+        run: |
+          npm ci --include=dev --no-audit --no-fund || npm install --include=dev --legacy-peer-deps --no-audit --no-fund
+          npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "${{ secrets.VPS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          printf 'Host *\n  Port 20101\n  IdentityFile ~/.ssh/deploy_key\n  IdentitiesOnly yes\n' > ~/.ssh/config
+          chmod 600 ~/.ssh/config
+
+      - name: Pack build
+        run: |
+          if [ -d .next/standalone ]; then
+            tar -czf /tmp/site.tgz .next/standalone .next/static public
+          else
+            tar -czf /tmp/site.tgz .next public package.json
+          fi
+
+      - name: Upload
+        run: scp -o ConnectTimeout=15 /tmp/site.tgz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/tmp/seismos-site.tgz
+
+      - name: Atomic swap + reload + healthcheck
+        run: |
+          ssh -o ConnectTimeout=15 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} 'bash -s' << 'REMOTE'
+          set -e
+          D=/var/www/seismos
+          mkdir -p $D/backup
+          if [ -d $D/.next ]; then
+            stamp=$(date +%Y%m%d-%H%M%S)
+            cp -a $D/.next "$D/backup/.next-$stamp" 2>/dev/null || true
+            ls -1dt $D/backup/.next-* 2>/dev/null | tail -n +3 | xargs -r rm -rf
+          fi
+          rm -rf /tmp/seismos-unpack && mkdir -p /tmp/seismos-unpack
+          tar -xzf /tmp/seismos-site.tgz -C /tmp/seismos-unpack
+          if [ -d /tmp/seismos-unpack/.next/standalone ]; then
+            rm -rf $D/.next.new && mkdir -p $D/.next.new
+            mv /tmp/seismos-unpack/.next/standalone $D/.next.new/standalone
+            mkdir -p $D/.next.new/standalone/.next
+            cp -a /tmp/seismos-unpack/.next/static $D/.next.new/standalone/.next/static
+            [ -d /tmp/seismos-unpack/public ] && cp -a /tmp/seismos-unpack/public $D/.next.new/standalone/public || true
+            rm -rf $D/.next.old && [ -d $D/.next ] && mv $D/.next $D/.next.old || true
+            mv $D/.next.new $D/.next
+            rm -rf $D/.next.old
+          else
+            rm -rf $D/.next && mv /tmp/seismos-unpack/.next $D/.next
+          fi
+          # .env не трогаем (живёт на VPS)
+          pm2 restart seismos --update-env
+          sleep 4
+          ok=0
+          for i in 1 2 3 4 5 6 7 8; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 8 http://127.0.0.1:3004/ || true)
+            echo "healthcheck $i: HTTP $code"
+            [ "$code" = "200" ] && ok=1 && break
+            sleep 3
+          done
+          [ "$ok" = "1" ] || { echo "HEALTHCHECK FAILED"; pm2 logs seismos --nostream --lines 20 --err; exit 1; }
+          systemctl reload caddy 2>/dev/null || true
+          echo "DEPLOY OK: seismos HTTP 200"
+          rm -f /tmp/seismos-site.tgz
+          REMOTE
