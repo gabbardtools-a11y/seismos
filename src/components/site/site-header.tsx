@@ -61,10 +61,7 @@ export function SiteHeader() {
                 СРОСС<sup className="text-[9px] align-super">®</sup>
               </span>
               <span className="text-[11px] font-semibold tracking-[0.16em] text-[#003366] uppercase">
-                Сейсмобезопасность России
-              </span>
-              <span className="text-[10px] tracking-[0.14em] text-[#4A6378] uppercase">
-                информационная система · seismo.ru
+                Сейсмобезопасность и сейсмозащита России
               </span>
             </div>
           </Link>
