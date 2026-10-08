@@ -16,7 +16,10 @@ export function HeroSection() {
       {/* Декоративная боковая полоса слева */}
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
 
-      <div className="w-full px-4 sm:px-6 lg:px-12 py-20 lg:py-28">
+      {/* Полоса сейсмомониторинга — сверху, под шапкой */}
+      <SeismogramDivider />
+
+      <div className="w-full px-4 sm:px-6 lg:px-12 py-16 lg:py-24">
         {/* Резиновый контейнер на всю ширину страницы */}
         <div>
             {/* Eyebrow */}
@@ -28,11 +31,16 @@ export function HeroSection() {
             </div>
 
             {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
-            <h1 className="text-[28px] sm:text-[34px] lg:text-[40px] xl:text-[46px] leading-[1.15] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
-              Сейсмобезопасность и сейсмозащита зданий и сооружений на территорий России и стран ЕАЭС. Сейсмостойкое проектирование и строительство, сейсмоизоляция и сейсмоусиление. Защита объектов от пиковых воздействий. Мониторинг сейсмоактивности всех сейсмичных регионов.
+            <h1 className="text-[32px] sm:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.1] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
+              Сейсмобезопасность и сейсмозащита зданий и сооружений на территорий России и стран ЕАЭС
             </h1>
 
-            {/* Подзаголовок */}
+            {/* Описание под заголовком — обычный размер */}
+            <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-8">
+              Сейсмостойкое проектирование и строительство, сейсмоизоляция и сейсмоусиление. Защита объектов от пиковых воздействий. Мониторинг сейсмоактивности всех сейсмичных регионов.
+            </p>
+
+            {/* Подзаголовок — про СРОСС® и ЕАСА */}
             <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-8">
               Информационная система <strong className="text-[#003366]">СРОСС®</strong>{" "}
               объединяет данные о сейсмической опасности, методологию оценки
@@ -75,9 +83,6 @@ export function HeroSection() {
             </div>
         </div>
       </div>
-
-      {/* Нижняя «сейсмограмма» — бегущая волна как разделитель */}
-      <SeismogramDivider />
     </section>
   );
 }
@@ -278,15 +283,13 @@ export function HeroEmblemLarge({
 }
 
 /**
- * Нижняя «сейсмограмма» — бегущая волна в самом низу Hero.
- * Реалистичный паттерн: P-волны → S-волны → экспоненциальное затухание,
- * разные амплитуды событий (1.5–14) на фоне слабого шума.
- * Слева: Live · Сейсмический мониторинг. Справа: Москва · MSK · ОК · 0 событий.
- * Фон наследуется от Hero (bg-paper-grid), без отдельной белой полосы.
+ * Полоса сейсмомониторинга — «Live · Сейсмический мониторинг» + Москва/MSK.
+ * Расположена вверху Hero, под шапкой.
+ * Реалистичный паттерн: P-волны → S-волны → экспоненциальное затухание.
  */
 function SeismogramDivider() {
   return (
-    <div className="relative overflow-hidden border-t border-[#D6DCE3]/70">
+    <div className="relative overflow-hidden border-b border-[#D6DCE3]/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-4">
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#4A6378] font-semibold whitespace-nowrap flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
