@@ -6,8 +6,7 @@ import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_ITEMS = [
-  { label: "Главная", href: "#hero" },
-  { label: "О системе", href: "#about" },
+  { label: "Система", href: "#about" },
   { label: "Направления", href: "#directions" },
   { label: "Партнёры", href: "#partners" },
   { label: "Патенты", href: "#patents" },
@@ -83,15 +82,6 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
-            <Button
-              asChild
-              className="bg-[#00549F] hover:bg-[#003366] text-white text-[12px] tracking-[0.14em] uppercase font-semibold"
-            >
-              <Link href="#contacts">Связаться</Link>
-            </Button>
-          </div>
-
           {/* Мобильная кнопка */}
           <button
             className="lg:hidden p-2 text-[#003366]"
@@ -117,14 +107,6 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <Button
-              asChild
-              className="mt-2 bg-[#00549F] hover:bg-[#003366] text-white"
-            >
-              <Link href="#contacts" onClick={() => setMobileOpen(false)}>
-                Связаться
-              </Link>
-            </Button>
           </div>
         </nav>
       )}
