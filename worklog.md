@@ -71,3 +71,22 @@ Stage Summary:
 - Remote main HEAD: aac4c4d.
 - Production seismos.ru: HTTP 200, изменения применены.
 - ЗАКОН №1 соблюдён — обычный push без --force.
+
+---
+Task ID: hero-remove-chervyak-metric
+Agent: seismos-chat (Бро #4)
+Task: Убрать из Hero метрику "1 патент · ТЗ «червяк»".
+
+Work Log:
+- В src/components/site/hero-section.tsx найден блок метрик (4 элемента в grid-cols-2 sm:grid-cols-4).
+- MultiEdit: удалён <Metric value="1" label="патент · ТЗ «червяк»" />; сетка изменена на grid-cols-3 для симметрии 3 оставшихся метрик (50+ лет истории, 2009 запуск seismo.ru, 9 регионов ЕАЭС).
+- Локальная проверка: localhost:3000 → 200, VLM подтвердил отсутствие метрики.
+- Коммит 920fd14 "hero: remove '1 патент · ТЗ червяк' metric, 4→3 columns".
+- git push origin main → успешно (aac4c4d..920fd14).
+- После ~75s паузы VLM на https://seismos.ru подтвердил: метрика про патент/червяк отсутствует.
+
+Stage Summary:
+- В Hero осталось 3 метрики: 50+ лет, 2009, 9 регионов.
+- Скриншоты: download/hero-3metrics.png (dev), download/hero-3metrics-prod.png (prod).
+- Remote main HEAD: 920fd14.
+- Production seismos.ru: HTTP 200, изменения применены.
