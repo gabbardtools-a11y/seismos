@@ -2,13 +2,11 @@ import Link from "next/link";
 import { ArrowRight, FileText, Map, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
-import { FinalEmblem } from "./final-emblem";
-import { FinalEmblemV2 } from "./final-emblem-v2";
 
 /**
  * HERO — главный экран.
- * Слева: текст (международный статус, миссия, CTA).
- * Справа: крупная эмблема СРОСС® с анимированными волнами.
+ * Только текстовый блок: международный статус, миссия, CTA.
+ * Эмблемы и блоки с логотипами убраны по запросу.
  */
 export function HeroSection() {
   return (
@@ -17,9 +15,8 @@ export function HeroSection() {
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* ====== Левая колонка: текст ====== */}
-          <div className="lg:col-span-7 order-2 lg:order-1">
+        {/* Одна колонка на всю ширину — эмблема и блоки с логотипами убраны */}
+        <div className="max-w-4xl">
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-6">
               <span className="h-px w-10 bg-[#00549F]" />
@@ -81,29 +78,8 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-          </div>
-
-          {/* ====== Правая колонка: только эмблема ====== */}
-          <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center justify-center">
-            {/* Одна эмблема — Silver, без надписей и без кнопки звука */}
-            <div className="flex justify-center">
-              <HeroEmblemLarge
-                variant="silver"
-                lensStops={[
-                  { offset: "0%", color: "#FFFFFF" },
-                  { offset: "45%", color: "#F0F4F8" },
-                  { offset: "80%", color: "#D0DCE8" },
-                  { offset: "100%", color: "#C0D0DC" },
-                ]}
-              />
-            </div>
-          </div>
         </div>
       </div>
-
-      {/* Финальная эмблема */}
-      <FinalEmblem />
-      <FinalEmblemV2 />
 
       {/* Нижняя «сейсмограмма» — бегущая волна как разделитель */}
       <SeismogramDivider />
