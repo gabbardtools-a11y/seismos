@@ -2,21 +2,31 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const NAV_ITEMS = [
+type NavItem =
+  | { label: string; href: string }
+  | { label: string; children: { label: string; href: string }[] };
+
+const NAV_ITEMS: NavItem[] = [
   { label: "Система", href: "#about" },
   { label: "Направления", href: "#directions" },
   { label: "Партнёры", href: "#partners" },
-  { label: "Патенты", href: "#patents" },
-  { label: "Автор", href: "#author" },
-  { label: "Публикации", href: "#publications" },
+  {
+    label: "Информация",
+    children: [
+      { label: "Патенты", href: "#patents" },
+      { label: "Автор", href: "#author" },
+      { label: "Публикации", href: "#publications" },
+    ],
+  },
   { label: "Контакты", href: "#contacts" },
 ];
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-[#D6DCE3]">
@@ -68,15 +78,58 @@ export function SiteHeader() {
 
           {/* Десктоп-навигация */}
           <nav className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase text-[#003366] hover:text-[#00549F] hover:bg-[#E7EEF6] transition-colors rounded-sm"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              if ("children" in item) {
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setOpenDropdown(item.label)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    <button
+                      className="flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase text-[#003366] hover:text-[#00549F] hover:bg-[#E7EEF6] transition-colors rounded-sm"
+                      aria-expanded={openDropdown === item.label}
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === item.label ? null : item.label)
+                      }
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`h-3 w-3 transition-transform ${
+                          openDropdown === item.label ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {openDropdown === item.label && (
+                      <div className="absolute left-0 top-full pt-1 min-w-[200px]">
+                        <div className="bg-white border border-[#D6DCE3] shadow-lg rounded-sm overflow-hidden">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setOpenDropdown(null)}
+                              className="block px-4 py-2.5 text-[12px] font-semibold tracking-[0.08em] uppercase text-[#003366] hover:text-[#00549F] hover:bg-[#E7EEF6] transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase text-[#003366] hover:text-[#00549F] hover:bg-[#E7EEF6] transition-colors rounded-sm"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Мобильная кнопка */}
@@ -94,16 +147,56 @@ export function SiteHeader() {
       {mobileOpen && (
         <nav className="lg:hidden border-t border-[#D6DCE3] bg-white">
           <div className="mx-auto max-w-7xl px-4 py-3 flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="px-3 py-3 text-sm font-semibold tracking-[0.08em] uppercase text-[#003366] hover:bg-[#E7EEF6] rounded-sm"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              if ("children" in item) {
+                const expanded = openDropdown === item.label;
+                return (
+                  <div key={item.label}>
+                    <button
+                      className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold tracking-[0.08em] uppercase text-[#003366] hover:bg-[#E7EEF6] rounded-sm"
+                      aria-expanded={expanded}
+                      onClick={() =>
+                        setOpenDropdown(expanded ? null : item.label)
+                      }
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          expanded ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {expanded && (
+                      <div className="pl-4 flex flex-col gap-1">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => {
+                              setOpenDropdown(null);
+                              setMobileOpen(false);
+                            }}
+                            className="px-3 py-2.5 text-[12px] font-semibold tracking-[0.08em] uppercase text-[#4A6378] hover:text-[#00549F] hover:bg-[#E7EEF6] rounded-sm"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-3 py-3 text-sm font-semibold tracking-[0.08em] uppercase text-[#003366] hover:bg-[#E7EEF6] rounded-sm"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       )}
