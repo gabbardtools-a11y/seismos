@@ -16,9 +16,9 @@ export function HeroSection() {
       {/* Декоративная боковая полоса слева */}
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-        {/* Одна колонка на всю ширину — эмблема и блоки с логотипами убраны */}
-        <div className="max-w-4xl">
+      <div className="w-full px-4 sm:px-6 lg:px-12 py-20 lg:py-28">
+        {/* Резиновый контейнер на всю ширину страницы */}
+        <div>
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-6">
               <span className="h-px w-10 bg-[#00549F]" />
@@ -28,24 +28,21 @@ export function HeroSection() {
             </div>
 
             {/* Главный заголовок */}
-            <h1 className="text-[42px] sm:text-[54px] lg:text-[64px] leading-[1.05] font-bold tracking-[-0.015em] text-[#003366] mb-6">
+            <h1 className="text-[42px] sm:text-[54px] lg:text-[64px] xl:text-[72px] leading-[1.05] font-bold tracking-[-0.015em] text-[#003366] mb-6">
               Сейсмобезопасность и сейсмозащита
               <br />
               <span className="text-[#00549F]">территорий России и стран ЕАЭС</span>
               <br />
-              <span className="text-[#4A6378] text-[28px] sm:text-[36px] lg:text-[42px] font-semibold tracking-tight">
+              <span className="text-[#4A6378] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[48px] font-semibold tracking-tight">
                 через открытые данные и науку
               </span>
             </h1>
 
             {/* Подзаголовок */}
-            <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed max-w-2xl mb-8">
-              Информационная система <strong className="text-[#003366]">СРОСС®</strong>{" "}
-              объединяет данные о сейсмической опасности, методологию оценки
-              рисков и инструменты целевого планирования градостроительной
-              деятельности. Проект развивается с 2009 года на базе патентованной
-              технологии сейсмологического мониторинга и входит в международную
-              экосистему Евразийской СЕЙСМО Ассоциации (ЕАСА).
+            <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-8">
+              <strong className="text-[#003366]">Единая экосистема СРОСС®</strong>{" "}
+              — это сейсмобезопасность и сейсмозащита зданий и сооружений
+              территорий России и стран <strong className="text-[#003366]">СНГ и ЕАЭС</strong>.
             </p>
 
             {/* Метрики */}
