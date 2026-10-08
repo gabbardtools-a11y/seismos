@@ -124,3 +124,26 @@ Stage Summary:
 - Скриншоты: download/seismo-realistic-v2.png (dev), download/seismo-realistic-prod2.png (prod).
 - Remote main HEAD: 97510c7.
 - Production seismos.ru: HTTP 200, изменения применены.
+
+---
+Task ID: hero-seismo-integrated
+Agent: seismos-chat (Бро #4)
+Task: Перенести блок «Live · Сейсмический мониторинг» (сейсмограмма) в самый низ Hero.
+
+Work Log:
+- Проверен src/components/site/hero-section.tsx: SeismogramDivider уже находился внутри <section id="hero"> (строка 86, перед </section>), но визуально выглядел как отдельная полоса из-за bg-white и контрастного border-t border-[#D6DCE3].
+- MultiEdit в функции SeismogramDivider:
+  * Убран bg-white → фон наследуется от Hero (bg-paper-grid — белая координатная сетка).
+  * border-t border-[#D6DCE3] → border-t border-[#D6DCE3]/70 (смягчённая разделительная линия).
+  * Комментарий обновлён: «разделитель между Hero и следующим блоком» → «нижняя часть Hero».
+- Локальная проверка VLM: полоса интегрирована в низ hero, без контрастной белой полосы, на том же фоне с синей сеткой.
+- Коммит 29b2e1f «hero: integrate seismogram into bottom of Hero section».
+- git push origin main → успешно (97510c7..29b2e1f).
+- После ~75s VLM на https://seismos.ru подтвердил: сплошной блок с синей сеткой от верха до низа Hero, без резких границ.
+
+Stage Summary:
+- Сейсмограмма теперь визуально интегрирована в низ Hero (на том же bg-paper-grid), а не выглядит как отдельная белая полоса.
+- Тонкая разделительная линия (border-t border-[#D6DCE3]/70) сохранена для визуальной структуры.
+- Скриншоты: download/hero-seismo-integrated.png (dev), download/hero-seismo-integrated-prod.png (prod).
+- Remote main HEAD: 29b2e1f.
+- Production seismos.ru: HTTP 200, изменения применены.
