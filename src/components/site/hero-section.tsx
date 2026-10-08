@@ -84,15 +84,15 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* ====== Правая колонка: 3 варианта эмблемы ====== */}
+          {/* ====== Правая колонка: эмблема Silver ====== */}
           <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center justify-center">
-            {/* Заголовок блока + кнопка звука */}
+            {/* Кнопка звука */}
             <div className="mb-6 flex flex-col items-center gap-3">
               <div className="flex items-center gap-4">
                 <SoundToggle />
                 <div className="text-center">
                   <div className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#4A6378]">
-                    Три варианта · Концепция оправы
+                    Эмблема СРОСС®
                   </div>
                 </div>
               </div>
@@ -102,55 +102,17 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Сетка из 6 эмблем */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-2 items-start">
-              <HeroEmblemLarge
-                variant="soft"
-                label="Soft"
-                description="Спокойная"
-              />
-              <HeroEmblemLarge
-                variant="medium"
-                label="Medium"
-                description="Сбалансированная"
-              />
-              <HeroEmblemLarge
-                variant="strong"
-                label="Strong"
-                description="Металлик"
-              />
+            {/* Одна эмблема — Silver */}
+            <div className="flex justify-center">
               <HeroEmblemLarge
                 variant="silver"
-                label="Silver"
-                description="Серебро+синий"
+                label="СРОСС®"
+                description="Сейсмобезопасность России"
                 lensStops={[
                   { offset: "0%", color: "#FFFFFF" },
                   { offset: "45%", color: "#F0F4F8" },
                   { offset: "80%", color: "#D0DCE8" },
                   { offset: "100%", color: "#C0D0DC" },
-                ]}
-              />
-              <HeroEmblemLarge
-                variant="platinum"
-                label="Platinum"
-                description="Платина+кристалл"
-                lensStops={[
-                  { offset: "0%", color: "#FFFFFF" },
-                  { offset: "30%", color: "#F4F8FC" },
-                  { offset: "60%", color: "#E0E8F0" },
-                  { offset: "85%", color: "#C8D4E0" },
-                  { offset: "100%", color: "#B8C8D4" },
-                ]}
-              />
-              <HeroEmblemLarge
-                variant="chrome"
-                label="Chrome"
-                description="Хром+мороз"
-                lensStops={[
-                  { offset: "0%", color: "#FAFCFE" },
-                  { offset: "35%", color: "#EEF2F6" },
-                  { offset: "70%", color: "#D8E0E8" },
-                  { offset: "100%", color: "#C5D2DE" },
                 ]}
               />
             </div>
@@ -208,7 +170,7 @@ function Badge({ children }: { children: React.ReactNode }) {
  * Крупная эмблема СРОСС® для hero — с тонкой анимацией волн.
  * variant: "soft" | "medium" | "strong" | "silver" | "platinum" | "chrome" — управляет контрастом оправы.
  */
-function HeroEmblemLarge({
+export function HeroEmblemLarge({
   variant = "medium",
   label = "Текущая",
   description,

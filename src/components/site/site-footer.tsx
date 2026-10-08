@@ -68,6 +68,11 @@ export function SiteFooter() {
               <li>
                 <span className="opacity-60">GRADINFO · SEISMO</span>
               </li>
+              <li>
+                <a href="/logo-variants" className="hover:text-white transition opacity-80">
+                  Варианты логотипа сайта →
+                </a>
+              </li>
             </ul>
           </div>
 
