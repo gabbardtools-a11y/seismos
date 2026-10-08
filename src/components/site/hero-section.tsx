@@ -31,8 +31,8 @@ export function HeroSection() {
             </div>
 
             {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
-            <h1 className="text-[32px] sm:text-[40px] lg:text-[48px] xl:text-[56px] leading-[1.1] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
-              Сейсмобезопасность и сейсмозащита зданий и сооружений на территорий России и стран ЕАЭС
+            <h1 className="text-[28px] sm:text-[34px] lg:text-[40px] xl:text-[46px] leading-[1.15] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
+              Сейсмобезопасность и сейсмозащита зданий и сооружений в России, странах СНГ и ЕАЭС
             </h1>
 
             {/* Описание под заголовком — обычный размер */}
