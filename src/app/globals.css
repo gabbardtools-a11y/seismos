@@ -270,7 +270,7 @@
 
 /* Динамическая сейсмограмма — бегущая ломаная линия */
 .seismogram-scroll {
-  animation: seismogram-scroll 20s linear infinite;
+  animation: seismogram-scroll 45s linear infinite;
 }
 @keyframes seismogram-scroll {
   0%   { transform: translateX(0); }
