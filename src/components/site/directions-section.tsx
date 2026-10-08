@@ -14,13 +14,22 @@ import {
   AlertTriangle,
   Compass,
   Layers,
+  ShieldAlert,
 } from "lucide-react";
 
+type Direction = {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  highlighted?: boolean;
+};
+
 /**
- * НАПРАВЛЕНИЯ — сетка из 17 направлений деятельности системы.
- * Источник: реальный список с действующего seismo.ru.
+ * НАПРАВЛЕНИЯ — сетка из 18 направлений деятельности системы.
+ * Источник: реальный список с действующего seismo.ru + направление
+ * «Защита от экстремальных воздействий» (антидроновая, взрывозащита).
  */
-const DIRECTIONS = [
+const DIRECTIONS: Direction[] = [
   { icon: <Layers />, title: "Сейсмостойкое строительство", desc: "Нормативная база и методология сейсмостойкого проектирования сооружений" },
   { icon: <Waves />, title: "Сейсмоизоляция", desc: "Современные системы сейсмоизоляции зданий и сооружений разного назначения" },
   { icon: <Activity />, title: "Виброгашение", desc: "Методы и устройства активного и пассивного виброгашения конструкций" },
@@ -38,6 +47,12 @@ const DIRECTIONS = [
   { icon: <ShieldCheck />, title: "СейсмоУсиление", desc: "Технологии сейсмического усиления существующих конструкций" },
   { icon: <Cpu />, title: "Инновации и технологии", desc: "Внедрение инновационных материалов и технологий сейсмозащиты" },
   { icon: <Microscope />, title: "Аналитика и экспертиза", desc: "Аналитическая и экспертная работа в области сейсмобезопасности" },
+  {
+    icon: <ShieldAlert />,
+    title: "Защита от экстремальных воздействий",
+    desc: "Антидроновая защита, защита от взрывных волн от взрывов большой мощности специализированных предприятий. Активная и пассивная защита зданий и сооружений",
+    highlighted: true,
+  },
 ];
 
 export function DirectionsSection() {
@@ -50,7 +65,7 @@ export function DirectionsSection() {
             <span className="eyebrow">02 · Направления</span>
           </div>
           <h2 className="text-[32px] sm:text-[42px] lg:text-[48px] font-bold tracking-[-0.015em] text-[#003366] mb-6 leading-[1.1]">
-            17 направлений деятельности
+            18 направлений деятельности
           </h2>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
             Система СРОСС® объединяет профессиональное сообщество, работающее по
@@ -104,26 +119,56 @@ function DirectionCard({
   title,
   desc,
   num,
+  highlighted = false,
 }: {
   icon: React.ReactNode;
   title: string;
   desc: string;
   num: number;
+  highlighted?: boolean;
 }) {
   return (
-    <div className="group bg-white p-6 hover:bg-[#E7EEF6] transition-colors cursor-default">
+    <div
+      className={`group p-6 transition-colors cursor-default ${
+        highlighted
+          ? "bg-[#003366] hover:bg-[#003366]/95"
+          : "bg-white hover:bg-[#E7EEF6]"
+      }`}
+    >
       <div className="flex items-start justify-between mb-4">
-        <div className="w-10 h-10 bg-[#E7EEF6] text-[#00549F] group-hover:bg-[#00549F] group-hover:text-white flex items-center justify-center transition-colors">
+        <div
+          className={`w-10 h-10 flex items-center justify-center transition-colors ${
+            highlighted
+              ? "bg-[#00549F] text-white"
+              : "bg-[#E7EEF6] text-[#00549F] group-hover:bg-[#00549F] group-hover:text-white"
+          }`}
+        >
           {icon}
         </div>
-        <span className="text-[10px] tracking-[0.16em] uppercase text-[#4A6378]/60 font-mono">
+        <span
+          className={`text-[10px] tracking-[0.16em] uppercase font-mono ${
+            highlighted ? "text-white/60" : "text-[#4A6378]/60"
+          }`}
+        >
           {num.toString().padStart(2, "0")}
         </span>
       </div>
-      <h3 className="text-[15px] font-bold text-[#003366] mb-2 tracking-tight leading-snug">
+      <h3
+        className={`text-[15px] mb-2 tracking-tight leading-snug ${
+          highlighted
+            ? "font-extrabold text-white text-[16px]"
+            : "font-bold text-[#003366]"
+        }`}
+      >
         {title}
       </h3>
-      <p className="text-xs text-[#4A6378] leading-relaxed">{desc}</p>
+      <p
+        className={`text-xs leading-relaxed ${
+          highlighted ? "text-white/80" : "text-[#4A6378]"
+        }`}
+      >
+        {desc}
+      </p>
     </div>
   );
 }
