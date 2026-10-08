@@ -90,3 +90,37 @@ Stage Summary:
 - Скриншоты: download/hero-3metrics.png (dev), download/hero-3metrics-prod.png (prod).
 - Remote main HEAD: 920fd14.
 - Production seismos.ru: HTTP 200, изменения применены.
+
+---
+Task ID: seismogram-realistic-msk
+Agent: seismos-chat (Бро #4)
+Task: Сделать сейсмограмму более медленной и реалистичной (с разными амплитудами); в правый блок «ОК · 0 событий» добавить Москва и московское время.
+
+Work Log:
+- Создан скрипт scripts/gen_seismogram.py: генерирует реалистичный path-data для viewBox 1600x40.
+  * 6 событий разной амплитуды: P-волна (1.5–2.5, частая малая осцилляция) → S-волна (4–14, низкочастотная) → экспоненциальное затухание (decay 50–100).
+  * Фоновый шум ±0.4 между событиями.
+  * 801 точка на тайл (шаг 2 по x). Seed 42 для воспроизводимости.
+- Создан scripts/build_seismogram_ts.py: запускает gen_seismogram и собирает src/components/site/seismogram-path.ts.
+- Сгенерирован src/components/site/seismogram-path.ts (20KB, 2 константы: SEISMOGRAM_TILE_PATH и SEISMOGRAM_DUP_PATH).
+- Создан src/components/site/moscow-clock.tsx — клиентский компонент с «use client».
+  * Intl.DateTimeFormat с timeZone: "Europe/Moscow", формат HH:MM:SS.
+  * useEffect + setInterval(tick, 1000).
+- В src/components/site/hero-section.tsx обновлён SeismogramDivider:
+  * Импорты MoscowClock и SEISMOGRAM_TILE_PATH/SEISMOGRAM_DUP_PATH.
+  * Заменены две path d= на ссылки на константы.
+  * strokeWidth 1.5 → 1.2 (тоньше для естественности).
+  * min-w-0 на контейнер сейсмограммы (чтобы flex корректно сжимал).
+  * Правый блок: «Москва · 14:23:05 · MSK · ОК · 0 событий» (время живое).
+- В src/app/globals.css анимация .seismogram-scroll замедлена: 20s → 45s linear infinite.
+- Локальная проверка VLM: слева «LIVE · СЕЙСМИЧЕСКИЙ МОНИТОРИНГ», линия с всплесками разной высоты, справа «Москва · 17:18:16 · MSK · ОК · 0 событий».
+- Коммит 97510c7 «seismogram: realistic P/S-wave pattern with decay + Moscow MSK clock».
+- git push origin main → успешно (920fd14..97510c7).
+- После ~120s паузы VLM на https://seismos.ru подтвердил: «МОСКВА · 17:21:34 МСК · ОК · 0 СОБЫТИЙ», линия с разными по высоте всплесками (видны средний и высокий пики).
+
+Stage Summary:
+- Сейсмограмма: 20s → 45s, паттерн с 6 событиями (P→S→затухание), разные амплитуды 1.5–14.
+- Правый статус: добавлены «Москва» и живое MSK-время (обновление каждую секунду).
+- Скриншоты: download/seismo-realistic-v2.png (dev), download/seismo-realistic-prod2.png (prod).
+- Remote main HEAD: 97510c7.
+- Production seismos.ru: HTTP 200, изменения применены.
