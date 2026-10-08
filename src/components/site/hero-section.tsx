@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, FileText, Map, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
-import { SoundToggle } from "./sound-toggle";
 import { FinalEmblem } from "./final-emblem";
 import { FinalEmblemV2 } from "./final-emblem-v2";
 
@@ -84,12 +83,10 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* ====== Правая колонка: эмблема + звук ====== */}
+          {/* ====== Правая колонка: только эмблема ====== */}
           <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center justify-center">
-            <SoundToggle />
-
-            {/* Одна эмблема — Silver */}
-            <div className="mt-6 flex justify-center">
+            {/* Одна эмблема — Silver, без надписей и без кнопки звука */}
+            <div className="flex justify-center">
               <HeroEmblemLarge
                 variant="silver"
                 lensStops={[
@@ -150,6 +147,9 @@ export function HeroEmblemLarge({
   description?: string;
   lensStops?: { offset: string; color: string }[];
 }) {
+  // Подпись и описание больше не рендерятся — оставлены в сигнатуре для обратной совместимости.
+  void label;
+  void description;
   // Шесть вариантов градиента оправы — от мягкого к хрому
   const gradients = {
     soft: {
@@ -214,10 +214,8 @@ export function HeroEmblemLarge({
   } as const;
 
   const g = gradients[variant];
-  // Уникальные id для center и path — чтобы эмблемы на странице не конфликтовали
+  // Уникальный id для center — чтобы эмблемы на странице не конфликтовали
   const centerId = `heroCenterGrad-${variant}`;
-  const topArcId = `heroTopArc-${variant}`;
-  const bottomArcId = `heroBottomArc-${variant}`;
 
   // Варианты объёма линзы
   const defaultLens = [
@@ -237,7 +235,7 @@ export function HeroEmblemLarge({
           viewBox="0 0 600 600"
           className="relative w-full h-full"
           role="img"
-          aria-label={`Эмблема СРОСС® — вариант ${label}`}
+          aria-label="Эмблема СРОСС®"
         >
           <defs>
             {/* Convex metallic frame — radial gradient из центра */}
@@ -252,16 +250,6 @@ export function HeroEmblemLarge({
                 <stop key={i} offset={s.offset} stopColor={s.color} />
               ))}
             </radialGradient>
-            <path
-              id={topArcId}
-              d="M 130,300 A 170,170 0 0 1 470,300"
-              fill="none"
-            />
-            <path
-              id={bottomArcId}
-              d="M 140,335 A 160,160 0 0 0 460,335"
-              fill="none"
-            />
           </defs>
 
           {/* Внешний синий круг (медальон) — convex metallic frame */}
@@ -299,26 +287,7 @@ export function HeroEmblemLarge({
           <circle cx="300" cy="300" r="3" fill="#FFFFFF" />
 
           {/* Текст по дуге */}
-          <text
-            fontFamily="'PT Sans', Arial, sans-serif"
-            fontSize="38"
-            fontWeight="700"
-            letterSpacing="6"
-            fill="#FFFFFF"
-            textAnchor="middle"
-          >
-            <textPath href={`#${topArcId}`} startOffset="50%">СРОСС®</textPath>
-          </text>
-          <text
-            fontFamily="'PT Sans', Arial, sans-serif"
-            fontSize="20"
-            fontWeight="600"
-            letterSpacing="3"
-            fill="#FFFFFF"
-            textAnchor="middle"
-          >
-            <textPath href={`#${bottomArcId}`} startOffset="50%">СЕЙСМОБЕЗОПАСНОСТЬ РОССИИ</textPath>
-          </text>
+          {/* Надписи по дуге убраны — эмблема без текста */}
 
           {/* Декоративные точки по сторонам света */}
           <g fill="#FFFFFF">
@@ -333,17 +302,6 @@ export function HeroEmblemLarge({
         </svg>
       </div>
 
-      {/* Подпись под эмблемой */}
-      <div className="mt-5 text-center">
-        <div className="text-[11px] tracking-[0.2em] uppercase font-bold text-[#00549F]">
-          {label}
-        </div>
-        {description && (
-          <div className="text-[10px] tracking-[0.1em] uppercase text-[#4A6378] mt-1.5 max-w-[220px]">
-            {description}
-          </div>
-        )}
-      </div>
     </div>
   );
 }
