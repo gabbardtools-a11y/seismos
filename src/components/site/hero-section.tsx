@@ -84,30 +84,14 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* ====== Правая колонка: эмблема Silver ====== */}
+          {/* ====== Правая колонка: эмблема + звук ====== */}
           <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center justify-center">
-            {/* Кнопка звука */}
-            <div className="mb-6 flex flex-col items-center gap-3">
-              <div className="flex items-center gap-4">
-                <SoundToggle />
-                <div className="text-center">
-                  <div className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#4A6378]">
-                    Эмблема СРОСС®
-                  </div>
-                </div>
-              </div>
-              <div className="h-px w-12 bg-[#00549F]" />
-              <div className="text-[10px] tracking-[0.14em] uppercase text-[#4A6378]/70 max-w-xs text-center">
-                Включите эмбиент для полного эффекта присутствия
-              </div>
-            </div>
+            <SoundToggle />
 
             {/* Одна эмблема — Silver */}
-            <div className="flex justify-center">
+            <div className="mt-6 flex justify-center">
               <HeroEmblemLarge
                 variant="silver"
-                label="СРОСС®"
-                description="Сейсмобезопасность России"
                 lensStops={[
                   { offset: "0%", color: "#FFFFFF" },
                   { offset: "45%", color: "#F0F4F8" },
@@ -115,21 +99,6 @@ export function HeroSection() {
                   { offset: "100%", color: "#C0D0DC" },
                 ]}
               />
-            </div>
-
-            {/* Подпись под эмблемами */}
-            <div className="mt-8 text-center max-w-sm">
-              <div className="text-[15px] font-bold tracking-[0.18em] text-[#00549F] uppercase">
-                СРОСС®
-              </div>
-              <div className="text-[12px] tracking-[0.14em] text-[#4A6378] uppercase mt-1">
-                Сейсмобезопасность России
-              </div>
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[10px] tracking-[0.16em] uppercase">
-                <Badge>UN-Habitat aligned</Badge>
-                <Badge>SDG 11</Badge>
-                <Badge>ЕАЭС · Россия</Badge>
-              </div>
             </div>
           </div>
         </div>
