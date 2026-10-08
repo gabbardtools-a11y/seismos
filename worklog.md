@@ -42,3 +42,32 @@ Stage Summary:
 - Remote main HEAD: 179f1ce.
 - Production seismos.ru: HTTP 200, изменения применены.
 - ЗАКОН №1 (сначала GitHub, потом VPS; force-push запрещён) соблюдён — push без --force, история переписана локально до первого отправления, после чего прошёл обычный push.
+
+---
+Task ID: hero-no-emblem-blocks
+Agent: seismos-chat (Бро #4)
+Task: Убрать из Hero: (1) эмблему Silver из правой колонки, (2) два блока с логотипами ниже (FinalEmblem и FinalEmblemV2).
+
+Work Log:
+- Прочитан src/components/site/hero-section.tsx — выделены три цели:
+  1) HeroEmblemLarge variant="silver" в правой колонке Hero
+  2) <FinalEmblem /> ниже
+  3) <FinalEmblemV2 /> ниже
+- MultiEdit: удалены импорты FinalEmblem и FinalEmblemV2; Hero перестроен в одну колонку (max-w-4xl) вместо grid 7/12; правая колонка с эмблемой удалена; FinalEmblem/FinalEmblemV2 убраны из JSX.
+- Определение HeroEmblemLarge оставлено — оно используется на странице /logo-variants.
+- Сейсмограмма-разделитель <SeismogramDivider /> сохранена.
+- Локальная проверка через agent-browser + VLM: на localhost:3000 эмблемы справа нет, двух блоков ниже нет.
+- Коммит aac4c4d "hero: remove Silver emblem + FinalEmblem/FinalEmblemV2 blocks".
+- git push origin main → успешно (179f1ce..aac4c4d).
+- Ожидал ~70с + ~40с для применения GitHub Actions деплоя.
+- VLM-проверка на https://seismos.ru/?nocache=... подтвердила:
+  (1) справа от заголовка синего медальона-эмблемы нет;
+  (2) бегущая сейсмограмма-разделитель сохранена;
+  (3) двух блоков с логотипами ниже нет.
+
+Stage Summary:
+- Hero теперь чисто текстовый: eyebrow, заголовок, подзаголовок, метрики, CTA.
+- Скриншоты: download/hero-no-emblem.png (dev), download/hero-no-emblem-prod-v2.png (prod).
+- Remote main HEAD: aac4c4d.
+- Production seismos.ru: HTTP 200, изменения применены.
+- ЗАКОН №1 соблюдён — обычный push без --force.
