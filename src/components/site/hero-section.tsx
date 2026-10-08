@@ -47,11 +47,10 @@ export function HeroSection() {
             </p>
 
             {/* Метрики */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-10 py-6 border-y border-[#D6DCE3]">
+            <div className="grid grid-cols-3 gap-6 mb-10 py-6 border-y border-[#D6DCE3]">
               <Metric value="50+" label="лет истории" />
               <Metric value="2009" label="запуск seismo.ru" />
               <Metric value="9" label="регионов ЕАЭС" />
-              <Metric value="1" label="патент · ТЗ «червяк»" />
             </div>
 
             {/* CTA */}
