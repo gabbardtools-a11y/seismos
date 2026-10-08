@@ -73,3 +73,7 @@ server.log
 keep-running.log
 keep-alive.log
 scripts/robot-seismos
+
+# SSH/secret-bearing recovery docs (sanitized locally, NEVER commit)
+download/wrapper-seismos-0810/README-SEISMOS.txt
+download/wrapper-seismos-0810/SEISMOS-PACKET.md
