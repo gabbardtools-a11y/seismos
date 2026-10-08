@@ -284,14 +284,15 @@ export function HeroEmblemLarge({
 }
 
 /**
- * Бегущая сейсмограмма — разделитель между Hero и следующим блоком.
+ * Нижняя «сейсмограмма» — бегущая волна в самом низу Hero.
  * Реалистичный паттерн: P-волны → S-волны → экспоненциальное затухание,
  * разные амплитуды событий (1.5–14) на фоне слабого шума.
  * Слева: Live · Сейсмический мониторинг. Справа: Москва · MSK · ОК · 0 событий.
+ * Фон наследуется от Hero (bg-paper-grid), без отдельной белой полосы.
  */
 function SeismogramDivider() {
   return (
-    <div className="relative border-t border-[#D6DCE3] bg-white overflow-hidden">
+    <div className="relative overflow-hidden border-t border-[#D6DCE3]/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-4">
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#4A6378] font-semibold whitespace-nowrap flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
