@@ -34,7 +34,7 @@ export function HeroSection() {
               <span className="text-[#00549F]">территорий России и стран ЕАЭС</span>
               <br />
               <span className="text-[#4A6378] text-[28px] sm:text-[36px] lg:text-[42px] xl:text-[48px] font-semibold tracking-tight">
-                через открытые данные и науку
+                через открытые данные, науку и технологии
               </span>
             </h1>
 
