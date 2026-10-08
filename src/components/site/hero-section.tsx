@@ -29,9 +29,9 @@ export function HeroSection() {
 
             {/* Главный заголовок */}
             <h1 className="text-[42px] sm:text-[54px] lg:text-[64px] leading-[1.05] font-bold tracking-[-0.015em] text-[#003366] mb-6">
-              Сейсмобезопасность
+              Сейсмобезопасность и сейсмозащита
               <br />
-              <span className="text-[#00549F]">территорий России</span>
+              <span className="text-[#00549F]">территорий России и стран ЕАЭС</span>
               <br />
               <span className="text-[#4A6378] text-[28px] sm:text-[36px] lg:text-[42px] font-semibold tracking-tight">
                 через открытые данные и науку
