@@ -177,3 +177,44 @@ Stage Summary:
 - ЗАКОН №1 соблюдён — обычный push без --force.
 - Старые plain-base64 блоки из чата аннулированы, ПАКЕТ от 08.10 устарел — канон теперь v3.
 - Предложение Бро: после зелёного рана отозвать фолбэк-ключ 21.09 (id 163952169) — на репо останется один канон v3.
+
+---
+Task ID: green-seismogram + earthquake-map
+Agent: seismos-chat (Бро #4)
+Task: Сейсмограмма — тёмно-зелёная с ярко-зелёными вспышками на пиках. Деплой. Интерактивная карта землетрясений сразу после Hero.
+
+Work Log:
+- Прочитан загруженный ZIP upload/earthquake-map (3).zip → содержит один
+  файл earthquake-map.html (31KB, Leaflet + USGS feed, самодостаточный).
+- Сейсмограмма (src/components/site/hero-section.tsx, SeismogramDivider):
+  * Линия: stroke #00549F → #2D5F3F (тёмно-зелёная)
+  * Добавлен второй SVG-слой как glow-подложка:
+    stroke #22C55E (ярко-зелёная), strokeWidth 3.5, opacity 0.35,
+    filter blur(2px) — свечение пиков
+  * Точка-индикатор перед 'LIVE': bg #C8102E → #22C55E
+  * Текст 'Live · Сейсмический мониторинг': text-[#4A6378] → text-[#2D5F3F]
+- Карта землетрясений:
+  * public/earthquake-map.html — скопирован из ZIP
+  * src/components/site/earthquake-map-section.tsx — новая секция:
+    - тёмный фон #0A0E14, белые тексты, зелёные акценты
+    - заголовок 'Интерактивная карта землетрясений'
+    - легенда M4-5 (жёлтый) / M5-6 (оранжевый) / M6+ (красный)
+    - iframe на /earthquake-map.html, высота 640px
+    - атрибуция: USGS Public Domain + CARTO/OSM
+  * src/app/page.tsx — EarthquakeMapSection подключена сразу после HeroSection
+- Локальная проверка VLM: зелёная линия + свечение + точка-индикатор,
+  карта загружена с USGS-виджетом (196 событий, M 6.3).
+- Коммит 85d81d3 «seismogram+map: green line with glow + interactive USGS earthquake map after Hero».
+- git push origin main → успешно (65f7413..85d81d3).
+- Через 90с прод seismos.ru HTTP 200, /earthquake-map.html HTTP 200.
+- VLM на проде подтвердил:
+  - сейсмограмма: тёмно-зелёная линия + зелёное свечение пиков + зелёная точка-индикатор
+  - карта: заголовок 'Интерактивная карта землетрясений', виджет USGS
+    (196 событий, M 6.3), легенда с цветами
+
+Stage Summary:
+- Сейсмограмма: тёмно-зелёная (#2D5F3F) + ярко-зелёное свечение (#22C55E) на пиках.
+- Карта землетрясений USGS опубликована сразу после Hero, до секции «О системе».
+- Скриншоты: download/prod-green-seismo.png, download/prod-eq-map.png.
+- Remote main HEAD: 85d81d3.
+- Production seismos.ru: HTTP 200, изменения применены.
