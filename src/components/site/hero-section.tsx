@@ -287,11 +287,11 @@ function SeismogramDivider() {
           <span className="inline-block w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
           Live · Сейсмический мониторинг
         </span>
-        <div className="flex-1 h-10 overflow-hidden relative min-w-0">
+        <div className="flex-1 h-20 overflow-hidden relative min-w-0">
           {/* Glow-подложка — ярко-зелёное свечение пиков */}
           <svg
             viewBox="0 0 1600 40"
-            className="h-10 absolute seismogram-scroll"
+            className="h-20 absolute seismogram-scroll"
             preserveAspectRatio="none"
             aria-hidden
             style={{ width: "200%" }}
@@ -304,7 +304,7 @@ function SeismogramDivider() {
               strokeLinecap="butt"
               strokeLinejoin="miter"
               opacity="0.35"
-              style={{ filter: "blur(2px)" }}
+              style={{ filter: "blur(2.5px)" }}
             />
             <path
               d={SEISMOGRAM_DUP_PATH}
@@ -314,13 +314,13 @@ function SeismogramDivider() {
               strokeLinecap="butt"
               strokeLinejoin="miter"
               opacity="0.35"
-              style={{ filter: "blur(2px)" }}
+              style={{ filter: "blur(2.5px)" }}
             />
           </svg>
           {/* Основная линия — тёмно-зелёная */}
           <svg
             viewBox="0 0 1600 40"
-            className="h-10 absolute seismogram-scroll"
+            className="h-20 absolute seismogram-scroll"
             preserveAspectRatio="none"
             aria-hidden
             style={{ width: "200%" }}
@@ -330,7 +330,7 @@ function SeismogramDivider() {
               d={SEISMOGRAM_TILE_PATH}
               fill="none"
               stroke="#2D5F3F"
-              strokeWidth="1"
+              strokeWidth="1.3"
               strokeLinecap="butt"
               strokeLinejoin="miter"
             />
@@ -339,7 +339,7 @@ function SeismogramDivider() {
               d={SEISMOGRAM_DUP_PATH}
               fill="none"
               stroke="#2D5F3F"
-              strokeWidth="1"
+              strokeWidth="1.3"
               strokeLinecap="butt"
               strokeLinejoin="miter"
             />
