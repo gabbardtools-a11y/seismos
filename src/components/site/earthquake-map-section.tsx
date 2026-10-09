@@ -7,7 +7,7 @@ export function EarthquakeMapSection() {
   return (
     <section
       id="map"
-      className="relative bg-[#0A0E14] py-16 lg:py-20 border-y border-[#1F2937]"
+      className="relative bg-white py-16 lg:py-20 border-y border-[#D6DCE3]"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Заголовок секции */}
@@ -15,14 +15,14 @@ export function EarthquakeMapSection() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
               <span className="h-px w-10 bg-[#22C55E]" />
-              <span className="eyebrow text-[#22C55E]/80">
+              <span className="eyebrow text-[#2D5F3F]">
                 Live · USGS Earthquake Feed
               </span>
             </div>
-            <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold tracking-[-0.01em] text-white mb-3 leading-[1.1]">
+            <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold tracking-[-0.01em] text-[#003366] mb-3 leading-[1.1]">
               Интерактивная карта землетрясений России и мира
             </h2>
-            <p className="text-sm sm:text-base text-white/60 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
               Данные в реальном времени от Геологической службы США (USGS).
               Обновление фида — каждую минуту. Магнитуда, глубина и место
               толчка отображаются по клику на маркер.
@@ -30,7 +30,7 @@ export function EarthquakeMapSection() {
           </div>
 
           {/* Легенда-плашка справа */}
-          <div className="flex items-center gap-3 text-[11px] tracking-[0.14em] uppercase text-white/50 font-semibold">
+          <div className="flex items-center gap-3 text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">
             <span className="flex items-center gap-2">
               <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#FFB100]" />
               M 4–5
@@ -48,7 +48,7 @@ export function EarthquakeMapSection() {
 
         {/* Iframe с картой */}
         <div
-          className="relative rounded-2xl overflow-hidden border border-[#1F2937] shadow-2xl"
+          className="relative rounded-2xl overflow-hidden border border-[#D6DCE3] shadow-xl"
           style={{ height: "640px" }}
         >
           <iframe
@@ -56,20 +56,20 @@ export function EarthquakeMapSection() {
             title="Интерактивная карта землетрясений — USGS"
             loading="lazy"
             className="w-full h-full"
-            style={{ border: 0 }}
+            style={{ border: 0, background: "#ffffff" }}
             allowFullScreen
           />
         </div>
 
         {/* Атрибуция */}
-        <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[11px] text-white/40">
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[11px] text-[#4A6378]">
           <span>
             Источник данных:{" "}
             <a
               href="https://earthquake.usgs.gov/earthquakes/feed/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#22C55E]/70 hover:text-[#22C55E] underline underline-offset-2"
+              className="text-[#2D5F3F] hover:text-[#22C55E] underline underline-offset-2"
             >
               USGS Earthquake Hazards Program
             </a>{" "}
