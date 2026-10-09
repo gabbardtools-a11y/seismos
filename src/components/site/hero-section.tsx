@@ -22,14 +22,6 @@ export function HeroSection() {
       <div className="w-full px-4 sm:px-6 lg:px-12 py-16 lg:py-24">
         {/* Резиновый контейнер на всю ширину страницы */}
         <div>
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="h-px w-10 bg-[#00549F]" />
-              <span className="eyebrow">
-                Международный проект · Устойчивое развитие ООН (SDG 11)
-              </span>
-            </div>
-
             {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
             <h1 className="text-[28px] sm:text-[34px] lg:text-[40px] xl:text-[46px] leading-[1.15] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
               Сейсмобезопасность и сейсмозащита зданий и сооружений в России, странах СНГ и ЕАЭС

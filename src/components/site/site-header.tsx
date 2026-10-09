@@ -34,10 +34,10 @@ export function SiteHeader() {
       <div className="bg-[#003366] text-white text-[11px] tracking-[0.18em] uppercase">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
           <span className="hidden sm:inline font-medium opacity-80">
-            Международный проект по устойчивому развитию · UN-Habitat aligned
+            Международный проект · Устойчивое развитие ООН (SDG 11)
           </span>
           <span className="sm:hidden font-medium opacity-80">
-            UN-Habitat · УР ООН
+            SDG 11 · ООН
           </span>
           <div className="flex items-center gap-3">
             <a
