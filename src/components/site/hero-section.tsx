@@ -301,8 +301,8 @@ function SeismogramDivider() {
               fill="none"
               stroke="#22C55E"
               strokeWidth="3.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap="butt"
+              strokeLinejoin="miter"
               opacity="0.35"
               style={{ filter: "blur(2px)" }}
             />
@@ -311,8 +311,8 @@ function SeismogramDivider() {
               fill="none"
               stroke="#22C55E"
               strokeWidth="3.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap="butt"
+              strokeLinejoin="miter"
               opacity="0.35"
               style={{ filter: "blur(2px)" }}
             />
@@ -325,23 +325,23 @@ function SeismogramDivider() {
             aria-hidden
             style={{ width: "200%" }}
           >
-            {/* Реалистичная сейсмограмма — P/S-волны с затуханием */}
+            {/* Реалистичная сейсмограмма — острые пики (без скруглений) */}
             <path
               d={SEISMOGRAM_TILE_PATH}
               fill="none"
               stroke="#2D5F3F"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeWidth="1"
+              strokeLinecap="butt"
+              strokeLinejoin="miter"
             />
             {/* Дубликат для бесшовной прокрутки */}
             <path
               d={SEISMOGRAM_DUP_PATH}
               fill="none"
               stroke="#2D5F3F"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeWidth="1"
+              strokeLinecap="butt"
+              strokeLinejoin="miter"
             />
           </svg>
         </div>
