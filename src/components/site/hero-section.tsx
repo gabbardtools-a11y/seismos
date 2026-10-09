@@ -3,6 +3,7 @@ import { ArrowRight, FileText, Map, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
 import { MoscowClock } from "./moscow-clock";
+import { SeismoSoundToggle } from "./seismo-sound-toggle";
 import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
 
 /**
@@ -287,6 +288,7 @@ function SeismogramDivider() {
           <span className="inline-block w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
           Live · Сейсмический мониторинг
         </span>
+        <SeismoSoundToggle />
         <div className="flex-1 h-40 overflow-hidden relative min-w-0">
           {/* Glow-подложка — ярко-зелёное свечение пиков */}
           <svg
