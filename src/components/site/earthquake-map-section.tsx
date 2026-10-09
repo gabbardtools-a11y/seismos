@@ -23,8 +23,9 @@ export function EarthquakeMapSection() {
               Интерактивная карта землетрясений России и мира
             </h2>
             <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
-              Данные в реальном времени от Геологической службы США (USGS).
-              Обновление фида — каждую минуту. Магнитуда, глубина и место
+              Данные в реальном времени: Геологическая служба США (USGS) — глобально,
+              и открытый API ФИЦ ЕГС РАН (eqalert.ru) — сейсмичность РФ и сопредельных
+              районов. Обновление — каждые 2 минуты. Магнитуда, глубина и место
               толчка отображаются по клику на маркер.
             </p>
           </div>
@@ -64,19 +65,28 @@ export function EarthquakeMapSection() {
         {/* Атрибуция */}
         <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[11px] text-[#4A6378]">
           <span>
-            Источник данных:{" "}
+            Источники данных:{" "}
             <a
               href="https://earthquake.usgs.gov/earthquakes/feed/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#2D5F3F] hover:text-[#22C55E] underline underline-offset-2"
             >
-              USGS Earthquake Hazards Program
+              USGS
+            </a>{" "}
+            ·{" "}
+            <a
+              href="https://eqalert.ru"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#2D5F3F] hover:text-[#22C55E] underline underline-offset-2"
+            >
+              eqalert.ru
             </a>{" "}
             · Public Domain
           </span>
           <span>
-            Плитки: CARTO Dark · OpenStreetMap contributors
+            Плитки: Esri Light/Dark Gray Canvas · OpenStreetMap contributors
           </span>
         </div>
       </div>
