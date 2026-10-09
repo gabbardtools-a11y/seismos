@@ -434,8 +434,9 @@ function popupHtml(p, depthKm){
     '<div class="m" style="color:' + c + '">M ' + m.toFixed(1) + '</div>' +
     '<div class="p">' + localizePlace(p.place) + '</div>' +
     '<table>' + rows + '</table>' + warn +
-    (p.url ? '<a class="lnk" href="' + p.url + '" target="_blank" rel="noopener">' +
-      (p.src === 'eqalert' ? 'Данные: eqalert.ru →' : 'Подробнее на сайте USGS →') + '</a>' : '') +
+    (p.url ? '<a class="lnk" href="' + p.url + '"' +
+      (p.src === 'eqalert' ? '' : ' target="_blank" rel="noopener"') + '>' +
+      (p.src === 'eqalert' ? 'Подробнее →' : 'Подробнее на сайте USGS →') + '</a>' : '') +
     '</div>';
 }
 
@@ -587,7 +588,7 @@ function eqaFetch(box, cursor, page, out, done){
         out.push({
           time: Date.parse(String(lv.event_datetime).replace(' ', 'T') + 'Z'),
           lat: lv.lat, lon: lon, mag: lv.mag, depth: lv.depth || 0,
-          agency: it.agency || '', src: 'eqalert', url: 'https://eqalert.ru/',
+          id: it.id || '', agency: it.agency || '', src: 'eqalert', url: (it.id ? '/earthquake/' + it.id : ''),
           place: (reg ? reg + ', ' : '') + fmtCoords(lv.lat, lon)
         });
       });
