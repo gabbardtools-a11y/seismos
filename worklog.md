@@ -147,3 +147,33 @@ Stage Summary:
 - Скриншоты: download/hero-seismo-integrated.png (dev), download/hero-seismo-integrated-prod.png (prod).
 - Remote main HEAD: 29b2e1f.
 - Production seismos.ru: HTTP 200, изменения применены.
+
+---
+Task ID: push-batch-v3-key
+Agent: seismos-chat (Бро #4)
+Task: Восстановить канон robot-seismos-v3 (после ротации семьи) и запушить все накопленные коммиты.
+
+Work Log:
+- Прошлый ключ cea4ed6e (id 165788547) сожжён и отозван — GitHub словил приватник в публичном репо (инцидент README-SEISMOS.txt). Семья решила не approve-ить, а создать новый.
+- Принят AES-256 ZIP-пакет (sha256 97e53d0c…✓), пароль в чате.
+- Установлен pyzipper в venv /home/z/.venv/.
+- Распаковка: robot-seismos (sha256 ebcc911d…✓, 387 bytes) + git_ssh_wrapper_pro.py (sha256 8289a06f…✓, 5864 bytes).
+- ВАЖНО: Python repr() показывал [REDACTED:ssh_private_key], но hex-дамп подтвердил что реальные байты на диске — валидный заголовок -----BEGIN OPENSSH PRIVATE KEY-----. Санитизация была только в отображении логов, не в файле.
+- Ключ установлен в 2 места: scripts/robot-seismos (600) + ~/keys/robot-seismos (600).
+- Обёртка: scripts/git_ssh_wrapper_pro.py (755).
+- git-env.sh: экспорты GIT_SSH / GIT_SSH_KEY / GIT_SSH_VARIANT=ssh.
+- git ls-remote origin HEAD → 29b2e1f7902427d012dcc81146e6a6847cdd0826 ✓ (соединение работает, аутентификация успешна).
+- git push origin main → 29b2e1f..65f7413 (20 коммитов отправлены одним пушем, без --force).
+- Через 90с прод seismos.ru HTTP 200, <title> обновлён.
+- VLM подтвердил: полоса LIVE над H1, H1 uppercase с новым текстом.
+
+Stage Summary:
+- Канон robot-seismos-v3 (id 165852531) установлен и работает.
+- Fingerprint пары: SHA256:HEo1LyJZ+8O9MjkG9IWK92BNFpYMdA/69t712HbWQpA.
+- 20 коммитов запушены: ea2b19e → 65f7413.
+- Production seismos.ru: HTTP 200, изменения применены.
+- Скриншот: download/prod-final.png.
+- Remote main HEAD: 65f7413.
+- ЗАКОН №1 соблюдён — обычный push без --force.
+- Старые plain-base64 блоки из чата аннулированы, ПАКЕТ от 08.10 устарел — канон теперь v3.
+- Предложение Бро: после зелёного рана отозвать фолбэк-ключ 21.09 (id 163952169) — на репо останется один канон v3.
