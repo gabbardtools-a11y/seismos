@@ -287,11 +287,11 @@ function SeismogramDivider() {
           <span className="inline-block w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
           Live · Сейсмический мониторинг
         </span>
-        <div className="flex-1 h-20 overflow-hidden relative min-w-0">
+        <div className="flex-1 h-40 overflow-hidden relative min-w-0">
           {/* Glow-подложка — ярко-зелёное свечение пиков */}
           <svg
             viewBox="0 0 1600 40"
-            className="h-20 absolute seismogram-scroll"
+            className="h-40 absolute seismogram-scroll"
             preserveAspectRatio="none"
             aria-hidden
             style={{ width: "200%" }}
@@ -300,27 +300,27 @@ function SeismogramDivider() {
               d={SEISMOGRAM_TILE_PATH}
               fill="none"
               stroke="#22C55E"
-              strokeWidth="3.5"
+              strokeWidth="3"
               strokeLinecap="butt"
               strokeLinejoin="miter"
               opacity="0.35"
-              style={{ filter: "blur(2.5px)" }}
+              style={{ filter: "blur(3px)" }}
             />
             <path
               d={SEISMOGRAM_DUP_PATH}
               fill="none"
               stroke="#22C55E"
-              strokeWidth="3.5"
+              strokeWidth="3"
               strokeLinecap="butt"
               strokeLinejoin="miter"
               opacity="0.35"
-              style={{ filter: "blur(2.5px)" }}
+              style={{ filter: "blur(3px)" }}
             />
           </svg>
           {/* Основная линия — тёмно-зелёная */}
           <svg
             viewBox="0 0 1600 40"
-            className="h-20 absolute seismogram-scroll"
+            className="h-40 absolute seismogram-scroll"
             preserveAspectRatio="none"
             aria-hidden
             style={{ width: "200%" }}
@@ -330,7 +330,7 @@ function SeismogramDivider() {
               d={SEISMOGRAM_TILE_PATH}
               fill="none"
               stroke="#2D5F3F"
-              strokeWidth="1.3"
+              strokeWidth="1.5"
               strokeLinecap="butt"
               strokeLinejoin="miter"
             />
@@ -339,7 +339,7 @@ function SeismogramDivider() {
               d={SEISMOGRAM_DUP_PATH}
               fill="none"
               stroke="#2D5F3F"
-              strokeWidth="1.3"
+              strokeWidth="1.5"
               strokeLinecap="butt"
               strokeLinejoin="miter"
             />
