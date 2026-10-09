@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<!--
+  Симулятор землетрясений — самодостаточный HTML-виджет.
+  Назначение: задать магнитуду и глубину очага, поставить эпицентр на карту,
+  увидеть изосейсты (зоны в баллах МСК-64) и оценить, сколько баллов дойдёт
+  до выбранного города.
+
+  Модель: упрощённая формула Блейка (Blake, 1971) с учётом глубины:
+    I(r) = I0 - 2 * log10( sqrt(r² + h²) / h )
+  где I0 = 1.5*M - 1.5 (максимальная интенсивность в эпицентре),
+  r — эпицентральное расстояние (км), h — глубина (км).
+
+  Данные о координатах городов — Nominatim (OpenStreetMap).
+  Плитки: Esri Light Gray Canvas (без API-ключей).
+
+  Встраивание через iframe:
+  <iframe src="earthquake-simulator.html" width="100%" height="800" frameborder="0"
+          style="border:0;border-radius:12px;overflow:hidden" loading="lazy"
+          title="Симулятор землетрясений"></iframe>
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Симулятор землетрясений · СРОСС®</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+<style>
+  :root{
+    --bg:#ffffff; --panel:rgba(255,255,255,.96); --line:rgba(20,30,45,.1);
+    --txt:#1b1f24; --dim:#5d6672; --accent:#22C55E; --dark:#2D5F3F; --solid:#ffffff;
+    --chip:rgba(25,35,55,.05); --chip-hover:rgba(25,35,55,.12);
+    --link:#2f63c4; --warn:#b96a00; --err:#d64545;
+    --shadow:0 10px 30px rgba(30,42,66,.14);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;width:100%;height:100%;background:var(--bg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--txt);overscroll-behavior:none}
+  #map{position:fixed;inset:0;background:var(--bg)}
+  .leaflet-container{background:var(--bg);font:inherit}
+
+  /* ── панель управления ──────────────────────────── */
+  #panel{position:fixed;top:14px;left:14px;z-index:1000;max-width:360px;
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:14px 16px 12px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:var(--shadow);overflow-y:auto;max-height:calc(100vh - 28px)}
+  #panel h1{margin:0 0 4px;font-size:16px;font-weight:700;letter-spacing:.2px;
+    display:flex;align-items:center;gap:8px}
+  #panel h1 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 0 rgba(34,197,94,.55);animation:beat 2.2s infinite;flex:none}
+  @keyframes beat{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  #panel .sub{font-size:11.5px;color:var(--dim);margin:0 0 11px}
+  .section{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .section h2{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--dim);font-weight:700;margin:0 0 8px}
+
+  /* ── слайдеры ───────────────────────────────────── */
+  .slider-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .slider-row label{font-size:12px;font-weight:600;color:var(--txt)}
+  .slider-row b{font-size:14px;font-weight:700;color:var(--dark);font-variant-numeric:tabular-nums}
+  input[type=range]{width:100%;height:6px;background:var(--chip);border-radius:3px;
+    -webkit-appearance:none;appearance:none;outline:none;margin:6px 0 12px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:18px;height:18px;border-radius:50%;background:var(--accent);
+    border:2px solid var(--solid);box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;
+    background:var(--accent);border:2px solid var(--solid);box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer}
+
+  /* ── пресеты ────────────────────────────────────── */
+  #presets .grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  #presets button{border:1px solid var(--line);background:var(--chip);color:var(--txt);
+    font:inherit;font-size:10.5px;padding:5px 6px;border-radius:8px;cursor:pointer;
+    transition:background .15s;text-align:left;line-height:1.25}
+  #presets button:hover{background:var(--chip-hover)}
+  #presets button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  #presets button b{display:block;font-weight:700;font-size:11px;margin-bottom:1px}
+  #presets button small{font-size:9.5px;opacity:.8}
+
+  /* ── город ──────────────────────────────────────── */
+  #city-search{display:flex;gap:6px;margin-bottom:8px}
+  #city-search input{flex:1;border:1px solid var(--line);background:var(--chip);
+    color:var(--txt);font:inherit;font-size:12px;padding:7px 10px;border-radius:8px;outline:none}
+  #city-search input:focus{border-color:var(--accent);background:var(--solid)}
+  #city-search button{border:1px solid var(--line);background:var(--accent);color:#fff;
+    font:inherit;font-size:11px;padding:0 12px;border-radius:8px;cursor:pointer;font-weight:600}
+  #city-search button:hover{background:var(--dark)}
+  #city-result{background:var(--chip);border:1px solid var(--line);border-radius:10px;
+    padding:10px 12px;font-size:12px;line-height:1.5;color:var(--txt);display:none}
+  #city-result.show{display:block}
+  #city-result .row{display:flex;justify-content:space-between;margin:2px 0}
+  #city-result .row span:first-child{color:var(--dim);font-size:11px}
+  #city-result .row b{font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums}
+  #city-result .m-big{font-size:24px;font-weight:800;color:var(--accent);line-height:1}
+  #city-result .m-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim)}
+
+  /* ── легенда ────────────────────────────────────── */
+  #legend{position:fixed;right:14px;bottom:26px;z-index:1000;background:var(--panel);
+    border:1px solid var(--line);border-radius:14px;padding:10px 13px;font-size:11.5px;
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow);max-width:200px}
+  #legend .t{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--dim);margin-bottom:7px}
+  #legend .row{display:flex;align-items:center;gap:7px;margin:3px 0;color:var(--txt)}
+  #legend .row i{width:14px;height:14px;border-radius:50%;flex:none;border:2px solid;box-shadow:0 0 4px currentColor}
+
+  .leaflet-control-attribution{background:rgba(255,255,255,.8)!important;color:var(--dim)!important;
+    font-size:10px!important;backdrop-filter:blur(6px)}
+  .leaflet-control-attribution a{color:var(--link)!important}
+  .leaflet-bar a{background:#fff!important;color:var(--txt)!important;border-color:var(--line)!important}
+  .leaflet-bar a:hover{background:var(--chip)!important}
+
+  @media (max-width:720px){
+    #panel{max-width:calc(100vw - 28px);max-height:50vh}
+    #legend{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<header id="panel">
+  <h1><span class="dot"></span>Симулятор землетрясений</h1>
+  <p class="sub">Задайте магнитуду и глубину, щёлкните по карте — увидите изосейсты и оценку баллов для города</p>
+
+  <!-- Магнитуда и глубина -->
+  <div class="section">
+    <h2>Параметры очага</h2>
+    <div class="slider-row">
+      <label>Магнитуда</label>
+      <b id="mag-val">7.0</b>
+    </div>
+    <input type="range" id="mag-slider" min="4" max="9.5" step="0.1" value="7.0">
+    <div class="slider-row">
+      <label>Глубина, км</label>
+      <b id="depth-val">30</b>
+    </div>
+    <input type="range" id="depth-slider" min="5" max="200" step="5" value="30">
+  </div>
+
+  <!-- Пресеты -->
+  <div class="section" id="presets">
+    <h2>Реальные землетрясения</h2>
+    <div class="grid" id="presets-grid"></div>
+  </div>
+
+  <!-- Город -->
+  <div class="section">
+    <h2>Ваш город</h2>
+    <div id="city-search">
+      <input type="text" id="city-input" placeholder="Название города..." autocomplete="off">
+      <button id="city-btn" type="button">Найти</button>
+    </div>
+    <div id="city-result"></div>
+  </div>
+
+  <!-- Подсказка -->
+  <div class="section" style="font-size:11px;color:var(--dim);line-height:1.5">
+    Щёлкните по карте, чтобы поставить эпицентр. Контуры покажут зоны в баллах МСК-64.
+    Модель: упрощённая формула Блейка (1971).
+  </div>
+</header>
+
+<div id="legend">
+  <div class="t">Баллы МСК-64</div>
+  <div class="row"><i style="color:#ff2d2d;background:rgba(255,45,45,.1)"></i>9-12 (разрушительные)</div>
+  <div class="row"><i style="color:#ff7a45;background:rgba(255,122,69,.1)"></i>7-8 (сильные)</div>
+  <div class="row"><i style="color:#ffd43b;background:rgba(255,212,59,.1)"></i>5-6 (ощутимые)</div>
+  <div class="row"><i style="color:#a9e34b;background:rgba(169,227,75,.1)"></i>3-4 (слабые)</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+<script>
+/* ════════ ИЗОСЕЙСТЫ: формула Блейка ════════ */
+/* I(r) = I0 - 2*log10( sqrt(r² + h²) / h )
+   I0 = 1.5*M - 1.5
+   r — эпицентральное расстояние (км), h — глубина (км) */
+
+function calcIntensity(M, r, h){
+  var I0 = 1.5 * M - 1.5;
+  var hyp = Math.sqrt(r * r + h * h);
+  if (hyp <= h) return I0;  // в эпицентре
+  var I = I0 - 2 * Math.log10(hyp / h);
+  return I;
+}
+
+function intensityToColor(I){
+  if (I >= 9)  return '#ff2d2d';
+  if (I >= 7)  return '#ff7a45';
+  if (I >= 5)  return '#ffd43b';
+  if (I >= 3)  return '#a9e34b';
+  return '#51cf66';
+}
+
+function intensityToLabel(I){
+  if (I >= 10) return 'X-XII (разрушительно)';
+  if (I >= 9)  return 'IX (опустошительно)';
+  if (I >= 8)  return 'VIII (разрушительно)';
+  if (I >= 7)  return 'VII (очень сильное)';
+  if (I >= 6)  return 'VI (сильное)';
+  if (I >= 5)  return 'V (ощутимое)';
+  if (I >= 4)  return 'IV (умеренное)';
+  if (I >= 3)  return 'III (слабое)';
+  return 'I-II (не ощущается)';
+}
+
+/* Радиус зоны с интенсивностью >= I_target для заданных M и h.
+   Решаем уравнение I(r) = I_target относительно r. */
+function radiusForIntensity(M, h, I_target){
+  var I0 = 1.5 * M - 1.5;
+  if (I_target >= I0) return 0;  // зона не достигает
+  /* I0 - 2*log10( sqrt(r²+h²) / h ) = I_target
+     log10( sqrt(r²+h²) / h ) = (I0 - I_target) / 2
+     sqrt(r²+h²) / h = 10^((I0 - I_target) / 2)
+     r² + h² = h² * 10^((I0 - I_target))
+     r = h * sqrt( 10^((I0 - I_target)) - 1 ) */
+  var exponent = I0 - I_target;
+  var r = h * Math.sqrt(Math.pow(10, exponent) - 1);
+  return r;
+}
+
+/* ════════ КАРТА ════════ */
+var HOME = [55.75, 37.6], HOME_ZOOM = 4;
+var map = L.map('map', {
+  zoomControl: true, worldCopyJump: true,
+  minZoom: 2, maxZoom: 12, zoomSnap: .5,
+  attributionControl: true
+});
+map.attributionControl.setPrefix(false);
+
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '&copy; Esri · данные USGS, модель Blake (1971)',
+  maxZoom: 16
+}).addTo(map);
+
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+  pane: 'labels', maxZoom: 16
+}).addTo(map);
+
+map.createPane('labels');
+map.getPane('labels').style.zIndex = 350;
+map.getPane('labels').style.pointerEvents = 'none';
+
+map.setView(HOME, HOME_ZOOM);
+
+/* ════════ СЛОИ ════════ */
+var epicenterLayer = L.layerGroup().addTo(map);
+var isoseistLayer = L.layerGroup().addTo(map);
+var cityLayer = L.layerGroup().addTo(map);
+
+var state = {
+  lat: null, lon: null,
+  mag: 7.0,
+  depth: 30,
+  cityLat: null, cityLon: null, cityName: null
+};
+
+/* ════════ РИСУЕМ ИЗОСЕЙСТЫ ════════ */
+function drawIsoseists(){
+  isoseistLayer.clearLayers();
+  if (state.lat === null) return;
+
+  var M = state.mag, h = state.depth;
+  /* Рисуем кольца для интенсивностей 3, 5, 7, 9, 11 */
+  var levels = [3, 5, 7, 9, 11];
+  /* Сортируем по убыванию, чтобы большие круги были внизу */
+  levels.sort(function(a, b){ return b - a; });
+
+  levels.forEach(function(I){
+    var r_km = radiusForIntensity(M, h, I);
+    if (r_km < 1) return;  // слишком мало
+    /* Переводим км в градусы (упрощённо — для радиуса круга на карте) */
+    /* 1 градус широты ≈ 111 км */
+    var r_deg = r_km / 111;
+    var color = intensityToColor(I);
+    L.circle([state.lat, state.lon], {
+      radius: r_km * 1000,  // в метрах
+      color: color,
+      weight: 2,
+      opacity: 0.7,
+      fillColor: color,
+      fillOpacity: 0.08,
+      dashArray: I >= 7 ? null : '5,5'
+    }).addTo(isoseistLayer);
+  });
+}
+
+/* ════════ РИСУЕМ ЭПИЦЕНТР ════════ */
+function drawEpicenter(){
+  epicenterLayer.clearLayers();
+  if (state.lat === null) return;
+
+  var M = state.mag;
+  var color = '#ff2d2d';
+  var radius = Math.max(8, 6 + (M - 4) * 3);
+
+  /* Пульсирующее кольцо для сильных событий */
+  if (M >= 6){
+    L.circleMarker([state.lat, state.lon], {
+      radius: radius * 1.8, color: color, weight: 1.5, opacity: .55,
+      fillColor: color, fillOpacity: .12, className: 'eq-ring'
+    }).addTo(epicenterLayer);
+  }
+
+  /* Основной маркер */
+  var m = L.circleMarker([state.lat, state.lon], {
+    radius: radius, color: '#fff', weight: 2,
+    fillColor: color, fillOpacity: .9
+  }).addTo(epicenterLayer);
+
+  m.bindPopup(
+    '<div style="font-family:inherit">' +
+      '<div style="font-size:20px;font-weight:800;color:' + color + '">M ' + M.toFixed(1) + '</div>' +
+      '<div style="font-size:12px;font-weight:600;margin-bottom:6px">Эпицентр симуляции</div>' +
+      '<table style="font-size:11px;color:#5d6672;border-collapse:collapse">' +
+        '<tr><td>Координаты</td><td style="text-align:right">' + state.lat.toFixed(3) + '°, ' + state.lon.toFixed(3) + '°</td></tr>' +
+        '<tr><td>Глубина</td><td style="text-align:right">' + h + ' км</td></tr>' +
+        '<tr><td>I₀ (эпицентр)</td><td style="text-align:right">' + (1.5*M-1.5).toFixed(1) + ' баллов</td></tr>' +
+      '</table>' +
+    '</div>',
+    { className: 'eq-popup', maxWidth: 240 }
+  );
+}
+
+/* ════════ КЛИК ПО КАРТЕ = ЭПИЦЕНТР ════════ */
+map.on('click', function(e){
+  state.lat = e.latlng.lat;
+  state.lon = e.latlng.lng;
+  drawEpicenter();
+  drawIsoseists();
+  updateCityResult();
+});
+
+/* ════════ СЛАЙДЕРЫ ════════ */
+var magSlider = document.getElementById('mag-slider');
+var magVal = document.getElementById('mag-val');
+var depthSlider = document.getElementById('depth-slider');
+var depthVal = document.getElementById('depth-val');
+
+magSlider.addEventListener('input', function(){
+  state.mag = parseFloat(magSlider.value);
+  magVal.textContent = state.mag.toFixed(1);
+  drawEpicenter();
+  drawIsoseists();
+  updateCityResult();
+  /* Снимаем активный пресет */
+  clearPresetSelection();
+});
+
+depthSlider.addEventListener('input', function(){
+  state.depth = parseInt(depthSlider.value);
+  depthVal.textContent = state.depth;
+  drawEpicenter();
+  drawIsoseists();
+  updateCityResult();
+  clearPresetSelection();
+});
+
+/* ════════ ПРЕСЕТЫ ════════ */
+var PRESETS = [
+  { lat:52.75,  lon:160.05, mag:9.0,  depth:30, name:'Камчатка',            year:1952 },
+  { lat:38.30,  lon:142.37, mag:9.1,  depth:29, name:'Тохоку',              year:2011 },
+  { lat:3.30,   lon:95.98,  mag:9.1,  depth:30, name:'Суматра',             year:2004 },
+  { lat:-38.14, lon:-73.61, mag:9.5,  depth:33, name:'Вальдивия',           year:1960 },
+  { lat:40.97,  lon:44.20,  mag:6.8,  depth:10, name:'Спитак',              year:1988 },
+  { lat:51.85,  lon:143.10, mag:7.1,  depth:18, name:'Нефтегорск',          year:1995 },
+  { lat:41.30,  lon:69.25,  mag:5.2,  depth:8,  name:'Ташкент',             year:1966 },
+  { lat:37.23,  lon:37.16,  mag:7.8,  depth:10, name:'Кахраманмараш',       year:2023 },
+  { lat:28.23,  lon:84.73,  mag:7.8,  depth:8,  name:'Непал',               year:2015 },
+  { lat:34.58,  lon:135.00, mag:6.9,  depth:17, name:'Кобе',                year:1995 }
+];
+
+function clearPresetSelection(){
+  var btns = document.querySelectorAll('#presets-grid button');
+  btns.forEach(function(b){ b.classList.remove('on'); });
+}
+
+function applyPreset(p){
+  state.lat = p.lat;
+  state.lon = p.lon;
+  state.mag = p.mag;
+  state.depth = p.depth;
+  magSlider.value = p.mag;
+  depthSlider.value = p.depth;
+  magVal.textContent = p.mag.toFixed(1);
+  depthVal.textContent = p.depth;
+  drawEpicenter();
+  drawIsoseists();
+  updateCityResult();
+  map.flyTo([p.lat, p.lon], 5, { duration: 1.2 });
+}
+
+(function renderPresets(){
+  var grid = document.getElementById('presets-grid');
+  PRESETS.forEach(function(p, i){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.innerHTML = '<b>' + p.name + '</b><small>M' + p.mag.toFixed(1) + ' · ' + p.year + '</small>';
+    btn.addEventListener('click', function(){
+      clearPresetSelection();
+      btn.classList.add('on');
+      applyPreset(p);
+    });
+    grid.appendChild(btn);
+  });
+})();
+
+/* ════════ ПОИСК ГОРОДА (Nominatim) ════════ */
+var cityInput = document.getElementById('city-input');
+var cityBtn = document.getElementById('city-btn');
+var cityResult = document.getElementById('city-result');
+
+function searchCity(){
+  var q = cityInput.value.trim();
+  if (!q) return;
+  cityBtn.textContent = '...';
+  cityBtn.disabled = true;
+  fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(q) + '&limit=1&accept-language=ru', {
+    headers: { 'Accept': 'application/json' }
+  })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (data && data.length > 0){
+        state.cityLat = parseFloat(data[0].lat);
+        state.cityLon = parseFloat(data[0].lon);
+        state.cityName = data[0].display_name.split(',')[0];
+        drawCity();
+        updateCityResult();
+      } else {
+        cityResult.classList.add('show');
+        cityResult.innerHTML = '<div style="color:var(--err)">Город не найден</div>';
+      }
+    })
+    .catch(function(){
+      cityResult.classList.add('show');
+      cityResult.innerHTML = '<div style="color:var(--err)">Ошибка поиска</div>';
+    })
+    .finally(function(){
+      cityBtn.textContent = 'Найти';
+      cityBtn.disabled = false;
+    });
+}
+
+cityBtn.addEventListener('click', searchCity);
+cityInput.addEventListener('keydown', function(e){
+  if (e.key === 'Enter') searchCity();
+});
+
+function drawCity(){
+  cityLayer.clearLayers();
+  if (state.cityLat === null) return;
+  var m = L.circleMarker([state.cityLat, state.cityLon], {
+    radius: 7, color: '#00549F', weight: 2,
+    fillColor: '#00549F', fillOpacity: .8
+  }).addTo(cityLayer);
+  m.bindTooltip(state.cityName, { permanent: false, direction: 'top' });
+}
+
+/* ════════ РЕЗУЛЬТАТ ДЛЯ ГОРОДА ════════ */
+function updateCityResult(){
+  if (state.cityLat === null || state.lat === null){
+    cityResult.classList.remove('show');
+    return;
+  }
+  /* Эпицентральное расстояние (км) — формула гаверсинуса */
+  var R = 6371; // радиус Земли
+  var dLat = (state.lat - state.cityLat) * Math.PI / 180;
+  var dLon = (state.lon - state.cityLon) * Math.PI / 180;
+  var a = Math.sin(dLat/2)*Math.sin(dLat/2) +
+          Math.cos(state.cityLat * Math.PI / 180) * Math.cos(state.lat * Math.PI / 180) *
+          Math.sin(dLon/2)*Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var epicDist = R * c;  // км
+
+  /* Гипоцентральное расстояние */
+  var hypDist = Math.sqrt(epicDist * epicDist + state.depth * state.depth);
+
+  /* Интенсивность в городе */
+  var I = calcIntensity(state.mag, epicDist, state.depth);
+
+  /* PGA (упрощённо по Boore & Atkinson 2008, для жесткой скалы):
+     log10(PGA) = a + b*M - c*log10(R) где R — гипоцентральное расстояние
+     Упрощённые коэффициенты: a=-1.5, b=0.3, c=1.0 */
+  var pga = Math.pow(10, -1.5 + 0.3 * state.mag - 1.0 * Math.log10(hypDist));
+  var pgaPct = pga * 100; // в %g
+
+  /* Время прихода S-волны (V_s ≈ 3.5 км/с) */
+  var tS = hypDist / 3.5;
+  /* Время прихода P-волны (V_p ≈ 6.0 км/с) */
+  var tP = hypDist / 6.0;
+
+  cityResult.classList.add('show');
+  cityResult.innerHTML =
+    '<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">' +
+      '<div class="m-big">' + I.toFixed(1) + '</div>' +
+      '<div>' +
+        '<div class="m-label">баллов МСК-64</div>' +
+        '<div style="font-size:11px;color:var(--dim)">' + intensityToLabel(I) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div style="font-size:11px;font-weight:600;margin-bottom:8px">' + state.cityName + '</div>' +
+    '<div class="row"><span>От эпицентра</span><b>' + epicDist.toFixed(1) + ' км</b></div>' +
+    '<div class="row"><span>От гипоцентра</span><b>' + hypDist.toFixed(1) + ' км</b></div>' +
+    '<div class="row"><span>PGA</span><b>' + pgaPct.toFixed(1) + ' %g</b></div>' +
+    '<div class="row"><span>P-волна</span><b>' + tP.toFixed(1) + ' с</b></div>' +
+    '<div class="row"><span>S-волна</span><b>' + tS.toFixed(1) + ' с</b></div>' +
+    '<div class="row"><span>Глубина очага</span><b>' + state.depth + ' км</b></div>';
+}
+</script>
+</body>
+</html>
