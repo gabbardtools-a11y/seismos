@@ -1,0 +1,255 @@
+{
+  "fetched_at": "2026-10-09T15:57:40.936100+00:00",
+  "total_raw": 25,
+  "total_unique": 23,
+  "sources": [
+    {
+      "key": "iz",
+      "name": "Известия"
+    },
+    {
+      "key": "rt",
+      "name": "RT на русском"
+    },
+    {
+      "key": "lenta",
+      "name": "Lenta.RU"
+    },
+    {
+      "key": "vesti",
+      "name": "Вести.RU"
+    }
+  ],
+  "news": [
+    {
+      "title": "События недели в фотографиях: «Алые паруса», землетрясение в Венесуэле и отставка Кира Стармера",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Греческие ученые зафиксировали почти 12 тыс. землетрясений в районе Санторини",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "В Венесуэле испекли огромный торт для пострадавших от землетрясения детей",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 5,9 зарегистрировали у острова Сумба в Индонезии",
+      "url": "https://russian.rt.com/nopolitics/news/1690426-zemletryasenie-ostrov-indoneziya",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 5,9 зарегистрировали вблизи Курильских островов",
+      "url": "https://russian.rt.com/nopolitics/news/1691454-zemletryasenie-kurilskie-ostrova",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Подземный удар: что происходит в пострадавшей от землетрясения Колумбии",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 5,5 произошло у восточного побережья Тайваня",
+      "url": "https://russian.rt.com/world/news/1688852-tajvan-zemletryasenie-magnituda-epicentr",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 2,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 3,5 зарегистрировали на юго-западе Германии",
+      "url": "https://russian.rt.com/nopolitics/news/1680844-germaniya-zemletryasenie-seismologi",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Концерт Metallica в Вирджинии спровоцировал небольшое землетрясение",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 6 зарегистрировали у Соломоновых островов",
+      "url": "https://russian.rt.com/nopolitics/news/1678625-solomonovy-ostrova-zemletryasenie",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясения в мире: последние новости на сегодня | Происшествия",
+      "url": "",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Ученые нашли связь между вспышками на Солнце и землетрясениями",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "У берегов Камчатки за неделю произошло свыше 60 землетрясений",
+      "url": "https://russian.rt.com/russia/news/1690686-kamchatka-zemletryaseniya-nedelya",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 6,3 произошло в Папуа — Новой Гвинее",
+      "url": "https://russian.rt.com/world/news/1684886-papua-zemletryasenie-magnituda-emsc",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "На разломе: как Индонезия переживает мощное землетрясение",
+      "url": "",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "В Индийском океане произошло землетрясение магнитудой 5,7",
+      "url": "https://russian.rt.com/world/news/1685087-zemletryasenie-indijskiy-okean",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 5,5 произошло у берегов Мексики",
+      "url": "https://russian.rt.com/world/news/1677296-meksika-zemletryasenie-chyapas-poberezhe",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 2,
+      "date": ""
+    },
+    {
+      "title": "На Камчатке зафиксировали девять землетрясений за сутки",
+      "url": "https://russian.rt.com/russia/news/1691967-kamchatka-zemletryaseniya-devyat",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Землетрясение магнитудой 5,4 произошло у Южных Курил",
+      "url": "https://russian.rt.com/russia/news/1678387-zemletryasenie-magnituda-kurili",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "Последние новости о землетрясениях - РТ на русском",
+      "url": "",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "В Краснодарском крае зафиксировано землетрясение",
+      "url": "https://russian.rt.com/nopolitics/news/1683457-krasnodarskii-krai-zemletryasenie",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    },
+    {
+      "title": "В российском регионе произошло землетрясение",
+      "url": "https://lenta.ru/news/2026/10/09/v-rossiyskom-regione-proizoshlo-zemletryasenie/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "Fri, 09 Oct 2026 14:15:00 +0300"
+    },
+    {
+      "title": "Землетрясение ощущалось на востоке Тегерана",
+      "url": "https://russian.rt.com/world/news/1676250-zemletryasenie-tegeran-vostok",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
+    }
+  ]
+}
