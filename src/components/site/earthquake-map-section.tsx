@@ -20,7 +20,7 @@ export function EarthquakeMapSection() {
               </span>
             </div>
             <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold tracking-[-0.01em] text-white mb-3 leading-[1.1]">
-              Интерактивная карта землетрясений
+              Интерактивная карта землетрясений России и мира
             </h2>
             <p className="text-sm sm:text-base text-white/60 leading-relaxed">
               Данные в реальном времени от Геологической службы США (USGS).
