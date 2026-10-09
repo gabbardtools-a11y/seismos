@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-10-09T15:57:40.936100+00:00",
-  "total_raw": 25,
-  "total_unique": 23,
+  "fetched_at": "2026-10-09T16:32:51.684183+00:00",
+  "total_raw": 92,
+  "total_unique": 73,
   "sources": [
     {
       "key": "iz",
@@ -22,34 +22,284 @@
   ],
   "news": [
     {
-      "title": "События недели в фотографиях: «Алые паруса», землетрясение в Венесуэле и отставка Кира Стармера",
-      "url": "",
+      "title": "В РАН предложили вернуться к малоэтажному строительству в сейсмоопасных зонах Ученые Российской академии наук (РАН) предложили вернуться к малоэтажному строительству в сейсмоопасных регионах РФ. Об этом 1 октября сообщил вице-президент академии, председатель Дальневосточного отделения РАН Юрий Кульчин.",
+      "url": "https://iz.ru/2176678/2026-10-01/v-ran-predlozhili-vernutsia-k-maloetazhnomu-stroitelstvu-v-seismoopasnykh-zonakh",
       "source": "iz",
       "all_sources": [
         "iz"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-10-01T14:53"
     },
     {
-      "title": "Греческие ученые зафиксировали почти 12 тыс. землетрясений в районе Санторини",
-      "url": "",
+      "title": "Нашедшую под завалами 26 человек собаку-спасателя Цунами увековечат в Венесуэле Спасательная собака по кличке Цунами, которая после разрушительных землетрясений в Венесуэле смогла обнаружить под завалами живыми 26 человек, может стать символом первого в стране кинологического центра.",
+      "url": "https://iz.ru/2173031/2026-09-24/nashedshuiu-pod-zavalami-26-chelovek-sobaku-spasatelia-tcunami-uvekovechat-v-venesuele",
       "source": "iz",
       "all_sources": [
         "iz"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-24T20:26"
     },
     {
-      "title": "В Венесуэле испекли огромный торт для пострадавших от землетрясения детей",
-      "url": "",
+      "title": "Землетрясение магнитудой 4,4 произошло в Новосибирской области Землетрясение магнитудой 4,4 произошло в Искитимском районе Новосибирской области в зоне расположения угольных разрезов. Об этом 15 сентября сообщили на сайте Алтае-Саянского филиала Единой геофизической службы РАН.",
+      "url": "https://iz.ru/2167128/2026-09-15/zemletriasenie-magnitudoi-44-proizoshlo-v-novosibirskoi-oblasti",
       "source": "iz",
       "all_sources": [
         "iz"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-15T09:00"
+    },
+    {
+      "title": "Землетрясение магнитудой 4,5 произошло у побережья Камчатки Сейсмособытие магнитудой 4,5 зарегистрировали ученые в 195 км от Петропавловска-Камчатского, отметили 14 сентября в сводке о землетрясениях в районе города и на прилегающей территории Камчатского полуострова.",
+      "url": "https://iz.ru/2167033/2026-09-15/zemletriasenie-magnitudoi-45-proizoshlo-u-poberezhia-kamchatki",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-15T00:45"
+    },
+    {
+      "title": "В акватории Байкала зафиксировали землетрясение магнитудой 3,4 В акватории озера Байкал было зафиксировано землетрясение, относящееся к классу 10,2. Об этом 17 сентября сообщили на сайте Байкальского филиала Единой геофизической службы Российской академии наук (РАН).",
+      "url": "https://iz.ru/2168431/2026-09-17/v-akvatorii-baikala-zafiksirovali-zemletriasenie-magnitudoi-34",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-17T08:42"
+    },
+    {
+      "title": "Землетрясение магнитудой 4,1 произошло в Бурятии Подземные толчки магнитудой 4,1 зарегистрировали в Баргузинском районе Бурятии. Эпицентр находился неподалеку от поселка Максимиха, сообщили 5 октября в Байкальском филиале Единой геофизической службы СО РАН.",
+      "url": "https://iz.ru/2178592/2026-10-05/zemletriasenie-magnitudoi-41-proizoshlo-v-buriatii",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-05T05:23"
+    },
+    {
+      "title": "Землетрясение магнитудой 5,4 произошло у берегов Гренландии У северо-восточного побережья Гренландии в понедельник, 28 сентября, произошло землетрясение магнитудой 5,4. Об этом сообщил Европейско-Средиземноморский сейсмологический центр (EMSC).",
+      "url": "https://iz.ru/2175088/2026-09-28/zemletriasenie-magnitudoi-54-proizoshlo-u-beregov-grenlandii",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-28T22:26"
+    },
+    {
+      "title": "Землетрясение магнитудой 4,2 произошло около Новороссийска Вблизи Новороссийска зафиксировано землетрясение магнитудой 4,2. Об этом 17 сентября свидетельствуют данные, выложенные на сайте Европейско-Средиземноморского сейсмологического центра.",
+      "url": "https://iz.ru/2168448/2026-09-17/zemletriasenie-magnitudoi-42-proizoshlo-okolo-novorossiiska",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-17T10:25"
+    },
+    {
+      "title": "Землетрясение магнитудой 5 произошло около Курильских островов Сейсмологи зарегистрировали землетрясение магнитудой 5 в районе севера Курильских островов в ночь на 23 сентября. Местные жители могли ощутить подземные толчки.",
+      "url": "https://iz.ru/2171886/2026-09-23/zemletriasenie-magnitudoi-5-proizoshlo-okolo-kurilskikh-ostrovov",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-23T09:07"
+    },
+    {
+      "title": "На острове Ява в Индонезии произошло землетрясение магнитудой 6,2 Землетрясение магнитудой 6,2 произошло у побережья острова Ява в Индонезии. Об этом 12 сентября свидетельствуют данные Потсдамского центра имени Гельмгольца.",
+      "url": "https://iz.ru/2165758/2026-09-12/na-ostrove-iava-v-indonezii-proizoshlo-zemletriasenie-magnitudoi-62",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-12T04:11"
+    },
+    {
+      "title": "Землетрясение магнитудой 4,1 произошло у берегов Сочи У берегов Сочи зафиксировали землетрясение магнитудой 4,1. Об этом 25 сентября сообщили на сайте Европейско-средиземноморского сейсмического центра (EMSC).",
+      "url": "https://iz.ru/2173241/2026-09-25/zemletriasenie-magnitudoi-41-proizoshlo-u-beregov-sochi",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-25T08:00"
+    },
+    {
+      "title": "Землетрясение магнитудой 5,7 произошло в Индийском океане Землетрясение магнитудой 5,7 зафиксировали в Индийском океане. Об этом 20 сентября сообщает Геологическая служба США (USGS).",
+      "url": "https://iz.ru/2170503/2026-09-21/zemletriasenie-magnitudoi-57-proizoshlo-v-indiiskom-okeane",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-21T01:51"
+    },
+    {
+      "title": "«Было похоже на землетрясение». Произошел взрыв на крупном химическом предприятии России. Там две недели жаловались на запах газа",
+      "url": "https://lenta.ru/news/2026/08/25/long-vzryv/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-08-25T15:21"
+    },
+    {
+      "title": "«Мы думали, война. Нет ни одного дома» Самое разрушительное землетрясение в истории России. Как за 17 секунд исчез Нефтегорск",
+      "url": "https://lenta.ru/articles/2026/05/28/neftegorsk/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-05-28T19:08"
+    },
+    {
+      "title": "10 фото 29 июня 2026, 12:29 События недели в фотографиях: «Алые паруса», землетрясение в Венесуэле и отставка Кира Стармера",
+      "url": "https://iz.ru/2123047/gallery/galereia-nedeli-22-2806",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-08-11T07:41:25.000Z"
+    },
+    {
+      "title": "«Трясло, как во время землетрясения». Россия ударила по объектам в Полтаве, Харьковской, Одесской и Сумской областях",
+      "url": "https://lenta.ru/news/2026/06/11/tryaslo-kak-vo-vremya-zemletryaseniya-rossiya-udarila-po-ob-ektam-v-poltave-harkovskoy-odesskoy-i-sumskoy-oblastyah/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-06-11T15:20"
+    },
+    {
+      "title": "00:35 11 февраля 2025, 12:03 Греческие ученые зафиксировали почти 12 тыс. землетрясений в районе Санторини",
+      "url": "https://iz.ru/1837320/video/grecheskie-uchenye-zafiksirovali-pochti-12-tys-zemletriasenii-v-raione-santorini",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2025-05-10T17:51:24.000Z"
+    },
+    {
+      "title": "16 фото 11 августа 2026, 10:41 Подземный удар: что происходит в пострадавшей от землетрясения Колумбии",
+      "url": "https://iz.ru/2147092/gallery/kolumbiia",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-08-26T07:21:41.000Z"
+    },
+    {
+      "title": "00:49 19 июля 2026, 10:22 В Венесуэле испекли огромный торт для пострадавших от землетрясения детей",
+      "url": "https://iz.ru/2134974/video/v-venesuele-ispekli-ogromnyi-tort-dlia-postradavshikh-ot-zemletriaseniia-detei",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-07-19T07:22:15.000Z"
+    },
+    {
+      "title": "00:38 10 мая 2025, 20:51 Концерт Metallica в Вирджинии спровоцировал небольшое землетрясение",
+      "url": "https://iz.ru/1884250/video/kontcert-metallica-v-virdzhinii-sprovotciroval-nebolshoe-zemletriasenie",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2025-11-16T17:51:58.000Z"
+    },
+    {
+      "title": "00:51 16 ноября 2025, 20:51 Ученые нашли связь между вспышками на Солнце и землетрясениями",
+      "url": "https://iz.ru/1991313/video/uchenye-nashli-sviaz-mezhdu-vspyshkami-na-solntce-i-zemletriaseniiami",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-07-19T07:22:15.000Z"
+    },
+    {
+      "title": "15 фото 26 августа 2026, 10:21 На разломе: как Индонезия переживает мощное землетрясение",
+      "url": "https://iz.ru/2153615/gallery/indoneeziia",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-08-30T07:00:00.000Z"
+    },
+    {
+      "title": "Пережившие землетрясение в Нефтегорске россияне рассказали о первых минутах катастрофы",
+      "url": "https://lenta.ru/news/2026/05/29/moment/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-05-29T08:01"
+    },
+    {
+      "title": "Чудом выжившая после землетрясения в Нефтегорске рассказала о спасении из-под завалов",
+      "url": "https://lenta.ru/news/2026/05/29/spasenie/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-05-29T06:10"
+    },
+    {
+      "title": "Опубликованы неизвестные кадры разрушений после мощного землетрясения в Нефтегорске",
+      "url": "https://lenta.ru/news/2026/05/29/photo/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-05-29T04:02"
+    },
+    {
+      "title": "Очевидцы вспомнили самое разрушительное землетрясение в современной истории России",
+      "url": "https://lenta.ru/news/2026/05/29/vspomnili/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-05-28T23:00"
+    },
+    {
+      "title": "Россияне сравнили уничтожившее город за 17 секунд землетрясение с началом войны",
+      "url": "https://lenta.ru/news/2026/05/29/sravnili/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-05-29T00:01"
+    },
+    {
+      "title": "Ушедший из России автогигант продлил остановку заводов из-за землетрясения",
+      "url": "https://lenta.ru/news/2026/07/31/ushedshiy-iz-rossii-avtogigant-prodlil-ostanovku-zavodov-iz-za-zemletryaseniya/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-07-31T07:46"
     },
     {
       "title": "Землетрясение магнитудой 5,9 зарегистрировали у острова Сумба в Индонезии",
@@ -59,7 +309,7 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-10-05T02:49"
     },
     {
       "title": "Землетрясение магнитудой 5,9 зарегистрировали вблизи Курильских островов",
@@ -69,27 +319,58 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-10-08T02:53"
     },
     {
-      "title": "Подземный удар: что происходит в пострадавшей от землетрясения Колумбии",
-      "url": "",
-      "source": "iz",
+      "title": "«Лента.ру» выпустила спецпроект к годовщине землетрясения в Нефтегорске",
+      "url": "https://lenta.ru/news/2026/05/28/specialneftegorsk/",
+      "source": "lenta",
       "all_sources": [
-        "iz"
+        "lenta"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-05-28T19:38"
+    },
+    {
+      "title": "МЧС: на Камчатке ощутили последствия двух землетрясений в Тихом океане",
+      "url": "https://www.vesti.ru/ns/mchs-na-kamchatke-oshchutili-posledstviyakh-dvukh-zemletryasenij-v-tikhom-okeane",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-03T00:14"
     },
     {
       "title": "Землетрясение магнитудой 5,5 произошло у восточного побережья Тайваня",
       "url": "https://russian.rt.com/world/news/1688852-tajvan-zemletryasenie-magnituda-epicentr",
       "source": "rt",
       "all_sources": [
-        "rt"
+        "rt",
+        "vesti"
       ],
-      "duplicate_count": 2,
-      "date": ""
+      "duplicate_count": 4,
+      "date": "2026-10-04T02:34"
+    },
+    {
+      "title": "Российским туристам в Японии рассказали о действиях при землетрясении",
+      "url": "https://lenta.ru/news/2026/04/20/rossiyskim-turistam-v-yaponii-rasskazali-o-deystviyah-pri-zemletryasenii/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-04-20T14:03"
+    },
+    {
+      "title": "Землетрясение магнитудой 4,9 зарегистрировали на Курильских островах",
+      "url": "https://iz.ru/2175420/2026-09-29/zemletriasenie-magnitudoi-49-zaregistrirovali-na-kurilskikh-ostrovakh",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-29T14:19"
     },
     {
       "title": "Землетрясение магнитудой 3,5 зарегистрировали на юго-западе Германии",
@@ -99,17 +380,27 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-17 08:43"
     },
     {
-      "title": "Концерт Metallica в Вирджинии спровоцировал небольшое землетрясение",
-      "url": "",
-      "source": "iz",
+      "title": "Сразу три землетрясения за 15 минут зафиксированы у берегов Камчатки",
+      "url": "https://www.vesti.ru/ns/srazu-tri-zemletryaseniya-za-15-minut-zafiksirovany-u-beregov-kamchatki",
+      "source": "vesti",
       "all_sources": [
-        "iz"
+        "vesti"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-10-01T00:35"
+    },
+    {
+      "title": "Российский регион оказался под угрозой после землетрясения в Японии",
+      "url": "https://lenta.ru/news/2026/04/20/rossiyskiy-region-okazalsya-pod-ugrozoy-posle-zemletryaseniya-v-yaponii/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-04-20T15:17"
     },
     {
       "title": "Землетрясение магнитудой 6 зарегистрировали у Соломоновых островов",
@@ -119,7 +410,27 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-10 23:15"
+    },
+    {
+      "title": "Путин выразил соболезнования в связи с землетрясением в Венесуэле",
+      "url": "https://lenta.ru/news/2026/06/25/putin-vyrazil-soboleznovaniya-v-svyazi-s-zemletryaseniem-v-venesuele/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-06-25T12:44"
+    },
+    {
+      "title": "Землетрясение с эпицентром в озере Байкал зафиксировали в Бурятии",
+      "url": "https://www.vesti.ru/ns/zemletryasenie-s-ehpicentrom-v-ozere-bajkal-zafiksirovali-v-buryatii",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-05T02:32"
     },
     {
       "title": "Землетрясения в мире: последние новости на сегодня | Происшествия",
@@ -132,14 +443,65 @@
       "date": ""
     },
     {
-      "title": "Ученые нашли связь между вспышками на Солнце и землетрясениями",
-      "url": "",
+      "title": "Землетрясение магнитудой 5,2 произошло вблизи побережья Камчатки",
+      "url": "https://iz.ru/2179890/2026-10-07/zemletriasenie-magnitudoi-52-proizoshlo-vblizi-poberezhia-kamchatki",
       "source": "iz",
       "all_sources": [
+        "vesti",
         "iz"
       ],
+      "duplicate_count": 3,
+      "date": "2026-10-07T04:17"
+    },
+    {
+      "title": "Стало известно об угрозе цунами в Венесуэле после землетрясения",
+      "url": "https://lenta.ru/news/2026/06/25/stalo-izvestno-ob-ugroze-tsunami-v-venesuele-posle-zemletryaseniya/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-06-25T18:13"
+    },
+    {
+      "title": "Землетрясение магнитудой 5,6 зафиксировали у берегов Коста-Рики",
+      "url": "https://www.vesti.ru/ns/zemletryasenie-magnitudoj-56-zafiksirovali-u-beregov-kosta-riki",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-01T01:18"
+    },
+    {
+      "title": "Землетрясение в Венесуэле стало крупнейшим в стране за 126 лет",
+      "url": "https://lenta.ru/news/2026/06/25/zemletryasenie-v-venesuele-stalo-krupneyshim-v-strane-za-126-let/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-06-25T15:22"
+    },
+    {
+      "title": "Венесуэла ответила на послание Путина в связи с землетрясением",
+      "url": "https://lenta.ru/news/2026/06/25/venesuela-otvetila-na-poslanie-putina-v-svyazi-s-zemletryaseniem/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-06-25T14:31"
+    },
+    {
+      "title": "Вблизи Курильских островов произошли 2 ощущаемых землетрясения",
+      "url": "https://www.vesti.ru/ns/vblizi-kurilskikh-ostrovov-proizoshli-dva-oshchushchaemykh-zemletryaseniya",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-07T01:31"
     },
     {
       "title": "У берегов Камчатки за неделю произошло свыше 60 землетрясений",
@@ -149,7 +511,7 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-10-06T20:15"
     },
     {
       "title": "Землетрясение магнитудой 6,3 произошло в Папуа — Новой Гвинее",
@@ -159,17 +521,58 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-21 02:15"
     },
     {
-      "title": "На разломе: как Индонезия переживает мощное землетрясение",
-      "url": "",
-      "source": "iz",
+      "title": "У побережья Курильских островов произошла серия землетрясений",
+      "url": "https://lenta.ru/news/2026/02/15/u-poberezhya-kurilskih-ostrovov-proizoshla-seriya-zemletryaseniy/",
+      "source": "lenta",
       "all_sources": [
-        "iz"
+        "lenta"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-02-15T20:17"
+    },
+    {
+      "title": "Жители Камчатки ощутили землетрясение силой до четырех баллов",
+      "url": "https://www.vesti.ru/ns/zhiteli-kamchatki-oshchutili-zemletryasenie-siloj-do-chetyrekh-ballov",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-07T03:50"
+    },
+    {
+      "title": "На Камчатке за последние сутки зафиксированы 36 сейсмособытий",
+      "url": "https://www.vesti.ru/ns/na-kamchatke-za-poslednie-sutki-zafiksirovany-36-sejsmosobytiya",
+      "source": "vesti",
+      "all_sources": [
+        "vesti",
+        "iz"
+      ],
+      "duplicate_count": 4,
+      "date": "2026-10-04T00:02"
+    },
+    {
+      "title": "За сутки в российском регионе произошло десять землетрясений",
+      "url": "https://lenta.ru/news/2026/10/05/za-sutki-v-rossiyskom-regione-proizoshlo-desyat-zemletryaseniy/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-05T01:21"
+    },
+    {
+      "title": "Россияне едва не погибли во время землетрясения в Венесуэле",
+      "url": "https://lenta.ru/news/2026/06/25/rossiyane-edva-ne-pogibli-vo-vremya-zemletryaseniya-v-venesuele/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-06-25T12:18"
     },
     {
       "title": "В Индийском океане произошло землетрясение магнитудой 5,7",
@@ -179,7 +582,7 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-25 08:24"
     },
     {
       "title": "Землетрясение магнитудой 5,5 произошло у берегов Мексики",
@@ -189,7 +592,27 @@
         "rt"
       ],
       "duplicate_count": 2,
-      "date": ""
+      "date": "2026-09-05T04:18"
+    },
+    {
+      "title": "МЧС: на Камчатке зафиксирован ощущаемый подземный толчок",
+      "url": "https://www.vesti.ru/ns/mchs-na-kamchatke-zafiksirovan-oshchushchaemyj-podzemnyj-tolchok",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-25T00:09"
+    },
+    {
+      "title": "Два землетрясения произошли вблизи Командорских островов",
+      "url": "https://www.vesti.ru/ns/dva-zemletryaseniya-proizoshli-vblizi-komandorskikh-ostrovov",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-22T03:29"
     },
     {
       "title": "На Камчатке зафиксировали девять землетрясений за сутки",
@@ -199,17 +622,38 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-10-08T02:53"
     },
     {
-      "title": "Землетрясение магнитудой 5,4 произошло у Южных Курил",
-      "url": "https://russian.rt.com/russia/news/1678387-zemletryasenie-magnituda-kurili",
-      "source": "rt",
+      "title": "Землетрясение магнитудой 5.0 произошло у Северных Курил",
+      "url": "https://www.vesti.ru/ns/zemletryasenie-magnitudoj-50-proizoshlo-u-severnykh-kuril",
+      "source": "vesti",
       "all_sources": [
-        "rt"
+        "rt",
+        "vesti"
+      ],
+      "duplicate_count": 3,
+      "date": "2026-09-23T02:15"
+    },
+    {
+      "title": "Оценены последствия землетрясения в Японии для России",
+      "url": "https://lenta.ru/news/2026/07/28/otseneny-posledstviya-zemletryaseniya-v-yaponii-dlya-rossii/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-07-28T16:51"
+    },
+    {
+      "title": "Вблизи Камчатки зафиксировано очередное землетрясение",
+      "url": "https://www.vesti.ru/ns/vblizi-kamchatki-zafiksirovano-ocherednoe-zemletryasenie",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-03T06:36"
     },
     {
       "title": "Последние новости о землетрясениях - РТ на русском",
@@ -229,17 +673,67 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-17 17:45"
     },
     {
-      "title": "В российском регионе произошло землетрясение",
-      "url": "https://lenta.ru/news/2026/10/09/v-rossiyskom-regione-proizoshlo-zemletryasenie/",
+      "title": "У берегов региона России произошло землетрясение",
+      "url": "https://lenta.ru/news/2026/01/10/u-beregov-regiona-rossii-proizoshlo-zemletryasenie/",
       "source": "lenta",
       "all_sources": [
         "lenta"
       ],
       "duplicate_count": 1,
-      "date": "Fri, 09 Oct 2026 14:15:00 +0300"
+      "date": "2026-01-10T11:58"
+    },
+    {
+      "title": "NYT сообщила о серии землетрясений в Калифорнии",
+      "url": "https://iz.ru/2166190/smi-soobshchili-o-serii-zemletriasenii-v-kalifornii-izi",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-13T05:52"
+    },
+    {
+      "title": "Землетрясение зафиксировано у берегов Камчатки",
+      "url": "https://www.vesti.ru/ns/zemletryasenie-zafiksirovano-u-beregov-kamchatki",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-01T23:14"
+    },
+    {
+      "title": "Землетрясение произошло на российском курорте",
+      "url": "https://lenta.ru/news/2026/07/06/zemletryasenie-proizoshlo-na-rossiyskom-kurorte/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-07-06T13:14"
+    },
+    {
+      "title": "Мощное землетрясение произошло в Тихом океане",
+      "url": "https://lenta.ru/news/2026/01/20/moschnoe-zemletryasenie-proizoshlo-v-tihom-okeane/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-01-20T13:21"
+    },
+    {
+      "title": "Вблизи Камчатки произошла серия землетрясений",
+      "url": "https://www.vesti.ru/ns/vblizi-kamchatki-proizoshla-seriya-zemletryasenij",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-02T23:53"
     },
     {
       "title": "Землетрясение ощущалось на востоке Тегерана",
@@ -249,7 +743,17 @@
         "rt"
       ],
       "duplicate_count": 1,
-      "date": ""
+      "date": "2026-09-02T16:54"
+    },
+    {
+      "title": "В Дагестане произошло землетрясение",
+      "url": "https://lenta.ru/news/2026/04/14/v-dagestane-proizoshlo-zemletryasenie/",
+      "source": "lenta",
+      "all_sources": [
+        "lenta"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-04-14T14:31"
     }
   ]
 }

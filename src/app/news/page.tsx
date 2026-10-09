@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Newspaper, RefreshCw } from "lucide-react";
+import { ArrowLeft, ExternalLink, Newspaper, RefreshCw, Clock } from "lucide-react";
 import headlinesData from "@/data/news-headlines.json";
 
 export const metadata = {
@@ -39,9 +39,47 @@ type Headlines = {
   news: NewsItem[];
 };
 
+function formatDate(iso: string): string {
+  if (!iso) return "";
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString("ru-RU", {
+      timeZone: "Europe/Moscow",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return iso;
+  }
+}
+
+function formatDateShort(iso: string): string {
+  if (!iso) return "";
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString("ru-RU", {
+      timeZone: "Europe/Moscow",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return iso;
+  }
+}
+
 export default function NewsPage() {
   const headlines = headlinesData as Headlines;
-  const news = headlines.news;
+  const news = [...headlines.news].sort((a, b) => {
+    // Сортировка по дате убыв (свежие выше). Без даты — в конец.
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
   const fetchedAt = headlines.fetched_at;
 
   return (
@@ -138,6 +176,15 @@ export default function NewsPage() {
                   </h2>
 
                   <div className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.1em] uppercase font-semibold">
+                    {/* Дата */}
+                    {n.date && (
+                      <span className="inline-flex items-center gap-1 text-[#4A6378] normal-case tracking-normal font-medium">
+                        <Clock className="h-3 w-3" />
+                        {formatDate(n.date)}
+                      </span>
+                    )}
+                    {n.date && <span className="text-[#D6DCE3]">·</span>}
+                    {/* Источники */}
                     {n.all_sources.map((src) => (
                       <span
                         key={src}
@@ -147,7 +194,7 @@ export default function NewsPage() {
                       </span>
                     ))}
                     {n.duplicate_count > 1 && (
-                      <span className="text-[#4A6378]/60">
+                      <span className="text-[#4A6378]/60 normal-case tracking-normal">
                         · в {n.duplicate_count} источниках
                       </span>
                     )}
