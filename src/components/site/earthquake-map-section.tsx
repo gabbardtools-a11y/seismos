@@ -1,8 +1,11 @@
 /**
  * Карта землетрясений — интерактивный виджет на Leaflet + USGS feed.
  * Самодостаточный HTML в /public/earthquake-map.html, встраивается через iframe.
- * Размещается сразу после Hero.
+ * Размещается сразу после Hero. Под картой — CTA-блок «Симулятор».
  */
+import Link from "next/link";
+import { ArrowRight, Brain } from "lucide-react";
+
 export function EarthquakeMapSection() {
   return (
     <section
@@ -88,6 +91,37 @@ export function EarthquakeMapSection() {
           <span>
             Плитки: Esri Light/Dark Gray Canvas · OpenStreetMap contributors
           </span>
+        </div>
+
+        {/* CTA-блок «Симулятор» */}
+        <div className="mt-8 bg-gradient-to-r from-[#003366] to-[#00549F] rounded-2xl p-6 lg:p-8 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+            <div className="flex items-start gap-4 max-w-3xl">
+              <div className="flex-none w-12 h-12 bg-[#22C55E]/20 rounded-xl flex items-center justify-center">
+                <Brain className="h-6 w-6 text-[#22C55E]" />
+              </div>
+              <div>
+                <div className="text-[11px] tracking-[0.14em] uppercase text-white/60 font-semibold mb-1">
+                  Интерактивная модель
+                </div>
+                <h3 className="text-xl lg:text-2xl font-bold mb-2 leading-tight">
+                  Симулятор землетрясений
+                </h3>
+                <p className="text-sm text-white/80 leading-relaxed">
+                  Задайте магнитуду и глубину очага, поставьте эпицентр на карту —
+                  увидите изосейсты (зоны в баллах МСК-64) и оценку баллов для
+                  выбранного города. Модель: формула Блейка (1971).
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/simulator"
+              className="flex-none inline-flex items-center gap-2 bg-[#22C55E] hover:bg-[#1ea44a] text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap"
+            >
+              Открыть симулятор
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
