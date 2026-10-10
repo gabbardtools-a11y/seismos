@@ -50,14 +50,85 @@ SOURCES = [
         "page_url": "https://www.vesti.ru/proisshestviya/stikhiinye-bedstviya/zemletryaseniya",
         "base": "https://www.vesti.ru",
     },
+    {
+        "key": "ria",
+        "name": "РИА Новости",
+        "rss": "https://ria.ru/export/rss2/index.xml",
+        "base": "https://ria.ru",
+    },
+    {
+        "key": "tass",
+        "name": "ТАСС",
+        "rss": "https://tass.ru/rss/v2.xml",
+        "base": "https://tass.ru",
+    },
+    {
+        "key": "interfax",
+        "name": "Интерфакс",
+        "rss": "https://www.interfax.ru/rss.asp",
+        "base": "https://www.interfax.ru",
+    },
+    {
+        "key": "nature",
+        "name": "Nature (перевод)",
+        "rss": "https://www.nature.com/subjects/seismology.rss",
+        "base": "https://www.nature.com",
+        "lang": "en",
+        "needs_translation": True,
+    },
 ]
 
 EQ_KEYWORDS = ["землетряс", "сейсмо", "толчок", "магнитуд", "рясени", "эпицентр", "подземн"]
+EQ_KEYWORDS_EN = ["earthquake", "seismic", "tremor", "magnitude", "fault", "tectonic", "tsunami"]
 
 
-def is_earthquake(text):
+def is_earthquake(text, lang="ru"):
     t = text.lower()
-    return any(k in t for k in EQ_KEYWORDS)
+    keywords = EQ_KEYWORDS_EN if lang == "en" else EQ_KEYWORDS
+    return any(k in t for k in keywords)
+
+
+def translate_title(title):
+    """Перевод английского заголовка через z-ai LLM. Возвращает только перевод."""
+    try:
+        result = subprocess.run(
+            ["z-ai", "chat", "-p",
+             "Переведи на русский язык заголовок научной новости одним предложением. "
+             "Сохрани технические термины (магнитуда, PGA, MSK-64, сейсмический, тектонический и т.п.). "
+             "Только перевод, без пояснений и вариантов. Заголовок: " + title,
+             "-o", "/tmp/_trans.json"],
+            capture_output=True, text=True, timeout=60
+        )
+        if result.returncode == 0:
+            d = json.load(open("/tmp/_trans.json"))
+            content = d.get("choices", [{}])[0].get("message", {}).get("content", "")
+            # Извлекаем перевод: первая строка после "**" или просто первая непустая
+            lines = content.split("\n")
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                # Пропускаем служебные строки
+                if line.startswith("🚀") or line.startswith("✅") or line.startswith("#"):
+                    continue
+                # Если строка содержит **перевод** — извлечь между **
+                if line.startswith("**") and "**" in line[2:]:
+                    end = line.index("**", 2)
+                    return line[2:end].strip()
+                # Если строка начинается с цифры-точки (вариант) — берём текст после
+                if re.match(r'^\d+\.\s', line):
+                    # Уберём нумерацию
+                    line = re.sub(r'^\d+\.\s+', '', line)
+                    if line.startswith("**") and "**" in line[2:]:
+                        end = line.index("**", 2)
+                        return line[2:end].strip()
+                    return line
+                # Иначе — первая непустая строка
+                return line
+        return title  # fallback — оригинал
+    except Exception as e:
+        print(f"  translate error: {e}", file=sys.stderr)
+        return title
 
 
 def fetch_url(url):
@@ -96,7 +167,7 @@ def fetch_page_reader(url):
 
 
 def parse_rss(xml_text, source):
-    """Парсинг RSS — извлечение title, link, pubDate."""
+    """Парсинг RSS — извлечение title, link, pubDate. Перевод для англоязычных."""
     titles = []
     if not xml_text:
         return titles
@@ -106,6 +177,9 @@ def parse_rss(xml_text, source):
         print(f"  RSS parse error: {e}", file=sys.stderr)
         return titles
 
+    lang = source.get("lang", "ru")
+    needs_translation = source.get("needs_translation", False)
+
     # RSS 2.0: channel/item
     items = root.findall(".//item")
     for item in items:
@@ -114,18 +188,26 @@ def parse_rss(xml_text, source):
         date_el = item.find("pubDate")
         if title_el is None or not title_el.text:
             continue
-        title = re.sub(r"\s+", " ", title_el.text).strip()
+        title_orig = re.sub(r"\s+", " ", title_el.text).strip()
         url = link_el.text.strip() if link_el is not None and link_el.text else ""
         date = date_el.text.strip() if date_el is not None and date_el.text else ""
-        if not title or len(title) < 15:
+        if not title_orig or len(title_orig) < 15:
             continue
-        if not is_earthquake(title):
+        if not is_earthquake(title_orig, lang=lang):
             continue
+
+        # Перевод если нужно
+        title_translated = ""
+        if needs_translation:
+            print(f"    перевод: {title_orig[:60]}...", flush=True)
+            title_translated = translate_title(title_orig)
+
         titles.append({
-            "title": title,
+            "title": title_translated or title_orig,
+            "title_orig": title_orig if needs_translation else "",
             "url": url,
             "source": source["key"],
-            "date": date,
+            "date": normalize_date(date),
         })
     return titles
 
@@ -337,17 +419,33 @@ def find_date_near(html, start, end, radius=1500):
 def normalize_date(s):
     """Нормализовать дату к ISO-формату YYYY-MM-DD или YYYY-MM-DDTHH:MM."""
     s = s.strip()
+    if not s:
+        return ""
+
     # Уже ISO?
     if re.match(r'^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?', s):
         return s
+
     # DD.MM.YYYY
     m = re.match(r'^(\d{1,2})\.(\d{1,2})\.(\d{4})', s)
     if m:
         return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+
     # YYYY-MM-DD HH:MM
     m = re.match(r'^(\d{4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{2})', s)
     if m:
         return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}T{int(m.group(4)):02d}:{m.group(5)}"
+
+    # RSS pubDate: 'Fri, 9 Oct 2026 17:45:58 +0000' (RFC-822)
+    try:
+        from datetime import datetime
+        # Нормализуем день: '9 Oct' → '09 Oct'
+        normalized = re.sub(r'(\s)(\d)(\s)', r'\g<1>0\g<2>\g<3>', s, count=1)
+        d = datetime.strptime(normalized, "%a, %d %b %Y %H:%M:%S %z")
+        return d.isoformat()
+    except (ValueError, TypeError):
+        pass
+
     return s
 
 
@@ -521,6 +619,7 @@ def deduplicate(all_titles, threshold=0.55):
                     break
         result.append({
             "title": best["title"],
+            "title_orig": best.get("title_orig", ""),
             "url": url,
             "source": best["source"],
             "all_sources": all_sources,

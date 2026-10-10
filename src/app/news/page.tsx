@@ -13,6 +13,12 @@ const SOURCE_NAMES: Record<string, string> = {
   rt: "RT на русском",
   lenta: "Lenta.RU",
   vesti: "Вести.RU",
+  ria: "РИА Новости",
+  tass: "ТАСС",
+  interfax: "Интерфакс",
+  nature: "Nature (перевод)",
+  gazeta: "Газета.Ru",
+  dzen: "Дзен",
 };
 
 const SOURCE_URLS: Record<string, string> = {
@@ -20,6 +26,12 @@ const SOURCE_URLS: Record<string, string> = {
   rt: "https://russian.rt.com/tag/zemletryasenie",
   lenta: "https://lenta.ru/tags/story/earthquakesrussia/",
   vesti: "https://www.vesti.ru/proisshestviya/stikhiinye-bedstviya/zemletryaseniya",
+  ria: "https://ria.ru/",
+  tass: "https://tass.ru/",
+  interfax: "https://www.interfax.ru/",
+  nature: "https://www.nature.com/subjects/seismology",
+  gazeta: "https://www.gazeta.ru/social/",
+  dzen: "https://dzen.ru",
 };
 
 type NewsItem = {
