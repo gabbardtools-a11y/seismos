@@ -282,7 +282,7 @@ export function HeroEmblemLarge({
  */
 function SeismogramDivider() {
   return (
-    <div className="relative overflow-hidden border-b border-[#D6DCE3]/70">
+    <div className="relative border-b border-[#D6DCE3]/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-4">
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#2D5F3F] font-semibold whitespace-nowrap flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />

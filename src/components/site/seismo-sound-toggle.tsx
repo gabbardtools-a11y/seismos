@@ -322,11 +322,11 @@ export function SeismoSoundToggle() {
         <>
           {/* Клик-защина */}
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[60]"
             onClick={() => setRegionOpen(false)}
           />
           <div
-            className="absolute top-full left-0 mt-1 z-50 min-w-[240px] bg-white border border-[#D6DCE3] rounded-lg shadow-xl overflow-hidden"
+            className="absolute top-full left-0 mt-2 z-[70] min-w-[260px] bg-white border border-[#D6DCE3] rounded-lg shadow-2xl overflow-hidden"
           >
             <div className="px-3 py-2 bg-[#F8FBF9] border-b border-[#D6DCE3]">
               <div className="text-[10px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">
