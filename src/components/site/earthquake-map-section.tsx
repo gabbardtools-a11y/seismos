@@ -1,10 +1,11 @@
 /**
  * Карта землетрясений — интерактивный виджет на Leaflet + USGS feed.
  * Самодостаточный HTML в /public/earthquake-map.html, встраивается через iframe.
- * Размещается сразу после Hero. Под картой — CTA-блок «Симулятор».
+ * Размещается сразу после Hero. Под картой — CTA-блок «Симулятор» + «Справка о Землетрясениях».
  */
 import Link from "next/link";
 import { ArrowRight, Brain } from "lucide-react";
+import { SpravkaSection } from "./spravka-section";
 
 export function EarthquakeMapSection() {
   return (
@@ -123,6 +124,9 @@ export function EarthquakeMapSection() {
             </Link>
           </div>
         </div>
+
+        {/* Справка о Землетрясениях */}
+        <SpravkaSection />
       </div>
     </section>
   );

@@ -19,6 +19,8 @@ import {
   Pickaxe,
   Beaker,
   Brain,
+  BookOpen,
+  Award,
 } from "lucide-react";
 
 type Direction = {
@@ -62,6 +64,8 @@ const DIRECTIONS: Direction[] = [
   { icon: <Pickaxe />, title: "ИНЖГЕОТЕХ", desc: "Изыскания и исследования природы. Инженерно-геотехнические работы для строительства в сейсмических зонах" },
   { icon: <Beaker />, title: "НИР, НИОКР", desc: "Научные исследования и разработки. Фундаментальные и прикладные исследования в области сейсмобезопасности" },
   { icon: <Brain />, title: "TIM, Цифра", desc: "Цифровые технологии и развитие. Искусственный интеллект (ИИ-AI) в сейсмопрогнозах, расчётах конструкций, мониторинге и предупреждениях", highlighted: true },
+  { icon: <BookOpen />, title: "Депонирование", desc: "Депонирование научных статей, авторских трудов, ноу-хау" },
+  { icon: <Award />, title: "Патентование", desc: "Защита разработок: устройств, технологий, способов методов, систем, программ ЭВМ (софт), товарных знаков, лицензии, франшизы" },
 ];
 
 export function DirectionsSection() {
@@ -74,7 +78,7 @@ export function DirectionsSection() {
             <span className="eyebrow">02 · Направления</span>
           </div>
           <h2 className="text-[32px] sm:text-[42px] lg:text-[48px] font-bold tracking-[-0.015em] text-[#003366] mb-6 leading-[1.1]">
-            22 направления деятельности
+            24 направления деятельности
           </h2>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
             Система СРОСС® объединяет профессиональное сообщество, работающее по
