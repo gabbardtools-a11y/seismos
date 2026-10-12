@@ -45,12 +45,12 @@ const REGIONS: Record<
   },
   kamchatka: {
     label: "Камчатка",
-    gain: 0.06,
-    spikeMinMs: 2000,
-    spikeMaxMs: 4000,
-    spikeGain: 0.22,
-    lowpass: 600,
-    rumble: 45,
+    gain: 0.10,
+    spikeMinMs: 1000,
+    spikeMaxMs: 2500,
+    spikeGain: 0.38,
+    lowpass: 800,
+    rumble: 42,
     description: "Один из самых сейсмоактивных регионов РФ",
   },
   sakhalin: {
@@ -99,8 +99,22 @@ export function SeismoSoundToggle() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [region, setRegion] = useState<RegionKey>("moscow");
+  const [region, setRegionState] = useState<RegionKey>("moscow");
   const [regionOpen, setRegionOpen] = useState(false);
+
+  // Обёртка над setRegion: сохраняет в localStorage + триггерит window event
+  // для SeismogramLine (чтобы линия меняла цвет)
+  const setRegion = useCallback((r: RegionKey) => {
+    setRegionState(r);
+    try {
+      localStorage.setItem("seismo-region", r);
+    } catch {}
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("seismo-region-change", { detail: r })
+      );
+    }
+  }, []);
 
   // Web Audio refs
   const ctxRef = useRef<AudioContext | null>(null);
@@ -121,6 +135,16 @@ export function SeismoSoundToggle() {
       lowpassRef.current.frequency.setTargetAtTime(cfg.lowpass, ctxRef.current.currentTime, 0.3);
     }
   }, [region, isPlaying]);
+
+  // При монтировании — читаем регион из localStorage (если был выбран ранее)
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("seismo-region") as RegionKey | null;
+      if (saved && saved in REGIONS) {
+        setRegionState(saved);
+      }
+    } catch {}
+  }, []);
 
   const stopAudio = useCallback(() => {
     if (spikeTimeoutRef.current !== null) {

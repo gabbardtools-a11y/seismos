@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SrossemblemMark } from "./site-header";
 import { MoscowClock } from "./moscow-clock";
 import { SeismoSoundToggle } from "./seismo-sound-toggle";
+import { SeismogramLine } from "./seismogram-line";
 import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
 
 /**
@@ -289,64 +290,7 @@ function SeismogramDivider() {
           Live · Сейсмический мониторинг
         </span>
         <SeismoSoundToggle />
-        <div className="flex-1 h-40 overflow-hidden relative min-w-0">
-          {/* Glow-подложка — ярко-зелёное свечение пиков */}
-          <svg
-            viewBox="0 0 1600 40"
-            className="h-40 absolute seismogram-scroll"
-            preserveAspectRatio="none"
-            aria-hidden
-            style={{ width: "200%" }}
-          >
-            <path
-              d={SEISMOGRAM_TILE_PATH}
-              fill="none"
-              stroke="#22C55E"
-              strokeWidth="3"
-              strokeLinecap="butt"
-              strokeLinejoin="miter"
-              opacity="0.35"
-              style={{ filter: "blur(3px)" }}
-            />
-            <path
-              d={SEISMOGRAM_DUP_PATH}
-              fill="none"
-              stroke="#22C55E"
-              strokeWidth="3"
-              strokeLinecap="butt"
-              strokeLinejoin="miter"
-              opacity="0.35"
-              style={{ filter: "blur(3px)" }}
-            />
-          </svg>
-          {/* Основная линия — тёмно-зелёная */}
-          <svg
-            viewBox="0 0 1600 40"
-            className="h-40 absolute seismogram-scroll"
-            preserveAspectRatio="none"
-            aria-hidden
-            style={{ width: "200%" }}
-          >
-            {/* Реалистичная сейсмограмма — острые пики (без скруглений) */}
-            <path
-              d={SEISMOGRAM_TILE_PATH}
-              fill="none"
-              stroke="#2D5F3F"
-              strokeWidth="1.5"
-              strokeLinecap="butt"
-              strokeLinejoin="miter"
-            />
-            {/* Дубликат для бесшовной прокрутки */}
-            <path
-              d={SEISMOGRAM_DUP_PATH}
-              fill="none"
-              stroke="#2D5F3F"
-              strokeWidth="1.5"
-              strokeLinecap="butt"
-              strokeLinejoin="miter"
-            />
-          </svg>
-        </div>
+        <SeismogramLine />
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#00549F] font-bold whitespace-nowrap flex items-center gap-1.5">
           <span className="text-[#4A6378] font-semibold">Москва</span>
           <span className="text-[#D6DCE3]">·</span>
