@@ -13,9 +13,10 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Система", href: "#about" },
   { label: "Направления", href: "#directions" },
   { label: "Новости", href: "/news" },
+  { label: "СМИ", href: "/news" },
   { label: "Партнёры", href: "#partners" },
   {
-    label: "Информация",
+    label: "Инфо",
     children: [
       { label: "Патенты", href: "#patents" },
       { label: "Автор", href: "#author" },
