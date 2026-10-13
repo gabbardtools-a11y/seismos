@@ -22,6 +22,8 @@ import {
   BookOpen,
   Award,
 } from "lucide-react";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
 type Direction = {
   icon: React.ReactNode;
@@ -31,60 +33,56 @@ type Direction = {
 };
 
 /**
- * НАПРАВЛЕНИЯ — сетка из 22 направлений деятельности системы.
- * Источник: реальный список с действующего seismo.ru + направление
- * «Защита от экстремальных воздействий» + новые направления (Вибросейсм,
- * ИНЖГЕОТЕХ, НИР/НИОКР, TIM/Цифра).
+ * НАПРАВЛЕНИЯ — сетка из 24 направлений деятельности системы.
+ * Иконки статичны, тексты — через словарь (Закон №3).
  */
-const DIRECTIONS: Direction[] = [
-  { icon: <Layers />, title: "Сейсмостойкое строительство", desc: "Нормативная база и методология сейсмостойкого проектирования сооружений" },
-  { icon: <Waves />, title: "Сейсмоизоляция", desc: "Современные системы сейсмоизоляции зданий и сооружений разного назначения" },
-  { icon: <Activity />, title: "Виброгашение", desc: "Методы и устройства активного и пассивного виброгашения конструкций" },
-  { icon: <Compass />, title: "Обследование", desc: "Инструментальное обследование зданий и сооружений в сейсмических зонах" },
-  { icon: <FileText />, title: "Паспортизация", desc: "Составление сейсмических паспортов объектов и территорий" },
-  { icon: <LineChart />, title: "Мониторинг", desc: "Мониторинг состояния и безопасности. Системы непрерывного сейсмического мониторинга объектов и инфраструктуры" },
-  { icon: <FlaskConical />, title: "Испытания", desc: "Экспериментальные исследования. Натурные и лабораторные испытания конструкций на сейсмические воздействия" },
-  { icon: <Cpu />, title: "Моделирование", desc: "Численное и физическое моделирование сейсмического отклика сооружений" },
-  { icon: <Calculator />, title: "Расчёты", desc: "Расчётный анализ и моделирование. Расчёты несущих конструкций на сейсмические нагрузки, нелинейный анализ" },
-  { icon: <AlertTriangle />, title: "Оценка рисков", desc: "Оценка и управление рисками. Сейсмический риск территорий и инфраструктуры" },
-  { icon: <Waves />, title: "Сейсмология", desc: "Сейсмологическое районирование и наблюдения за сейсмическим режимом" },
-  { icon: <MapPin />, title: "Изыскания", desc: "Инженерно-сейсмологические изыскания под строительство и реконструкцию" },
-  { icon: <Building2 />, title: "Динамика сооружений", desc: "Динамический расчёт и анализ сооружений при сейсмических воздействиях" },
-  { icon: <Building2 />, title: "Реконструкция", desc: "Сейсмическая реконструкция существующих зданий и сооружений" },
-  { icon: <ShieldCheck />, title: "СейсмоУсиление", desc: "Технологии сейсмического усиления существующих конструкций" },
-  { icon: <Cpu />, title: "Инновации", desc: "Новые строительные технологии. Внедрение инновационных материалов и технологий сейсмозащиты" },
-  { icon: <Microscope />, title: "Экспертиза", desc: "Независимая оценка и экспертиза. Аналитическая и экспертная работа в области сейсмобезопасности" },
-  {
-    icon: <ShieldAlert />,
-    title: "Защита от экстремальных воздействий",
-    desc: "Антидроновая защита, защита от взрывных волн от взрывов большой мощности специализированных предприятий. Активная и пассивная защита зданий и сооружений",
-    highlighted: true,
-  },
-  { icon: <Vibrate />, title: "Вибросейсм", desc: "Защита от землетрясений и вибраций. Комплексные решения по защите сооружений от сейсмических и вибрационных воздействий" },
-  { icon: <Pickaxe />, title: "ИНЖГЕОТЕХ", desc: "Изыскания и исследования природы. Инженерно-геотехнические работы для строительства в сейсмических зонах" },
-  { icon: <Beaker />, title: "НИР, НИОКР", desc: "Научные исследования и разработки. Фундаментальные и прикладные исследования в области сейсмобезопасности" },
-  { icon: <Brain />, title: "TIM, Цифра", desc: "Цифровые технологии и развитие. Искусственный интеллект (ИИ-AI) в сейсмопрогнозах, расчётах конструкций, мониторинге и предупреждениях", highlighted: true },
-  { icon: <BookOpen />, title: "Депонирование", desc: "Депонирование научных статей, авторских трудов, ноу-хау" },
-  { icon: <Award />, title: "Патентование", desc: "Защита разработок: устройств, технологий, способов методов, систем, программ ЭВМ (софт), товарных знаков, лицензии, франшизы" },
-];
+function buildDirections(lang: 'ru' | 'en' | 'zh'): Direction[] {
+  const icons = { Layers: <Layers />, Waves: <Waves />, Activity: <Activity />, Compass: <Compass />, FileText: <FileText />, LineChart: <LineChart />, FlaskConical: <FlaskConical />, Cpu: <Cpu />, Calculator: <Calculator />, AlertTriangle: <AlertTriangle />, MapPin: <MapPin />, Building2: <Building2 />, ShieldCheck: <ShieldCheck />, ShieldAlert: <ShieldAlert />, Vibrate: <Vibrate />, Pickaxe: <Pickaxe />, Beaker: <Beaker />, Brain: <Brain />, BookOpen: <BookOpen />, Award: <Award />, Microscope: <Microscope /> };
+  return [
+    { icon: icons.Layers, title: t("dir.1t", lang), desc: t("dir.1x", lang) },
+    { icon: icons.Waves, title: t("dir.2t", lang), desc: t("dir.2x", lang) },
+    { icon: icons.Activity, title: t("dir.3t", lang), desc: t("dir.3x", lang) },
+    { icon: icons.Compass, title: t("dir.4t", lang), desc: t("dir.4x", lang) },
+    { icon: icons.FileText, title: t("dir.5t", lang), desc: t("dir.5x", lang) },
+    { icon: icons.LineChart, title: t("dir.6t", lang), desc: t("dir.6x", lang) },
+    { icon: icons.FlaskConical, title: t("dir.7t", lang), desc: t("dir.7x", lang) },
+    { icon: icons.Cpu, title: t("dir.8t", lang), desc: t("dir.8x", lang) },
+    { icon: icons.Calculator, title: t("dir.9t", lang), desc: t("dir.9x", lang) },
+    { icon: icons.AlertTriangle, title: t("dir.10t", lang), desc: t("dir.10x", lang) },
+    { icon: icons.Waves, title: t("dir.11t", lang), desc: t("dir.11x", lang) },
+    { icon: icons.MapPin, title: t("dir.12t", lang), desc: t("dir.12x", lang) },
+    { icon: icons.Building2, title: t("dir.13t", lang), desc: t("dir.13x", lang) },
+    { icon: icons.Building2, title: t("dir.14t", lang), desc: t("dir.14x", lang) },
+    { icon: icons.ShieldCheck, title: t("dir.15t", lang), desc: t("dir.15x", lang) },
+    { icon: icons.Cpu, title: t("dir.16t", lang), desc: t("dir.16x", lang) },
+    { icon: icons.Microscope, title: t("dir.17t", lang), desc: t("dir.17x", lang) },
+    { icon: icons.ShieldAlert, title: t("dir.18t", lang), desc: t("dir.18x", lang), highlighted: true },
+    { icon: icons.Vibrate, title: t("dir.19t", lang), desc: t("dir.19x", lang) },
+    { icon: icons.Pickaxe, title: t("dir.20t", lang), desc: t("dir.20x", lang) },
+    { icon: icons.Beaker, title: t("dir.21t", lang), desc: t("dir.21x", lang) },
+    { icon: icons.Brain, title: t("dir.22t", lang), desc: t("dir.22x", lang), highlighted: true },
+    { icon: icons.BookOpen, title: t("dir.23t", lang), desc: t("dir.23x", lang) },
+    { icon: icons.Award, title: t("dir.24t", lang), desc: t("dir.24x", lang) },
+  ];
+}
 
-export function DirectionsSection() {
+export async function DirectionsSection() {
+  const lang = await getLang();
+  const DIRECTIONS = buildDirections(lang);
+
   return (
     <section id="directions" className="section-pad bg-[#FAF7F2] border-b border-[#D6DCE3]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-[#00549F]" />
-            <span className="eyebrow">02 · Направления</span>
+            <span className="eyebrow">{t("dir.eyebrow", lang)}</span>
           </div>
           <h2 className="text-[32px] sm:text-[42px] lg:text-[48px] font-bold tracking-[-0.015em] text-[#003366] mb-6 leading-[1.1]">
-            24 направления деятельности
+            {t("dir.h2", lang)}
           </h2>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
-            Система СРОСС® объединяет профессиональное сообщество, работающее по
-            всему циклу обеспечения сейсмобезопасности — от сейсмологических
-            изысканий до управления рисками территорий и экспертизы. Каждое
-            направление курируется профильными экспертами ассоциации ЕАСА.
+            {t("dir.lead", lang)}
           </p>
         </div>
 
@@ -97,28 +95,20 @@ export function DirectionsSection() {
         {/* Блок-врезка про технологию «червяк» */}
         <div className="mt-16 p-8 lg:p-10 bg-[#003366] text-white grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-1">
-            <div className="eyebrow text-white/70 mb-3">Патентованная технология</div>
+            <div className="eyebrow text-white/70 mb-3">{t("worm.eyebrow", lang)}</div>
             <h3 className="text-2xl font-bold mb-2 tracking-tight">
-              ТЗ «червяк»
+              {t("worm.h3", lang)}
             </h3>
             <div className="text-[11px] tracking-[0.14em] uppercase text-white/60">
-              Патент · Зарегистрировано в Роспатенте
+              {t("worm.badge", lang)}
             </div>
           </div>
           <div className="lg:col-span-2 text-sm text-white/80 leading-relaxed">
             <p className="mb-4">
-              Техническое задание «червяк» — оригинальная методология
-              сейсмологического мониторинга, разработанная авторским
-              коллективом системы СРОСС®. Технология обеспечивает
-              высокоточную локализацию эпицентров и оценку магнитуды
-              сейсмических событий в реальном времени на территориях
-              России и сопредельных регионов.
+              {t("worm.p1", lang)}
             </p>
             <p>
-              Патент защищает ключевые алгоритмические и архитектурные
-              решения, лежащие в основе информационной системы. Использование
-              технологии в коммерческих и государственных проектах
-              осуществляется по лицензии через Евразийскую СЕЙСМО Ассоциацию.
+              {t("worm.p2", lang)}
             </p>
           </div>
         </div>

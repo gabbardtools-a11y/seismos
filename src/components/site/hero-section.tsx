@@ -6,49 +6,49 @@ import { MoscowClock } from "./moscow-clock";
 import { SeismoSoundToggle } from "./seismo-sound-toggle";
 import { SeismogramLine } from "./seismogram-line";
 import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
 /**
  * HERO — главный экран.
  * Только текстовый блок: международный статус, миссия, CTA.
  * Эмблемы и блоки с логотипами убраны по запросу.
  */
-export function HeroSection() {
+export async function HeroSection() {
+  const lang = await getLang();
+
   return (
     <section id="hero" className="relative overflow-hidden bg-paper-grid">
       {/* Декоративная боковая полоса слева */}
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
 
       {/* Полоса сейсмомониторинга — сверху, под шапкой */}
-      <SeismogramDivider />
+      <SeismogramDivider lang={lang} />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 py-16 lg:py-24">
         {/* Резиновый контейнер на всю ширину страницы */}
         <div>
             {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
             <h1 className="text-[28px] sm:text-[34px] lg:text-[40px] xl:text-[46px] leading-[1.15] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
-              Сейсмобезопасность и сейсмозащита зданий и сооружений в России, странах СНГ и ЕАЭС
+              {t("hero.h1", lang)}
             </h1>
 
             {/* Описание под заголовком — обычный размер */}
             <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-8">
-              Сейсмостойкое проектирование и строительство, сейсмоизоляция и сейсмоусиление. Защита объектов от пиковых воздействий. Мониторинг сейсмоактивности всех сейсмичных регионов.
+              {t("hero.lead", lang)}
             </p>
 
             {/* Подзаголовок — про СРОСС® и ЕАСА */}
             <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-8">
-              Информационная система <strong className="text-[#003366]">СРОСС®</strong>{" "}
-              объединяет данные о сейсмической опасности, методологию оценки
-              рисков и инструменты целевого планирования градостроительной
-              деятельности. Проект развивается с 2009 года на базе патентованной
-              технологии сейсмологического мониторинга и входит в международную
-              экосистему Евразийской СЕЙСМО Ассоциации (ЕАСА).
+              {t("hero.missionPre", lang)} <strong className="text-[#003366]">СРОСС®</strong>{" "}
+              {t("hero.missionPost", lang)}
             </p>
 
             {/* Метрики */}
             <div className="grid grid-cols-3 gap-6 mb-10 py-6 border-y border-[#D6DCE3]">
-              <Metric value="50+" label="лет истории" />
-              <Metric value="2009" label="запуск seismo.ru" />
-              <Metric value="9" label="регионов ЕАЭС" />
+              <Metric value="50+" label={t("hero.mYears", lang)} />
+              <Metric value="2009" label={t("hero.mLaunch", lang)} />
+              <Metric value="9" label={t("hero.mRegions", lang)} />
             </div>
 
             {/* CTA */}
@@ -60,7 +60,7 @@ export function HeroSection() {
               >
                 <Link href="#map">
                   <Map className="mr-2 h-4 w-4" />
-                  Карта рисков
+                  {t("hero.ctaMap", lang)}
                 </Link>
               </Button>
               <Button
@@ -70,7 +70,7 @@ export function HeroSection() {
                 className="border-[#00549F] text-[#00549F] hover:bg-[#E7EEF6] hover:text-[#003366] text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
               >
                 <Link href="#about">
-                  О системе
+                  {t("hero.ctaAbout", lang)}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -281,23 +281,23 @@ export function HeroEmblemLarge({
  * Расположена вверху Hero, под шапкой.
  * Реалистичный паттерн: P-волны → S-волны → экспоненциальное затухание.
  */
-function SeismogramDivider() {
+function SeismogramDivider({ lang }: { lang: 'ru' | 'en' | 'zh' }) {
   return (
     <div className="relative border-b border-[#D6DCE3]/70">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-4">
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#2D5F3F] font-semibold whitespace-nowrap flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
-          Live · Сейсмический мониторинг
+          {t("live.monitoring", lang)}
         </span>
         <SeismoSoundToggle />
         <SeismogramLine />
         <span className="text-[10px] tracking-[0.18em] uppercase text-[#00549F] font-bold whitespace-nowrap flex items-center gap-1.5">
-          <span className="text-[#4A6378] font-semibold">Москва</span>
+          <span className="text-[#4A6378] font-semibold">{t("live.moscow", lang)}</span>
           <span className="text-[#D6DCE3]">·</span>
           <MoscowClock className="tabular-nums tracking-[0.1em]" />
           <span className="text-[#4A6378] font-semibold text-[9px]">MSK</span>
           <span className="text-[#D6DCE3]">·</span>
-          <span>ОК · 0 событий</span>
+          <span>{t("live.ok", lang)}</span>
         </span>
       </div>
     </div>

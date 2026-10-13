@@ -1,17 +1,24 @@
 import { HeroEmblemLarge } from "@/components/site/hero-section";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
-export const metadata = {
-  title: "Варианты логотипа — СРОСС®",
-  description: "6 вариантов эмблемы СРОСС® с разными оправами и линзами",
-};
+export async function generateMetadata() {
+  const lang = await getLang();
+  return {
+    title: t("logo.metaT", lang),
+    description: t("logo.metaD", lang),
+  };
+}
 
-export default function LogoVariantsPage() {
+export default async function LogoVariantsPage() {
+  const lang = await getLang();
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <div className="border-b border-[#D6DCE3] bg-[#003366] text-white py-3">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <a href="/" className="text-[11px] tracking-[0.18em] uppercase font-bold text-white/80 hover:text-white">
-            ← На главную
+            ← {t("common.home", lang)}
           </a>
         </div>
       </div>
@@ -22,11 +29,11 @@ export default function LogoVariantsPage() {
             <div className="mb-12 text-center">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <span className="h-px w-10 bg-[#00549F]" />
-                <span className="eyebrow">Варианты логотипа сайта</span>
+                <span className="eyebrow">{t("logo.eyebrow", lang)}</span>
                 <span className="h-px w-10 bg-[#00549F]" />
               </div>
               <h1 className="text-[32px] sm:text-[42px] font-bold tracking-[-0.015em] text-[#003366] mb-4">
-                6 вариантов эмблемы СРОСС®
+                {t("logo.h1", lang)}
               </h1>
               <p className="text-base text-[#4A6378] max-w-2xl mx-auto">
                 Концепция оправы линзы — от мягкой (Soft) до хромированной (Chrome).

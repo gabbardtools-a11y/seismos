@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,57 +15,57 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title:
-    "СРОСС® — Сейсмобезопасность Сейсмозащита Технологии защиты от взрывных воздействий и дронов (антидроновая защита)",
-  description:
-    "СРОСС® — единая экосистема сейсмобезопасности и сейсмозащиты зданий и сооружений территорий России и стран СНГ и ЕАЭС. Международный проект по устойчивому развитию. Данные о сейсмической опасности, методология оценки рисков, целевое планирование градостроительной деятельности.",
-  keywords: [
-    "СРОСС",
-    "Сейсмобезопасность",
-    "Сейсмозащита",
-    "антидроновая защита",
-    "защита от взрывных воздействий",
-    "seismo.ru",
-    "сейсмическая опасность",
-    "сейсмостойкое строительство",
-    "оценка рисков",
-    "ЕАСА",
-    "ГРАДОРЕСУРС",
-    "UN-Habitat",
-    "целевое планирование",
-  ],
-  authors: [{ name: "Евразийская СЕЙСМО Ассоциация (ЕАСА)" }],
-  icons: {
-    icon: "/favicon-32.png",
-    apple: "/apple-touch-icon.png",
-  },
-  openGraph: {
-    title:
-      "СРОСС® — Сейсмобезопасность Сейсмозащита Технологии защиты от взрывных воздействий и дронов (антидроновая защита)",
-    description:
-      "Единая экосистема сейсмобезопасности и сейсмозащиты зданий и сооружений территорий России и стран СНГ и ЕАЭС.",
-    url: "https://seismo.ru/",
-    siteName: "СРОСС® — Сейсмобезопасность и Сейсмозащита",
-    type: "website",
-    locale: "ru_RU",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title:
-      "СРОСС® — Сейсмобезопасность Сейсмозащита Технологии защиты от взрывных воздействий и дронов (антидроновая защита)",
-    description:
-      "Единая экосистема сейсмобезопасности и сейсмозащиты зданий и сооружений территорий России и стран СНГ и ЕАЭС.",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await getLang();
+  const title = t('meta.title', lang);
+  const description = t('meta.desc', lang);
+  return {
+    title,
+    description,
+    keywords: [
+      "СРОСС",
+      "Сейсмобезопасность",
+      "Сейсмозащита",
+      "антидроновая защита",
+      "защита от взрывных воздействий",
+      "seismo.ru",
+      "сейсмическая опасность",
+      "сейсмостойкое строительство",
+      "оценка рисков",
+      "ЕАСА",
+      "ГРАДОРЕСУРС",
+      "UN-Habitat",
+      "целевое планирование",
+    ],
+    authors: [{ name: "Евразийская СЕЙСМО Ассоциация (ЕАСА)" }],
+    icons: {
+      icon: "/favicon-32.png",
+      apple: "/apple-touch-icon.png",
+    },
+    openGraph: {
+      title,
+      description: t('meta.ogDesc', lang),
+      url: "https://seismo.ru/",
+      siteName: t('meta.siteName', lang),
+      type: "website",
+      locale: lang === 'ru' ? 'ru_RU' : lang === 'en' ? 'en_US' : 'zh_CN',
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: t('meta.ogDesc', lang),
+    },
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lang = await getLang();
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >

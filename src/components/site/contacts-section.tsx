@@ -7,9 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/lib/i18n/useLanguage";
 
 export function ContactsSection() {
   const { toast } = useToast();
+  const { t, lang } = useLanguage();
   const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -19,9 +21,8 @@ export function ContactsSection() {
     await new Promise((r) => setTimeout(r, 800));
     setSubmitting(false);
     toast({
-      title: "Запрос отправлен",
-      description:
-        "Спасибо! Мы свяжемся с вами в течение 1–2 рабочих дней по указанному e-mail.",
+      title: t("cont.toastT"),
+      description: t("cont.toastD"),
     });
     (e.target as HTMLFormElement).reset();
   }
@@ -32,15 +33,13 @@ export function ContactsSection() {
         <div className="mb-12 max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-[#00549F]" />
-            <span className="eyebrow">06 · Контакты</span>
+            <span className="eyebrow">{t("cont.eyebrow")}</span>
           </div>
           <h2 className="text-[32px] sm:text-[42px] lg:text-[48px] font-bold tracking-[-0.015em] text-[#003366] mb-6 leading-[1.1]">
-            Связаться с командой СРОСС®
+            {t("cont.h2")}
           </h2>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
-            Запросы на участие в системе, доступ к данным, методологическую и
-            экспертную поддержку, а также предложения по сотрудничеству
-            принимаются через форму или по прямым контактам ниже.
+            {t("cont.lead")}
           </p>
         </div>
 
@@ -50,53 +49,47 @@ export function ContactsSection() {
             <div className="space-y-8">
               <ContactItem
                 icon={<Phone className="h-5 w-5" />}
-                label="Телефон"
+                label={t("cont.phone")}
                 value="+7 (499) 705 6712"
                 href="tel:+74997056712"
               />
               <ContactItem
                 icon={<Mail className="h-5 w-5" />}
-                label="Электронная почта"
+                label={t("cont.email")}
                 value="office@seismo.pro"
                 href="mailto:office@seismo.pro"
               />
               <ContactItem
                 icon={<MapPin className="h-5 w-5" />}
-                label="Адрес"
-                value={
-                  <>
-                    119331, Москва,
-                    <br />
-                    проспект Вернадского, 29
-                  </>
-                }
+                label={t("cont.addr")}
+                value={t("cont.addrValue")}
               />
             </div>
 
             {/* Реквизиты СМИ */}
             <div className="mt-10 p-6 bg-[#F2F4F7] border-l-4 border-[#00549F]">
-              <div className="eyebrow mb-3">Реквизиты СМИ</div>
+              <div className="eyebrow mb-3">{t("cont.mediaH")}</div>
               <div className="text-sm text-[#003366] leading-relaxed">
                 <p className="mb-2">
-                  <strong>Свидетельство:</strong> ЭЛ № ФС 77–39562
+                  <strong>{t("cont.mSert")}</strong> ЭЛ № ФС 77–39562
                 </p>
                 <p className="mb-2">
-                  <strong>Дата регистрации:</strong> 26.04.2010
+                  <strong>{t("cont.mDate")}</strong> 26.04.2010
                 </p>
                 <p className="mb-2">
-                  <strong>Регистратор:</strong> Роскомнадзор
+                  <strong>{t("cont.mReg")}</strong> Роскомнадзор
                 </p>
                 <p className="text-xs text-[#4A6378] mt-3 pt-3 border-t border-[#D6DCE3]">
-                  Учредитель: Шолленберг Е. Ф.
+                  {t("cont.mFounder")}
                   <br />
-                  Главный редактор: Заболоцкая Е. Н.
+                  {t("cont.mEditor")}
                 </p>
               </div>
             </div>
 
             {/* Связанные ресурсы */}
             <div className="mt-8">
-              <div className="eyebrow mb-4">Связанные ресурсы</div>
+              <div className="eyebrow mb-4">{t("cont.resH")}</div>
               <div className="flex flex-col gap-2">
                 <a
                   href="https://seismo.pro"
@@ -104,9 +97,9 @@ export function ContactsSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-between px-4 py-3 bg-[#003366] text-white text-sm hover:bg-[#00549F] transition"
                 >
-                  <span>seismo.pro — ЕАСА</span>
+                  <span>{t("cont.res1")}</span>
                   <span className="text-xs tracking-[0.12em] uppercase opacity-70">
-                    Перейти →
+                    {t("cont.go")}
                   </span>
                 </a>
                 <a
@@ -115,9 +108,9 @@ export function ContactsSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-between px-4 py-3 bg-white border border-[#D6DCE3] text-[#003366] text-sm hover:bg-[#E7EEF6] transition"
                 >
-                  <span>akbiev.ru — публикации</span>
+                  <span>{t("cont.res2")}</span>
                   <span className="text-xs tracking-[0.12em] uppercase opacity-60">
-                    Перейти →
+                    {t("cont.go")}
                   </span>
                 </a>
               </div>
@@ -131,29 +124,29 @@ export function ContactsSection() {
               className="p-8 lg:p-10 bg-[#FAF7F2] border border-[#D6DCE3]"
             >
               <h3 className="text-xl font-bold text-[#003366] mb-6 tracking-tight">
-                Отправить запрос
+                {t("cont.formH")}
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                <Field label="Имя">
+                <Field label={t("cont.fName")}>
                   <Input
                     required
                     name="name"
-                    placeholder="Ваше имя"
+                    placeholder={t("cont.fNamePh")}
                     className="bg-white border-[#D6DCE3] focus:border-[#00549F] h-11"
                   />
                 </Field>
-                <Field label="Организация">
+                <Field label={t("cont.fOrg")}>
                   <Input
                     name="organization"
-                    placeholder="Название организации"
+                    placeholder={t("cont.fOrgPh")}
                     className="bg-white border-[#D6DCE3] focus:border-[#00549F] h-11"
                   />
                 </Field>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                <Field label="E-mail">
+                <Field label={t("cont.fEmail")}>
                   <Input
                     required
                     type="email"
@@ -162,7 +155,7 @@ export function ContactsSection() {
                     className="bg-white border-[#D6DCE3] focus:border-[#00549F] h-11"
                   />
                 </Field>
-                <Field label="Телефон">
+                <Field label={t("cont.fPhone")}>
                   <Input
                     name="phone"
                     placeholder="+7 (___) ___-__-__"
@@ -171,29 +164,29 @@ export function ContactsSection() {
                 </Field>
               </div>
 
-              <Field label="Тема запроса" className="mb-5">
+              <Field label={t("cont.fTopic")} className="mb-5">
                 <select
                   required
                   name="topic"
                   className="w-full h-11 px-3 bg-white border border-[#D6DCE3] focus:border-[#00549F] text-sm text-[#003366] rounded-sm"
                 >
-                  <option value="">Выберите тему...</option>
-                  <option>Участие в системе СРОСС®</option>
-                  <option>Доступ к данным о сейсмической опасности</option>
-                  <option>Методологическая поддержка</option>
-                  <option>Экспертная оценка / экспертиза</option>
-                  <option>Сотрудничество / партнёрство</option>
-                  <option>Вступление в ЕАСА</option>
-                  <option>Другое</option>
+                  <option value="">{t("cont.fTopicPh")}</option>
+                  <option>{t("cont.t1")}</option>
+                  <option>{t("cont.t2")}</option>
+                  <option>{t("cont.t3")}</option>
+                  <option>{t("cont.t4")}</option>
+                  <option>{t("cont.t5")}</option>
+                  <option>{t("cont.t6")}</option>
+                  <option>{t("cont.t7")}</option>
                 </select>
               </Field>
 
-              <Field label="Сообщение" className="mb-6">
+              <Field label={t("cont.fMsg")} className="mb-6">
                 <Textarea
                   required
                   name="message"
                   rows={5}
-                  placeholder="Кратко опишите ваш запрос..."
+                  placeholder={t("cont.fMsgPh")}
                   className="bg-white border-[#D6DCE3] focus:border-[#00549F] resize-none"
                 />
               </Field>
@@ -209,9 +202,7 @@ export function ContactsSection() {
                   htmlFor="consent"
                   className="text-xs text-[#4A6378] leading-relaxed"
                 >
-                  Я согласен с обработкой персональных данных в соответствии
-                  с политикой конфиденциальности и Федеральным законом
-                  № 152-ФЗ «О персональных данных».
+                  {t("cont.consent")}
                 </label>
               </div>
 
@@ -221,10 +212,10 @@ export function ContactsSection() {
                 className="w-full sm:w-auto bg-[#00549F] hover:bg-[#003366] text-white text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-8"
               >
                 {submitting ? (
-                  "Отправка..."
+                  t("cont.submitting")
                 ) : (
                   <>
-                    Отправить запрос
+                    {t("cont.submit")}
                     <Send className="ml-2 h-4 w-4" />
                   </>
                 )}
@@ -233,7 +224,7 @@ export function ContactsSection() {
               <div className="mt-6 flex items-center gap-2 text-xs text-[#4A6378]">
                 <CheckCircle2 className="h-3.5 w-3.5 text-[#00549F]" />
                 <span>
-                  Среднее время ответа — 1–2 рабочих дня
+                  {t("cont.avgTime")}
                 </span>
               </div>
             </form>

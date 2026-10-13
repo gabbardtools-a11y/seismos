@@ -5,6 +5,8 @@
  */
 import { Activity, MapPin } from "lucide-react";
 import spravkaData from "@/data/spravka-zemletryaseniya.json";
+import { t } from "@/lib/i18n/translations";
+import type { Lang } from "@/lib/i18n/translations";
 
 type Event = {
   date: string;
@@ -32,7 +34,7 @@ function formatDateRu(dateStr: string): string {
   return `${d2}.${m2}.${y}`;
 }
 
-export function SpravkaSection() {
+export function SpravkaSection({ lang }: { lang: Lang }) {
   const data = spravkaData as SpravkaData;
   const events = data.events;
 
@@ -41,17 +43,17 @@ export function SpravkaSection() {
       <div className="flex items-center gap-3 mb-2">
         <span className="h-px w-10 bg-[#2D5F3F]" />
         <span className="eyebrow text-[#2D5F3F]">
-          Live · {data.total} событий
+          {t("spravka.count", lang).replace("{n}", String(data.total))}
         </span>
       </div>
       <div className="flex items-center gap-3 mb-3">
         <Activity className="h-7 w-7 text-[#2D5F3F] flex-none" />
         <h3 className="text-xl lg:text-2xl font-bold text-[#003366] leading-tight">
-          Справка о Землетрясениях
+          {t("spravka.h3", lang)}
         </h3>
       </div>
       <p className="text-sm text-[#4A6378] leading-relaxed mb-5 max-w-3xl">
-        Хронология недавних сейсмических событий в России и мире. Источник:{" "}
+        {t("spravka.leadPre", lang)}{" "}
         <a
           href={data.source_url}
           target="_blank"
@@ -67,7 +69,7 @@ export function SpravkaSection() {
       <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
         {events.length === 0 && (
           <div className="text-sm text-[#4A6378] text-center py-6">
-            Нет данных
+            {t("spravka.nodata", lang)}
           </div>
         )}
         {events.map((ev, i) => (
@@ -106,11 +108,11 @@ export function SpravkaSection() {
       {/* Подвал */}
       <div className="mt-5 pt-4 border-t border-[#D6DCE3] flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#4A6378]">
         <span>
-          Обновлено:{" "}
+          {t("spravka.updated", lang)}{" "}
           {new Date(data.fetched_at).toLocaleString("ru-RU", {
             timeZone: "Europe/Moscow",
           })}{" "}
-          МСК
+          {t("spravka.msk", lang)}
         </span>
         <a
           href={data.source_url}
@@ -118,7 +120,7 @@ export function SpravkaSection() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-[#2D5F3F] hover:text-[#22C55E] font-semibold"
         >
-          Все события на seismo.ru →
+          {t("spravka.allEvents", lang)}
         </a>
       </div>
     </div>

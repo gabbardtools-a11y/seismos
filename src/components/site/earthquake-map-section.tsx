@@ -6,8 +6,12 @@
 import Link from "next/link";
 import { ArrowRight, Brain } from "lucide-react";
 import { SpravkaSection } from "./spravka-section";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
-export function EarthquakeMapSection() {
+export async function EarthquakeMapSection() {
+  const lang = await getLang();
+
   return (
     <section
       id="map"
@@ -20,17 +24,14 @@ export function EarthquakeMapSection() {
             <div className="flex items-center gap-3 mb-4">
               <span className="h-px w-10 bg-[#22C55E]" />
               <span className="eyebrow text-[#2D5F3F]">
-                Live · USGS Earthquake Feed
+                {t("map.eyebrow", lang)}
               </span>
             </div>
             <h2 className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold tracking-[-0.01em] text-[#003366] mb-3 leading-[1.1]">
-              Интерактивная карта землетрясений России и мира
+              {t("map.h2", lang)}
             </h2>
             <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
-              Данные в реальном времени: Геологическая служба США (USGS) — глобально,
-              и открытый API ФИЦ ЕГС РАН (eqalert.ru) — сейсмичность РФ и сопредельных
-              районов. Обновление — каждые 2 минуты. Магнитуда, глубина и место
-              толчка отображаются по клику на маркер.
+              {t("map.lead", lang)}
             </p>
           </div>
 
@@ -58,7 +59,7 @@ export function EarthquakeMapSection() {
         >
           <iframe
             src="/earthquake-map.html"
-            title="Интерактивная карта землетрясений — USGS"
+            title={t("map.title", lang)}
             loading="lazy"
             className="w-full h-full"
             style={{ border: 0, background: "#ffffff" }}
@@ -69,7 +70,7 @@ export function EarthquakeMapSection() {
         {/* Атрибуция */}
         <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[11px] text-[#4A6378]">
           <span>
-            Источники данных:{" "}
+            {t("map.sources", lang)}{" "}
             <a
               href="https://earthquake.usgs.gov/earthquakes/feed/"
               target="_blank"
@@ -90,7 +91,7 @@ export function EarthquakeMapSection() {
             · Public Domain
           </span>
           <span>
-            Плитки: Esri Light/Dark Gray Canvas · OpenStreetMap contributors
+            {t("map.tiles", lang)}
           </span>
         </div>
 
@@ -103,15 +104,13 @@ export function EarthquakeMapSection() {
               </div>
               <div>
                 <div className="text-[11px] tracking-[0.14em] uppercase text-white/60 font-semibold mb-1">
-                  Интерактивная модель
+                  {t("map.simEyebrow", lang)}
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-2 leading-tight">
-                  Симулятор землетрясений
+                  {t("map.simH3", lang)}
                 </h3>
                 <p className="text-sm text-white/80 leading-relaxed">
-                  Задайте магнитуду и глубину очага, поставьте эпицентр на карту —
-                  увидите изосейсты (зоны в баллах МСК-64) и оценку баллов для
-                  выбранного города. Модель: формула Блейка (1971).
+                  {t("map.simLead", lang)}
                 </p>
               </div>
             </div>
@@ -119,14 +118,14 @@ export function EarthquakeMapSection() {
               href="/simulator"
               className="flex-none inline-flex items-center gap-2 bg-[#22C55E] hover:bg-[#1ea44a] text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap"
             >
-              Открыть симулятор
+              {t("map.simCta", lang)}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
 
         {/* Справка о Землетрясениях */}
-        <SpravkaSection />
+        <SpravkaSection lang={lang} />
       </div>
     </section>
   );

@@ -2,33 +2,35 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Globe, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/useLanguage";
+import { LangSwitch } from "./lang-switch";
 
 type NavItem =
   | { label: string; href: string }
   | { label: string; children: { label: string; href: string }[] };
 
-const NAV_ITEMS: NavItem[] = [
-  { label: "Система", href: "#about" },
-  { label: "Направления", href: "#directions" },
-  { label: "Новости", href: "/news" },
-  { label: "СМИ", href: "/news" },
-  { label: "Партнёры", href: "#partners" },
-  {
-    label: "Инфо",
-    children: [
-      { label: "Патенты", href: "#patents" },
-      { label: "Автор", href: "#author" },
-      { label: "Публикации", href: "#publications" },
-    ],
-  },
-  { label: "Контакты", href: "#contacts" },
-];
-
 export function SiteHeader() {
+  const { t, lang, switchLang } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const NAV_ITEMS: NavItem[] = [
+    { label: t("nav.system"), href: "#about" },
+    { label: t("nav.directions"), href: "#directions" },
+    { label: t("nav.news"), href: "/news" },
+    { label: t("nav.media"), href: "/news" },
+    { label: t("nav.partners"), href: "#partners" },
+    {
+      label: t("nav.info"),
+      children: [
+        { label: t("nav.patents"), href: "#patents" },
+        { label: t("nav.author"), href: "#author" },
+        { label: t("nav.publications"), href: "#publications" },
+      ],
+    },
+    { label: t("nav.contacts"), href: "#contacts" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-[#D6DCE3]">
@@ -36,10 +38,10 @@ export function SiteHeader() {
       <div className="bg-[#003366] text-white text-[11px] tracking-[0.18em] uppercase">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
           <span className="hidden sm:inline font-medium opacity-80">
-            Международный проект · Устойчивое развитие ООН (SDG 11)
+            {t("top.intl")}
           </span>
           <span className="sm:hidden font-medium opacity-80">
-            SDG 11 · ООН
+            {t("top.intlShort")}
           </span>
           <div className="flex items-center gap-3">
             <a
@@ -48,16 +50,10 @@ export function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              ЕАСА →
+              {t("top.easa")}
             </a>
             <span className="opacity-30">|</span>
-            <button
-              className="flex items-center gap-1 opacity-80 hover:opacity-100 transition"
-              aria-label="Сменить язык"
-            >
-              <Globe className="h-3 w-3" />
-              RU
-            </button>
+            <LangSwitch lang={lang} switchLang={switchLang} compact />
           </div>
         </div>
       </div>
@@ -135,7 +131,7 @@ export function SiteHeader() {
           <button
             className="lg:hidden p-2 text-[#003366]"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Открыть меню"
+            aria-label={t("nav.openMenu")}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -196,6 +192,9 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+            <div className="px-3 py-2">
+              <LangSwitch lang={lang} switchLang={switchLang} />
+            </div>
           </div>
         </nav>
       )}

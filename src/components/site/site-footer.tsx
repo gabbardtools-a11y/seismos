@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SrossemblemMark } from "./site-header";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const lang = await getLang();
+
   return (
     <footer className="bg-[#003366] text-white mt-auto">
       {/* Верхняя декоративная полоса с волной */}
@@ -24,27 +28,25 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="text-[13px] text-white/70 leading-relaxed">
-              Информационная система «Сейсмобезопасность России». Международный
-              проект по устойчивому развитию территорий. Развивается с 2009 года
-              на базе Евразийской СЕЙСМО Ассоциации.
+              {t("foot.brandLead", lang)}
             </p>
           </div>
 
           {/* Колонка 2: Навигация */}
           <div>
-            <h4 className="eyebrow text-white/80 mb-4">Разделы</h4>
+            <h4 className="eyebrow text-white/80 mb-4">{t("foot.sectionsH", lang)}</h4>
             <ul className="space-y-2.5 text-sm text-white/75">
-              <li><Link href="#about" className="hover:text-white transition">О системе</Link></li>
-              <li><Link href="#directions" className="hover:text-white transition">Направления</Link></li>
-              <li><Link href="#partners" className="hover:text-white transition">Партнёры</Link></li>
-              <li><Link href="#publications" className="hover:text-white transition">Публикации</Link></li>
-              <li><Link href="#contacts" className="hover:text-white transition">Контакты</Link></li>
+              <li><Link href="#about" className="hover:text-white transition">{t("foot.fAbout", lang)}</Link></li>
+              <li><Link href="#directions" className="hover:text-white transition">{t("foot.fDirections", lang)}</Link></li>
+              <li><Link href="#partners" className="hover:text-white transition">{t("foot.fPartners", lang)}</Link></li>
+              <li><Link href="#publications" className="hover:text-white transition">{t("foot.fPublications", lang)}</Link></li>
+              <li><Link href="#contacts" className="hover:text-white transition">{t("foot.fContacts", lang)}</Link></li>
             </ul>
           </div>
 
           {/* Колонка 3: Связанные ресурсы */}
           <div>
-            <h4 className="eyebrow text-white/80 mb-4">Экосистема</h4>
+            <h4 className="eyebrow text-white/80 mb-4">{t("foot.ecoH", lang)}</h4>
             <ul className="space-y-2.5 text-sm text-white/75">
               <li>
                 <a
@@ -53,7 +55,7 @@ export function SiteFooter() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition inline-flex items-center gap-1"
                 >
-                  seismo.pro — ЕАСА ↗
+                  {t("foot.eco1", lang)}
                 </a>
               </li>
               <li>
@@ -70,7 +72,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a href="/logo-variants" className="hover:text-white transition opacity-80">
-                  Варианты логотипа сайта →
+                  {t("foot.logoVariants", lang)}
                 </a>
               </li>
             </ul>
@@ -78,7 +80,7 @@ export function SiteFooter() {
 
           {/* Колонка 4: Контакты */}
           <div>
-            <h4 className="eyebrow text-white/80 mb-4">Контакты</h4>
+            <h4 className="eyebrow text-white/80 mb-4">{t("foot.contactsH", lang)}</h4>
             <ul className="space-y-3 text-sm text-white/75">
               <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 mt-0.5 text-white/60 shrink-0" />
@@ -98,8 +100,7 @@ export function SiteFooter() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-white/60 shrink-0" />
                 <span>
-                  119331, Москва,<br />
-                  проспект Вернадского, 29
+                  {t("foot.addr", lang)}
                 </span>
               </li>
             </ul>
@@ -109,15 +110,14 @@ export function SiteFooter() {
         {/* Нижняя полоса — реквизиты СМИ */}
         <div className="mt-12 pt-6 border-t border-white/15 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px] tracking-[0.08em] text-white/55 uppercase">
           <div>
-            СМИ · Свидетельство ЭЛ № ФС 77–39562 от 26.04.2010 ·
-            Роскомнадзор
+            {t("foot.smi", lang)}
           </div>
           <div className="flex items-center gap-3">
-            <span>© 2009—2026 СРОСС®</span>
+            <span>{t("foot.copyright", lang)}</span>
             <span className="opacity-30">·</span>
-            <span>Патент · ТЗ «червяк»</span>
+            <span>{t("foot.patentTz", lang)}</span>
             <span className="opacity-30">·</span>
-            <span>Все права защищены</span>
+            <span>{t("foot.rights", lang)}</span>
           </div>
         </div>
       </div>

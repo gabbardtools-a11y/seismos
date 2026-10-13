@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Newspaper, RefreshCw, Clock } from "lucide-react";
 import headlinesData from "@/data/news-headlines.json";
+import { getLang } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/translations";
 
-export const metadata = {
-  title: "Новости о землетрясениях · СРОСС®",
-  description:
-    "Дайджест новостей о землетрясениях в России и мире. Источники: Известия, RT на русском, Lenta.RU, Вести.RU. Обновление раз в сутки.",
-};
+export async function generateMetadata() {
+  const lang = await getLang();
+  return {
+    title: t("news.metaT", lang),
+    description: t("news.metaD", lang),
+  };
+}
 
 const SOURCE_NAMES: Record<string, string> = {
   iz: "Известия",
@@ -83,7 +87,8 @@ function formatDateShort(iso: string): string {
   }
 }
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const lang = await getLang();
   const headlines = headlinesData as Headlines;
   const news = [...headlines.news].sort((a, b) => {
     // Сортировка по дате убыв (свежие выше). Без даты — в конец.
@@ -106,7 +111,7 @@ export default function NewsPage() {
             className="hover:text-[#00549F] flex items-center gap-1"
           >
             <ArrowLeft className="h-3 w-3" />
-            На главную
+            {t("common.home", lang)}
           </Link>
         </div>
 
@@ -115,24 +120,23 @@ export default function NewsPage() {
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-[#22C55E]" />
             <span className="eyebrow text-[#2D5F3F]">
-              Live · Дайджест СМИ
+              {t("news.eyebrow", lang)}
             </span>
           </div>
           <h1 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold tracking-[-0.01em] text-[#003366] leading-[1.1] mb-3 flex items-center gap-3">
             <Newspaper className="h-8 w-8 text-[#2D5F3F]" />
-            Новости о землетрясениях
+            {t("news.h1", lang)}
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed mb-3">
-            Дайджест заголовков о землетрясениях в России и мире из открытых
-            источников. Обновление — раз в сутки.
+            {t("news.lead", lang)}
           </p>
           <div className="flex flex-wrap items-center gap-4 text-[11px] text-[#4A6378]">
             <span className="flex items-center gap-1.5">
               <RefreshCw className="h-3 w-3" />
-              Обновлено: {new Date(fetchedAt).toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })} МСК
+              {t("news.updated", lang)} {new Date(fetchedAt).toLocaleString("ru-RU", { timeZone: "Europe/Moscow" })} {t("news.msk", lang)}
             </span>
             <span>·</span>
-            <span>Всего: {news.length} заголовков</span>
+            <span>{t("news.total", lang).replace("{n}", String(news.length))}</span>
           </div>
         </div>
 
@@ -156,7 +160,7 @@ export default function NewsPage() {
         <div className="space-y-3">
           {news.length === 0 && (
             <div className="bg-white border border-[#D6DCE3] rounded-xl p-8 text-center text-[#4A6378]">
-              Сейчас нет свежих заголовков о землетрясениях. Обновление раз в сутки.
+              {t("news.empty", lang)}
             </div>
           )}
           {news.map((n, i) => (
@@ -207,7 +211,7 @@ export default function NewsPage() {
                     ))}
                     {n.duplicate_count > 1 && (
                       <span className="text-[#4A6378]/60 normal-case tracking-normal">
-                        · в {n.duplicate_count} источниках
+                        · {t("news.inSources", lang).replace("{n}", String(n.duplicate_count))}
                       </span>
                     )}
                     {n.url && (
@@ -218,7 +222,7 @@ export default function NewsPage() {
                         className="ml-auto inline-flex items-center gap-1 text-[#00549F] hover:text-[#22C55E]"
                       >
                         <ExternalLink className="h-3 w-3" />
-                        источник
+                        {t("news.source", lang)}
                       </a>
                     )}
                   </div>
@@ -231,15 +235,10 @@ export default function NewsPage() {
         {/* Дисклеймер */}
         <div className="mt-10 bg-[#F8FBF9] border border-[#D6DCE3] rounded-xl p-6">
           <h3 className="text-[12px] font-bold tracking-[0.1em] uppercase text-[#4A6378] mb-2">
-            О дайджесте
+            {t("news.aboutH", lang)}
           </h3>
           <p className="text-sm text-[#4A6378] leading-relaxed">
-            Раздел автоматически собирает заголовки новостей о землетрясениях
-            из открытых источников: Известия, RT на русском, Lenta.RU, Вести.RU.
-            При совпадении тем в нескольких источниках выбирается наиболее
-            полный заголовок. Каждая новость содержит прямую ссылку на
-            оригинальный материал — все права принадлежат правообладателям.
-            Обновление выполняется раз в сутки.
+            {t("news.aboutT", lang)}
           </p>
         </div>
       </div>
