@@ -31,6 +31,18 @@ const STYLES: Record<Lang, { on: string; off: string }> = {
     on: 'bg-[#B91C1C] text-white border-[#B91C1C]',
     off: 'text-[#B91C1C] border-[#B91C1C]/30 hover:border-[#B91C1C]',
   },
+  tg: {
+    on: 'bg-[#0891B2] text-white border-[#0891B2]',
+    off: 'text-[#0891B2] border-[#0891B2]/30 hover:border-[#0891B2]',
+  },
+  uz: {
+    on: 'bg-[#16A34A] text-white border-[#16A34A]',
+    off: 'text-[#16A34A] border-[#16A34A]/30 hover:border-[#16A34A]',
+  },
+  ky: {
+    on: 'bg-[#EA580C] text-white border-[#EA580C]',
+    off: 'text-[#EA580C] border-[#EA580C]/30 hover:border-[#EA580C]',
+  },
 };
 
 export function LangSwitch({

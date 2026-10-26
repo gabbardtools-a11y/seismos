@@ -11,9 +11,8 @@ export async function getLang(): Promise<Lang> {
   try {
     const h = await headers();
     const viaHeader = h.get('x-seismos-lang');
-    if (viaHeader === 'ru' || viaHeader === 'en' || viaHeader === 'zh'
-        || viaHeader === 'kk' || viaHeader === 'hy' || viaHeader === 'ka') {
-      return viaHeader;
+    if (viaHeader && ['ru', 'en', 'zh', 'kk', 'hy', 'ka', 'tg', 'uz', 'ky'].includes(viaHeader)) {
+      return viaHeader as Lang;
     }
   } catch {
     // headers() недоступен (не в request scope) — падаем на cookie
