@@ -43,6 +43,10 @@ const STYLES: Record<Lang, { on: string; off: string }> = {
     on: 'bg-[#EA580C] text-white border-[#EA580C]',
     off: 'text-[#EA580C] border-[#EA580C]/30 hover:border-[#EA580C]',
   },
+  ro: {
+    on: 'bg-[#9333EA] text-white border-[#9333EA]',
+    off: 'text-[#9333EA] border-[#9333EA]/30 hover:border-[#9333EA]',
+  },
 };
 
 export function LangSwitch({

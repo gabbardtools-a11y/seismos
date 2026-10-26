@@ -13,7 +13,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const SUPPORTED_LANGS = ['en', 'zh', 'kk', 'hy', 'ka', 'tg', 'uz', 'ky'] as const;
+const SUPPORTED_LANGS = ['en', 'zh', 'kk', 'hy', 'ka', 'tg', 'uz', 'ky', 'ro'] as const;
 type NonDefaultLang = typeof SUPPORTED_LANGS[number];
 
 function rewriteWithLang(
