@@ -11,7 +11,7 @@ export async function getLang(): Promise<Lang> {
   try {
     const h = await headers();
     const viaHeader = h.get('x-seismos-lang');
-    if (viaHeader && ['ru', 'en', 'zh', 'kk', 'hy', 'ka', 'tg', 'uz', 'ky', 'ro'].includes(viaHeader)) {
+    if (viaHeader && ['ru', 'en', 'zh', 'kk', 'hy', 'ka', 'tg', 'uz', 'ky', 'md'].includes(viaHeader)) {
       return viaHeader as Lang;
     }
   } catch {

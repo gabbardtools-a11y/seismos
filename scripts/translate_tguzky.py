@@ -3,8 +3,8 @@ import json, re, subprocess, sys, time
 from pathlib import Path
 
 PATH = Path("/home/z/my-project/src/lib/i18n/translations.ts")
-LANGS = ["tg", "uz", "ky"]
-BATCH = 5
+LANGS = ["tg", "uz", "ky", "md"]
+BATCH = 3
 
 def get_incomplete():
     content = PATH.read_text(encoding="utf-8")
@@ -20,12 +20,12 @@ def get_incomplete():
 
 def translate(items, n):
     lines = [f'"{k}": "{t}"' for k, t in items]
-    prompt = f"""Переведи значения JSON на 3 языка: tg (таджикский, кириллица), uz (узбекский, латиница), ky (киргизский, кириллица).
+    prompt = f"""Переведи значения JSON на 4 языка: tg (таджикский, кириллица), uz (узбекский, латиница), ky (киргизский, кириллица), md (молдавский, латиница).
 
 {{{", ".join(lines)}}}
 
 Ответ — JSON-массив (без markdown):
-[{{"k":"ключ","tg":"...","uz":"...","ky":"..."}},...]
+[{{"k":"ключ","tg":"...","uz":"...","ky":"...","md":"..."}},...]
 
 Сохраняй: СРОСС®, PGA, MSK-64, USGS, EASA, ЕАЭС, HTML-теги. Только JSON."""
     try:
