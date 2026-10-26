@@ -17,7 +17,7 @@ export function useLanguage(initialLang: Lang = 'ru') {
   const [lang, setLang] = useState<Lang>(initialLang);
 
   useEffect(() => {
-    const m = window.location.pathname.match(/^\/(en|zh)(?=\/|$)/);
+    const m = window.location.pathname.match(/^\/(en|zh|kk|hy|ka)(?=\/|$)/);
     const urlLang = m ? (m[1] as Lang) : null;
     setLang(urlLang ?? initialLang);
   }, []);

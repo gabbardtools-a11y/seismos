@@ -12,7 +12,7 @@
  * (spravka-zemletryaseniya.json) остаются RU.
  */
 
-export type Lang = 'ru' | 'en' | 'zh';
+export type Lang = 'ru' | 'en' | 'zh' | 'kk' | 'hy' | 'ka';
 
 export const DEFAULT_LANG: Lang = 'ru';
 
@@ -20,6 +20,9 @@ export const LANGUAGES: { code: Lang; label: string; nativeName: string }[] = [
   { code: 'ru', label: 'RU', nativeName: 'Русский' },
   { code: 'en', label: 'EN', nativeName: 'English' },
   { code: 'zh', label: '中', nativeName: '中文' },
+  { code: 'kk', label: 'KK', nativeName: 'Қазақша' },
+  { code: 'hy', label: 'HY', nativeName: 'Հայերէն' },
+  { code: 'ka', label: 'KA', nativeName: 'ქართული' },
 ];
 
 /** Словарь переводов — все ключи и их RU/EN/ZH значения */
@@ -549,10 +552,11 @@ export type TranslationKey = keyof typeof translations;
 
 export function t(key: TranslationKey, lang: Lang): string {
   const entry = translations[key];
-  return (entry && entry[lang]) || entry?.ru || key;
+  if (!entry) return key;
+  return entry[lang] || entry.ru || key;
 }
 
 export function parseLang(cookieStr: string | null | undefined): Lang {
-  const m = cookieStr?.match(/(?:^|;\s*)lang=(ru|en|zh)/);
+  const m = cookieStr?.match(/(?:^|;\s*)lang=(ru|en|zh|kk|hy|ka)/);
   return (m?.[1] as Lang) || DEFAULT_LANG;
 }
