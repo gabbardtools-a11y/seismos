@@ -29,6 +29,7 @@ export function SiteHeader() {
         { label: t("nav.publications"), href: "#publications" },
         { label: "Сейсмозащита", href: "/seismoprotection" },
         { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
+        { label: "Сертификаты", href: "/sertifikaty" },
         { label: "Антидроновая защита", href: "/antidron" },
       ],
     },
