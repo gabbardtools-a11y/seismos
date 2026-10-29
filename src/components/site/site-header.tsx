@@ -28,6 +28,7 @@ export function SiteHeader() {
         { label: t("nav.author"), href: "#author" },
         { label: t("nav.publications"), href: "#publications" },
         { label: "Сейсмозащита", href: "/seismoprotection" },
+        { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
       ],
     },
     { label: t("nav.contacts"), href: "#contacts" },
