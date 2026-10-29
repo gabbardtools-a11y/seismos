@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-10-25T11:36:44.927679+00:00",
-  "total_raw": 82,
-  "total_unique": 71,
+  "fetched_at": "2026-10-29T20:41:27.339169+00:00",
+  "total_raw": 111,
+  "total_unique": 88,
   "sources": [
     {
       "key": "iz",
@@ -38,7 +38,106 @@
   ],
   "news": [
     {
-      "title": "Авторское исправление: Новые и существующие поселения, построенные на склонах холмов, ослабленные серией землетрясений в Кахраманмараше 2023 года.",
+      "title": "У берегов Ялты произошло землетрясение магнитудой 3,0 Землетрясение магнитудой 3,0 произошло в Черном море в 18 км от Ялты на глубине 26 км. Об этом 18 октября сообщила заместитель директора Института сейсмологии и геодинамики Крымского федерального университета имени Вернадского Марина Бондарь.",
+      "title_orig": "",
+      "url": "https://iz.ru/2186281/2026-10-18/u-beregov-ialty-proizoshlo-zemletriasenie-magnitudoi-30",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-18T12:45"
+    },
+    {
+      "title": "Землетрясение магнитудой 5,3 произошло у побережья японского острова Кюсю Землетрясение магнитудой 5,3 зафиксировано в районе острова Кюсю в Японии. Об этом 24 октября сообщил Европейско-Средиземноморский сейсмологический центр (EMSC).",
+      "title_orig": "",
+      "url": "https://iz.ru/2190177/2026-10-25/zemletriasenie-magnitudoi-53-proizoshlo-u-poberezhia-iaponskogo-ostrova-kiusiu",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-25T02:50"
+    },
+    {
+      "title": "Землетрясение магнитудой 7,2 произошло в районе островов Вануату Землетрясение магнитудой 7,2 зафиксировано в районе островов Вануату в южной части Тихого океана. Об этом 24 октября сообщил портал Центра предупреждения о цунами в США.",
+      "title_orig": "",
+      "url": "https://iz.ru/2189865/2026-10-24/zemletriasenie-magnitudoi-72-proizoshlo-v-raione-ostrovov-vanuatu",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-24T03:44"
+    },
+    {
+      "title": "Землетрясение магнитудой 4,4 зарегистрировали на Курильских островах Сейсмологи зарегистрировали землетрясение к востоку от острова Матуа, который входит в среднюю группу Большой Курильской гряды. Магнитуда составила 4,4.",
+      "title_orig": "",
+      "url": "https://iz.ru/2187210/2026-10-20/zemletriasenie-magnitudoi-44-zaregistrirovali-na-kurilskikh-ostrovakh",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-20T09:10"
+    },
+    {
+      "title": "Землетрясение магнитудой 6,5 произошло у берегов Камчатки Землетрясение магнитудой 6,5 произошло у берегов Камчатки. Об этом 16 октября сообщили в филиале ФИЦ Единой геофизической службы Российской академии наук (РАН).",
+      "title_orig": "",
+      "url": "https://iz.ru/2185127/2026-10-16/zemletriasenie-magnitudoi-65-proizoshlo-u-beregov-kamchatki",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-16T03:54"
+    },
+    {
+      "title": "Не менее 16 человек погибли при землетрясении в Тибете Не менее 16 человек погибли, еще 32 пострадали в результате землетрясения магнитудой 7,0 в Тибетском автономном районе КНР.",
+      "title_orig": "",
+      "url": "https://iz.ru/2189031/2026-10-22/ne-menee-16-chelovek-pogibli-pri-zemletriasenii-v-tibete",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-22T20:31"
+    },
+    {
+      "title": "Число пострадавших при землетрясении в Тибете выросло до 46 Число пострадавших в результате землетрясения магнитудой 7,0 в Тибетском автономном районе Китая достигло 46 человек.",
+      "title_orig": "",
+      "url": "https://iz.ru/2189090/2026-10-23/chislo-postradavshikh-pri-zemletriasenii-v-tibete-vyroslo-do-46",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-23T02:29"
+    },
+    {
+      "title": "В Кузбассе произошло землетрясение магнитудой 4,9 Землетрясение магнитудой 4,9 произошло ночью в Беловском муниципальном округе Кузбасса, в 4 км от поселка Краснобродский.",
+      "title_orig": "",
+      "url": "https://iz.ru/2189841/2026-10-24/v-kuzbasse-proizoshlo-zemletriasenie-magnitudoi-49",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-24T01:35"
+    },
+    {
+      "title": "Сейсмические двойники в зонах субдукции представляют собой процесс Омори, обусловленный взаимодействием надрыва мегасдвигового разлома с другими разломами.",
+      "title_orig": "Earthquake doublets in subduction zones are an Omori process promoted by megathrust tear fault interaction",
+      "url": "https://www.nature.com/articles/s43247-026-03820-5",
+      "source": "nature",
+      "all_sources": [
+        "nature"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-07-15T00:00:00+00:00"
+    },
+    {
+      "title": "Исправление автора: Новые и существующие поселения, построенные на склонах холмов, ослабленные серией землетрясений в Кахраманмараше 2023 года.",
       "title_orig": "Author Correction: New and existing settlements built on hillslopes weakened by the 2023 Kahramanmaraş earthquake sequence",
       "url": "https://www.nature.com/articles/s43247-026-03791-7",
       "source": "nature",
@@ -49,15 +148,15 @@
       "date": "2026-07-30T00:00:00+00:00"
     },
     {
-      "title": "Двойные землетрясения в зонах субдукции представляют собой процесс Омори, обусловленный взаимодействием мегасрывного разлома-надлома.",
-      "title_orig": "Earthquake doublets in subduction zones are an Omori process promoted by megathrust tear fault interaction",
-      "url": "https://www.nature.com/articles/s43247-026-03820-5",
+      "title": "Неравномерность проницаемости контролирует миграцию флюидов и эволюцию микросейсмичности в геотермальном поле Гейзерс, Калифорния.",
+      "title_orig": "Permeability heterogeneity controls fluid migration and microseismicity evolution in The Geysers geothermal field, California",
+      "url": "https://www.nature.com/articles/s41467-026-78210-8",
       "source": "nature",
       "all_sources": [
         "nature"
       ],
       "duplicate_count": 1,
-      "date": "2026-07-15T00:00:00+00:00"
+      "date": "2026-10-17T00:00:00+00:00"
     },
     {
       "title": "«Было похоже на землетрясение». Произошел взрыв на крупном химическом предприятии России. Там две недели жаловались на запах газа",
@@ -71,15 +170,15 @@
       "date": "2026-08-25T15:21"
     },
     {
-      "title": "Гетерогенность проницаемости контролирует миграцию флюидов и эволюцию микросейсмичности в геотермальном поле Гейзерс, Калифорния.",
-      "title_orig": "Permeability heterogeneity controls fluid migration and microseismicity evolution in The Geysers geothermal field, California",
-      "url": "https://www.nature.com/articles/s41467-026-78210-8",
+      "title": "Беспрецедентное воздействие шторма в Средиземном море, выявленное с помощью моделей и сейсмического шума во время циклона Гарри.",
+      "title_orig": "Unprecedented storm impact in the Mediterranean revealed by models and seismic noise during Cyclone Harry",
+      "url": "https://www.nature.com/articles/s43247-026-04187-3",
       "source": "nature",
       "all_sources": [
         "nature"
       ],
       "duplicate_count": 1,
-      "date": "2026-10-17T00:00:00+00:00"
+      "date": "2026-10-29T00:00:00+00:00"
     },
     {
       "title": "«Мы думали, война. Нет ни одного дома» Самое разрушительное землетрясение в истории России. Как за 17 секунд исчез Нефтегорск",
@@ -93,15 +192,26 @@
       "date": "2026-05-28T19:08"
     },
     {
-      "title": "Выбранные модели прогноза землетрясений демонстрируют согласие с перспективными десятилетними наблюдениями в Калифорнии.",
-      "title_orig": "Select earthquake forecasting models demonstrate consistency with prospective decadal observations in California",
-      "url": "https://www.nature.com/articles/s41467-026-76243-7",
+      "title": "10 фото 29 июня 2026, 09:29 События недели в фотографиях: «Алые паруса», землетрясение в Венесуэле и отставка Кира Стармера",
+      "title_orig": "",
+      "url": "https://iz.ru/2123047/gallery/galereia-nedeli-22-2806",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-08-11T07:41:25.000Z"
+    },
+    {
+      "title": "О предсказуемости смещения, геометрии разрыва и скорости землетрясения магнитудой 7,8 в Мандалае, Мьянма, в 2025 году.",
+      "title_orig": "On predictability of slip, rupture geometry, and speed of the 2025 M7.8 Mandalay, Myanmar, earthquake",
+      "url": "https://www.nature.com/articles/s41467-026-77203-x",
       "source": "nature",
       "all_sources": [
         "nature"
       ],
       "duplicate_count": 1,
-      "date": "2026-08-06T00:00:00+00:00"
+      "date": "2026-10-14T00:00:00+00:00"
     },
     {
       "title": "«Трясло, как во время землетрясения». Россия ударила по объектам в Полтаве, Харьковской, Одесской и Сумской областях",
@@ -115,18 +225,40 @@
       "date": "2026-06-11T15:20"
     },
     {
-      "title": "О предсказуемости сброса, геометрии разрыва и скорости землетрясения 2025 года магнитудой M7.8 в Мандалае, Мьянма.",
-      "title_orig": "On predictability of slip, rupture geometry, and speed of the 2025 M7.8 Mandalay, Myanmar, earthquake",
-      "url": "https://www.nature.com/articles/s41467-026-77203-x",
+      "title": "Магнитуда и интенсивность: как землетрясениям ставят баллы, какие регионы России считаются наиболее сейсмоактивными",
+      "title_orig": "",
+      "url": "https://russian.rt.com/nopolitics/article/1699811-seismoopasnost-rossiya-zemletryasenie-istoriya",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-26 18:20"
+    },
+    {
+      "title": "Выбранные модели прогноза землетрясений демонстрируют согласие с наблюдаемыми данными за десятилетие в Калифорнии.",
+      "title_orig": "Select earthquake forecasting models demonstrate consistency with prospective decadal observations in California",
+      "url": "https://www.nature.com/articles/s41467-026-76243-7",
       "source": "nature",
       "all_sources": [
         "nature"
       ],
       "duplicate_count": 1,
-      "date": "2026-10-14T00:00:00+00:00"
+      "date": "2026-08-06T00:00:00+00:00"
     },
     {
-      "title": "Вариации механизма очека раскрывают механические закономерности сегментации в океанических трансформных разломах.",
+      "title": "Об использовании исследований сейсмического шума для оценки опасности оползней сейсмических блоков горных пород.",
+      "title_orig": "On the use of seismic noise studies for landslide rock block hazard assessment",
+      "url": "https://www.nature.com/articles/s43247-026-04029-2",
+      "source": "nature",
+      "all_sources": [
+        "nature"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-19T00:00:00+00:00"
+    },
+    {
+      "title": "Вариации механизма очага выявляют механические закономерности сегментации в океанических трансформных разломах.",
       "title_orig": "Focal mechanism variations reveal mechanical controls on segmentation at oceanic transform faults",
       "url": "https://www.nature.com/articles/s41467-026-76407-5",
       "source": "nature",
@@ -137,7 +269,7 @@
       "date": "2026-08-15T00:00:00+00:00"
     },
     {
-      "title": "Иерархическая фреймворк определяет зависимость от глубины и законы масштабирования для медленных землетрясений.",
+      "title": "Иерархическая структура определяет зависимость от глубины и законы масштабирования для медленных землетрясений.",
       "title_orig": "A hierarchical framework governs depth-dependence and scaling laws for slow earthquakes",
       "url": "https://www.nature.com/articles/s43247-026-03777-5",
       "source": "nature",
@@ -159,26 +291,15 @@
       "date": "2026-10-18 16:59"
     },
     {
-      "title": "Сейсмические свидетельства о поступлении тепла из нижней мантии под плитное окно Кордильер в западной Канаде.",
-      "title_orig": "Seismic evidence for lower-mantle heat supply beneath the Cordilleran slab window in western Canada",
-      "url": "https://www.nature.com/articles/s41467-026-76194-z",
-      "source": "nature",
+      "title": "00:35 11 февраля 2025, 09:03 Греческие ученые зафиксировали почти 12 тыс. землетрясений в районе Санторини",
+      "title_orig": "",
+      "url": "https://iz.ru/1837320/video/grecheskie-uchenye-zafiksirovali-pochti-12-tys-zemletriasenii-v-raione-santorini",
+      "source": "iz",
       "all_sources": [
-        "nature"
+        "iz"
       ],
-      "duplicate_count": 1,
-      "date": "2026-08-03T00:00:00+00:00"
-    },
-    {
-      "title": "О применении исследований сейсмического шума для оценки опасности оползней сейсмических блоков горных пород.",
-      "title_orig": "On the use of seismic noise studies for landslide rock block hazard assessment",
-      "url": "https://www.nature.com/articles/s43247-026-04029-2",
-      "source": "nature",
-      "all_sources": [
-        "nature"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-09-19T00:00:00+00:00"
+      "duplicate_count": 2,
+      "date": "2025-05-10T17:51:24.000Z"
     },
     {
       "title": "Максимальная магнитуда землетрясений, вероятно, не контролируется шероховатостью субдукционной интерфейса.",
@@ -192,26 +313,48 @@
       "date": "2026-09-10T00:00:00+00:00"
     },
     {
-      "title": "07:00 Происшествия У японских островов Огасавара произошло землетрясение магнитудой 7 Максим Алешин",
-      "title_orig": "",
-      "url": "https://www.vesti.ru/ns/u-yaponskikh-ostrovov-ogasavara-proizoshlo-zemletryasenie-magnitudoj-7",
-      "source": "vesti",
-      "all_sources": [
-        "vesti"
-      ],
-      "duplicate_count": 2,
-      "date": "2026-10-25T04:00:32.000Z"
-    },
-    {
-      "title": "Сложность сейсмического разрыва объясняет ограниченное воздействие цунами на Камчатке в 2025 году.",
-      "title_orig": "Limited impact of the 2025 Kamchatka tsunami explained by the complex seismic rupture",
-      "url": "https://www.nature.com/articles/s43247-026-04050-5",
+      "title": "Сейсмические свидетельства о подводе тепла из нижней мантии под плитным окном Кордильер в западной Канаде.",
+      "title_orig": "Seismic evidence for lower-mantle heat supply beneath the Cordilleran slab window in western Canada",
+      "url": "https://www.nature.com/articles/s41467-026-76194-z",
       "source": "nature",
       "all_sources": [
         "nature"
       ],
       "duplicate_count": 1,
-      "date": "2026-09-25T00:00:00+00:00"
+      "date": "2026-08-03T00:00:00+00:00"
+    },
+    {
+      "title": "Четыре глубоководных технологии, которые могут помочь в обнаружении смертельных землетрясений и цунами.",
+      "title_orig": "Four deep-sea technologies that could help detect deadly earthquakes and tsunamis",
+      "url": "https://www.nature.com/articles/d41586-026-01988-6",
+      "source": "nature",
+      "all_sources": [
+        "nature"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-07-14T00:00:00+00:00"
+    },
+    {
+      "title": "16 фото 11 августа 2026, 07:41 Подземный удар: что происходит в пострадавшей от землетрясения Колумбии",
+      "title_orig": "",
+      "url": "https://iz.ru/2147092/gallery/kolumbiia",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-08-26T07:21:41.000Z"
+    },
+    {
+      "title": "00:49 19 июля 2026, 07:22 В Венесуэле испекли огромный торт для пострадавших от землетрясения детей",
+      "title_orig": "",
+      "url": "https://iz.ru/2134974/video/v-venesuele-ispekli-ogromnyi-tort-dlia-postradavshikh-ot-zemletriaseniia-detei",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-07-19T07:22:15.000Z"
     },
     {
       "title": "У берегов Камчатки за неделю произошло почти 30 землетрясений 05:16, 12 октября 2026 Моя страна",
@@ -225,6 +368,28 @@
       "date": "2026-10-12"
     },
     {
+      "title": "Сложный сейсмический разрыв объясняет ограниченное воздействие цунами на Камчатке в 2025 году.",
+      "title_orig": "Limited impact of the 2025 Kamchatka tsunami explained by the complex seismic rupture",
+      "url": "https://www.nature.com/articles/s43247-026-04050-5",
+      "source": "nature",
+      "all_sources": [
+        "nature"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-25T00:00:00+00:00"
+    },
+    {
+      "title": "00:38 10 мая 2025, 17:51 Концерт Metallica в Вирджинии спровоцировал небольшое землетрясение",
+      "title_orig": "",
+      "url": "https://iz.ru/1884250/video/kontcert-metallica-v-virdzhinii-sprovotciroval-nebolshoe-zemletriasenie",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2025-11-16T17:51:58.000Z"
+    },
+    {
       "title": "Физически информированное глубокое обучение связывает геодетические данные и трение разлома.",
       "title_orig": "Physics-informed deep learning links geodetic data and fault friction",
       "url": "https://www.nature.com/articles/s43247-026-04138-y",
@@ -234,6 +399,28 @@
       ],
       "duplicate_count": 1,
       "date": "2026-10-12T00:00:00+00:00"
+    },
+    {
+      "title": "00:51 16 ноября 2025, 17:51 Ученые нашли связь между вспышками на Солнце и землетрясениями",
+      "title_orig": "",
+      "url": "https://iz.ru/1991313/video/uchenye-nashli-sviaz-mezhdu-vspyshkami-na-solntce-i-zemletriaseniiami",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-07-19T07:22:15.000Z"
+    },
+    {
+      "title": "15 фото 26 августа 2026, 07:21 На разломе: как Индонезия переживает мощное землетрясение",
+      "title_orig": "",
+      "url": "https://iz.ru/2153615/gallery/indoneeziia",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-08-30T07:00:00.000Z"
     },
     {
       "title": "Пережившие землетрясение в Нефтегорске россияне рассказали о первых минутах катастрофы",
@@ -291,18 +478,7 @@
       "date": "2026-05-29T00:01"
     },
     {
-      "title": "Диффузионные землетрясения и их масштабирование по расстоянию проскальзывания.",
-      "title_orig": "Diffusional earthquakes and their slip-distance scaling",
-      "url": "https://www.nature.com/articles/s43247-026-04043-4",
-      "source": "nature",
-      "all_sources": [
-        "nature"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-09-10T00:00:00+00:00"
-    },
-    {
-      "title": "Активное деформирование земной коры и реактивация разломов в долинах Маринер.",
+      "title": "Активное деформирование земной коры и реактивация разломов в долинах Маринера.",
       "title_orig": "Active crustal straining and fault reactivation at Valles Marineris",
       "url": "https://www.nature.com/articles/s41467-026-78193-6",
       "source": "nature",
@@ -329,10 +505,11 @@
       "url": "https://russian.rt.com/nopolitics/news/1699356-arhipelag-ogasavara-yaponiya",
       "source": "rt",
       "all_sources": [
+        "iz",
         "rt"
       ],
-      "duplicate_count": 1,
-      "date": "2026-10-25 06:58"
+      "duplicate_count": 2,
+      "date": "2026-10-25 14:58"
     },
     {
       "title": "Панама объявила чрезвычайное положение из-за разрушений после землетрясения",
@@ -344,17 +521,6 @@
       ],
       "duplicate_count": 1,
       "date": "2026-10-12 07:40"
-    },
-    {
-      "title": "РСТ: обращений от российских туристов в связи с землетрясением в Панаме нет",
-      "title_orig": "",
-      "url": "https://russian.rt.com/world/news/1693017-panama-obrascheniya-turisty",
-      "source": "rt",
-      "all_sources": [
-        "rt"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-10-10 19:37"
     },
     {
       "title": "Ушедший из России автогигант продлил остановку заводов из-за землетрясения",
@@ -395,21 +561,11 @@
       "url": "https://russian.rt.com/russia/news/1694428-zemletryasenie-kamchatka-magnituda",
       "source": "rt",
       "all_sources": [
+        "vesti",
         "rt"
       ],
-      "duplicate_count": 1,
+      "duplicate_count": 2,
       "date": "2026-10-17 00:29"
-    },
-    {
-      "title": "EFE: в Панаме в результате землетрясения пострадали не менее 27 человек",
-      "title_orig": "",
-      "url": "https://russian.rt.com/world/news/1693009-panama-zemletryasenie-postradavshie",
-      "source": "rt",
-      "all_sources": [
-        "rt"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-10-10 12:03"
     },
     {
       "title": "«Лента.ру» выпустила спецпроект к годовщине землетрясения в Нефтегорске",
@@ -457,6 +613,17 @@
       "date": "2026-10-14T01:29"
     },
     {
+      "title": "Землетрясение магнитудой 7,1 произошло вблизи границы Китая и Непала",
+      "title_orig": "",
+      "url": "https://iz.ru/2188818/2026-10-22/zemletriasenie-magnitudoi-71-proizoshlo-vblizi-granitcy-kitaia-i-nepala",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-22T14:50"
+    },
+    {
       "title": "В Чёрном море у берегов Ялты произошло землетрясение магнитудой 3,0",
       "title_orig": "",
       "url": "https://russian.rt.com/russia/news/1696273-krym-yalta-zemletryasenie",
@@ -477,6 +644,17 @@
       ],
       "duplicate_count": 1,
       "date": "2026-04-20T15:17"
+    },
+    {
+      "title": "У японских островов Огасавара произошло землетрясение магнитудой 7",
+      "title_orig": "",
+      "url": "https://www.vesti.ru/ns/u-yaponskikh-ostrovov-ogasavara-proizoshlo-zemletryasenie-magnitudoj-7",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-25T07:00"
     },
     {
       "title": "Путин выразил соболезнования в связи с землетрясением в Венесуэле",
@@ -521,6 +699,17 @@
       ],
       "duplicate_count": 1,
       "date": "2026-06-25T18:13"
+    },
+    {
+      "title": "Эксклюзив RT из подземного госпиталя морской пехоты в зоне СВО",
+      "title_orig": "",
+      "url": "https://russian.rt.com/ussr/video/1701745-eksklyuziv-rt-gospital-morskoi-pehoty-svo",
+      "source": "rt",
+      "all_sources": [
+        "rt"
+      ],
+      "duplicate_count": 1,
+      "date": ""
     },
     {
       "title": "Землетрясение в Венесуэле стало крупнейшим в стране за 126 лет",
@@ -568,26 +757,17 @@
       "date": "2026-02-15T20:17"
     },
     {
-      "title": "Жители Камчатки ощутили землетрясение силой до четырех баллов",
+      "title": "Землетрясение магнитудой 3,8 произошло в Ставропольском крае",
       "title_orig": "",
-      "url": "https://www.vesti.ru/ns/zhiteli-kamchatki-oshchutili-zemletryasenie-siloj-do-chetyrekh-ballov",
-      "source": "vesti",
+      "url": "https://iz.ru/2182534/2026-10-11/zemletriasenie-magnitudoi-38-proizoshlo-v-stavropolskom-krae",
+      "source": "iz",
       "all_sources": [
+        "iz",
+        "rt",
         "vesti"
       ],
-      "duplicate_count": 1,
-      "date": "2026-10-07T03:50"
-    },
-    {
-      "title": "В Папуа - Новой Гвинее произошло землетрясение магнитудой 5,4",
-      "title_orig": "",
-      "url": "https://tass.ru/proisshestviya/28251265",
-      "source": "tass",
-      "all_sources": [
-        "tass"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-10-25T13:55:42+03:00"
+      "duplicate_count": 4,
+      "date": "2026-10-11T20:46"
     },
     {
       "title": "Землетрясение магнитудой 4,8 произошло в Кемеровской области",
@@ -613,6 +793,17 @@
       "date": "2026-10-05T01:21"
     },
     {
+      "title": "Диффузионные землетрясения и их масштабирование по смещению.",
+      "title_orig": "Diffusional earthquakes and their slip-distance scaling",
+      "url": "https://www.nature.com/articles/s43247-026-04043-4",
+      "source": "nature",
+      "all_sources": [
+        "nature"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-09-10T00:00:00+00:00"
+    },
+    {
       "title": "Россияне едва не погибли во время землетрясения в Венесуэле",
       "title_orig": "",
       "url": "https://lenta.ru/news/2026/06/25/rossiyane-edva-ne-pogibli-vo-vremya-zemletryaseniya-v-venesuele/",
@@ -635,15 +826,15 @@
       "date": "2026-10-09T02:52"
     },
     {
-      "title": "На Камчатке за сутки зарегистрировали девять сейсмособытий",
+      "title": "В Панаме не менее 27 человек пострадали при землетрясении",
       "title_orig": "",
-      "url": "https://www.vesti.ru/ns/na-kamchatke-za-sutki-zaregistrirovali-devyat-sejsmosobytij",
-      "source": "vesti",
+      "url": "https://iz.ru/2182006/v-paname-ne-menee-27-chelovek-postradali-pri-zemletriasenii-izi",
+      "source": "iz",
       "all_sources": [
-        "vesti"
+        "iz"
       ],
-      "duplicate_count": 2,
-      "date": "2026-10-07T23:59"
+      "duplicate_count": 1,
+      "date": "2026-10-10T11:12"
     },
     {
       "title": "У берегов индонезийского острова произошло землетрясение",
@@ -657,15 +848,26 @@
       "date": "2026-10-12T01:15"
     },
     {
-      "title": "TVN: землетрясение в Панаме привело к обрушению зданий",
+      "title": "Три землетрясения зарегистрировали на Камчатке за сутки",
       "title_orig": "",
-      "url": "https://russian.rt.com/world/news/1692854-zemletryasenie-panama-zdanie",
-      "source": "rt",
+      "url": "https://iz.ru/2183891/2026-10-14/tri-zemletriaseniia-zaregistrirovali-na-kamchatke-za-sutki",
+      "source": "iz",
       "all_sources": [
-        "rt"
+        "iz"
       ],
-      "duplicate_count": 1,
-      "date": "2026-10-10 11:41"
+      "duplicate_count": 2,
+      "date": "2026-10-14T08:11"
+    },
+    {
+      "title": "На Камчатке за неделю зарегистрировали 27 сейсмособытий",
+      "title_orig": "",
+      "url": "https://www.vesti.ru/ns/na-kamchatke-za-nedelyu-zaregistrirovali-27-sejsmosobytij",
+      "source": "vesti",
+      "all_sources": [
+        "vesti"
+      ],
+      "duplicate_count": 2,
+      "date": "2026-10-12T01:46"
     },
     {
       "title": "Оценены последствия землетрясения в Японии для России",
@@ -713,17 +915,6 @@
       "date": "2026-10-22 23:40"
     },
     {
-      "title": "На Камчатке за неделю зафиксировали 11 сейсмособытий",
-      "title_orig": "",
-      "url": "https://www.vesti.ru/ns/na-kamchatke-za-nedelyu-zafiksirovali-11-sejsmosobytij",
-      "source": "vesti",
-      "all_sources": [
-        "vesti"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-10-19T01:10"
-    },
-    {
       "title": "На Камчатке зарегистрировано ощущаемое сейсмособытие",
       "title_orig": "",
       "url": "https://www.vesti.ru/ns/na-kamchatke-zaregistrirovano-oshchushchaemoe-sejsmosobytie",
@@ -746,7 +937,7 @@
       "date": ""
     },
     {
-      "title": "Сейсмические узлы для окружающейся сейсмологии.",
+      "title": "Сейсмические узлы для экологической сейсмологии.",
       "title_orig": "Seismic nodes for environmental seismology",
       "url": "https://www.nature.com/articles/s43017-026-00833-8",
       "source": "nature",
@@ -755,6 +946,17 @@
       ],
       "duplicate_count": 1,
       "date": "2026-09-22T00:00:00+00:00"
+    },
+    {
+      "title": "Землетрясение зафиксировали в акватории Байкала",
+      "title_orig": "",
+      "url": "https://iz.ru/2182690/2026-10-12/zemletriasenie-zafiksirovali-v-akvatorii-baikala",
+      "source": "iz",
+      "all_sources": [
+        "iz"
+      ],
+      "duplicate_count": 1,
+      "date": "2026-10-12T08:25"
     },
     {
       "title": "Землетрясение произошло на российском курорте",
@@ -810,17 +1012,6 @@
       ],
       "duplicate_count": 2,
       "date": "2026-04-14T14:31"
-    },
-    {
-      "title": "Четыре深海技术，可帮助探测致命地震和海啸。",
-      "title_orig": "Four deep-sea technologies that could help detect deadly earthquakes and tsunamis",
-      "url": "https://www.nature.com/articles/d41586-026-01988-6",
-      "source": "nature",
-      "all_sources": [
-        "nature"
-      ],
-      "duplicate_count": 1,
-      "date": "2026-07-14T00:00:00+00:00"
     }
   ]
 }
