@@ -47,7 +47,7 @@ export async function HeroSection() {
             {/* Сертификация и экспертизы */}
             <div className="bg-[#F8FBF9] border border-[#D6DCE3] rounded-xl p-5 mb-8">
               <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
-                <strong className="text-[#003366]">Сертификация зданий, сооружений, оборудования и материалов.</strong>{" "}
+                <strong className="text-[#003366]">Сейсмо сертификация и испытания зданий, сооружений, оборудования и материалов.</strong>{" "}
                 Любые виды разрешений и сертификатов. Лабораторные исследования и заключения экспертов.{" "}
                 <strong className="text-[#003366]">Все виды экспертиз.</strong>
               </p>
