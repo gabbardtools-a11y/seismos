@@ -387,6 +387,20 @@ function EAEMap() {
           ))}
         </svg>
       </div>
+
+      {/* SVG-версия для сравнения (временная, потом удалим) */}
+      <div className="mt-4">
+        <div className="text-[10px] tracking-[0.14em] uppercase text-[#4A6378]/60 font-semibold mb-2">
+          SVG-версия (векторная) — для сравнения
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/russia-map-vector.svg"
+          alt="Векторная SVG-карта регионов России и соседних стран"
+          className="w-full rounded-xl border border-[#D6DCE3]"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 }
