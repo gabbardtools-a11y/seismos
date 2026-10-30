@@ -77,3 +77,10 @@ scripts/robot-seismos
 # SSH/secret-bearing recovery docs (sanitized locally, NEVER commit)
 download/wrapper-seismos-0810/README-SEISMOS.txt
 download/wrapper-seismos-0810/SEISMOS-PACKET.md
+
+# Deploy SSH keys — never commit
+scripts/seismos_deploy_ed25519
+scripts/seismos-mail_key_v1
+scripts/robot-seismos
+*_key_v*
+*_deploy_ed25519
