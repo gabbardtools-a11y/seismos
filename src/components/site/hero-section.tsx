@@ -317,87 +317,26 @@ function SeismogramDivider({ lang }: { lang: 'ru' | 'en' | 'zh' }) {
 }
 
 /**
- * EAEMap — SVG-карта регионов ЕАЭС с красными точками столиц.
- * 9 регионов: Россия (Москва), Беларусь (Минск), Казахстан (Астана),
- * Армения (Ереван), Кыргызстан (Бишкек), плюс Таджикистан (Душанбе),
- * Узбекистан (Ташкент), Туркменистан (Ашхабад), Грузия (Тбилиси).
+ * EAEMap — векторная карта России, ЕАЭС и СНГ с красными точками столиц.
  *
- * Координаты приблизительные, в системе viewBox 0..1000 x 0..500.
+ * SVG построен из реальных геоданных Natural Earth 50m (проекция Меркатора):
+ * Россия включает Крым и новые территории; столицы — из фактических
+ * координат, с SMIL-анимацией пульсации. Генератор:
+ * scripts/geo_svg_map.py → public/images/russia-map-vector.svg
  */
 function EAEMap() {
-  // Столицы в координатах поверхности карты (viewBox 0..1499 x 0..878)
-  const capitals: [number, number, string][] = [
-    [620, 380, "Москва"],
-    [480, 340, "Минск"],
-    [900, 480, "Астана"],
-    [680, 660, "Ереван"],
-    [1000, 580, "Бишкек"],
-    [960, 620, "Душанбе"],
-    [980, 600, "Ташкент"],
-    [880, 680, "Ашхабад"],
-    [700, 650, "Тбилиси"],
-  ];
-
   return (
     <div className="mt-12 bg-white/60 border border-[#D6DCE3] rounded-2xl p-4 sm:p-6">
       <div className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold mb-3 flex items-center gap-2">
         <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E]" />
         ЕАЭС и СНГ — столицы сейсмически активных регионов
       </div>
-      <div className="relative rounded-xl overflow-hidden bg-white">
-        {/* Реальная карта России (очищенная, без фона и надписей) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/russia-map-clean.png"
-          alt="Карта регионов России и стран ЕАЭС с столицами сейсмически активных зон"
-          className="w-full block"
-          loading="lazy"
-        />
-        {/* SVG-слой с красными точками столиц поверх карты */}
-        <svg
-          viewBox="0 0 1499 878"
-          className="absolute inset-0 w-full h-full"
-          preserveAspectRatio="xMidYMid meet"
-          aria-label="Столицы ЕАЭС и СНГ"
-        >
-          {capitals.map(([x, y, name], i) => (
-            <g key={i}>
-              {/* Пульсирующее кольцо */}
-              <circle cx={x} cy={y} r="8" fill="none" stroke="#C8102E" strokeWidth="1.5" opacity="0.4">
-                <animate attributeName="r" values="6;14;6" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
-                <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
-              </circle>
-              {/* Основная точка */}
-              <circle cx={x} cy={y} r="5" fill="#C8102E" />
-              <circle cx={x} cy={y} r="2" fill="#fff" />
-              {/* Название столицы */}
-              <rect x={x - name.length * 3.5 - 5} y={y - 24} width={name.length * 7 + 10} height="15" rx="3" fill="#003366" opacity="0.85" />
-              <text
-                x={x}
-                y={y - 13}
-                textAnchor="middle"
-                fontSize="10"
-                fontWeight="700"
-                fill="#fff"
-                style={{ fontFamily: "sans-serif" }}
-              >
-                {name}
-              </text>
-            </g>
-          ))}
-        </svg>
-      </div>
-
-      {/* SVG-версия для сравнения (временная, потом удалим) */}
-      <div className="mt-4">
-        <div className="text-[10px] tracking-[0.14em] uppercase text-[#4A6378]/60 font-semibold mb-2">
-          SVG-версия (векторная) — для сравнения
-        </div>
+      <div className="relative rounded-xl overflow-hidden bg-white border border-[#E7EEF6]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/russia-map-vector.svg"
-          alt="Векторная SVG-карта регионов России и соседних стран"
-          className="w-full rounded-xl border border-[#D6DCE3]"
+          alt="Карта России, стран ЕАЭС и СНГ со столицами сейсмически активных зон"
+          className="w-full block"
           loading="lazy"
         />
       </div>
