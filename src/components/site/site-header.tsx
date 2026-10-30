@@ -48,15 +48,6 @@ export function SiteHeader() {
             {t("top.intlShort")}
           </span>
           <div className="flex items-center gap-3">
-            <a
-              href="https://seismo.pro"
-              className="hover:underline opacity-80 hover:opacity-100 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("top.easa")}
-            </a>
-            <span className="opacity-30">|</span>
             <LangSwitch lang={lang} switchLang={switchLang} compact />
           </div>
         </div>
