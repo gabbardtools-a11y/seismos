@@ -41,10 +41,26 @@ export function SiteHeader() {
       {/* Тонкая верхняя полоса с международной привязкой */}
       <div className="bg-[#003366] text-white text-[11px] tracking-[0.18em] uppercase">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
-          <span className="hidden sm:inline font-medium opacity-80">
+          <span className="hidden sm:inline font-medium opacity-80 flex items-center gap-1.5">
+            {/* Эмблема ООН (SVG) */}
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 inline-block" aria-label="UN emblem" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="0.8" opacity="0.6" />
+              {/* Азия/Африка — упрощённая карта мира в круге */}
+              <path d="M7 8 L9 7 L11 8 L10 10 L8 11 L7 10 Z M12 6 L14 7 L13 9 L11 8 Z M9 12 L11 13 L10 15 L8 14 Z M13 11 L15 12 L14 14 L12 13 Z M10 16 L12 17 L11 18 Z" fill="currentColor" opacity="0.7" />
+              {/* Меридианы */}
+              <ellipse cx="12" cy="12" rx="5" ry="11" stroke="currentColor" strokeWidth="0.4" opacity="0.4" fill="none" />
+              <ellipse cx="12" cy="12" rx="11" ry="11" stroke="currentColor" strokeWidth="0.4" opacity="0.3" fill="none" />
+              <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="0.4" opacity="0.3" />
+              <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" strokeWidth="0.4" opacity="0.3" />
+            </svg>
             {t("top.intl")}
           </span>
-          <span className="sm:hidden font-medium opacity-80">
+          <span className="sm:hidden font-medium opacity-80 flex items-center gap-1">
+            <svg viewBox="0 0 24 24" className="h-3 w-3 inline-block" aria-label="UN emblem" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="0.8" opacity="0.6" />
+              <ellipse cx="12" cy="12" rx="5" ry="11" stroke="currentColor" strokeWidth="0.4" opacity="0.4" fill="none" />
+              <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="0.4" opacity="0.3" />
+            </svg>
             {t("top.intlShort")}
           </span>
           <div className="flex items-center gap-3">
