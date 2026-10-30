@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getLang } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/translations";
 
+import { SiteHeader } from "@/components/site/site-header";
+
 /**
  * Страница подробностей о землетрясении.
  * Источник: eqalert.ru (ФИЦ ЕГС РАН) через наш прокси /api/eqalert.
@@ -118,7 +120,8 @@ export default async function EarthquakeDetailPage({
     : t("quake.mcDarkRed", lang);
 
   return (
-    <main className="min-h-screen bg-paper-grid">
+    <main className="min-h-screen bg-white">
+      <SiteHeader />
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-12 py-10 lg:py-16">

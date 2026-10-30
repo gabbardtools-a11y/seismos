@@ -9,6 +9,8 @@
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck, Building2, Wrench, Activity, Layers, Waves, Zap } from "lucide-react";
 
+import { SiteHeader } from "@/components/site/site-header";
+
 export const metadata = {
   title: "Сейсмозащита зданий и сооружений · СРОСС®",
   description:
@@ -17,7 +19,8 @@ export const metadata = {
 
 export default function SeismoProtectionPage() {
   return (
-    <main className="min-h-screen bg-paper-grid">
+    <main className="min-h-screen bg-white">
+      <SiteHeader />
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-12 py-10 lg:py-14">
         <div className="mb-6 flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">

@@ -6,6 +6,8 @@
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck, Building2, FlaskConical, FileText, Wrench, Award } from "lucide-react";
 
+import { SiteHeader } from "@/components/site/site-header";
+
 export const metadata = {
   title: "Сертификаты сейсмостойкости сейсмобезопасности зданий сооружений конструкций оборудования материалов лаборатория",
   description: "Сертификация сейсмостойкости: как получить сертификат, какие испытания проводятся, нормативная база (ГОСТ 30546, СП 14.13330), шкала MSK-64, лаборатории и органы по сертификации.",
@@ -18,7 +20,8 @@ export const metadata = {
 
 export default function SertifikatyPage() {
   return (
-    <main className="min-h-screen bg-paper-grid">
+    <main className="min-h-screen bg-white">
+      <SiteHeader />
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-12 py-10 lg:py-14">
         <div className="mb-6 flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">

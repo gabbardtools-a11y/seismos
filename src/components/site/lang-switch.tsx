@@ -1,9 +1,12 @@
 'use client';
 
 /**
- * Переключатель языков [ RU ][ EN ][ 中 ] — эталон aipat/mktu/iqin.
- * Цвета: синий / изумруд / красный.
+ * Переключатель языков.
+ * Десктоп: кнопки в ряд (RU EN 中 KK HY KA TG UZ KY MD).
+ * Мобилка: глобус с выпадающим вниз меню.
  */
+import { useState, useEffect, useRef } from 'react';
+import { Globe, ChevronDown, Check } from 'lucide-react';
 import { LANGUAGES, type Lang } from '@/lib/i18n/translations';
 
 const STYLES: Record<Lang, { on: string; off: string }> = {
@@ -58,26 +61,84 @@ export function LangSwitch({
   switchLang: (l: Lang) => void;
   compact?: boolean;
 }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const currentLang = LANGUAGES.find((l) => l.code === lang);
+
+  // Закрытие по клику вне
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
   return (
-    <div className="flex items-center gap-1" role="group" aria-label="Language">
-      {LANGUAGES.map(({ code, label }) => {
-        const active = code === lang;
-        const s = STYLES[code];
-        return (
-          <button
-            key={code}
-            onClick={() => switchLang(code)}
-            aria-pressed={active}
-            aria-label={label}
-            title={label}
-            className={`${
-              compact ? 'px-1.5 py-0.5 text-[10px]' : 'px-2 py-1 text-[11px]'
-            } font-bold border transition-colors rounded-sm ${active ? s.on : s.off}`}
-          >
-            {label}
-          </button>
-        );
-      })}
-    </div>
+    <>
+      {/* Десктоп: кнопки в ряд */}
+      <div className="hidden sm:flex items-center gap-1" role="group" aria-label="Language">
+        {LANGUAGES.map(({ code, label }) => {
+          const active = code === lang;
+          const s = STYLES[code];
+          return (
+            <button
+              key={code}
+              onClick={() => switchLang(code)}
+              aria-pressed={active}
+              aria-label={label}
+              title={label}
+              className={`${
+                compact ? 'px-1.5 py-0.5 text-[10px]' : 'px-2 py-1 text-[11px]'
+              } font-bold border transition-colors rounded-sm ${active ? s.on : s.off}`}
+            >
+              {label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Мобилка: глобус с dropdown */}
+      <div className="sm:hidden relative" ref={ref}>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Выбрать язык"
+          aria-expanded={mobileOpen}
+          className="flex items-center gap-1 px-2 py-1 text-[11px] font-bold border border-[#00549F]/30 text-[#00549F] rounded-sm transition-colors hover:border-[#00549F]"
+        >
+          <Globe className="h-3.5 w-3.5" />
+          <span>{currentLang?.label || 'RU'}</span>
+          <ChevronDown className={`h-3 w-3 transition-transform ${mobileOpen ? 'rotate-180' : ''}`} />
+        </button>
+
+        {mobileOpen && (
+          <div className="absolute top-full right-0 mt-1 z-[70] min-w-[160px] bg-white border border-[#D6DCE3] rounded-lg shadow-xl overflow-hidden max-h-[300px] overflow-y-auto">
+            {LANGUAGES.map(({ code, label, nativeName }) => {
+              const active = code === lang;
+              return (
+                <button
+                  key={code}
+                  onClick={() => {
+                    switchLang(code);
+                    setMobileOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between gap-2 px-3 py-2 text-[12px] font-medium border-b border-[#D6DCE3] last:border-b-0 transition-colors ${
+                    active ? 'bg-[#00549F]/10 text-[#00549F] font-bold' : 'text-[#4A6378] hover:bg-[#E7EEF6]'
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold opacity-60 w-6">{label}</span>
+                    {nativeName}
+                  </span>
+                  {active && <Check className="h-3.5 w-3.5 text-[#00549F]" />}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </>
   );
 }

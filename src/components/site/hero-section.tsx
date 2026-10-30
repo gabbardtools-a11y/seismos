@@ -44,6 +44,15 @@ export async function HeroSection() {
               {t("hero.missionPost", lang)}
             </p>
 
+            {/* Сертификация и экспертизы */}
+            <div className="bg-[#F8FBF9] border border-[#D6DCE3] rounded-xl p-5 mb-8">
+              <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
+                <strong className="text-[#003366]">Сертификация зданий, сооружений, оборудования и материалов.</strong>{" "}
+                Любые виды разрешений и сертификатов. Лабораторные исследования и заключения экспертов.{" "}
+                <strong className="text-[#003366]">Все виды экспертиз.</strong>
+              </p>
+            </div>
+
             {/* Метрики */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10 py-6 border-y border-[#D6DCE3]">
               <Metric value="50+" label={t("hero.mYears", lang)} />
