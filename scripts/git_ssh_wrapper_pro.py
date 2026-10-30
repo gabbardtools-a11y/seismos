@@ -86,9 +86,11 @@ def main():
         hk = client.get_transport().get_remote_server_key()
         import base64 as b64mod
         import hashlib as hl
-        fp = "SHA256:" + b64mod.b64encode(hl.sha256(hk.get_fingerprint()).digest()).decode().rstrip("=")
-        if fp != os.environ["GIT_SSH_HOSTKEY_FP"]:
-            die("отпечаток сервера " + fp + " != ожидаемого, отменяю")
+        # фикс T203: стандартный SHA256-фп = sha256(asbytes) (было sha256(md5_fp) — двойной хэш, v2)
+        fp = "SHA256:" + b64mod.b64encode(hl.sha256(hk.asbytes()).digest()).decode().rstrip("=")
+        allowed = [x.strip() for x in os.environ["GIT_SSH_HOSTKEY_FP"].split(",") if x.strip()]
+        if fp not in allowed:
+            die("отпечаток сервера " + fp + " не в списке официальных, отменяю")
 
     chan = client.get_transport().open_session()
     chan.settimeout(120.0)
