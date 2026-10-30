@@ -54,8 +54,7 @@ export async function EarthquakeMapSection() {
 
         {/* Iframe с картой */}
         <div
-          className="relative rounded-2xl overflow-hidden border border-[#D6DCE3] shadow-xl"
-          style={{ height: "640px" }}
+          className="relative rounded-2xl overflow-hidden border border-[#D6DCE3] shadow-xl h-[400px] sm:h-[640px]"
         >
           <iframe
             src="/earthquake-map.html"

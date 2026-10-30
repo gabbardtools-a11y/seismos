@@ -29,7 +29,7 @@ export async function HeroSection() {
         {/* Резиновый контейнер на всю ширину страницы */}
         <div>
             {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
-            <h1 className="text-[28px] sm:text-[34px] lg:text-[40px] xl:text-[46px] leading-[1.15] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
+            <h1 className="text-[22px] sm:text-[34px] lg:text-[40px] xl:text-[46px] leading-[1.2] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
               {t("hero.h1", lang)}
             </h1>
 
@@ -45,7 +45,7 @@ export async function HeroSection() {
             </p>
 
             {/* Метрики */}
-            <div className="grid grid-cols-3 gap-6 mb-10 py-6 border-y border-[#D6DCE3]">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10 py-6 border-y border-[#D6DCE3]">
               <Metric value="50+" label={t("hero.mYears", lang)} />
               <Metric value="2009" label={<span><span className="text-[#7B1E2B] font-bold">seismo.ru</span> — {t("hero.mLaunch", lang)}</span>} />
               <Metric value="9" label={t("hero.mRegions", lang)} />

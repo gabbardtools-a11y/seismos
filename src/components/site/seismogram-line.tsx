@@ -109,11 +109,11 @@ export function SeismogramLine() {
   const theme = THEMES[region];
 
   return (
-    <div className="flex-1 h-40 overflow-hidden relative min-w-0">
+    <div className="flex-1 h-20 sm:h-40 overflow-hidden relative min-w-0">
       {/* Glow-подложка — свечение пиков */}
       <svg
         viewBox="0 0 1600 40"
-        className="h-40 absolute seismogram-scroll"
+        className="h-20 sm:h-40 absolute seismogram-scroll"
         preserveAspectRatio="none"
         aria-hidden
         style={{ width: "200%" }}
@@ -142,7 +142,7 @@ export function SeismogramLine() {
       {/* Основная линия */}
       <svg
         viewBox="0 0 1600 40"
-        className="h-40 absolute seismogram-scroll"
+        className="h-20 sm:h-40 absolute seismogram-scroll"
         preserveAspectRatio="none"
         aria-hidden
         style={{ width: "200%" }}
