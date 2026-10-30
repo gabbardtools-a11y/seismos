@@ -334,7 +334,7 @@ function EAEMap() {
       <div className="relative rounded-xl overflow-hidden bg-white border border-[#E7EEF6]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/russia-map-vector.svg"
+          src="/images/russia-map-vector.svg?v=3"
           alt="Карта России, стран ЕАЭС и СНГ со столицами сейсмически активных зон"
           className="w-full block"
           loading="lazy"
