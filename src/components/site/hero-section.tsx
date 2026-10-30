@@ -85,6 +85,9 @@ export async function HeroSection() {
               </Button>
             </div>
         </div>
+
+        {/* SVG-карта ЕАЭС с красными точками столиц */}
+        <EAEMap />
       </div>
     </section>
   );
@@ -309,6 +312,127 @@ function SeismogramDivider({ lang }: { lang: 'ru' | 'en' | 'zh' }) {
           <span>{t("live.ok", lang)}</span>
         </span>
       </div>
+    </div>
+  );
+}
+
+/**
+ * EAEMap — SVG-карта регионов ЕАЭС с красными точками столиц.
+ * 9 регионов: Россия (Москва), Беларусь (Минск), Казахстан (Астана),
+ * Армения (Ереван), Кыргызстан (Бишкек), плюс Таджикистан (Душанбе),
+ * Узбекистан (Ташкент), Туркменистан (Ашхабад), Грузия (Тбилиси).
+ *
+ * Координаты приблизительные, в системе viewBox 0..1000 x 0..500.
+ */
+function EAEMap() {
+  // Столицы: [x, y, название]
+  const capitals: [number, number, string][] = [
+    [520, 165, "Москва"],
+    [430, 150, "Минск"],
+    [680, 230, "Астана"],
+    [560, 360, "Ереван"],
+    [730, 320, "Бишкек"],
+    [700, 360, "Душанбе"],
+    [710, 340, "Ташкент"],
+    [660, 390, "Ашхабад"],
+    [570, 350, "Тбилиси"],
+  ];
+
+  return (
+    <div className="mt-12 bg-white/60 border border-[#D6DCE3] rounded-2xl p-4 sm:p-6">
+      <div className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold mb-3 flex items-center gap-2">
+        <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E]" />
+        ЕАЭС и СНГ — столицы сейсмически активных регионов
+      </div>
+      <svg
+        viewBox="0 0 1000 500"
+        className="w-full"
+        role="img"
+        aria-label="Карта регионов ЕАЭС с标记 столиц"
+      >
+        {/* Фон-сетка */}
+        <defs>
+          <pattern id="grid-eae" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E7EEF6" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="1000" height="500" fill="url(#grid-eae)" />
+
+        {/* Упрощённые контуры стран ЕАЭС/СНГ */}
+        {/* Россия — большая полоса сверху */}
+        <path
+          d="M 150 100 Q 300 80 500 90 Q 700 80 850 100 L 880 150 Q 850 180 800 175 Q 700 165 600 170 Q 500 165 450 160 Q 400 155 350 165 Q 250 175 200 160 Q 170 140 150 100 Z"
+          fill="#E7EEF6"
+          stroke="#00549F"
+          strokeWidth="1"
+          opacity="0.5"
+        />
+        {/* Беларусь */}
+        <path
+          d="M 400 140 L 460 135 L 465 165 L 410 170 Z"
+          fill="#E7EEF6"
+          stroke="#00549F"
+          strokeWidth="1"
+          opacity="0.5"
+        />
+        {/* Казахстан */}
+        <path
+          d="M 580 200 Q 650 190 780 200 Q 820 230 800 280 Q 720 290 680 270 Q 620 250 580 230 Z"
+          fill="#E7EEF6"
+          stroke="#00549F"
+          strokeWidth="1"
+          opacity="0.5"
+        />
+        {/* Кавказ (Армения, Грузия) */}
+        <path
+          d="M 530 330 L 600 325 L 595 370 L 535 370 Z"
+          fill="#E7EEF6"
+          stroke="#00549F"
+          strokeWidth="1"
+          opacity="0.5"
+        />
+        {/* Средняя Азия (Узбекистан, Таджикистан, Туркменистан, Кыргызстан) */}
+        <path
+          d="M 640 300 Q 700 290 760 310 Q 780 350 760 400 Q 700 410 650 390 Q 620 360 640 300 Z"
+          fill="#E7EEF6"
+          stroke="#00549F"
+          strokeWidth="1"
+          opacity="0.5"
+        />
+
+        {/* Красные точки столиц с пульсацией */}
+        {capitals.map(([x, y, name], i) => (
+          <g key={i}>
+            {/* Внешнее кольцо (пульсация) */}
+            <circle cx={x} cy={y} r="8" fill="none" stroke="#C8102E" strokeWidth="1" opacity="0.3">
+              <animate attributeName="r" values="6;12;6" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
+            </circle>
+            {/* Основная точка */}
+            <circle cx={x} cy={y} r="4" fill="#C8102E" />
+            <circle cx={x} cy={y} r="1.5" fill="#fff" />
+            {/* Название столицы */}
+            <text
+              x={x}
+              y={y - 12}
+              textAnchor="middle"
+              fontSize="10"
+              fontWeight="700"
+              fill="#003366"
+              style={{ fontFamily: "sans-serif" }}
+            >
+              {name}
+            </text>
+          </g>
+        ))}
+
+        {/* Подписи регионов */}
+        <text x="450" y="125" fontSize="11" fill="#00549F" fontWeight="600" opacity="0.5">Россия</text>
+        <text x="430" y="190" fontSize="9" fill="#00549F" fontWeight="600" opacity="0.5">Беларусь</text>
+        <text x="690" y="260" fontSize="11" fill="#00549F" fontWeight="600" opacity="0.5">Казахстан</text>
+        <text x="560" y="390" fontSize="9" fill="#00549F" fontWeight="600" opacity="0.5">Кавказ</text>
+        <text x="700" y="420" fontSize="9" fill="#00549F" fontWeight="600" opacity="0.5">Средняя Азия</text>
+      </svg>
     </div>
   );
 }
