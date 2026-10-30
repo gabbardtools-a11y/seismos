@@ -325,17 +325,19 @@ function SeismogramDivider({ lang }: { lang: 'ru' | 'en' | 'zh' }) {
  * Координаты приблизительные, в системе viewBox 0..1000 x 0..500.
  */
 function EAEMap() {
-  // Столицы в координатах поверхности AI-карты (viewBox 0..1000 x 0..571)
+  // Столицы в координатах реальной SVG-карты России (viewBox 0..800 x 0..573)
+  // Россия занимает большую часть карты, остальные страны — за пределами
+  // Поэтому точки для столиц СНГ приблизительные, по краям карты
   const capitals: [number, number, string][] = [
-    [380, 180, "Москва"],
-    [300, 165, "Минск"],
-    [560, 280, "Астана"],
-    [400, 400, "Ереван"],
-    [620, 360, "Бишкек"],
-    [590, 390, "Душанбе"],
-    [600, 370, "Ташкент"],
-    [540, 430, "Ашхабад"],
-    [410, 390, "Тбилиси"],
+    [310, 255, "Москва"],
+    [250, 230, "Минск"],
+    [500, 320, "Астана"],
+    [340, 420, "Ереван"],
+    [570, 390, "Бишкек"],
+    [540, 415, "Душанбе"],
+    [560, 400, "Ташкент"],
+    [490, 445, "Ашхабад"],
+    [350, 410, "Тбилиси"],
   ];
 
   return (
@@ -344,39 +346,39 @@ function EAEMap() {
         <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E]" />
         ЕАЭС и СНГ — столицы сейсмически активных регионов
       </div>
-      <div className="relative rounded-xl overflow-hidden">
-        {/* AI-сгенерированная карта ЕАЭС */}
+      <div className="relative rounded-xl overflow-hidden bg-white">
+        {/* Реальная SVG-карта регионов России */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/eaeu-map.png"
-          alt="Карта регионов ЕАЭС и СНГ: Россия, Беларусь, Казахстан, Армения, Кыргызстан, Узбекистан, Таджикистан, Туркменистан, Грузия"
+          src="/images/russia-regions.svg"
+          alt="Карта регионов России и стран ЕАЭС с столицами сейсмически активных зон"
           className="w-full block"
           loading="lazy"
         />
         {/* SVG-слой с красными точками столиц поверх карты */}
         <svg
-          viewBox="0 0 1000 571"
+          viewBox="0 0 800 573"
           className="absolute inset-0 w-full h-full"
-          preserveAspectRatio="xMidYMid slice"
+          preserveAspectRatio="xMidYMid meet"
           aria-label="Столицы ЕАЭС и СНГ"
         >
           {capitals.map(([x, y, name], i) => (
             <g key={i}>
               {/* Пульсирующее кольцо */}
-              <circle cx={x} cy={y} r="10" fill="none" stroke="#C8102E" strokeWidth="1.5" opacity="0.4">
-                <animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
+              <circle cx={x} cy={y} r="8" fill="none" stroke="#C8102E" strokeWidth="1.5" opacity="0.4">
+                <animate attributeName="r" values="6;14;6" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
                 <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
               </circle>
               {/* Основная точка */}
               <circle cx={x} cy={y} r="5" fill="#C8102E" />
               <circle cx={x} cy={y} r="2" fill="#fff" />
               {/* Название столицы */}
-              <rect x={x - name.length * 4 - 6} y={y - 28} width={name.length * 8 + 12} height="16" rx="3" fill="#003366" opacity="0.85" />
+              <rect x={x - name.length * 3.5 - 5} y={y - 24} width={name.length * 7 + 10} height="15" rx="3" fill="#003366" opacity="0.85" />
               <text
                 x={x}
-                y={y - 17}
+                y={y - 13}
                 textAnchor="middle"
-                fontSize="11"
+                fontSize="10"
                 fontWeight="700"
                 fill="#fff"
                 style={{ fontFamily: "sans-serif" }}
