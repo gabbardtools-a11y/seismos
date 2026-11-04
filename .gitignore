@@ -62,6 +62,13 @@ download/seismos-deploy.tar.gz
 out/
 next-service-dist/
 
+# Временные скриншоты/файлы проверки и пользовательские загрузки — не в репозиторий
+upload/
+tool-results/
+download/*.png
+download/*.jpg
+download/*.webp
+
 # Brand assets (large PNG/SVG)
 download/sross-brand/*.png
 download/sross-brand/*.tar.gz

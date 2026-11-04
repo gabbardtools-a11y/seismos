@@ -50,6 +50,14 @@
   --color-sross-cream: #FAF7F2;
   --color-sross-paper: #FFFFFF;
   --color-sross-line: #D6DCE3;
+
+  /* Globe tokens — маппинг на CSS-переменные палитры глобуса */
+  --color-globe-bg: var(--globe-bg);
+  --color-globe-accent: var(--globe-accent-100);
+  --color-globe-accent-200: var(--globe-accent-200);
+  --color-globe-border: var(--globe-border-100);
+  --color-globe-land: var(--globe-land);
+  --color-globe-grid: var(--globe-grid);
 }
 
 :root {
@@ -60,6 +68,18 @@
   --card-foreground: oklch(0.18 0.02 240);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.02 240);
+
+  /* === Палитра «Сейсмо Глобуса» ===
+     Используется клиентским компонентом через useCssVar(). */
+  --globe-bg: #fffbf5;
+  --globe-accent-100: #ff5e1f;
+  --globe-accent-200: #ff7038;
+  --globe-border-100: #f0e3de;
+  /* Суша — синяя, чтобы красные маркеры землетрясений читались контрастно. */
+  --globe-land: #2563eb;
+  /* Сетка и базовая сфера — холодные, поддерживают синюю сушу. */
+  --globe-grid: #d9e2f2;
+  --globe-ocean-tint: #d8e6f8;
 
   /* Primary = UN Blue */
   --primary: #00549F;

@@ -1,28 +1,22 @@
 /**
- * Страница «Сейсмо Глобус» — интерактивный глобус землетрясений.
+ * Страница «Сейсмо Глобус» — интерактивный 3D-глобус землетрясений.
  *
- * Контейнер под интерактивный глобус готов. Когда пользователь пришлёт код
- * глобуса (Three.js / Globe.gl / react-globe.gl / D3-ortho / чистый SVG) —
- * вставляем его в компонент <SeismoGlobe /> ниже.
- *
- * Страница построена в той же визуальной системе, что и /seismoprotection:
- *   - SiteHeader с навигацией
- *   - синяя боковая полоса 1.5px
- *   - breadcrumb «На главную»
- *   - hero с иконкой и подзаголовком
- *   - контейнер под глобус (карточка с белой рамкой)
- *   - поясняющий блок снизу
+ * Источник данных: eqalert.ru (через серверный прокси /api/earthquakes).
+ * Глобус построен на three.js + @react-three/fiber (компонент <EqGlobe />).
+ * Визуальная палитра синхронизирована с сайтом через CSS-переменные
+ * --globe-* (см. globals.css).
  */
+import { Suspense } from "react";
 import Link from "next/link";
-import { ArrowLeft, Globe2, Activity, Waves } from "lucide-react";
+import { ArrowLeft, Globe2 } from "lucide-react";
 
 import { SiteHeader } from "@/components/site/site-header";
-import { SeismoGlobe } from "@/components/site/seismo-globe";
+import { EqGlobe } from "@/components/globe/eq-globe";
 
 export const metadata = {
   title: "Сейсмо Глобус · СРОСС®",
   description:
-    "Интерактивный глобус сейсмической активности Земли: эпицентры землетрясений, активные разломы и тектонические плиты. Вращайте, приближайте, изучайте.",
+    "Интерактивный 3D-глобус землетрясений Земли в реальном времени. Эпицентры свежих событий по данным eqalert.ru, ГС РАН. Вращайте, приближайте, наводите на маркер — магнитуда, глубина и время события.",
 };
 
 export default function SeismoGlobusPage() {
@@ -53,54 +47,59 @@ export default function SeismoGlobusPage() {
             Сейсмо Глобус
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed max-w-3xl">
-            Интерактивный 3D-глобус землетрясений Земли. Эпицентры свежих и
-            исторических событий, активные тектонические разломы и границы плит.
-            Вращайте мышью, приближайте колесом, наводите на точку — увидите
-            магнитуду, глубину и время события.
+            Интерактивный 3D-глобус землетрясений Земли в реальном времени.
+            Пульсирующие маркеры — эпицентры последних событий по данным
+            eqalert.ru (ГС РАН). Размер и цвет точки зависят от магнитуды,
+            при наведении — карточка события с деталями. Вращайте мышью,
+            приближайте колесом.
           </p>
         </div>
 
-        {/* === Контейнер под интерактивный глобус ===
-            Сюда вставляется код пользователя (SeismoGlobe компонент).
-            Карточка занимает максимум ширины, высота 70vh на десктопе,
-            60vh на мобильном. */}
+        {/* === Глобус ===
+            EqGlobe — клиентский компонент с three.js Canvas.
+            Suspense нужен на случай загрузки текстур (earth_atmos_2048.jpg,
+            land-mask.png) и первого запроса к /api/earthquakes. */}
         <div className="bg-[#F8FBF9] border border-[#D6DCE3] rounded-2xl p-4 sm:p-6 mb-10">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
             <div className="flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">
               <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
-              Live · данные обновляются в реальном времени
+              Live · данные eqalert.ru
             </div>
             <div className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378]">
-              Источники: USGS · EMSC · GS RAS
+              Источник: ГС РАН · EQAlert
             </div>
           </div>
 
-          {/* Сам глобус — клиентский компонент */}
-          <div className="relative rounded-xl overflow-hidden bg-[#001A33] border border-[#E7EEF6] aspect-[4/3] sm:aspect-[16/10]">
-            <SeismoGlobe />
+          <div className="relative rounded-xl overflow-hidden border border-[#E7EEF6] bg-[#fffbf5]">
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-[560px] md:h-[760px] text-[#4A6378] text-sm">
+                  Загружаем глобус…
+                </div>
+              }
+            >
+              <EqGlobe />
+            </Suspense>
           </div>
 
           <p className="mt-3 text-[11px] tracking-[0.08em] uppercase text-[#4A6378]">
-            Перетаскивайте — вращать · колесо мыши — приближать · клик по точке — детали события
+            Тяните — вращать · колесо мыши — приближать · наведите на маркер — карточка события
           </p>
         </div>
 
         {/* Поясняющий блок: что показывает глобус */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           <InfoCard
-            icon={<Activity className="h-5 w-5 text-[#C8102E]" />}
-            title="Эпицентры"
-            text="Красные точки — места свежих землетрясений за последние 30 суток. Размер точки пропорционален магнитуде, прозрачность — давности."
+            title="Эпицентры в реальном времени"
+            text="Пульсирующие маркеры — свежие землетрясения по данным eqalert.ru. Цвет: оранжевый (M<4), красно-оранжевый (M 4–5.5), тёмно-красный (M≥5.5). Размер пропорционален магнитуде."
           />
           <InfoCard
-            icon={<Waves className="h-5 w-5 text-[#00549F]" />}
-            title="Разломы и плиты"
-            text="Синие линии — главные тектонические разломы и границы литосферных плит. Именно вдоль них происходит 90% всех землетрясений планеты."
+            title="Два режима суши"
+            text="«Реалистичная» — текстура Земли со спутника с атмосферным ореолом. «Точки» — стилизованная синяя суша из 50 000 точек Фибоначчи, на фоне которой красные маркеры читаются максимально контрастно."
           />
           <InfoCard
-            icon={<Globe2 className="h-5 w-5 text-[#2D5F3F]" />}
-            title="Тихоокеанское кольцо"
-            text="Подсветка Тихоокеанского вулканического кольца — зоны, где сосредоточено до 80% мировой сейсмической энергии и 90% крупнейших мегаземлетрясений."
+            title="Обновление каждые 60 с"
+            text="Серверный прокси /api/earthquakes обращается к rest-api.eqalert.ru и кэширует ответ на 2 минуты. При недоступности источника отдаются последние сохранённые данные с пометкой «кэш»."
           />
         </div>
 
@@ -118,10 +117,17 @@ export default function SeismoGlobusPage() {
             способ увидеть, что Земля живая и постоянно движется.
           </p>
           <p className="text-[#4A6378] leading-relaxed">
-            Данные поступают из открытых каталогов <strong>USGS</strong> (Геологическая
-            служба США), <strong>EMSC</strong> (Европейско-Средиземноморский
-            сейсмологический центр) и <strong>ГС РАН</strong> (Геофизическая служба
-            Российской академии наук). Обновление — каждые 5–15 минут.
+            Данные поступают из открытого сервиса{" "}
+            <a
+              href="https://eqalert.ru/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#00549F] hover:underline"
+            >
+              eqalert.ru
+            </a>{" "}
+            (ООО «Геофизические технологии» / Геофизическая служба РАН).
+            Обновление ленты — каждую минуту.
           </p>
         </div>
       </div>
@@ -129,21 +135,10 @@ export default function SeismoGlobusPage() {
   );
 }
 
-function InfoCard({
-  icon,
-  title,
-  text,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  text: string;
-}) {
+function InfoCard({ title, text }: { title: string; text: string }) {
   return (
     <div className="bg-white border border-[#D6DCE3] rounded-xl p-5">
-      <div className="flex items-center gap-2 mb-2">
-        {icon}
-        <h3 className="text-[15px] font-bold text-[#003366]">{title}</h3>
-      </div>
+      <h3 className="text-[15px] font-bold text-[#003366] mb-2">{title}</h3>
       <p className="text-[13px] text-[#4A6378] leading-relaxed">{text}</p>
     </div>
   );
