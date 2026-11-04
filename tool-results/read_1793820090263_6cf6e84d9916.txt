@@ -1,0 +1,697 @@
+     1→"""
+     2→Парсер заголовков новостей о землетрясениях с 4 источников.
+     3→
+     4→Источники:
+     5→- iz.ru — RSS https://iz.ru/xml/rss/all.xml (фильтрация по ключевым словам)
+     6→- russian.rt.com — RSS https://russian.rt.com/rss (фильтрация по ключевым словам)
+     7→- lenta.ru — RSS https://lenta.ru/rss (фильтрация по ключевым словам)
+     8→- vesti.ru — через z-ai page_reader (RSS отсутствует), парсинг HTML
+     9→
+    10→Дедупликация: группировка по Jaccard на словах ≥ 0.55, выбор самого длинного.
+    11→Фильтр: только заголовки про землетрясения.
+    12→
+    13→Выход: src/data/news-headlines.json
+    14→"""
+    15→
+    16→import json
+    17→import re
+    18→import sys
+    19→import subprocess
+    20→import urllib.request
+    21→import xml.etree.ElementTree as ET
+    22→from datetime import datetime, timezone
+    23→from pathlib import Path
+    24→
+    25→SOURCES = [
+    26→    {
+    27→        "key": "iz",
+    28→        "name": "Известия",
+    29→        "page_url": "https://iz.ru/tag/zemletriasenie",
+    30→        "base": "https://iz.ru",
+    31→        # Tag-specific RSS возвращает HTML — парсим через page_reader
+    32→    },
+    33→    {
+    34→        "key": "rt",
+    35→        "name": "RT на русском",
+    36→        "page_url": "https://russian.rt.com/tag/zemletryasenie",
+    37→        "base": "https://russian.rt.com",
+    38→    },
+    39→    {
+    40→        "key": "lenta",
+    41→        "name": "Lenta.RU",
+    42→        "page_url": "https://lenta.ru/tags/story/earthquakesrussia/",
+    43→        "rss": "https://lenta.ru/rss",
+    44→        "base": "https://lenta.ru",
+    45→        # Сначала пробуем RSS, потом page_reader как fallback
+    46→    },
+    47→    {
+    48→        "key": "vesti",
+    49→        "name": "Вести.RU",
+    50→        "page_url": "https://www.vesti.ru/proisshestviya/stikhiinye-bedstviya/zemletryaseniya",
+    51→        "base": "https://www.vesti.ru",
+    52→    },
+    53→    {
+    54→        "key": "ria",
+    55→        "name": "РИА Новости",
+    56→        "rss": "https://ria.ru/export/rss2/index.xml",
+    57→        "base": "https://ria.ru",
+    58→    },
+    59→    {
+    60→        "key": "tass",
+    61→        "name": "ТАСС",
+    62→        "rss": "https://tass.ru/rss/v2.xml",
+    63→        "base": "https://tass.ru",
+    64→    },
+    65→    {
+    66→        "key": "interfax",
+    67→        "name": "Интерфакс",
+    68→        "rss": "https://www.interfax.ru/rss.asp",
+    69→        "base": "https://www.interfax.ru",
+    70→    },
+    71→    {
+    72→        "key": "nature",
+    73→        "name": "Nature (перевод)",
+    74→        "rss": "https://www.nature.com/subjects/seismology.rss",
+    75→        "base": "https://www.nature.com",
+    76→        "lang": "en",
+    77→        "needs_translation": True,
+    78→    },
+    79→]
+    80→
+    81→EQ_KEYWORDS = ["землетряс", "сейсмо", "толчок", "магнитуд", "рясени", "эпицентр", "подземн"]
+    82→EQ_KEYWORDS_EN = ["earthquake", "seismic", "tremor", "magnitude", "fault", "tectonic", "tsunami"]
+    83→
+    84→
+    85→def is_earthquake(text, lang="ru"):
+    86→    t = text.lower()
+    87→    keywords = EQ_KEYWORDS_EN if lang == "en" else EQ_KEYWORDS
+    88→    return any(k in t for k in keywords)
+    89→
+    90→
+    91→def translate_title(title):
+    92→    """Перевод английского заголовка через z-ai LLM. Возвращает только перевод."""
+    93→    try:
+    94→        result = subprocess.run(
+    95→            ["z-ai", "chat", "-p",
+    96→             "Переведи на русский язык заголовок научной новости одним предложением. "
+    97→             "Сохрани технические термины (магнитуда, PGA, MSK-64, сейсмический, тектонический и т.п.). "
+    98→             "Только перевод, без пояснений и вариантов. Заголовок: " + title,
+    99→             "-o", "/tmp/_trans.json"],
+   100→            capture_output=True, text=True, timeout=60
+   101→        )
+   102→        if result.returncode == 0:
+   103→            d = json.load(open("/tmp/_trans.json"))
+   104→            content = d.get("choices", [{}])[0].get("message", {}).get("content", "")
+   105→            # Извлекаем перевод: первая строка после "**" или просто первая непустая
+   106→            lines = content.split("\n")
+   107→            for line in lines:
+   108→                line = line.strip()
+   109→                if not line:
+   110→                    continue
+   111→                # Пропускаем служебные строки
+   112→                if line.startswith("🚀") or line.startswith("✅") or line.startswith("#"):
+   113→                    continue
+   114→                # Если строка содержит **перевод** — извлечь между **
+   115→                if line.startswith("**") and "**" in line[2:]:
+   116→                    end = line.index("**", 2)
+   117→                    return line[2:end].strip()
+   118→                # Если строка начинается с цифры-точки (вариант) — берём текст после
+   119→                if re.match(r'^\d+\.\s', line):
+   120→                    # Уберём нумерацию
+   121→                    line = re.sub(r'^\d+\.\s+', '', line)
+   122→                    if line.startswith("**") and "**" in line[2:]:
+   123→                        end = line.index("**", 2)
+   124→                        return line[2:end].strip()
+   125→                    return line
+   126→                # Иначе — первая непустая строка
+   127→                return line
+   128→        return title  # fallback — оригинал
+   129→    except Exception as e:
+   130→        print(f"  translate error: {e}", file=sys.stderr)
+   131→        return title
+   132→
+   133→
+   134→def fetch_url(url):
+   135→    """Прямой HTTP-запрос через urllib (для RSS)."""
+   136→    try:
+   137→        req = urllib.request.Request(
+   138→            url,
+   139→            headers={
+   140→                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
+   141→                "Accept": "application/rss+xml, application/xml, text/xml, */*",
+   142→            },
+   143→        )
+   144→        with urllib.request.urlopen(req, timeout=15) as resp:
+   145→            return resp.read().decode("utf-8", errors="replace")
+   146→    except Exception as e:
+   147→        print(f"  fetch_url error: {e}", file=sys.stderr)
+   148→        return ""
+   149→
+   150→
+   151→def fetch_page_reader(url):
+   152→    """Получить HTML через z-ai page_reader (обходит блокировки)."""
+   153→    try:
+   154→        result = subprocess.run(
+   155→            ["z-ai", "function", "-n", "page_reader",
+   156→             "-a", json.dumps({"url": url}),
+   157→             "-o", "/tmp/_news_vesti.json"],
+   158→            capture_output=True, text=True, timeout=90
+   159→        )
+   160→        if result.returncode != 0:
+   161→            return ""
+   162→        d = json.load(open("/tmp/_news_vesti.json"))
+   163→        return d.get("data", {}).get("html", "")
+   164→    except Exception as e:
+   165→        print(f"  page_reader error: {e}", file=sys.stderr)
+   166→        return ""
+   167→
+   168→
+   169→def parse_rss(xml_text, source):
+   170→    """Парсинг RSS — извлечение title, link, pubDate. Перевод для англоязычных."""
+   171→    titles = []
+   172→    if not xml_text:
+   173→        return titles
+   174→    try:
+   175→        root = ET.fromstring(xml_text)
+   176→    except ET.ParseError as e:
+   177→        print(f"  RSS parse error: {e}", file=sys.stderr)
+   178→        return titles
+   179→
+   180→    lang = source.get("lang", "ru")
+   181→    needs_translation = source.get("needs_translation", False)
+   182→
+   183→    # RSS 2.0: channel/item
+   184→    items = root.findall(".//item")
+   185→    for item in items:
+   186→        title_el = item.find("title")
+   187→        link_el = item.find("link")
+   188→        date_el = item.find("pubDate")
+   189→        if title_el is None or not title_el.text:
+   190→            continue
+   191→        title_orig = re.sub(r"\s+", " ", title_el.text).strip()
+   192→        url = link_el.text.strip() if link_el is not None and link_el.text else ""
+   193→        date = date_el.text.strip() if date_el is not None and date_el.text else ""
+   194→        if not title_orig or len(title_orig) < 15:
+   195→            continue
+   196→        if not is_earthquake(title_orig, lang=lang):
+   197→            continue
+   198→
+   199→        # Перевод если нужно
+   200→        title_translated = ""
+   201→        if needs_translation:
+   202→            print(f"    перевод: {title_orig[:60]}...", flush=True)
+   203→            title_translated = translate_title(title_orig)
+   204→
+   205→        titles.append({
+   206→            "title": title_translated or title_orig,
+   207→            "title_orig": title_orig if needs_translation else "",
+   208→            "url": url,
+   209→            "source": source["key"],
+   210→            "date": normalize_date(date),
+   211→        })
+   212→    return titles
+   213→
+   214→
+   215→def parse_html(html, source):
+   216→    """
+   217→    Парсинг HTML — поиск заголовков с привязкой URL и даты.
+   218→    Возвращает список {title, url, source, date}.
+   219→
+   220→    Стратегии:
+   221→    1. <a href="...">текст-заголовок</a> — URL из href, дата из ближайшего
+   222→       <time> или datePublished
+   223→    2. Заголовок в alt/img/h2 — ищем ближайший <a href> в радиусе 2000 символов
+   224→    3. JSON-встроенные данные: "title":"...", "url":"...", "date":"..."
+   225→    4. og:title — fallback, без URL
+   226→    """
+   227→    titles = []
+   228→    if not html:
+   229→        return titles
+   230→
+   231→    # 1. Все <a> с длинным текстом + URL
+   232→    #    Также обрабатываем случай, когда внутри <a> есть время/категория + заголовок
+   233→    #    (vesti.ru паттерн: "02:52 вчера Происшествия Землетрясение магнитудой...")
+   234→    for m in re.finditer(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', html, re.S):
+   235→        href = m.group(1)
+   236→        # Очистим контент от тегов
+   237→        raw_text = re.sub(r"<[^>]+>", " ", m.group(2))
+   238→        raw_text = re.sub(r"\s+", " ", raw_text).strip()
+   239→        if not raw_text or len(raw_text) < 15:
+   240→            continue
+   241→        if not is_earthquake(raw_text):
+   242→            continue
+   243→        # Нормализуем URL
+   244→        if href.startswith("/"):
+   245→            url = source["base"] + href
+   246→        elif not href.startswith("http"):
+   247→            url = source["base"] + "/" + href.lstrip("/")
+   248→        else:
+   249→            url = href
+   250→        # Извлекаем дату из начала текста (vesti: "HH:MM DD.MM.YYYY Категория Заголовок")
+   251→        text, date = extract_date_from_text(raw_text)
+   252→        if not text or len(text) < 15:
+   253→            continue
+   254→        # Если дата не найдена в тексте — ищем в HTML рядом
+   255→        if not date:
+   256→            date = find_date_near(html, m.start(), m.end(), radius=1500)
+   257→        titles.append({
+   258→            "title": text,
+   259→            "url": url,
+   260→            "source": source["key"],
+   261→            "date": date,
+   262→        })
+   263→
+   264→    # 2. Заголовки в <h2>/<h3>/<h4>, <img alt> — ищем ближайший <a href>
+   265→    #    (для iz.ru — заголовок в alt картинки, URL в соседнем <a>)
+   266→    seen_titles = {t["title"] for t in titles}
+   267→    for tag in ["h2", "h3", "h4"]:
+   268→        for m in re.finditer(rf"<{tag}[^>]*>([^<]{{15,300}})</{tag}>", html):
+   269→            text = re.sub(r"\s+", " ", m.group(1)).strip()
+   270→            if not text or not is_earthquake(text) or text in seen_titles:
+   271→                continue
+   272→            url = find_url_near(html, m.start(), m.end(), radius=2000, base=source["base"])
+   273→            date = find_date_near(html, m.start(), m.end(), radius=2000)
+   274→            titles.append({"title": text, "url": url, "source": source["key"], "date": date})
+   275→            seen_titles.add(text)
+   276→
+   277→    # 2b. Заголовки в alt="" картинок, где alt находится ВНУТРИ <a href>
+   278→    #     (точное сопоставление URL — iz.ru паттерн)
+   279→    for m in re.finditer(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', html, re.S):
+   280→        href = m.group(1)
+   281→        content = m.group(2)
+   282→        if href.startswith("#") or href.startswith("javascript:"):
+   283→            continue
+   284→        alt_m = re.search(r'<img[^>]*alt="([^"]{15,300})"', content)
+   285→        if not alt_m:
+   286→            continue
+   287→        text = re.sub(r"\s+", " ", alt_m.group(1)).strip()
+   288→        if not text or not is_earthquake(text) or text in seen_titles:
+   289→            continue
+   290→        # Нормализуем URL
+   291→        if href.startswith("/"):
+   292→            url = source["base"] + href
+   293→        elif not href.startswith("http"):
+   294→            url = source["base"] + "/" + href.lstrip("/")
+   295→        else:
+   296→            url = href
+   297→        # Дата — в радиусе 1500 от этого <a>
+   298→        date = find_date_near(html, m.start(), m.end(), radius=1500)
+   299→        titles.append({"title": text, "url": url, "source": source["key"], "date": date})
+   300→        seen_titles.add(text)
+   301→
+   302→    # 2c. Заголовки в alt="" картинок БЕЗ <a> вокруг — fallback на find_url_near
+   303→
+   304→    # 3. JSON-встроенные данные
+   305→    for key in ["title", "headline", "name"]:
+   306→        for m in re.finditer(rf'"{key}"\s*:\s*"([^"\\]{{15,300}})"', html):
+   307→            text = m.group(1).strip()
+   308→            if not text or not is_earthquake(text) or text in seen_titles:
+   309→                continue
+   310→            try:
+   311→                text = text.encode("utf-8").decode("unicode_escape", errors="replace")
+   312→            except Exception:
+   313→                pass
+   314→            url = find_url_near(html, m.start(), m.end(), radius=1500, base=source["base"])
+   315→            date = find_date_near(html, m.start(), m.end(), radius=1500)
+   316→            titles.append({"title": text, "url": url, "source": source["key"], "date": date})
+   317→            seen_titles.add(text)
+   318→
+   319→    # 4. og:title (fallback)
+   320→    for m in re.finditer(r'<meta\s+(?:property|name)=["\']og:title["\']\s+content=["\']([^"\']{15,300})["\']', html):
+   321→        text = m.group(1).strip()
+   322→        if not text or not is_earthquake(text) or text in seen_titles:
+   323→            continue
+   324→        titles.append({"title": text, "url": "", "source": source["key"], "date": ""})
+   325→
+   326→    return titles
+   327→
+   328→
+   329→def find_url_near(html, start, end, radius=2000, base=""):
+   330→    """
+   331→    Найти ближайший URL в <a href="..."> к позиции заголовка.
+   332→    Возвращает абсолютный URL того <a>, который ближайший к [start, end].
+   333→
+   334→    Логика: ищем все <a href> в радиусе `radius`, выбираем тот,
+   335→    у которого минимальное расстояние от позиции href до позиции заголовка.
+   336→    """
+   337→    search_start = max(0, start - radius)
+   338→    search_end = min(len(html), end + radius)
+   339→    snippet = html[search_start:search_end]
+   340→
+   341→    # Все <a href> в сниппете с их абсолютной позицией
+   342→    candidates = []
+   343→    for m in re.finditer(r'<a[^>]*href="([^"]+)"[^>]*>', snippet):
+   344→        href = m.group(1)
+   345→        if href.startswith("#") or href.startswith("javascript:"):
+   346→            continue
+   347→        # Нормализуем
+   348→        if href.startswith("/"):
+   349→            href = base + href
+   350→        elif not href.startswith("http"):
+   351→            href = base + "/" + href.lstrip("/")
+   352→        # Абсолютная позиция href в html
+   353→        abs_pos = search_start + m.start()
+   354→        # Расстояние от href до интервала заголовка
+   355→        if abs_pos < start:
+   356→            dist = start - abs_pos
+   357→        elif abs_pos > end:
+   358→            dist = abs_pos - end
+   359→        else:
+   360→            dist = 0  # href внутри заголовка — ближайший
+   361→        candidates.append((dist, href))
+   362→
+   363→    if not candidates:
+   364→        return ""
+   365→
+   366→    # Берём ближайший по расстоянию
+   367→    candidates.sort(key=lambda x: x[0])
+   368→    return candidates[0][1]
+   369→
+   370→
+   371→def find_date_near(html, start, end, radius=1500):
+   372→    """
+   373→    Найти дату публикации в радиусе `radius` символов от [start, end].
+   374→    Возвращает ISO-строку или пустую строку.
+   375→
+   376→    Ищет:
+   377→    - <meta itemprop="datePublished" content="...">
+   378→    - <time datetime="...">
+   379→    - data-date="..."
+   380→    - "date":"..." / "publishedAt":"..." в JSON
+   381→    """
+   382→    search_start = max(0, start - radius)
+   383→    search_end = min(len(html), end + radius)
+   384→    snippet = html[search_start:search_end]
+   385→
+   386→    # 1. <meta itemprop="datePublished" content="...">
+   387→    m = re.search(r'datePublished"\s*content="([^"]+)"', snippet)
+   388→    if m:
+   389→        return normalize_date(m.group(1))
+   390→
+   391→    # 2. <time datetime="...">
+   392→    m = re.search(r'<time[^>]*datetime="([^"]+)"', snippet)
+   393→    if m:
+   394→        return normalize_date(m.group(1))
+   395→
+   396→    # 3. datetime="..." атрибут вообще
+   397→    m = re.search(r'datetime="(\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}[^"]*)"', snippet)
+   398→    if m:
+   399→        return normalize_date(m.group(1))
+   400→
+   401→    # 4. data-date="..."
+   402→    m = re.search(r'data-date="([^"]+)"', snippet)
+   403→    if m:
+   404→        return normalize_date(m.group(1))
+   405→
+   406→    # 5. JSON: "date":"..." / "publishedAt":"..." / "pubDate":"..."
+   407→    m = re.search(r'"(?:date|publishedAt|pubDate|publishDate|createdAt|published_time)"\s*:\s*"([^"]+)"', snippet)
+   408→    if m:
+   409→        return normalize_date(m.group(1))
+   410→
+   411→    # 6. Извлечение даты из URL (например /news/2026/10/09/...)
+   412→    m = re.search(r'/(\d{4})/(\d{2})/(\d{2})/', snippet)
+   413→    if m:
+   414→        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+   415→
+   416→    return ""
+   417→
+   418→
+   419→def normalize_date(s):
+   420→    """Нормализовать дату к ISO-формату YYYY-MM-DD или YYYY-MM-DDTHH:MM."""
+   421→    s = s.strip()
+   422→    if not s:
+   423→        return ""
+   424→
+   425→    # Уже ISO?
+   426→    if re.match(r'^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?', s):
+   427→        return s
+   428→
+   429→    # DD.MM.YYYY
+   430→    m = re.match(r'^(\d{1,2})\.(\d{1,2})\.(\d{4})', s)
+   431→    if m:
+   432→        return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+   433→
+   434→    # YYYY-MM-DD HH:MM
+   435→    m = re.match(r'^(\d{4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{2})', s)
+   436→    if m:
+   437→        return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}T{int(m.group(4)):02d}:{m.group(5)}"
+   438→
+   439→    # RSS pubDate: 'Fri, 9 Oct 2026 17:45:58 +0000' (RFC-822)
+   440→    try:
+   441→        from datetime import datetime
+   442→        # Нормализуем день: '9 Oct' → '09 Oct'
+   443→        normalized = re.sub(r'(\s)(\d)(\s)', r'\g<1>0\g<2>\g<3>', s, count=1)
+   444→        d = datetime.strptime(normalized, "%a, %d %b %Y %H:%M:%S %z")
+   445→        return d.isoformat()
+   446→    except (ValueError, TypeError):
+   447→        pass
+   448→
+   449→    return s
+   450→
+   451→
+   452→def extract_date_from_text(text):
+   453→    """
+   454→    Извлечь дату/время и очистить заголовок.
+   455→
+   456→    Поддерживаемые паттерны:
+   457→    1. vesti: "HH:MM DD.MM.YYYY Категория Заголовок" — дата в начале
+   458→    2. vesti: "HH:MM вчера/сегодня Категория Заголовок" — дата в начале
+   459→    3. iz.ru: "DD месяца YYYY, HH:MM Заголовок [лид...]" — дата в начале
+   460→    4. lenta: "Заголовок HH:MM, DD месяца YYYY Категория" — дата в конце
+   461→    5. lenta: "Заголовок HH:MM, DD месяца YYYY" — дата в конце
+   462→
+   463→    Также убираем имя автора в конце (vesti: "... Заголовок Имя Фамилия")
+   464→
+   465→    Возвращает (clean_title, iso_date).
+   466→    """
+   467→    # Паттерн 1: "HH:MM DD.MM.YYYY Категория Заголовок" (vesti)
+   468→    m = re.match(r'^(\d{1,2}:\d{2})\s+(\d{1,2}\.\d{1,2}\.\d{4})\s+\S+\s+(.+)$', text)
+   469→    if m:
+   470→        time_str, date_str, title = m.group(1), m.group(2), m.group(3).strip()
+   471→        dm = re.match(r'(\d{1,2})\.(\d{1,2})\.(\d{4})', date_str)
+   472→        tm = re.match(r'(\d{1,2}):(\d{2})', time_str)
+   473→        if dm and tm:
+   474→            iso = f"{dm.group(3)}-{int(dm.group(2)):02d}-{int(dm.group(1)):02d}T{int(tm.group(1)):02d}:{tm.group(2)}"
+   475→            return clean_title_end(title), iso
+   476→        return clean_title_end(title), ""
+   477→
+   478→    # Паттерн 2: "HH:MM вчера/сегодня Категория Заголовок" (vesti)
+   479→    m = re.match(r'^(\d{1,2}:\d{2})\s+(вчера|сегодня)\s+\S+\s+(.+)$', text, re.IGNORECASE)
+   480→    if m:
+   481→        time_str, day_word, title = m.group(1), m.group(2).lower(), m.group(3).strip()
+   482→        from datetime import datetime, timedelta, timezone
+   483→        now = datetime.now(timezone.utc)
+   484→        d = now - timedelta(days=1) if day_word == "вчера" else now
+   485→        tm = re.match(r'(\d{1,2}):(\d{2})', time_str)
+   486→        if tm:
+   487→            iso = f"{d.year}-{d.month:02d}-{d.day:02d}T{int(tm.group(1)):02d}:{tm.group(2)}"
+   488→            return clean_title_end(title), iso
+   489→        return clean_title_end(title), ""
+   490→
+   491→    # Паттерн 3: iz.ru — "DD месяца YYYY, HH:MM Заголовок [лид]"
+   492→    MONTHS_RU = {
+   493→        "января": 1, "февраля": 2, "марта": 3, "апреля": 4, "мая": 5, "июня": 6,
+   494→        "июля": 7, "августа": 8, "сентября": 9, "октября": 10, "ноября": 11, "декабря": 12
+   495→    }
+   496→    m = re.match(
+   497→        r'^(\d{1,2})\s+(' + "|".join(MONTHS_RU.keys()) + r')\s+(\d{4}),\s+(\d{1,2}:\d{2})\s+(.+)$',
+   498→        text
+   499→    )
+   500→    if m:
+   501→        day, month_name, year, time_str, rest = m.groups()
+   502→        month = MONTHS_RU[month_name]
+   503→        tm = re.match(r'(\d{1,2}):(\d{2})', time_str)
+   504→        # rest = "Заголовок В <лид>..." — нужно отрезать от "В " если есть
+   505→        # Обычно iz.ru: "Заголовок В [первое слово лида]"
+   506→        # Возьмём первое предложение
+   507→        title = rest.strip()
+   508→        # Если есть " В " или " На " в начале остатка — это лида, отрежем
+   509→        # Но это рискованно. Возьмём только первое предложение до точки/вопроса
+   510→        # или до двойного пробела
+   511→        # На практике iz.ru: "Заголовок Подземные толчки..." — заголовок = первое слово до "Подземные"
+   512→        # Проще: заголовок = текст до первой заглавной буквы после строчной (но это сложно)
+   513→        # Альтернатива: взять весь rest как заголовок (с лидом)
+   514→        # Лучше: отрезать по первому "В " или "На " или "За " если они после пробела
+   515→        # и перед ними стоит строчная буква (конец заголовка)
+   516→        # Простой подход: отрезать по " В " (типичный iz.ru паттерн)
+   517→        m2 = re.match(r'^(.+?[а-я])\s+(?:В|На|За|По|Как|После|Из-за)\s+', title)
+   518→        if m2:
+   519→            title = m2.group(1)
+   520→        if tm:
+   521→            iso = f"{year}-{month:02d}-{int(day):02d}T{int(tm.group(1)):02d}:{tm.group(2)}"
+   522→            return title, iso
+   523→        return title, ""
+   524→
+   525→    # Паттерн 4: lenta — "Заголовок HH:MM, DD месяца YYYY Категория"
+   526→    m = re.search(r'\s+(\d{1,2}:\d{2}),\s+(\d{1,2})\s+(' + "|".join(MONTHS_RU.keys()) + r')\s+(\d{4})(?:\s+\S+)?\s*$', text)
+   527→    if m:
+   528→        time_str, day, month_name, year = m.group(1), m.group(2), m.group(3), m.group(4)
+   529→        month = MONTHS_RU[month_name]
+   530→        # Заголовок = всё до этого паттерна
+   531→        title = text[:m.start()].strip()
+   532→        tm = re.match(r'(\d{1,2}):(\d{2})', time_str)
+   533→        if tm:
+   534→            iso = f"{year}-{month:02d}-{int(day):02d}T{int(tm.group(1)):02d}:{tm.group(2)}"
+   535→            return title, iso
+   536→        return title, ""
+   537→
+   538→    # Паттерн 5: просто время в конце "Заголовок HH:MM" — без даты
+   539→    m = re.search(r'\s+\d{1,2}:\d{2}\s*$', text)
+   540→    if m:
+   541→        return text[:m.start()].strip(), ""
+   542→
+   543→    # Дата не найдена — возвращаем как есть
+   544→    return text, ""
+   545→
+   546→
+   547→def clean_title_end(title):
+   548→    """
+   549→    Очистить заголовок от имени автора в конце (vesti: "... Заголовок Имя Фамилия").
+   550→    Эвристика: если последние 1-2 слова — это имя (начинаются с заглавной,
+   551→    не содержат точек/длинных слов), отрезаем.
+   552→    """
+   553→    # Простой подход: отрезать последнее слово если оно похоже на имя
+   554→    # (одно-два слова с заглавной, до 15 символов, без цифр и знаков)
+   555→    words = title.split()
+   556→    if len(words) < 4:
+   557→        return title
+   558→    # Проверим последние 2 слова
+   559→    last1 = words[-1]
+   560→    last2 = words[-2] if len(words) >= 2 else ""
+   561→    # Имя — кириллица, заглавная, до 15 символов
+   562→    def is_name(w):
+   563→        return (
+   564→            len(w) <= 15
+   565→            and w[0].isupper() if w else False
+   566→            and re.match(r'^[А-ЯЁ][а-яё]+$', w) is not None
+   567→        )
+   568→    if is_name(last1) and is_name(last2):
+   569→        # Два слова-имени — отрезаем оба
+   570→        return " ".join(words[:-2])
+   571→    if is_name(last1):
+   572→        return " ".join(words[:-1])
+   573→    return title
+   574→
+   575→
+   576→def tokenize(text):
+   577→    t = text.lower()
+   578→    t = re.sub(r"[^\w\s]", " ", t)
+   579→    t = re.sub(r"\d+", " ", t)
+   580→    return set(t.split())
+   581→
+   582→
+   583→def jaccard(a, b):
+   584→    if not a or not b:
+   585→        return 0
+   586→    inter = len(a & b)
+   587→    union = len(a | b)
+   588→    return inter / union if union else 0
+   589→
+   590→
+   591→def deduplicate(all_titles, threshold=0.55):
+   592→    """Группировка по похожести, выбор самого длинного из группы."""
+   593→    # Сортируем по длине убыв
+   594→    all_titles.sort(key=lambda x: len(x["title"]), reverse=True)
+   595→
+   596→    groups = []
+   597→    for t in all_titles:
+   598→        t_tokens = tokenize(t["title"])
+   599→        matched = False
+   600→        for g in groups:
+   601→            if jaccard(t_tokens, g[0]["tokens"]) >= threshold:
+   602→                g.append(t)
+   603→                matched = True
+   604→                break
+   605→        if not matched:
+   606→            groups.append([t])
+   607→
+   608→    result = []
+   609→    for g in groups:
+   610→        # Самый длинный заголовок в группе
+   611→        best = max(g, key=lambda x: len(x["title"]))
+   612→        all_sources = list(set([x["source"] for x in g]))
+   613→        # Если у best нет URL, попробуем найти URL в группе
+   614→        url = best["url"]
+   615→        if not url:
+   616→            for x in g:
+   617→                if x["url"]:
+   618→                    url = x["url"]
+   619→                    break
+   620→        result.append({
+   621→            "title": best["title"],
+   622→            "title_orig": best.get("title_orig", ""),
+   623→            "url": url,
+   624→            "source": best["source"],
+   625→            "all_sources": all_sources,
+   626→            "duplicate_count": len(g),
+   627→            "date": best.get("date", ""),
+   628→        })
+   629→    return result
+   630→
+   631→
+   632→def main():
+   633→    print("=== Парсинг заголовков новостей о землетрясениях ===", flush=True)
+   634→    all_titles = []
+   635→
+   636→    for src in SOURCES:
+   637→        print(f"\n→ {src['name']}", flush=True)
+   638→
+   639→        titles = []
+   640→        # Если есть RSS — пробуем сначала его
+   641→        if "rss" in src:
+   642→            print(f"  RSS: {src['rss']}", flush=True)
+   643→            xml = fetch_url(src["rss"])
+   644→            print(f"  Получено: {len(xml)} символов", flush=True)
+   645→            titles = parse_rss(xml, src)
+   646→
+   647→        # Если RSS пустой или нет RSS — пробуем page_reader
+   648→        if not titles and "page_url" in src:
+   649→            print(f"  page_reader: {src['page_url']}", flush=True)
+   650→            html = fetch_page_reader(src["page_url"])
+   651→            print(f"  Получено: {len(html)} символов", flush=True)
+   652→            titles = parse_html(html, src)
+   653→
+   654→        # Убираем дубли внутри источника
+   655→        seen = set()
+   656→        unique = []
+   657→        for t in titles:
+   658→            key = t["title"].lower().strip()
+   659→            if key not in seen:
+   660→                seen.add(key)
+   661→                unique.append(t)
+   662→        print(f"  Найдено: {len(titles)} → уникальных: {len(unique)}", flush=True)
+   663→        for t in unique[:5]:
+   664→            print(f"    [{len(t['title']):3}] {t['title'][:90]}", flush=True)
+   665→            if t["url"]:
+   666→                print(f"           → {t['url'][:100]}", flush=True)
+   667→        all_titles.extend(unique)
+   668→
+   669→    print(f"\n=== Всего сырых заголовков: {len(all_titles)} ===", flush=True)
+   670→
+   671→    # Добавляем tokens
+   672→    for t in all_titles:
+   673→        t["tokens"] = tokenize(t["title"])
+   674→
+   675→    deduped = deduplicate(all_titles, threshold=0.55)
+   676→    print(f"=== После дедупликации: {len(deduped)} ===", flush=True)
+   677→
+   678→    # Сортируем: пожирнее (длиннее) — выше
+   679→    deduped.sort(key=lambda x: len(x["title"]), reverse=True)
+   680→
+   681→    result = {
+   682→        "fetched_at": datetime.now(timezone.utc).isoformat(),
+   683→        "total_raw": len(all_titles),
+   684→        "total_unique": len(deduped),
+   685→        "sources": [{"key": s["key"], "name": s["name"]} for s in SOURCES],
+   686→        "news": deduped,
+   687→    }
+   688→
+   689→    out_path = Path("/home/z/my-project/src/data/news-headlines.json")
+   690→    out_path.parent.mkdir(parents=True, exist_ok=True)
+   691→    out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+   692→    print(f"\n✓ Сохранено: {out_path} ({out_path.stat().st_size} bytes)", flush=True)
+   693→
+   694→
+   695→if __name__ == "__main__":
+   696→    main()
+   697→
