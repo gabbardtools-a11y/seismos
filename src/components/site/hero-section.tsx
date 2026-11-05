@@ -31,8 +31,9 @@ export async function HeroSection() {
 
       <div className="w-full px-4 sm:px-6 lg:px-12 py-12 lg:py-16">
         <HeroGlobeFlow>
-          {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
-          <h1 className="text-[22px] sm:text-[34px] lg:text-[40px] xl:text-[44px] leading-[1.2] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
+          {/* Главный заголовок — с одной первой заглавной буквой,
+              СНГ и ЕАЭС остаются заглавными аббревиатурами */}
+          <h1 className="text-[22px] sm:text-[34px] lg:text-[40px] xl:text-[44px] leading-[1.2] font-bold tracking-[-0.01em] text-[#003366] mb-6">
             {t("hero.h1", lang)}
           </h1>
 
