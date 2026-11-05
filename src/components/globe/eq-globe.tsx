@@ -24,6 +24,7 @@ import {
   type EqEvent,
   type EqResponse,
 } from "@/lib/earthquakes";
+import { findNearestCity, formatLocation, type NearestCity } from "@/lib/geo/nearest-city";
 
 /* ------------------------------------------------------------------ */
 /* Данные: /api/earthquakes (серверный прокси к eqalert.ru)            */
@@ -475,6 +476,24 @@ export function EqGlobe({
   const hoveredIndexRef = useRef<number>(-1);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [hovered, setHovered] = useState<HoverInfo | null>(null);
+  const [nearestCity, setNearestCity] = useState<NearestCity | null>(null);
+
+  // При смене наведённого события — асинхронно ищем ближайший город
+  useEffect(() => {
+    if (!hovered) {
+      setNearestCity(null);
+      return;
+    }
+    let cancelled = false;
+    findNearestCity(hovered.event.lat, hovered.event.lon).then((city) => {
+      if (!cancelled) setNearestCity(city);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [hovered]);
+
+  const location = formatLocation(nearestCity);
 
   const isMinimal = variant === "minimal";
 
@@ -674,6 +693,17 @@ export function EqGlobe({
               </div>
 
               <dl className="mt-2.5 space-y-1.5 text-xs">
+                <div className="flex justify-between gap-3">
+                  <dt className="shrink-0 text-foreground/50">Место</dt>
+                  <dd className="text-right font-medium text-foreground/80">
+                    {location.primary}
+                    {location.secondary && (
+                      <span className="block text-[10px] font-normal text-foreground/50">
+                        {location.secondary}
+                      </span>
+                    )}
+                  </dd>
+                </div>
                 <div className="flex justify-between gap-3">
                   <dt className="shrink-0 text-foreground/50">Время</dt>
                   <dd className="text-right font-medium text-foreground/80">
