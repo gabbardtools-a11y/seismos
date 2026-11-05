@@ -89,14 +89,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-[#D6DCE3]">
       {/* Тонкая верхняя полоса с международной привязкой */}
-      <div className="bg-[#003366] text-white text-[11px] tracking-[0.18em] uppercase">
+      <div className="bg-[#003366] text-white text-[12px] tracking-[0.04em]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-3">
-          <div className="hidden sm:flex font-medium opacity-80 items-center gap-2 whitespace-nowrap min-w-0">
+          <div className="hidden sm:flex font-medium items-center gap-2 whitespace-nowrap min-w-0">
             {/* Вращающийся 3D-глобус (SVG + CSS-анимация) */}
             <GlobeEmblem className="h-5 w-5 flex-shrink-0" />
             <span className="truncate">{t("top.intl")}</span>
           </div>
-          <div className="sm:hidden flex font-medium opacity-80 items-center gap-1.5 whitespace-nowrap min-w-0">
+          <div className="sm:hidden flex font-medium items-center gap-1.5 whitespace-nowrap min-w-0">
             <GlobeEmblem className="h-4 w-4 flex-shrink-0" />
             <span className="truncate">{t("top.intlShort")}</span>
           </div>
@@ -131,7 +131,7 @@ export function SiteHeader() {
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
                     <button
-                      className="flex items-center gap-1 px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase text-[#A52A2A] hover:text-[#7B1E1E] hover:bg-[#F5E6E6] transition-colors rounded-sm"
+                      className="flex items-center gap-1 px-3 py-2 text-[14px] font-semibold tracking-[0.02em] text-[#5C1414] hover:text-[#3D0A0A] hover:bg-[#F5E6E6] transition-colors rounded-sm"
                       aria-expanded={openDropdown === item.label}
                       onClick={() =>
                         setOpenDropdown(openDropdown === item.label ? null : item.label)
@@ -153,14 +153,14 @@ export function SiteHeader() {
                             return (
                               <div key={child.href}>
                                 {showGroup && (
-                                  <div className="px-4 pt-3 pb-1 text-[10px] font-bold tracking-[0.16em] uppercase text-[#A52A2A] bg-[#F8FBF9] border-t border-[#E7EEF6] first:border-t-0">
+                                  <div className="px-4 pt-3 pb-1 text-[11px] font-bold tracking-[0.08em] text-[#5C1414] bg-[#F8FBF9] border-t border-[#E7EEF6] first:border-t-0">
                                     {child.group}
                                   </div>
                                 )}
                                 <Link
                                   href={child.href}
                                   onClick={() => setOpenDropdown(null)}
-                                  className="block px-4 py-2 text-[12px] font-semibold tracking-[0.06em] uppercase text-[#A52A2A] hover:text-[#7B1E1E] hover:bg-[#F5E6E6] transition-colors"
+                                  className="block px-4 py-2 text-[13px] font-semibold tracking-[0.02em] text-[#5C1414] hover:text-[#3D0A0A] hover:bg-[#F5E6E6] transition-colors"
                                 >
                                   {child.label}
                                 </Link>
@@ -177,7 +177,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-3 py-2 text-[13px] font-semibold tracking-[0.08em] uppercase text-[#A52A2A] hover:text-[#7B1E1E] hover:bg-[#F5E6E6] transition-colors rounded-sm"
+                  className="px-3 py-2 text-[14px] font-semibold tracking-[0.02em] text-[#5C1414] hover:text-[#3D0A0A] hover:bg-[#F5E6E6] transition-colors rounded-sm"
                 >
                   {item.label}
                 </Link>
@@ -191,13 +191,13 @@ export function SiteHeader() {
               href="/login"
               aria-label="Личный кабинет"
               title="Личный кабинет"
-              className="p-2 text-[#A52A2A] hover:text-[#7B1E1E] transition-colors"
+              className="p-2 text-[#00549F] hover:text-[#003366] transition-colors"
             >
               <UserCircle className="h-6 w-6 lg:h-5 lg:w-5" />
             </Link>
             {/* Мобильная кнопка */}
             <button
-              className="lg:hidden p-2 text-[#A52A2A]"
+              className="lg:hidden p-2 text-[#5C1414]"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={t("nav.openMenu")}
             >
@@ -217,7 +217,7 @@ export function SiteHeader() {
                 return (
                   <div key={item.label}>
                     <button
-                      className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold tracking-[0.08em] uppercase text-[#A52A2A] hover:bg-[#F5E6E6] rounded-sm"
+                      className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold tracking-[0.02em] text-[#5C1414] hover:bg-[#F5E6E6] rounded-sm"
                       aria-expanded={expanded}
                       onClick={() =>
                         setOpenDropdown(expanded ? null : item.label)
@@ -238,7 +238,7 @@ export function SiteHeader() {
                           return (
                             <div key={child.href}>
                               {showGroup && (
-                                <div className="px-3 pt-3 pb-1 text-[10px] font-bold tracking-[0.14em] uppercase text-[#A52A2A]">
+                                <div className="px-3 pt-3 pb-1 text-[11px] font-bold tracking-[0.08em] text-[#5C1414]">
                                   {child.group}
                                 </div>
                               )}
@@ -248,7 +248,7 @@ export function SiteHeader() {
                                   setOpenDropdown(null);
                                   setMobileOpen(false);
                                 }}
-                                className="block px-3 py-2 text-[12px] font-semibold tracking-[0.06em] uppercase text-[#4A6378] hover:text-[#7B1E1E] hover:bg-[#F5E6E6] rounded-sm"
+                                className="block px-3 py-2 text-[13px] font-semibold tracking-[0.02em] text-[#4A6378] hover:text-[#5C1414] hover:bg-[#F5E6E6] rounded-sm"
                               >
                                 {child.label}
                               </Link>
@@ -265,7 +265,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-3 py-3 text-sm font-semibold tracking-[0.08em] uppercase text-[#A52A2A] hover:bg-[#F5E6E6] rounded-sm"
+                  className="px-3 py-3 text-sm font-semibold tracking-[0.02em] text-[#5C1414] hover:bg-[#F5E6E6] rounded-sm"
                 >
                   {item.label}
                 </Link>
