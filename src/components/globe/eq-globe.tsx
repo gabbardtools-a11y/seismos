@@ -440,7 +440,29 @@ function EqMarkers({
 /* Публичный компонент: канвас + HTML-оверлей (тултип, легенда)        */
 /* ------------------------------------------------------------------ */
 
-export function EqGlobe() {
+export function EqGlobe({
+  variant = "full",
+  className,
+  heightClass,
+  autoRotateSpeed = 0.3,
+  initialLon,
+}: {
+  /**
+   * "full" — полный виджет с тулбаром, тултипом, легендой и статистикой
+   *          (используется на странице /seismo-globus).
+   * "minimal" — только вращающийся глобус без оверлеев; идеально для
+   *          встраивания в hero или на главную. Суша всегда в режиме "dots".
+   */
+  variant?: "full" | "minimal";
+  /** className для внешнего контейнера (полная ширина/высота по умолчанию). */
+  className?: string;
+  /** className для обёртки Canvas (высота). По умолчанию h-[560px] md:h-[760px]. */
+  heightClass?: string;
+  /** Скорость авто-вращения. 0 = выключено. */
+  autoRotateSpeed?: number;
+  /** Зафиксировать начальную долготу (поверх), иначе — по самому сильному событию. */
+  initialLon?: number;
+}) {
   const { data, now } = useEarthquakes();
   const background = useCssVar("--globe-bg", "#fffbf5");
   // Суша — синяя: красные сейсмические маркеры контрастнее на холодном фоне.
@@ -454,11 +476,18 @@ export function EqGlobe() {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [hovered, setHovered] = useState<HoverInfo | null>(null);
 
-  // Вид суши: реалистичная текстура или синие точки (переключатель на глобусе).
-  const [landMode, setLandMode] = useState<"real" | "dots">("real");
+  const isMinimal = variant === "minimal";
 
-  // начальная ориентация: самое сильное событие ленты
-  const [aimLon, setAimLon] = useState<number | null>(null);
+  // Вид суши: реалистичная текстура или синие точки (переключатель на глобусе).
+  // В minimal-режиме — всегда "dots".
+  const [landMode, setLandMode] = useState<"real" | "dots">(
+    isMinimal ? "dots" : "real"
+  );
+
+  // начальная ориентация: зафиксированная lon ИЛИ самое сильное событие ленты
+  const [aimLon, setAimLon] = useState<number | null>(
+    typeof initialLon === "number" ? initialLon : null
+  );
   useEffect(() => {
     if (aimLon === null && events.length > 0) {
       const strongest = events.reduce((a, b) => (b.mag > a.mag ? b : a));
@@ -472,6 +501,7 @@ export function EqGlobe() {
 
   const handlePointerMove = useCallback(
     (e: ReactPointerEvent<HTMLDivElement>) => {
+      if (isMinimal) return; // в minimal-режиме тултип не нужен
       const rect = e.currentTarget.getBoundingClientRect();
       mouseRef.current = {
         x: e.clientX - rect.left,
@@ -512,14 +542,14 @@ export function EqGlobe() {
   }, [events]);
 
   return (
-    <div className="flex w-full flex-col items-center">
-      {/* баннеры состояния */}
-      {data?.stale && (
+    <div className={className ?? "flex w-full flex-col items-center"}>
+      {/* баннеры состояния — только в full-режиме */}
+      {!isMinimal && data?.stale && (
         <div className="mb-3 w-full max-w-[1200px] rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-2 text-center text-xs text-amber-800">
           {data.error ?? "Источник недоступен — показаны последние сохранённые данные."}
         </div>
       )}
-      {data && !data.ok && (
+      {!isMinimal && data && !data.ok && (
         <div className="mb-3 w-full max-w-[1200px] rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-center text-xs text-red-700">
           {data.error ?? "Не удалось загрузить данные."}
         </div>
@@ -527,34 +557,39 @@ export function EqGlobe() {
 
       {/* глобус */}
       <div
-        className="relative h-[560px] w-full cursor-grab active:cursor-grabbing md:h-[760px]"
+        className={
+          heightClass ??
+          "relative h-[560px] w-full cursor-grab active:cursor-grabbing md:h-[760px]"
+        }
         aria-label="Интерактивный глобус землетрясений"
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
       >
-        {/* переключатель вида суши */}
-        <div className="absolute right-4 top-4 z-20 inline-flex overflow-hidden rounded-full border border-globe-border bg-white/85 p-1 shadow-sm backdrop-blur-sm">
-          {(
-            [
-              ["real", "Реалистичная"],
-              ["dots", "Точки"],
-            ] as const
-          ).map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={landMode === value}
-              onClick={() => setLandMode(value)}
-              className={`h-7 rounded-full px-3.5 text-xs font-medium transition-colors ${
-                landMode === value
-                  ? "bg-globe-accent text-white"
-                  : "text-foreground/60 hover:text-foreground"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        {/* переключатель вида суши — только в full-режиме */}
+        {!isMinimal && (
+          <div className="absolute right-4 top-4 z-20 inline-flex overflow-hidden rounded-full border border-globe-border bg-white/85 p-1 shadow-sm backdrop-blur-sm">
+            {(
+              [
+                ["real", "Реалистичная"],
+                ["dots", "Точки"],
+              ] as const
+            ).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={landMode === value}
+                onClick={() => setLandMode(value)}
+                className={`h-7 rounded-full px-3.5 text-xs font-medium transition-colors ${
+                  landMode === value
+                    ? "bg-globe-accent text-white"
+                    : "text-foreground/60 hover:text-foreground"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
 
         <Canvas
           camera={{ position: cameraPosition, fov: 45 }}
@@ -576,11 +611,14 @@ export function EqGlobe() {
             enablePan={false}
             // Зум колесом мыши при наведении на глобус; страница в этот
             // момент не скроллится (OrbitControls перехватывает wheel).
-            enableZoom
+            // В minimal-режиме зум выключаем — иначе он перехватывает скролл страницы в hero.
+            enableZoom={!isMinimal}
             minDistance={2.1}
             maxDistance={4.6}
             zoomSpeed={0.8}
-            enableRotate
+            // В minimal-режиме вращение мышью выключаем — пусть глобус
+            // только крутится авто-анимацией, не мешая скроллу страницы.
+            enableRotate={!isMinimal}
             // Вертикальное вращение разблокировано: наклон «на зрителя» и
             // «от зрителя». Ограничиваем полярный угол, чтобы не переворачивать
             // глобус через полюс.
@@ -590,7 +628,7 @@ export function EqGlobe() {
             dampingFactor={0.08}
             rotateSpeed={0.8}
             autoRotate
-            autoRotateSpeed={0.3}
+            autoRotateSpeed={autoRotateSpeed}
           />
           <group scale={1.2} rotation={[0, 0, -0.25]} position={[0, 0, 0]}>
             <LandDots mode={landMode} color={land} baseTint={oceanTint} />
@@ -605,8 +643,8 @@ export function EqGlobe() {
           </group>
         </Canvas>
 
-        {/* карточка события при наведении */}
-        {hovered && (
+        {/* карточка события при наведении — только в full-режиме */}
+        {!isMinimal && hovered && (
           <div
             ref={tooltipRef}
             className="pointer-events-none absolute left-0 top-0 z-20 w-[264px]"
@@ -668,8 +706,8 @@ export function EqGlobe() {
           </div>
         )}
 
-        {/* загрузка */}
-        {!data && (
+        {/* загрузка — только в full-режиме */}
+        {!isMinimal && !data && (
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
             <div className="rounded-full border border-globe-border bg-white/80 px-4 py-1.5 text-xs text-foreground/60">
               Загружаем данные eqalert.ru…
@@ -678,50 +716,54 @@ export function EqGlobe() {
         )}
       </div>
 
-      {/* легенда + статистика */}
-      <div className="mt-4 flex w-full max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-foreground/60">
-        {MAG_LEGEND.map((tier) => (
-          <span key={tier.label} className="inline-flex items-center gap-1.5">
-            <span
-              className="h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: tier.color }}
-            />
-            {tier.label}
-          </span>
-        ))}
-        <span className="text-foreground/40">
-          Наведите курсор на маркер — карточка события. Тяните глобус — вращение и наклон, колесо мыши — масштаб.
-        </span>
-      </div>
+      {/* легенда + статистика — только в full-режиме */}
+      {!isMinimal && (
+        <>
+          <div className="mt-4 flex w-full max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-foreground/60">
+            {MAG_LEGEND.map((tier) => (
+              <span key={tier.label} className="inline-flex items-center gap-1.5">
+                <span
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{ backgroundColor: tier.color }}
+                />
+                {tier.label}
+              </span>
+            ))}
+            <span className="text-foreground/40">
+              Наведите курсор на маркер — карточка события. Тяните глобус — вращение и наклон, колесо мыши — масштаб.
+            </span>
+          </div>
 
-      <div className="mx-auto mt-5 grid w-full max-w-[1200px] grid-cols-2 gap-3 px-6 pb-4 md:grid-cols-4">
-        <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
-          <div className="text-2xl font-semibold text-globe-accent">
-            {stats ? stats.count : "—"}
+          <div className="mx-auto mt-5 grid w-full max-w-[1200px] grid-cols-2 gap-3 px-6 pb-4 md:grid-cols-4">
+            <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
+              <div className="text-2xl font-semibold text-globe-accent">
+                {stats ? stats.count : "—"}
+              </div>
+              <div className="mt-1 text-xs text-foreground/60">событий в ленте</div>
+            </div>
+            <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
+              <div className="text-2xl font-semibold text-globe-accent">
+                {stats ? `M ${stats.maxMag.toFixed(1)}` : "—"}
+              </div>
+              <div className="mt-1 text-xs text-foreground/60">максимум в ленте</div>
+            </div>
+            <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
+              <div className="text-2xl font-semibold text-globe-accent">
+                {stats ? timeAgoRu(stats.last.time, now) : "—"}
+              </div>
+              <div className="mt-1 text-xs text-foreground/60">последнее событие</div>
+            </div>
+            <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
+              <div className="text-2xl font-semibold text-globe-accent">
+                {data ? formatEventTime(data.fetchedAt) : "—"}
+              </div>
+              <div className="mt-1 text-xs text-foreground/60">
+                данные обновлены {data?.stale ? "(кэш)" : ""}
+              </div>
+            </div>
           </div>
-          <div className="mt-1 text-xs text-foreground/60">событий в ленте</div>
-        </div>
-        <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
-          <div className="text-2xl font-semibold text-globe-accent">
-            {stats ? `M ${stats.maxMag.toFixed(1)}` : "—"}
-          </div>
-          <div className="mt-1 text-xs text-foreground/60">максимум в ленте</div>
-        </div>
-        <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
-          <div className="text-2xl font-semibold text-globe-accent">
-            {stats ? timeAgoRu(stats.last.time, now) : "—"}
-          </div>
-          <div className="mt-1 text-xs text-foreground/60">последнее событие</div>
-        </div>
-        <div className="rounded-2xl border border-globe-border bg-white/60 px-5 py-4 text-center">
-          <div className="text-2xl font-semibold text-globe-accent">
-            {data ? formatEventTime(data.fetchedAt) : "—"}
-          </div>
-          <div className="mt-1 text-xs text-foreground/60">
-            данные обновлены {data?.stale ? "(кэш)" : ""}
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }
