@@ -10,7 +10,7 @@ export const metadata = {
   title: "Расчёт сейсмостойкости по акселерограмме",
   description: "расчёт по акселерограмме — оформление, цена, сроки, документы. временная реализация, direct integration, землетрясение",
   keywords: "расчёт по акселерограмме, временная реализация, direct integration, землетрясение",
-  alternates: { canonical: "/raschet-seysmostoykosti" },
+  alternates: { canonical: "/raschet-po-akselerogramme" },
 };
 
 export default function Page() {

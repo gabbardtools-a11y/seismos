@@ -10,7 +10,7 @@ export const metadata = {
   title: "Сейсмические испытания оборудования и конструкций",
   description: "сейсмические испытания — оформление, цена, сроки, документы. испытания по акселерограмме, 5 циклов, трёхкомпонентный стенд",
   keywords: "сейсмические испытания, испытания по акселерограмме, 5 циклов, трёхкомпонентный стенд",
-  alternates: { canonical: "/ispytaniya-na-seysmostoykost" },
+  alternates: { canonical: "/seysmicheskie-ispytaniya" },
 };
 
 export default function Page() {

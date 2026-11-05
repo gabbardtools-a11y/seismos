@@ -20,6 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t('meta.title', lang);
   const description = t('meta.desc', lang);
   return {
+    metadataBase: new URL("https://seismo.ru"),
     title,
     description,
     keywords: [
@@ -49,6 +50,14 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: t('meta.siteName', lang),
       type: "website",
       locale: lang === 'ru' ? 'ru_RU' : lang === 'en' ? 'en_US' : 'zh_CN',
+      images: [
+        {
+          url: "/apple-touch-icon.png",
+          width: 180,
+          height: 180,
+          alt: "СРОСС® — Сейсмобезопасность",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

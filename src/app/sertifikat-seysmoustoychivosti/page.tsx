@@ -10,7 +10,7 @@ export const metadata = {
   title: "Сертификат сейсмоустойчивости оборудования и материалов",
   description: "сертификат сейсмоустойчивости — оформление, цена, сроки, документы. сейсмоустойчивое исполнение, добровольный сертификат, сейсмическая устойчивость",
   keywords: "сертификат сейсмоустойчивости, сейсмоустойчивое исполнение, добровольный сертификат, сейсмическая устойчивость",
-  alternates: { canonical: "/seismo_sertifikat" },
+  alternates: { canonical: "/sertifikat-seysmoustoychivosti" },
 };
 
 export default function Page() {

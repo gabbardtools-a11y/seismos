@@ -10,7 +10,7 @@ export const metadata = {
   title: "Спектральный метод расчёта сейсмических нагрузок",
   description: "спектральный метод сейсмостойкости — оформление, цена, сроки, документы. response spectrum, модальный анализ, СП 14.13330",
   keywords: "спектральный метод сейсмостойкости, response spectrum, модальный анализ, СП 14.13330",
-  alternates: { canonical: "/raschet-seysmostoykosti" },
+  alternates: { canonical: "/spektralnyy-raschet-seysmiki" },
 };
 
 export default function Page() {

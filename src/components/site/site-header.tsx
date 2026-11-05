@@ -69,7 +69,6 @@ export function SiteHeader() {
       children: SEO_LINKS,
     },
     { label: t("nav.news"), href: "/news" },
-    { label: t("nav.media"), href: "/news" },
     { label: t("nav.partners"), href: "#partners" },
     {
       label: t("nav.info"),
@@ -110,8 +109,8 @@ export function SiteHeader() {
       {/* Основная шапка: эмблема + навигация */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Лого-блок */}
-          <Link href="#hero" className="flex items-center gap-4 group">
+          {/* Лого-блок — клик ведёт на главную страницу */}
+          <Link href="/" className="flex items-center gap-4 group">
             <SrossemblemMark className="h-12 w-12 shrink-0" />
             <div className="flex flex-col leading-tight">
               <span className="text-[18px] font-bold tracking-[0.18em] text-[#00549F]">

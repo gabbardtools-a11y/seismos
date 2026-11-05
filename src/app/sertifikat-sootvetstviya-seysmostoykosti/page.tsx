@@ -10,7 +10,7 @@ export const metadata = {
   title: "Сертификат соответствия сейсмостойкости ГОСТ Р",
   description: "сертификат соответствия сейсмостойкости — оформление, цена, сроки, документы. система ГОСТ Р, аккредитованный орган, реестр Росаккредитации",
   keywords: "сертификат соответствия сейсмостойкости, система ГОСТ Р, аккредитованный орган, реестр Росаккредитации",
-  alternates: { canonical: "/seismo_sertifikat" },
+  alternates: { canonical: "/sertifikat-sootvetstviya-seysmostoykosti" },
 };
 
 export default function Page() {

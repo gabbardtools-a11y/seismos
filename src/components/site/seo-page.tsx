@@ -92,8 +92,8 @@ export function SeoPage({ meta, content }: { meta: SeoMeta; content: SeoContent 
             <Award className="h-9 w-9 text-[#00549F] flex-none mt-1" />
             <span>{meta.title}</span>
           </h1>
-          <p
-            className="text-base sm:text-lg text-[#4A6378] leading-relaxed"
+          <div
+            className="text-base sm:text-lg text-[#4A6378] leading-relaxed [&_p]:mb-4 [&_strong]:text-[#003366] [&_strong]:font-semibold"
             dangerouslySetInnerHTML={{ __html: content.intro }}
           />
         </div>
