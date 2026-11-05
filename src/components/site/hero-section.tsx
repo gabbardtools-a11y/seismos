@@ -94,43 +94,35 @@ export async function HeroSection() {
             </div>
           </div>
 
-          {/* === ПРАВАЯ КОЛОНКА — ГЛОБУС === */}
+          {/* === ПРАВАЯ КОЛОНКА — ГЛОБУС ===
+              Без рамки и надписей: только вращающийся 3D-глобус,
+              внизу — ссылка «подробнее →» на страницу /seismo-globus. */}
           <div className="lg:col-span-5 order-2">
-            <div className="bg-[#F8FBF9] border border-[#D6DCE3] rounded-2xl p-3 sm:p-4 overflow-hidden">
-              <div className="flex items-center justify-between mb-2 px-1">
-                <div className="flex items-center gap-2 text-[10px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">
-                  <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
-                  Live · Сейсмо Глобус
-                </div>
-                <Link
-                  href="/seismo-globus"
-                  className="text-[10px] tracking-[0.14em] uppercase text-[#00549F] font-semibold hover:text-[#003366] hover:underline"
-                >
-                  подробнее →
-                </Link>
-              </div>
+            <div className="relative">
+              <Suspense
+                fallback={
+                  <div className="flex items-center justify-center h-[280px] sm:h-[340px] lg:h-[420px] text-[#4A6378] text-sm">
+                    Загружаем глобус…
+                  </div>
+                }
+              >
+                <EqGlobe
+                  variant="minimal"
+                  initialLon={37.6} /* Москва — при старте повёрнут к России */
+                  autoRotateSpeed={0.4}
+                  heightClass="relative h-[280px] sm:h-[340px] lg:h-[420px] w-full"
+                  className="w-full"
+                />
+              </Suspense>
+            </div>
 
-              <div className="relative rounded-xl overflow-hidden border border-[#E7EEF6] bg-[#fffbf5]">
-                <Suspense
-                  fallback={
-                    <div className="flex items-center justify-center h-[280px] sm:h-[340px] lg:h-[420px] text-[#4A6378] text-sm">
-                      Загружаем глобус…
-                    </div>
-                  }
-                >
-                  <EqGlobe
-                    variant="minimal"
-                    initialLon={37.6} /* Москва — при старте повёрнут к России */
-                    autoRotateSpeed={0.4}
-                    heightClass="relative h-[280px] sm:h-[340px] lg:h-[420px] w-full"
-                    className="w-full"
-                  />
-                </Suspense>
-              </div>
-
-              <p className="mt-2 px-1 text-[10px] tracking-[0.08em] uppercase text-[#4A6378]">
-                Эпицентры свежих землетрясений · данные eqalert.ru (ГС РАН)
-              </p>
+            <div className="mt-2 text-center">
+              <Link
+                href="/seismo-globus"
+                className="text-[11px] tracking-[0.14em] uppercase text-[#00549F] font-semibold hover:text-[#003366] hover:underline"
+              >
+                подробнее →
+              </Link>
             </div>
           </div>
         </div>
