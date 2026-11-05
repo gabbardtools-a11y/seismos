@@ -31,6 +31,7 @@ export function SiteHeader() {
         { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
         { label: "Сейсмо Глобус", href: "/seismo-globus" },
         { label: "Сертификаты", href: "/sertifikaty" },
+        { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat" },
         { label: "Антидроновая защита", href: "/antidron" },
       ],
     },
