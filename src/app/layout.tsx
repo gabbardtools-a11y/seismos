@@ -52,10 +52,10 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: lang === 'ru' ? 'ru_RU' : lang === 'en' ? 'en_US' : 'zh_CN',
       images: [
         {
-          url: "/apple-touch-icon.png",
-          width: 180,
-          height: 180,
-          alt: "СРОСС® — Сейсмобезопасность",
+          url: "/og.png",
+          width: 1200,
+          height: 630,
+          alt: "СРОСС® — Сейсмобезопасность и сейсмозащита зданий, сооружений, оборудования",
         },
       ],
     },

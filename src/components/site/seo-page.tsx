@@ -62,8 +62,42 @@ const CLUSTER_LABELS: Record<string, string> = {
 export function SeoPage({ meta, content }: { meta: SeoMeta; content: SeoContent }) {
   const clusterLabel = CLUSTER_LABELS[meta.cluster] ?? "Услуги";
 
+  // JSON-LD: BreadcrumbList — хлебные крошки для поисковиков
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://seismos.ru/" },
+      { "@type": "ListItem", position: 2, name: clusterLabel, item: `https://seismos.ru/sertifikaty` },
+      { "@type": "ListItem", position: 3, name: meta.title, item: `https://seismos.ru/${meta.slug}` },
+    ],
+  };
+
+  // JSON-LD: FAQPage — частые вопросы для rich snippets
+  const faqLd = content.faq && content.faq.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: content.faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  } : null;
+
   return (
     <main className="min-h-screen bg-white">
+      {/* JSON-LD: BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      {/* JSON-LD: FAQPage (если есть FAQ) */}
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <SiteHeader />
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
 
