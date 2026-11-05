@@ -70,4 +70,11 @@ export const pageContent_seysmousilenie_konstrukciy_uglevoloknom: SeoContent = {
   ctaTitle: "Хотите усилить конструкции углеволокном?",
   ctaText:
     "Посчитаем по СП 164.1325800.2014, подберём систему (Sika, BASF, Mapei, «Према»), сделаем проект и проведём монтаж с контролем адгезии. Бесплатная первичная консультация — приедем на объект.",
+  related: [
+    { label: "Усиление железобетонных конструкций", href: "/usilenie-zhelezobetonnyh-konstrukciy" },
+    { label: "Усиление кирпичных зданий", href: "/usilenie-kirpichnyh-zdaniy" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+  ],
 };

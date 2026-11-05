@@ -70,4 +70,11 @@ export const pageContent_usilenie_zhelezobetonnyh_konstrukciy: SeoContent = {
   ctaTitle: "Нужно усилить железобетонные конструкции?",
   ctaText:
     "Сделаем обследование, поверочный расчёт по СП 63.13330.2018 и предложим 2–3 метода усиления с ценой. Бесплатная первичная консультация по вашему объекту.",
+  related: [
+    { label: "Усиление кирпичных зданий", href: "/usilenie-kirpichnyh-zdaniy" },
+    { label: "Усиление конструкций углеволокном", href: "/seysmousilenie-konstrukciy-uglevoloknom" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+  ],
 };

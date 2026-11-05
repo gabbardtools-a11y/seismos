@@ -64,4 +64,12 @@ export const pageContent_obsledovanie_zdaniy_na_seysmostoykost: SeoContent = {
   ctaTitle: "Нужно обследование здания на сейсмостойкость?",
   ctaText:
     "Подскажем по нормативке, оценим объём работ под вашу задачу, посчитаем стоимость. Бесплатная первичная консультация — ответим на вопросы за 15 минут.",
+  related: [
+    { label: "Экспертиза сейсмостойкости здания", href: "/ekspertiza-seysmostoykosti-zdaniya" },
+    { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti" },
+    { label: "Паспортизация сейсмостойкости", href: "/pasportizatsiya-seysmostoykosti" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+    { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska" },
+  ],
 };

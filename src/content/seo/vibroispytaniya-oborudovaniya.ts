@@ -62,4 +62,11 @@ export const pageContent_vibroispytaniya_oborudovaniya: SeoContent = {
   ctaTitle: "Нужны виброиспытания оборудования?",
   ctaText:
     "Подберём комплект режимов под ваше оборудование и ТЗ, составим ПМИ, проведём виброиспытания на стенде с блоком сейсмики, оформим протокол и поможем с сертификатом. Бесплатная первичная консультация — поможем понять, какие режимы нужны именно вам.",
+  related: [
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+    { label: "Сейсмические испытания", href: "/seysmicheskie-ispytaniya" },
+    { label: "Разработка ПМИ сейсмостойкости", href: "/razrabotka-pmi-seysmostoykosti" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Сейсмостойкое исполнение оборудования", href: "/seysmostoykoe-ispolnenie-oborudovaniya" },
+  ],
 };

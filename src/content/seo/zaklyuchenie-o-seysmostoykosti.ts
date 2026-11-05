@@ -64,4 +64,12 @@ export const pageContent_zaklyuchenie_o_seysmostoykosti: SeoContent = {
   ctaTitle: "Нужно заключение о сейсмостойкости?",
   ctaText:
     "Поможем выбрать расчётный или испытательный путь под ваше изделие, построим конечно-элементную модель, проведём расчёт, оформим заключение. Бесплатная первичная консультация — разберёмся, какой документ нужен именно вам и сколько это займёт.",
+  related: [
+    { label: "Сертификат сейсмоустойчивости", href: "/sertifikat-seysmoustoychivosti" },
+    { label: "Сертификат соответствия сейсмостойкости", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti" },
+    { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat" },
+  ],
 };

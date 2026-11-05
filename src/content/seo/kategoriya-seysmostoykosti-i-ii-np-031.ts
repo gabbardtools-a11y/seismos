@@ -64,4 +64,11 @@ export const pageContent_kategoriya_seysmostoykosti_i_ii_np_031: SeoContent = {
   ctaTitle: "Нужно подтвердить категорию сейсмостойкости I или II для АЭС?",
   ctaText:
     "Поможем разобраться с требованиями НП-031-01, проведём расчёт и испытания, оформим отчёт, пройдём экспертизу и согласование с Ростехнадзором. Бесплатная первичная консультация — проверим, какие документы нужны под ваш объект.",
+  related: [
+    { label: "Сертификат соответствия сейсмостойкости", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Сейсмостойкое исполнение оборудования", href: "/seysmostoykoe-ispolnenie-oborudovaniya" },
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti" },
+  ],
 };

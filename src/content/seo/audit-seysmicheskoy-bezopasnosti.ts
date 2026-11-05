@@ -68,4 +68,11 @@ export const pageContent_audit_seysmicheskoy_bezopasnosti: SeoContent = {
   ctaTitle: "Нужен аудит сейсмической безопасности предприятия?",
   ctaText:
     "Проведём комплексную проверку, составим реестр рисков с приоритетами, поможем спланировать бюджет на усиление. Бесплатная оценка объёма работ под ваше предприятие.",
+  related: [
+    { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska" },
+    { label: "Паспортизация сейсмостойкости", href: "/pasportizatsiya-seysmostoykosti" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Экспертиза сейсмостойкости здания", href: "/ekspertiza-seysmostoykosti-zdaniya" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+  ],
 };

@@ -64,4 +64,11 @@ export const pageContent_tehnicheskoe_zaklyuchenie_seysmostoykosti: SeoContent =
   ctaTitle: "Нужно техническое заключение о сейсмостойкости?",
   ctaText:
     "Разработаем ТЗ расчётным путём или с обследованием — под вашу задачу. Работаем в SCAD, ЛИРА-САПР, ANSYS. Опыт с проектами от квартир до объектов атомной отрасли. Бесплатная оценка объёма работ.",
+  related: [
+    { label: "Заключение о сейсмостойкости", href: "/zaklyuchenie-o-seysmostoykosti" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Экспертиза сейсмостойкости здания", href: "/ekspertiza-seysmostoykosti-zdaniya" },
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti" },
+    { label: "Спектральный расчёт сейсмики", href: "/spektralnyy-raschet-seysmiki" },
+  ],
 };

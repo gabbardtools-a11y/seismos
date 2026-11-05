@@ -68,4 +68,12 @@ export const pageContent_raschet_seysmostoykosti: SeoContent = {
   ctaTitle: "Нужен расчёт сейсмостойкости?",
   ctaText:
     "Построим конечно-элементную модель вашего оборудования или сооружения, проведём расчёт по спектральному методу или по акселерограмме, оформим отчёт и поможем с сертификатом. Бесплатная первичная консультация — оценим задачу и назовём срок.",
+  related: [
+    { label: "Расчёт по акселерограмме", href: "/raschet-po-akselerogramme" },
+    { label: "Спектральный расчёт сейсмики", href: "/spektralnyy-raschet-seysmiki" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Заключение о сейсмостойкости", href: "/zaklyuchenie-o-seysmostoykosti" },
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+    { label: "Сертификат соответствия сейсмостойкости", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+  ],
 };

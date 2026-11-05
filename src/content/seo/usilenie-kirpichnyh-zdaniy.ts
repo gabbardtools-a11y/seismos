@@ -70,4 +70,11 @@ export const pageContent_usilenie_kirpichnyh_zdaniy: SeoContent = {
   ctaTitle: "Нужно усилить кирпичное здание?",
   ctaText:
     "Сделаем обследование кладки, поверочный расчёт по СП 15.13330.2012 и предложим комплекс: сейсмопояс, анкеровка, инъекции, обоймы. Бесплатная первичная консультация с оценкой рентабельности.",
+  related: [
+    { label: "Усиление железобетонных конструкций", href: "/usilenie-zhelezobetonnyh-konstrukciy" },
+    { label: "Усиление конструкций углеволокном", href: "/seysmousilenie-konstrukciy-uglevoloknom" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+  ],
 };

@@ -64,4 +64,11 @@ export const pageContent_seysmostoykoe_ispolnenie_oborudovaniya: SeoContent = {
   ctaTitle: "Нужно сейсмостойкое исполнение оборудования?",
   ctaText:
     "Поможем разобраться с группами и категориями по ГОСТ 17516.1 и НП-031-01, поможем сертифицировать ваше изделие или подобрать готовое в сейсмостойком исполнении. Бесплатная первичная консультация — проверим формулировки в вашем ТЗ.",
+  related: [
+    { label: "Сертификат соответствия сейсмостойкости", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+    { label: "Сертификат сейсмоустойчивости", href: "/sertifikat-seysmoustoychivosti" },
+    { label: "Категории сейсмостойкости по НП-031", href: "/kategoriya-seysmostoykosti-i-ii-np-031" },
+    { label: "Виброиспытания оборудования", href: "/vibroispytaniya-oborudovaniya" },
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+  ],
 };

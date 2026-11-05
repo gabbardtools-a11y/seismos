@@ -70,4 +70,12 @@ export const pageContent_seysmousilenie_zdaniy: SeoContent = {
   ctaTitle: "Нужно сейсмоусиление здания?",
   ctaText:
     "Приедем на объект, сделаем обследование, посчитаем по СП 14.13330.2018 и предложим 2–3 варианта усиления с ценой и сроком. Бесплатная первичная консультация.",
+  related: [
+    { label: "Усиление конструкций углеволокном", href: "/seysmousilenie-konstrukciy-uglevoloknom" },
+    { label: "Усиление железобетонных конструкций", href: "/usilenie-zhelezobetonnyh-konstrukciy" },
+    { label: "Усиление кирпичных зданий", href: "/usilenie-kirpichnyh-zdaniy" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Сейсмоизоляция фундаментов", href: "/seysmoizolyaciya-fundamentov" },
+  ],
 };

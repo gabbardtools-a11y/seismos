@@ -68,4 +68,12 @@ export const pageContent_sertifikat_sootvetstviya_seysmostoykosti: SeoContent = 
   ctaTitle: "Нужен сертификат соответствия сейсмостойкости?",
   ctaText:
     "Подскажем по нормативной базе, поможем выбрать аккредитованный орган и лабораторию, проведём испытания или расчёт, доведём до бланка. Бесплатная первичная консультация — разберёмся в вашей ситуации и назовём сроки и цену.",
+  related: [
+    { label: "Сертификат сейсмоустойчивости", href: "/sertifikat-seysmoustoychivosti" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Категории сейсмостойкости по НП-031", href: "/kategoriya-seysmostoykosti-i-ii-np-031" },
+    { label: "Заключение о сейсмостойкости", href: "/zaklyuchenie-o-seysmostoykosti" },
+    { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat" },
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+  ],
 };

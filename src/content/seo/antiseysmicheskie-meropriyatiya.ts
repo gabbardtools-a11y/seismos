@@ -70,4 +70,12 @@ export const pageContent_antiseysmicheskie_meropriyatiya: SeoContent = {
   ctaTitle: "Нужно спроектировать антисейсмические мероприятия?",
   ctaText:
     "Сделаем раздел «Сейсмостойкость» по СП 14.13330.2018, подберём оптимальный комплекс мер для вашего объекта и бюджета. Бесплатная первичная консультация с оценкой стоимости превентивных мероприятий.",
+  related: [
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+    { label: "Сейсмоизоляция фундаментов", href: "/seysmoizolyaciya-fundamentov" },
+    { label: "Демпферы сейсмические", href: "/dempery-seysmicheskie" },
+    { label: "Усиление железобетонных конструкций", href: "/usilenie-zhelezobetonnyh-konstrukciy" },
+    { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti" },
+    { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska" },
+  ],
 };

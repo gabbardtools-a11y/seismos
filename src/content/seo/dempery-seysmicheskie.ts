@@ -70,4 +70,11 @@ export const pageContent_dempery_seysmicheskie: SeoContent = {
   ctaTitle: "Нужны демпферы для здания или моста?",
   ctaText:
     "Посчитаем по ГОСТ Р 56725-2015 и СП 14.13330.2018, подберём тип (вязкие, фрикционные, TMD) и производителя. Бесплатная первичная консультация с оценкой эффективности и стоимости системы.",
+  related: [
+    { label: "BRB-элементы сейсмические", href: "/brb-elementy-seysmicheskie" },
+    { label: "Сейсмоизоляция фундаментов", href: "/seysmoizolyaciya-fundamentov" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+    { label: "Резинометаллические сейсмоизоляторы", href: "/rezinometallicheskie-seysmoizolyatory" },
+  ],
 };

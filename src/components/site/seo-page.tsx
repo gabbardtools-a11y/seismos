@@ -15,7 +15,7 @@
  * Контент страниц лежит в src/content/seo/<slug>.ts
  */
 import Link from "next/link";
-import { ArrowLeft, FileText, ChevronRight, Award } from "lucide-react";
+import { ArrowLeft, FileText, ChevronRight, Award, Link2 } from "lucide-react";
 
 import { SiteHeader } from "./site-header";
 
@@ -35,6 +35,8 @@ export type SeoContent = {
   seoParagraph?: string;
   ctaTitle?: string;
   ctaText?: string;
+  /** Связанные страницы для блока «Смотрите также» (перелинковка). */
+  related?: { label: string; href: string }[];
 };
 
 export type SeoMeta = {
@@ -182,6 +184,28 @@ export function SeoPage({ meta, content }: { meta: SeoMeta; content: SeoContent 
             </Link>
           </div>
         </div>
+
+        {/* Смотрите также — перелинковка между SEO-страницами */}
+        {content.related && content.related.length > 0 && (
+          <div className="mt-10 mb-10 bg-[#F8FBF9] border border-[#D6DCE3] rounded-2xl p-5">
+            <h2 className="text-[18px] font-bold text-[#003366] mb-3 flex items-center gap-2">
+              <Link2 className="h-5 w-5 text-[#00549F]" />
+              Смотрите также
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {content.related.map((r, i) => (
+                <Link
+                  key={i}
+                  href={r.href}
+                  className="flex items-center gap-2 px-3 py-2 text-[13px] text-[#00549F] hover:text-[#003366] hover:bg-[#E7EEF6] rounded transition-colors"
+                >
+                  <ChevronRight className="h-3.5 w-3.5 flex-none" />
+                  {r.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* SEO-блок */}
         {content.seoParagraph && (

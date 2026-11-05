@@ -68,4 +68,11 @@ export const pageContent_raschet_po_akselerogramme: SeoContent = {
   ctaTitle: "Нужен расчёт по акселерограмме?",
   ctaText:
     "Построим конечно-элементную модель, подберём акселерограммы под ваш объект, проведём прямое интегрирование с учётом нелинейности, оформим протокол для сертификата. Бесплатная первичная консультация — оценим, нужен ли вам именно этот метод или хватит спектрального.",
+  related: [
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti" },
+    { label: "Спектральный расчёт сейсмики", href: "/spektralnyy-raschet-seysmiki" },
+    { label: "Сейсмические испытания", href: "/seysmicheskie-ispytaniya" },
+    { label: "Разработка ПМИ сейсмостойкости", href: "/razrabotka-pmi-seysmostoykosti" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+  ],
 };

@@ -70,4 +70,11 @@ export const pageContent_monitoring_zdaniy_posle_zemletryaseniysa: SeoContent = 
   ctaTitle: "Нужно обследование здания после землетрясения?",
   ctaText:
     "Выезд в течение 24 часов, экспресс-оценка безопасности, детальное обследование с инструментальной частью. Работаем с частными объектами, коммерческой недвижимостью, опасными производствами. Бесплатная первичная консультация.",
+  related: [
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Экспертиза сейсмостойкости здания", href: "/ekspertiza-seysmostoykosti-zdaniya" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Паспортизация сейсмостойкости", href: "/pasportizatsiya-seysmostoykosti" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+  ],
 };

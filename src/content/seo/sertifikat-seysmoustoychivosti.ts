@@ -64,4 +64,12 @@ export const pageContent_sertifikat_seysmoustoychivosti: SeoContent = {
   ctaTitle: "Нужен сертификат сейсмоустойчивости?",
   ctaText:
     "Подскажем по ГОСТам, поможем с ПМИ, проведём испытания или расчёт. Бесплатная первичная консультация — разберёмся в вашей ситуации и скажем, какой путь оптимален, сколько это будет стоить и сколько займёт.",
+  related: [
+    { label: "Сертификат соответствия сейсмостойкости", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Заключение о сейсмостойкости", href: "/zaklyuchenie-o-seysmostoykosti" },
+    { label: "Сейсмостойкое исполнение оборудования", href: "/seysmostoykoe-ispolnenie-oborudovaniya" },
+    { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat" },
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+  ],
 };

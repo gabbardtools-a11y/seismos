@@ -68,4 +68,12 @@ export const pageContent_pasportizatsiya_seysmostoykosti: SeoContent = {
   ctaTitle: "Нужна паспортизация сейсмостойкости зданий?",
   ctaText:
     "Сделаем реестр объектов с карточками сейсмической безопасности, поможем расставить приоритеты по усилению. Опыт работы с портфелями от 20 до 200+ объектов. Бесплатная оценка объёма работ.",
+  related: [
+    { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Мониторинг зданий после землетрясения", href: "/monitoring-zdaniy-posle-zemletryaseniysa" },
+    { label: "Паспорт здания с 3D-моделью STP", href: "/passport-3d-stp" },
+  ],
 };

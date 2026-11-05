@@ -68,4 +68,11 @@ export const pageContent_spektralnyy_raschet_seysmiki: SeoContent = {
   ctaTitle: "Нужен спектральный расчёт сейсмостойкости?",
   ctaText:
     "Построим конечно-элементную модель, проведём модальный анализ и спектральный расчёт по СП 14.13330, оформим протокол для сертификата. Бесплатная первичная консультация — поможем понять, подходит ли вам спектральный метод или нужен расчёт по акселерограмме.",
+  related: [
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti" },
+    { label: "Расчёт по акселерограмме", href: "/raschet-po-akselerogramme" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Заключение о сейсмостойкости", href: "/zaklyuchenie-o-seysmostoykosti" },
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+  ],
 };

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, UserCircle } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/useLanguage";
 import { LangSwitch } from "./lang-switch";
 
@@ -41,6 +41,7 @@ export function SiteHeader() {
     { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska", group: "Обследование и изыскания" },
     { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti", group: "Обследование и изыскания" },
     { label: "Паспортизация сейсмостойкости", href: "/pasportizatsiya-seysmostoykosti", group: "Обследование и изыскания" },
+    { label: "Паспорт здания с 3D-моделью STP", href: "/passport-3d-stp", group: "Обследование и изыскания" },
     { label: "Техническое заключение", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti", group: "Обследование и изыскания" },
     { label: "Обследование после землетрясения", href: "/monitoring-zdaniy-posle-zemletryaseniysa", group: "Обследование и изыскания" },
     // === Сейсмозащита и усиление ===
@@ -198,14 +199,25 @@ export function SiteHeader() {
             })}
           </nav>
 
-          {/* Мобильная кнопка */}
-          <button
-            className="lg:hidden p-2 text-[#003366]"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={t("nav.openMenu")}
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Правый кластер: личный кабинет + бургер (мобайл) */}
+          <div className="flex items-center gap-1">
+            <Link
+              href="/login"
+              aria-label="Личный кабинет"
+              title="Личный кабинет"
+              className="p-2 text-[#003366] hover:text-[#00549F] transition-colors"
+            >
+              <UserCircle className="h-6 w-6 lg:h-5 lg:w-5" />
+            </Link>
+            {/* Мобильная кнопка */}
+            <button
+              className="lg:hidden p-2 text-[#003366]"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={t("nav.openMenu")}
+            >
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </div>
 

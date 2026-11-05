@@ -68,4 +68,11 @@ export const pageContent_otsenka_seysmicheskogo_riska: SeoContent = {
   ctaTitle: "Нужна оценка сейсмического риска объекта?",
   ctaText:
     "Посчитаем PML, тариф для страховой, рейтинг объектов для усиления. Работаем по методикам РАН, HAZUS, ВНТП 001-95. Бесплатная первичная консультация по вашей задаче.",
+  related: [
+    { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti" },
+    { label: "Паспортизация сейсмостойкости", href: "/pasportizatsiya-seysmostoykosti" },
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Мониторинг зданий после землетрясения", href: "/monitoring-zdaniy-posle-zemletryaseniysa" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+  ],
 };

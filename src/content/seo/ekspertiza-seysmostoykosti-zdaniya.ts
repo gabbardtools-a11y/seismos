@@ -70,4 +70,11 @@ export const pageContent_ekspertiza_seysmostoykosti_zdaniya: SeoContent = {
   ctaTitle: "Нужна экспертиза сейсмостойкости здания?",
   ctaText:
     "Проведём досудебную или подготовим материалы для судебной экспертизы. Эксперты с допуском СРО и квалификацией по специальности 16.1. Бесплатная оценка перспектив дела.",
+  related: [
+    { label: "Обследование зданий на сейсмостойкость", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+    { label: "Техническое заключение о сейсмостойкости", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti" },
+    { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti" },
+    { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+  ],
 };

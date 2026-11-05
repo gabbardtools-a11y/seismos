@@ -68,4 +68,11 @@ export const pageContent_razrabotka_pmi_seysmostoykosti: SeoContent = {
   ctaTitle: "Нужна ПМИ на сейсмостойкость?",
   ctaText:
     "Разработаем программу и методику испытаний под ваше оборудование, согласуем с лабораторией и органом по сертификации, поможем с ТУ. Бесплатная первичная консультация — оценим объём работ и сроки.",
+  related: [
+    { label: "Испытания на сейсмостойкость", href: "/ispytaniya-na-seysmostoykost" },
+    { label: "Сейсмические испытания", href: "/seysmicheskie-ispytaniya" },
+    { label: "Виброиспытания оборудования", href: "/vibroispytaniya-oborudovaniya" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Сертификат соответствия сейсмостойкости", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+  ],
 };

@@ -70,4 +70,12 @@ export const pageContent_seysmoizolyaciya_fundamentov: SeoContent = {
   ctaTitle: "Подобрать сейсмоизоляцию фундамента?",
   ctaText:
     "Сделаем геологию, расчёт по СП 14.13330.2018, подберём тип опор (РМШ, маятниковые, скользящие) и производителя. Бесплатная первичная консультация с оценкой рентабельности изоляции для вашего объекта.",
+  related: [
+    { label: "Сейсмоизоляторы", href: "/seysmoizolyatory-kupit" },
+    { label: "Резинометаллические сейсмоизоляторы", href: "/rezinometallicheskie-seysmoizolyatory" },
+    { label: "Маятниковые сейсмоизоляторы", href: "/mayatnikovye-seysmoizolyatory" },
+    { label: "Демпферы сейсмические", href: "/dempery-seysmicheskie" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya" },
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy" },
+  ],
 };

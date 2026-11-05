@@ -64,4 +64,12 @@ export const pageContent_ispytaniya_na_seysmostoykost: SeoContent = {
   ctaTitle: "Нужны испытания на сейсмостойкость?",
   ctaText:
     "Поможем подобрать лабораторию под ваше оборудование, составим ПМИ, проконтролируем испытания на вибростенде, доведём до протокола и сертификата. Бесплатная первичная консультация — скажем сразу, какой путь оптимален и сколько это будет стоить.",
+  related: [
+    { label: "Сейсмические испытания", href: "/seysmicheskie-ispytaniya" },
+    { label: "Разработка ПМИ сейсмостойкости", href: "/razrabotka-pmi-seysmostoykosti" },
+    { label: "Виброиспытания оборудования", href: "/vibroispytaniya-oborudovaniya" },
+    { label: "Протокол испытаний на сейсмостойкость", href: "/protokol-ispytaniy-na-seysmostoykost" },
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti" },
+    { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat" },
+  ],
 };
