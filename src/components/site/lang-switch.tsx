@@ -44,7 +44,7 @@ export function LangSwitch({
         onClick={() => setOpen(!open)}
         aria-label="Выбрать язык"
         aria-expanded={open}
-        className="px-2.5 py-1.5 text-[11px] font-bold border border-[#00549F]/30 text-[#00549F] rounded-sm hover:border-[#00549F] flex items-center gap-1.5 transition-colors"
+        className="px-2.5 py-1.5 text-[11px] font-bold border border-[#A52A2A]/30 text-[#A52A2A] rounded-sm hover:border-[#7B1E1E] flex items-center gap-1.5 transition-colors"
       >
         <Globe className="h-3.5 w-3.5" />
         <span>{currentLang?.label || 'RU'}</span>
@@ -64,14 +64,14 @@ export function LangSwitch({
                   setOpen(false);
                 }}
                 className={`w-full flex items-center justify-between gap-2 px-3 py-2 text-[12px] font-medium border-b border-[#D6DCE3] last:border-b-0 transition-colors ${
-                  active ? 'bg-[#00549F]/10 text-[#00549F] font-bold' : 'text-[#4A6378] hover:bg-[#E7EEF6]'
+                  active ? 'bg-[#A52A2A]/10 text-[#A52A2A] font-bold' : 'text-[#4A6378] hover:bg-[#F5E6E6]'
                 }`}
               >
                 <span className="flex items-center gap-2">
                   <span className="text-[10px] font-bold opacity-60 w-6">{label}</span>
                   {nativeName}
                 </span>
-                {active && <Check className="h-3.5 w-3.5 text-[#00549F]" />}
+                {active && <Check className="h-3.5 w-3.5 text-[#A52A2A]" />}
               </button>
             );
           })}
