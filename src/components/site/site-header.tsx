@@ -92,26 +92,13 @@ export function SiteHeader() {
       {/* Тонкая верхняя полоса с международной привязкой */}
       <div className="bg-[#003366] text-white text-[11px] tracking-[0.18em] uppercase">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
-          <span className="hidden sm:inline font-medium opacity-80 flex items-center gap-1.5">
-            {/* Эмблема ООН (SVG) */}
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 inline-block" aria-label="UN emblem" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="0.8" opacity="0.6" />
-              {/* Азия/Африка — упрощённая карта мира в круге */}
-              <path d="M7 8 L9 7 L11 8 L10 10 L8 11 L7 10 Z M12 6 L14 7 L13 9 L11 8 Z M9 12 L11 13 L10 15 L8 14 Z M13 11 L15 12 L14 14 L12 13 Z M10 16 L12 17 L11 18 Z" fill="currentColor" opacity="0.7" />
-              {/* Меридианы */}
-              <ellipse cx="12" cy="12" rx="5" ry="11" stroke="currentColor" strokeWidth="0.4" opacity="0.4" fill="none" />
-              <ellipse cx="12" cy="12" rx="11" ry="11" stroke="currentColor" strokeWidth="0.4" opacity="0.3" fill="none" />
-              <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="0.4" opacity="0.3" />
-              <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" strokeWidth="0.4" opacity="0.3" />
-            </svg>
+          <span className="hidden sm:inline font-medium opacity-80 flex items-center gap-2">
+            {/* Вращающийся 3D-глобус (SVG + CSS-анимация) */}
+            <GlobeEmblem className="h-5 w-5" />
             {t("top.intl")}
           </span>
-          <span className="sm:hidden font-medium opacity-80 flex items-center gap-1">
-            <svg viewBox="0 0 24 24" className="h-3 w-3 inline-block" aria-label="UN emblem" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="0.8" opacity="0.6" />
-              <ellipse cx="12" cy="12" rx="5" ry="11" stroke="currentColor" strokeWidth="0.4" opacity="0.4" fill="none" />
-              <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="0.4" opacity="0.3" />
-            </svg>
+          <span className="sm:hidden font-medium opacity-80 flex items-center gap-1.5">
+            <GlobeEmblem className="h-4 w-4" />
             {t("top.intlShort")}
           </span>
           <div className="flex items-center gap-3">
@@ -382,6 +369,117 @@ export function SrossemblemMark({ className }: { className?: string }) {
         strokeWidth="0.5"
         opacity="0.5"
       />
+    </svg>
+  );
+}
+
+/**
+ * GlobeEmblem — вращающийся 3D-глобус для верхней полосы шапки.
+ *
+ * SVG с меридианами, параллелями и континентами. Вращение реализовано
+ * через CSS-анимацию: несколько групп меридианов сменяют друг друга
+ * с разной фазой, создавая иллюзию поворота сферы вокруг вертикальной
+ * оси. Континенты появляются/исчезают синхронно с фазой.
+ *
+ * Размер: через className (по умолчанию h-5 w-5 — в 1.5 раза больше
+ * прежней статичной иконки ООН h-3.5).
+ */
+export function GlobeEmblem({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className ?? "h-5 w-5"}
+      aria-label="Вращающийся глобус — международный проект ООН SDG 11"
+      role="img"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>{`
+        .globe-spin-1 {
+          transform-origin: 12px 12px;
+          animation: globe-rot-1 8s linear infinite;
+        }
+        .globe-spin-2 {
+          transform-origin: 12px 12px;
+          animation: globe-rot-2 8s linear infinite;
+        }
+        .globe-spin-3 {
+          transform-origin: 12px 12px;
+          animation: globe-rot-3 8s linear infinite;
+        }
+        /* Меридиан 1: появляется сначала, потом уходит влево */
+        @keyframes globe-rot-1 {
+          0%   { opacity: 0.95; transform: scaleX(1); }
+          25%  { opacity: 0.5;  transform: scaleX(0.5) translateX(-3px); }
+          49%  { opacity: 0;    transform: scaleX(0.1) translateX(-6px); }
+          50%  { opacity: 0;    transform: scaleX(0.1) translateX(6px); }
+          75%  { opacity: 0.5;  transform: scaleX(0.5) translateX(3px); }
+          100% { opacity: 0.95; transform: scaleX(1); }
+        }
+        /* Меридиан 2: в противофазе — на 1/3 оборота вперёд */
+        @keyframes globe-rot-2 {
+          0%   { opacity: 0.5;  transform: scaleX(0.5) translateX(3px); }
+          25%  { opacity: 0.95; transform: scaleX(1); }
+          50%  { opacity: 0.5;  transform: scaleX(0.5) translateX(-3px); }
+          75%  { opacity: 0;    transform: scaleX(0.1) translateX(-6px); }
+          76%  { opacity: 0;    transform: scaleX(0.1) translateX(6px); }
+          100% { opacity: 0.5;  transform: scaleX(0.5) translateX(3px); }
+        }
+        /* Меридиан 3: на 2/3 оборота */
+        @keyframes globe-rot-3 {
+          0%   { opacity: 0;    transform: scaleX(0.1) translateX(-6px); }
+          1%   { opacity: 0;    transform: scaleX(0.1) translateX(6px); }
+          25%  { opacity: 0.5;  transform: scaleX(0.5) translateX(3px); }
+          50%  { opacity: 0.95; transform: scaleX(1); }
+          75%  { opacity: 0.5;  transform: scaleX(0.5) translateX(-3px); }
+          100% { opacity: 0;    transform: scaleX(0.1) translateX(-6px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .globe-spin-1, .globe-spin-2, .globe-spin-3 { animation: none; }
+        }
+      `}</style>
+
+      {/* Внешний круг глобуса — статичный */}
+      <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="0.7" opacity="0.65" fill="none" />
+
+      {/* Параллели (горизонтальные эллипсы) — статичные */}
+      <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="0.4" opacity="0.5" />
+      <ellipse cx="12" cy="12" rx="11" ry="6" stroke="currentColor" strokeWidth="0.3" opacity="0.4" fill="none" />
+      <ellipse cx="12" cy="12" rx="11" ry="3" stroke="currentColor" strokeWidth="0.25" opacity="0.3" fill="none" />
+
+      {/* Вертикальная ось (статичная) */}
+      <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" strokeWidth="0.3" opacity="0.4" />
+
+      {/* Вращающиеся меридианы — три в противофазе дают 3D-эффект */}
+      <g className="globe-spin-1" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.9">
+        <ellipse cx="12" cy="12" rx="9" ry="11" />
+        {/* Континенты на этом меридиане (Африка + Евразия) */}
+        <g fill="currentColor" opacity="0.85" stroke="none">
+          <path d="M10 7 C10.5 7 11 7.5 11 8.5 C11 9.5 10.5 10.5 10 11 C9.5 11.5 9 11 9 10 C9 9 9 8 9.5 7.5 Z" />
+          <path d="M11 6 L13 5.5 L15 6 L16 6.5 L15 7 L13 7 L11 7 Z" />
+        </g>
+      </g>
+
+      <g className="globe-spin-2" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.5">
+        <ellipse cx="12" cy="12" rx="9" ry="11" />
+        {/* Континенты: Америки */}
+        <g fill="currentColor" opacity="0.85" stroke="none">
+          <path d="M5 7 L7 6.5 L8 7 L7.5 8 L6 8 L5 7.5 Z" />
+          <path d="M6 10 L7 10.5 L7 12 L6 12.5 L5.5 11.5 Z" />
+        </g>
+      </g>
+
+      <g className="globe-spin-3" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.5">
+        <ellipse cx="12" cy="12" rx="9" ry="11" />
+        {/* Континенты: Австралия + восточная Азия */}
+        <g fill="currentColor" opacity="0.85" stroke="none">
+          <path d="M16 11 L17.5 11 L18 11.5 L17 12 L16 11.7 Z" />
+          <path d="M14 7 L16 7 L17 7.5 L16 8 L14 7.8 Z" />
+        </g>
+      </g>
+
+      {/* Блик (имитация освещения сверху-слева) */}
+      <ellipse cx="9" cy="8" rx="2" ry="1.2" fill="currentColor" opacity="0.15" />
     </svg>
   );
 }
