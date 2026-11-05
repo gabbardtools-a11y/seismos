@@ -1,0 +1,20 @@
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch();
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
+  const page = await ctx.newPage();
+  await page.goto('http://localhost:3000/seismo_sertifikat', { waitUntil: 'networkidle', timeout: 90000 });
+  await page.waitForTimeout(3000);
+  await page.screenshot({ path: '/home/z/my-project/download/seismo-sertifikat-top.png', fullPage: false });
+  await page.evaluate(() => window.scrollTo(0, 800));
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: '/home/z/my-project/download/seismo-sertifikat-mid1.png', fullPage: false });
+  await page.evaluate(() => window.scrollTo(0, 1800));
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: '/home/z/my-project/download/seismo-sertifikat-mid2.png', fullPage: false });
+  await page.evaluate(() => window.scrollTo(0, 3000));
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: '/home/z/my-project/download/seismo-sertifikat-bottom.png', fullPage: false });
+  await browser.close();
+  console.log('OK');
+})().catch(e => { console.error(e); process.exit(1); });
