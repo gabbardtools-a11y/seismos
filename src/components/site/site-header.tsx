@@ -6,18 +6,67 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/useLanguage";
 import { LangSwitch } from "./lang-switch";
 
+type NavChild = { label: string; href: string; group?: string };
 type NavItem =
   | { label: string; href: string }
-  | { label: string; children: { label: string; href: string }[] };
+  | { label: string; children: NavChild[] };
 
 export function SiteHeader() {
   const { t, lang, switchLang } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // Полный список SEO-страниц этапа 1, сгруппированных по кластерам.
+  // Используется в выпадающем меню «Услуги» — группировка по подзаголовкам.
+  const SEO_LINKS: NavChild[] = [
+    // === Сертификация ===
+    { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat", group: "Сертификация" },
+    { label: "Сертификат сейсмоустойчивости", href: "/sertifikat-seysmoustoychivosti", group: "Сертификация" },
+    { label: "Сертификат соответствия ГОСТ Р", href: "/sertifikat-sootvetstviya-seysmostoykosti", group: "Сертификация" },
+    { label: "Протокол испытаний", href: "/protokol-ispytaniy-na-seysmostoykost", group: "Сертификация" },
+    { label: "Заключение о сейсмостойкости", href: "/zaklyuchenie-o-seysmostoykosti", group: "Сертификация" },
+    { label: "Сейсмостойкое исполнение", href: "/seysmostoykoe-ispolnenie-oborudovaniya", group: "Сертификация" },
+    { label: "Категории I/II по НП-031-01", href: "/kategoriya-seysmostoykosti-i-ii-np-031", group: "Сертификация" },
+    // === Испытания и расчёты ===
+    { label: "Испытания на вибростенде", href: "/ispytaniya-na-seysmostoykost", group: "Испытания и расчёты" },
+    { label: "Сейсмические испытания", href: "/seysmicheskie-ispytaniya", group: "Испытания и расчёты" },
+    { label: "Расчёт сейсмостойкости", href: "/raschet-seysmostoykosti", group: "Испытания и расчёты" },
+    { label: "Расчёт по акселерограмме", href: "/raschet-po-akselerogramme", group: "Испытания и расчёты" },
+    { label: "Спектральный метод", href: "/spektralnyy-raschet-seysmiki", group: "Испытания и расчёты" },
+    { label: "Разработка ПМИ", href: "/razrabotka-pmi-seysmostoykosti", group: "Испытания и расчёты" },
+    { label: "Виброиспытания оборудования", href: "/vibroispytaniya-oborudovaniya", group: "Испытания и расчёты" },
+    // === Обследование ===
+    { label: "Обследование зданий", href: "/obsledovanie-zdaniy-na-seysmostoykost", group: "Обследование и изыскания" },
+    { label: "Экспертиза сейсмостойкости", href: "/ekspertiza-seysmostoykosti-zdaniya", group: "Обследование и изыскания" },
+    { label: "Оценка сейсмического риска", href: "/otsenka-seysmicheskogo-riska", group: "Обследование и изыскания" },
+    { label: "Аудит сейсмической безопасности", href: "/audit-seysmicheskoy-bezopasnosti", group: "Обследование и изыскания" },
+    { label: "Паспортизация сейсмостойкости", href: "/pasportizatsiya-seysmostoykosti", group: "Обследование и изыскания" },
+    { label: "Техническое заключение", href: "/tehnicheskoe-zaklyuchenie-seysmostoykosti", group: "Обследование и изыскания" },
+    { label: "Обследование после землетрясения", href: "/monitoring-zdaniy-posle-zemletryaseniysa", group: "Обследование и изыскания" },
+    // === Сейсмозащита и усиление ===
+    { label: "Сейсмоусиление зданий", href: "/seysmousilenie-zdaniy", group: "Сейсмозащита и усиление" },
+    { label: "Усиление углеволокном", href: "/seysmousilenie-konstrukciy-uglevoloknom", group: "Сейсмозащита и усиление" },
+    { label: "Сейсмоизоляция фундаментов", href: "/seysmoizolyaciya-fundamentov", group: "Сейсмозащита и усиление" },
+    { label: "Сейсмические демпферы", href: "/dempery-seysmicheskie", group: "Сейсмозащита и усиление" },
+    { label: "Усиление ж/б конструкций", href: "/usilenie-zhelezobetonnyh-konstrukciy", group: "Сейсмозащита и усиление" },
+    { label: "Усиление кирпичных зданий", href: "/usilenie-kirpichnyh-zdaniy", group: "Сейсмозащита и усиление" },
+    { label: "Антисейсмические мероприятия", href: "/antiseysmicheskie-meropriyatiya", group: "Сейсмозащита и усиление" },
+    // === Сейсмоизоляторы и материалы ===
+    { label: "Сейсмоизоляторы купить", href: "/seysmoizolyatory-kupit", group: "Сейсмоизоляторы и материалы" },
+    { label: "Резинометаллические (LRB/HDRB)", href: "/rezinometallicheskie-seysmoizolyatory", group: "Сейсмоизоляторы и материалы" },
+    { label: "Маятниковые (FPS)", href: "/mayatnikovye-seysmoizolyatory", group: "Сейсмоизоляторы и материалы" },
+    { label: "BRB-элементы", href: "/brb-elementy-seysmicheskie", group: "Сейсмоизоляторы и материалы" },
+    { label: "Сейсмостойкие кабели и лотки", href: "/seysmostoykie-kabeli-i-loty", group: "Сейсмоизоляторы и материалы" },
+    { label: "Сейсмические анкеры", href: "/ankery-seysmicheskie", group: "Сейсмоизоляторы и материалы" },
+  ];
+
   const NAV_ITEMS: NavItem[] = [
     { label: t("nav.system"), href: "#about" },
     { label: t("nav.directions"), href: "#directions" },
+    {
+      label: "Услуги",
+      children: SEO_LINKS,
+    },
     { label: t("nav.news"), href: "/news" },
     { label: t("nav.media"), href: "/news" },
     { label: t("nav.partners"), href: "#partners" },
@@ -31,7 +80,6 @@ export function SiteHeader() {
         { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
         { label: "Сейсмо Глобус", href: "/seismo-globus" },
         { label: "Сертификаты", href: "/sertifikaty" },
-        { label: "Сертификат сейсмостойкости", href: "/seismo_sertifikat" },
         { label: "Антидроновая защита", href: "/antidron" },
       ],
     },
@@ -110,18 +158,28 @@ export function SiteHeader() {
                       />
                     </button>
                     {openDropdown === item.label && (
-                      <div className="absolute left-0 top-full pt-1 min-w-[200px]">
-                        <div className="bg-white border border-[#D6DCE3] shadow-lg rounded-sm overflow-hidden">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              onClick={() => setOpenDropdown(null)}
-                              className="block px-4 py-2.5 text-[12px] font-semibold tracking-[0.08em] uppercase text-[#003366] hover:text-[#00549F] hover:bg-[#E7EEF6] transition-colors"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
+                      <div className="absolute left-0 top-full pt-1 min-w-[280px] max-w-[360px]">
+                        <div className="bg-white border border-[#D6DCE3] shadow-lg rounded-sm overflow-hidden max-h-[80vh] overflow-y-auto">
+                          {item.children.map((child, idx) => {
+                            const prevGroup = idx > 0 ? item.children[idx - 1].group : undefined;
+                            const showGroup = child.group && child.group !== prevGroup;
+                            return (
+                              <div key={child.href}>
+                                {showGroup && (
+                                  <div className="px-4 pt-3 pb-1 text-[10px] font-bold tracking-[0.16em] uppercase text-[#00549F] bg-[#F8FBF9] border-t border-[#E7EEF6] first:border-t-0">
+                                    {child.group}
+                                  </div>
+                                )}
+                                <Link
+                                  href={child.href}
+                                  onClick={() => setOpenDropdown(null)}
+                                  className="block px-4 py-2 text-[12px] font-semibold tracking-[0.06em] uppercase text-[#003366] hover:text-[#00549F] hover:bg-[#E7EEF6] transition-colors"
+                                >
+                                  {child.label}
+                                </Link>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     )}
@@ -175,20 +233,30 @@ export function SiteHeader() {
                       />
                     </button>
                     {expanded && (
-                      <div className="pl-4 flex flex-col gap-1">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => {
-                              setOpenDropdown(null);
-                              setMobileOpen(false);
-                            }}
-                            className="px-3 py-2.5 text-[12px] font-semibold tracking-[0.08em] uppercase text-[#4A6378] hover:text-[#00549F] hover:bg-[#E7EEF6] rounded-sm"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
+                      <div className="pl-4 flex flex-col gap-0">
+                        {item.children.map((child, idx) => {
+                          const prevGroup = idx > 0 ? item.children[idx - 1].group : undefined;
+                          const showGroup = child.group && child.group !== prevGroup;
+                          return (
+                            <div key={child.href}>
+                              {showGroup && (
+                                <div className="px-3 pt-3 pb-1 text-[10px] font-bold tracking-[0.14em] uppercase text-[#00549F]">
+                                  {child.group}
+                                </div>
+                              )}
+                              <Link
+                                href={child.href}
+                                onClick={() => {
+                                  setOpenDropdown(null);
+                                  setMobileOpen(false);
+                                }}
+                                className="block px-3 py-2 text-[12px] font-semibold tracking-[0.06em] uppercase text-[#4A6378] hover:text-[#00549F] hover:bg-[#E7EEF6] rounded-sm"
+                              >
+                                {child.label}
+                              </Link>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

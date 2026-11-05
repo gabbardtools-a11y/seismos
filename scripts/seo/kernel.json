@@ -1,0 +1,140 @@
+{
+  "_comment": "Семантическое ядро платных сейсмо-услуг. Этап 1 = первые 35 slug (5 кластеров × 7). Drip = оставшиеся 80 для публикации по 10 в день.",
+  "_format": "slug — URL; title — h1/SEO title; cluster — группа; primary_kw — главный ключ; secondary_kw — доп. ключи (через |); intent — commercial/info; canonical_to — slug каноникала если есть",
+  "stage1": [
+    { "slug": "seismo_sertifikat", "title": "Сертификат сейсмостойкости сейсмоустойчивости сейсмо-надежности сейсмо-прочности", "cluster": "cert", "primary_kw": "сертификат сейсмостойкости", "secondary_kw": "сейсмостойкое исполнение|протокол испытаний|ГОСТ 30546|MSK-64", "intent": "commercial", "canonical_to": null, "exists": true },
+
+    { "slug": "sertifikat-seysmoustoychivosti", "title": "Сертификат сейсмоустойчивости оборудования и материалов", "cluster": "cert", "primary_kw": "сертификат сейсмоустойчивости", "secondary_kw": "сейсмоустойчивое исполнение|добровольный сертификат|сейсмическая устойчивость", "intent": "commercial", "canonical_to": "seismo_sertifikat", "exists": false },
+
+    { "slug": "sertifikat-sootvetstviya-seysmostoykosti", "title": "Сертификат соответствия сейсмостойкости ГОСТ Р", "cluster": "cert", "primary_kw": "сертификат соответствия сейсмостойкости", "secondary_kw": "система ГОСТ Р|аккредитованный орган|реестр Росаккредитации", "intent": "commercial", "canonical_to": "seismo_sertifikat", "exists": false },
+
+    { "slug": "protokol-ispytaniy-na-seysmostoykost", "title": "Протокол испытаний на сейсмостойкость", "cluster": "cert", "primary_kw": "протокол испытаний на сейсмостойкость", "secondary_kw": "лабораторный протокол|аккредитованная лаборатория|вибростенд", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "zaklyuchenie-o-seysmostoykosti", "title": "Заключение о сейсмостойкости оборудования", "cluster": "cert", "primary_kw": "заключение о сейсмостойкости", "secondary_kw": "экспертное заключение|расчётный путь|конечно-элементный расчёт", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmostoykoe-ispolnenie-oborudovaniya", "title": "Сейсмостойкое исполнение оборудования", "cluster": "cert", "primary_kw": "сейсмостойкое исполнение оборудования", "secondary_kw": "группа механического исполнения|ГОСТ 17516.1|категория I|категория II", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "kategoriya-seysmostoykosti-i-ii-np-031", "title": "Категория сейсмостойкости I и II по НП-031-01 для АЭС", "cluster": "cert", "primary_kw": "категория сейсмостойкости I II НП-031-01", "secondary_kw": "оборудование АЭС|атомные станции|сейсмостойкость核电", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "ispytaniya-na-seysmostoykost", "title": "Испытания на сейсмостойкость на вибростенде", "cluster": "tests", "primary_kw": "испытания на сейсмостойкость", "secondary_kw": "электродинамический вибростенд|акселерограмма|разонансный sweep-тест", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmicheskie-ispytaniya", "title": "Сейсмические испытания оборудования и конструкций", "cluster": "tests", "primary_kw": "сейсмические испытания", "secondary_kw": "испытания по акселерограмме|5 циклов|трёхкомпонентный стенд", "intent": "commercial", "canonical_to": "ispytaniya-na-seysmostoykost", "exists": false },
+
+    { "slug": "raschet-seysmostoykosti", "title": "Расчёт сейсмостойкости оборудования и сооружений", "cluster": "tests", "primary_kw": "расчёт сейсмостойкости", "secondary_kw": "спектральный метод|ANSYS|Abaqus|конечно-элементная модель", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "raschet-po-akselerogramme", "title": "Расчёт сейсмостойкости по акселерограмме", "cluster": "tests", "primary_kw": "расчёт по акселерограмме", "secondary_kw": "временная реализация|direct integration|землетрясение", "intent": "commercial", "canonical_to": "raschet-seysmostoykosti", "exists": false },
+
+    { "slug": "spektralnyy-raschet-seysmiki", "title": "Спектральный метод расчёта сейсмических нагрузок", "cluster": "tests", "primary_kw": "спектральный метод сейсмостойкости", "secondary_kw": "response spectrum|модальный анализ|СП 14.13330", "intent": "info", "canonical_to": "raschet-seysmostoykosti", "exists": false },
+
+    { "slug": "razrabotka-pmi-seysmostoykosti", "title": "Программа и методика испытаний (ПМИ) на сейсмостойкость", "cluster": "tests", "primary_kw": "программа методика испытаний ПМИ сейсмостойкость", "secondary_kw": "ТУ|технические условия|согласование ПМИ", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "vibroispytaniya-oborudovaniya", "title": "Виброиспытания оборудования на сейсмическое воздействие", "cluster": "tests", "primary_kw": "виброиспытания оборудования", "secondary_kw": "вибрационная стойкость|ГОСТ 30631|механические ВВФ", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "obsledovanie-zdaniy-na-seysmostoykost", "title": "Обследование зданий на сейсмостойкость", "cluster": "survey", "primary_kw": "обследование зданий на сейсмостойкость", "secondary_kw": "сейсмологическое обследование|паспортизация|оценка риска", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "ekspertiza-seysmostoykosti-zdaniya", "title": "Экспертиза сейсмостойкости здания", "cluster": "survey", "primary_kw": "экспертиза сейсмостойкости здания", "secondary_kw": "независимая экспертиза|заключение эксперта|судебная экспертиза", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "otsenka-seysmicheskogo-riska", "title": "Оценка сейсмического риска объекта", "cluster": "survey", "primary_kw": "оценка сейсмического риска", "secondary_kw": "риск-анализ|уязвимость|PGA|вероятность превышения", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "audit-seysmicheskoy-bezopasnosti", "title": "Аудит сейсмической безопасности предприятия", "cluster": "survey", "primary_kw": "аудит сейсмической безопасности", "secondary_kw": "комплексная проверка|сейсмический аудит|инвентаризация рисков", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "pasportizatsiya-seysmostoykosti", "title": "Паспортизация сейсмостойкости зданий и сооружений", "cluster": "survey", "primary_kw": "паспорт сейсмостойкости здания", "secondary_kw": "паспортизация|реестр объектов|карточка сейсмостойкости", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "tehnicheskoe-zaklyuchenie-seysmostoykosti", "title": "Техническое заключение о сейсмостойкости", "cluster": "survey", "primary_kw": "техническое заключение о сейсмостойкости", "secondary_kw": "ТЗ|обследование|расчёт|рекомендации", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "monitoring-zdaniy-posle-zemletryaseniysa", "title": "Обследование зданий после землетрясения", "cluster": "survey", "primary_kw": "обследование после землетрясения", "secondary_kw": "послеаварийное обследование|разрушения|SAR", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmousilenie-zdaniy", "title": "Сейсмоусиление зданий и сооружений", "cluster": "protect", "primary_kw": "сейсмоусиление зданий", "secondary_kw": "усиление конструкций|антисейсмические мероприятия|СП 14.13330", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmousilenie-konstrukciy-uglevoloknom", "title": "Сейсмоусиление конструкций углеволокном", "cluster": "protect", "primary_kw": "сейсмоусиление углеволокном", "secondary_kw": "внешнее армирование|FRP|углепластик|композит", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmoizolyaciya-fundamentov", "title": "Сейсмоизоляция фундаментов зданий", "cluster": "protect", "primary_kw": "сейсмоизоляция фундаментов", "secondary_kw": "базовая изоляция|kinematic|скользящая опора", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "dempery-seysmicheskie", "title": "Сейсмические демпферы и гасители колебаний", "cluster": "protect", "primary_kw": "сейсмические демпферы", "secondary_kw": "гаситель колебаний|viscous damper|TMD|MR damper", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "usilenie-zhelezobetonnyh-konstrukciy", "title": "Усиление железобетонных конструкций под сейсмику", "cluster": "protect", "primary_kw": "усиление железобетонных конструкций", "secondary_kw": "обетонирование|стальные обоймы|торкрет|феррополимер", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "usilenie-kirpichnyh-zdaniy", "title": "Усиление кирпичных зданий под сейсмические нагрузки", "cluster": "protect", "primary_kw": "усиление кирпичных зданий", "secondary_kw": "кладка|сейсмопояс|армирование|надстройка", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "antiseysmicheskie-meropriyatiya", "title": "Антисейсмические мероприятия при строительстве", "cluster": "protect", "primary_kw": "антисейсмические мероприятия", "secondary_kw": "сейсмозащита|превентивные меры|СП 14.13330", "intent": "info", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmoizolyatory-kupit", "title": "Сейсмоизоляторы купить с монтажом", "cluster": "iso", "primary_kw": "сейсмоизоляторы купить", "secondary_kw": "цена|производитель|поставка|монтаж", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "rezinometallicheskie-seysmoizolyatory", "title": "Резинометаллические сейсмоизоляторы (LRB, HDRB)", "cluster": "iso", "primary_kw": "резинометаллические сейсмоизоляторы", "secondary_kw": "LRB|HDRB|lead rubber bearing|свинцовый сердечник", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "mayatnikovye-seysmoizolyatory", "title": "Маятниковые сейсмоизоляторы (FPS)", "cluster": "iso", "primary_kw": "маятниковые сейсмоизоляторы", "secondary_kw": "FPS|friction pendulum|трение|скольжение", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "brb-elementy-seysmicheskie", "title": "BRB-элементы (Buckling-Restrained Braces)", "cluster": "iso", "primary_kw": "BRB элементы", "secondary_kw": "buckling restrained brace|диафрагма|раскос|энергопоглощение", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "seysmostoykie-kabeli-i-loty", "title": "Сейсмостойкие кабели, лотки и опоры", "cluster": "iso", "primary_kw": "сейсмостойкие кабели", "secondary_kw": "кабельная продукция|лотки|опоры ЛЭП|кабель-канал", "intent": "commercial", "canonical_to": null, "exists": false },
+
+    { "slug": "ankery-seysmicheskie", "title": "Сейсмические анкеры и крепёж", "cluster": "iso", "primary_kw": "сейсмические анкеры", "secondary_kw": "химический анкер|распорный|ETA|seismic anchor", "intent": "commercial", "canonical_to": null, "exists": false }
+  ],
+  "drip": [
+    { "slug": "seysmicheskoe-mikroraionirovanie", "title": "Сейсмическое микрорайонирование (СМР) площадки", "cluster": "survey", "primary_kw": "сейсмическое микрорайонирование", "secondary_kw": "СМР|УИС|исходная сейсмичность|СП 14.13330", "intent": "commercial" },
+    { "slug": "uits-utochnenie-ischodnoy-seysmichnosti", "title": "Уточнение исходной сейсмичности (УИС)", "cluster": "survey", "primary_kw": "уточнение исходной сейсмичности", "secondary_kw": "УИС|карта ОСР|PGA|детерминистическая оценка" },
+    { "slug": "geofizicheskie-izyskaniya-dlya-seysmiki", "title": "Геофизические изыскания под сейсмостойкое строительство", "cluster": "survey", "primary_kw": "геофизические изыскания под сейсмику" },
+    { "slug": "inzhenerno-geologicheskie-izyskaniya-seysmika", "title": "Инженерно-геологические изыскания в сейсмических районах", "cluster": "survey", "primary_kw": "инженерно-геологические изыскания сейсмика" },
+    { "slug": "seysmologicheskoe-obsledovanie-ploschadki", "title": "Сейсмологическое обследование площадки строительства", "cluster": "survey", "primary_kw": "сейсмологическое обследование площадки" },
+    { "slug": "karta-ose-str-2018", "title": "Карты ОСР-2018 — общее сейсмическое районирование", "cluster": "survey", "primary_kw": "карты ОСР-2018" },
+    { "slug": "str-2018-masshtab-1-8000000", "title": "Карты СР-2018 масштаба 1:8 000 000", "cluster": "survey", "primary_kw": "карты СР-2018" },
+    { "slug": "seysmicheskoe-rayonirovanie-rossii", "title": "Сейсмическое районирование России", "cluster": "survey", "primary_kw": "сейсмическое районирование России" },
+    { "slug": "ballovka-seysmichnosti", "title": "Балловка сейсмичности площадки по MSK-64", "cluster": "survey", "primary_kw": "балловка сейсмичности MSK-64" },
+    { "slug": "kategorii-gruntov-po-seysmicheskim-svoystvam", "title": "Категории грунтов по сейсмическим свойствам", "cluster": "survey", "primary_kw": "категории грунтов по сейсмическим свойствам" },
+
+    { "slug": "seysmomonitoring-zdaniy", "title": "Сейсмомониторинг зданий и сооружений (SHM)", "cluster": "monitor", "primary_kw": "сейсмомониторинг зданий" },
+    { "slug": "strukturnyy-monitoring-zdaniy", "title": "Структурный мониторинг (Structural Health Monitoring)", "cluster": "monitor", "primary_kw": "структурный мониторинг зданий" },
+    { "slug": "sistema-opovescheniya-o-zemletryasenii", "title": "Система оповещения о землетрясении", "cluster": "monitor", "primary_kw": "система оповещения о землетрясении" },
+    { "slug": "datchiki-zemletryaseniy", "title": "Датчики землетрясений для зданий", "cluster": "monitor", "primary_kw": "датчики землетрясений" },
+    { "slug": "seysmograf-kupit", "title": "Сейсмограф купить для предприятия", "cluster": "monitor", "primary_kw": "сейсмограф купить" },
+    { "slug": "akselerometr-seysmicheskiy", "title": "Сейсмические акселерометры и регистраторы", "cluster": "monitor", "primary_kw": "сейсмический акселерометр" },
+    { "slug": "p-wave-detector", "title": "Детектор P-волны землетрясения (early warning)", "cluster": "monitor", "primary_kw": "детектор P-волны" },
+    { "slug": "monitoring-konstrukciy-v-realnom-vremeni", "title": "Мониторинг строительных конструкций в реальном времени", "cluster": "monitor", "primary_kw": "мониторинг конструкций в реальном времени" },
+    { "slug": "ioT-seysmomonitoring", "title": "IoT-система сейсмомониторинга на объектах", "cluster": "monitor", "primary_kw": "IoT сейсмомониторинг" },
+    { "slug": "oborudovanie-seysmomonitoringa", "title": "Оборудование для сейсмомониторинга объектов", "cluster": "monitor", "primary_kw": "обортдование сейсмомониторинга" },
+
+    { "slug": "proektirovanie-v-seysmicheskih-rayonah", "title": "Проектирование в сейсмических районах", "cluster": "design", "primary_kw": "проектирование в сейсмических районах" },
+    { "slug": "razrabotka-tu-seysmostoykosti", "title": "Разработка ТУ на сейсмостойкое оборудование", "cluster": "design", "primary_kw": "разработка ТУ сейсмостойкость" },
+    { "slug": "proekt-seysmozashchity-zdaniya", "title": "Проект сейсмозащиты здания", "cluster": "design", "primary_kw": "проект сейсмозащиты здания" },
+    { "slug": "audit-proektnoy-dokumentacii-seysmika", "title": "Аудит проектной документации по сейсмике", "cluster": "design", "primary_kw": "аудит проектной документации сейсмика" },
+    { "slug": "raschet-seysmicheskoy-nagruzki-snip", "title": "Расчёт сейсмической нагрузки по СП 14.13330", "cluster": "design", "primary_kw": "расчёт сейсмической нагрузки СП 14.13330" },
+    { "slug": "koefficient-k1-seysmika", "title": "Коэффициент K1 сейсмичности — допуск упругих деформаций", "cluster": "design", "primary_kw": "коэффициент K1 сейсмичность" },
+    { "slug": "raschet-nesuschih-konstrukciy-na-seysmiku", "title": "Расчёт несущих конструкций на сейсмические воздействия", "cluster": "design", "primary_kw": "расчёт несущих конструкций на сейсмику" },
+    { "slug": "povyshenie-kvalifikacii-seysmika", "title": "Повышение квалификации по сейсмостойкому строительству", "cluster": "design", "primary_kw": "повышение квалификации сейсмостойкое строительство" },
+    { "slug": "obuchenie-proektirovshchikov-seysmika", "title": "Обучение проектировщиков сейсмостойкому строительству", "cluster": "design", "primary_kw": "обучение проектировщиков сейсмостойкое строительство" },
+    { "slug": "seminary-seysmostoykoe-stroitelstvo", "title": "Семинары по сейсмостойкому строительству", "cluster": "design", "primary_kw": "семинары сейсмостойкое строительство" },
+
+    { "slug": "dlya-aes-seysmostoykost", "title": "Сейсмостойкость оборудования для АЭС", "cluster": "industry", "primary_kw": "сейсмостойкость оборудования АЭС" },
+    { "slug": "dlya-neftegaza-seysmostoykost", "title": "Сейсмостойкое оборудование для нефтегазовой отрасли", "cluster": "industry", "primary_kw": "сейсмостойкое оборудование нефтегаз" },
+    { "slug": "dlya-mostov-seysmostoykost", "title": "Сейсмостойкость мостов и эстакад", "cluster": "industry", "primary_kw": "сейсмостойкость мостов" },
+    { "slug": "dlya-lep-seysmostoykost", "title": "Сейсмостойкость ЛЭП и подстанций", "cluster": "industry", "primary_kw": "сейсмостойкость ЛЭП подстанций" },
+    { "slug": "dlya-truboprovodov-seysmostoykost", "title": "Сейсмостойкость трубопроводов", "cluster": "industry", "primary_kw": "сейсмостойкость трубопроводов" },
+    { "slug": "dlya-bolnic-seysmostoykost", "title": "Сейсмостойкость больниц и медицинских учреждений", "cluster": "industry", "primary_kw": "сейсмостойкость больниц" },
+    { "slug": "dlya-shkol-i-detsadov", "title": "Сейсмостойкость школ и детских садов", "cluster": "industry", "primary_kw": "сейсмостойкость школ" },
+    { "slug": "dlya-data-centrov-seysmostoykost", "title": "Сейсмостойкость дата-центров", "cluster": "industry", "primary_kw": "сейсмостойкость дата-центров" },
+    { "slug": "dlya-voennyh-obektov", "title": "Сейсмостойкость военных объектов", "cluster": "industry", "primary_kw": "сейсмостойкость военных объектов" },
+    { "slug": "dlya-gidrosooruzheniy", "title": "Сейсмостойкость гидротехнических сооружений", "cluster": "industry", "primary_kw": "сейсмостойкость гидросооружений" },
+
+    { "slug": "seysmika-sochi", "title": "Сейсмо услуги Сочи — сертификат, обследование, изоляторы", "cluster": "region", "primary_kw": "сейсмостойкость Сочи" },
+    { "slug": "seysmika-kamchatka", "title": "Сейсмо услуги Камчатка", "cluster": "region", "primary_kw": "сейсмостойкость Камчатка" },
+    { "slug": "seysmika-sahalin", "title": "Сейсмо услуги Сахалин", "cluster": "region", "primary_kw": "сейсмостойкость Сахалин" },
+    { "slug": "seysmika-krym", "title": "Сейсмо услуги Крым", "cluster": "region", "primary_kw": "сейсмостойкость Крым" },
+    { "slug": "seysmika-kavkaz", "title": "Сейсмо услуги Северный Кавказ", "cluster": "region", "primary_kw": "сейсмостойкость Северный Кавказ" },
+    { "slug": "seysmika-altay", "title": "Сейсмо услуги Алтай", "cluster": "region", "primary_kw": "сейсмостойкость Алтай" },
+    { "slug": "seysmika-yakutiya", "title": "Сейсмо услуги Якутия", "cluster": "region", "primary_kw": "сейсмостойкость Якутия" },
+    { "slug": "seysmika-baykal", "title": "Сейсмо услуги Байкальская зона", "cluster": "region", "primary_kw": "сейсмостойкость Байкал" },
+    { "slug": "seysmika-vladivostok", "title": "Сейсмо услуги Владивосток и Приморье", "cluster": "region", "primary_kw": "сейсмостойкость Владивосток" },
+    { "slug": "seysmika-moskva", "title": "Сейсмо услуги Москва и МО (офисные здания)", "cluster": "region", "primary_kw": "сейсмостойкость Москва" },
+
+    { "slug": "chasto-zadayut-voprosy-o-seysmike", "title": "Частые вопросы о сейсмостойкости", "cluster": "faq", "primary_kw": "вопросы о сейсмостойкости" },
+    { "slug": "skolko-stoit-sertifikat-seysmostoykosti", "title": "Сколько стоит сертификат сейсмостойкости", "cluster": "faq", "primary_kw": "сколько стоит сертификат сейсмостойкости" },
+    { "slug": "sroki-oformleniya-seysmostoykosti", "title": "Сроки оформления сертификата сейсмостойкости", "cluster": "faq", "primary_kw": "сроки оформления сертификата сейсмостойкости" },
+    { "slug": "dokumenty-dlya-seysmiki", "title": "Документы для получения сертификата сейсмостойкости", "cluster": "faq", "primary_kw": "документы для сертификата сейсмостойкости" },
+    { "slug": "deystvie-sertifikata-seysmostoykosti", "title": "Срок действия сертификата сейсмостойкости", "cluster": "faq", "primary_kw": "срок действия сертификата сейсмостойкости" },
+    { "slug": "proverka-sertifikata-seysmostoykosti", "title": "Проверка сертификата сейсмостойкости в реестре", "cluster": "faq", "primary_kw": "проверка сертификата сейсмостойкости" },
+    { "slug": "otkaz-v-sertifikate-seysmostoykosti", "title": "Отказ в сертификате сейсмостойкости — что делать", "cluster": "faq", "primary_kw": "отказ в сертификате сейсмостойкости" },
+    { "slug": "sertifikat-ili-zaklyuchenie-seysmika", "title": "Сертификат или заключение о сейсмостойкости — в чем разница", "cluster": "faq", "primary_kw": "сертификат или заключение сейсмостойкость" },
+    { "slug": "kak-vybrat-laboratoriyu-seysmiki", "title": "Как выбрать лабораторию по сейсмостойкости", "cluster": "faq", "primary_kw": "выбор лаборатории сейсмостойкости" },
+    { "slug": "obyazatelen-li-sertifikat-seysmostoykosti", "title": "Обязателен ли сертификат сейсмостойкости", "cluster": "faq", "primary_kw": "обязателен ли сертификат сейсмостойкости" }
+  ]
+}
