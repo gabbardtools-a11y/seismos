@@ -9,7 +9,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { LoginForm } from "./login-form";
 
 export const metadata = {
-  title: "Личный кабинет · СРОСС®",
+  title: "Личный кабинет",
   description: "Вход в личный кабинет СРОСС® — сертификация сейсмостойкости, заказы, документы.",
   alternates: { canonical: "/login" },
 };

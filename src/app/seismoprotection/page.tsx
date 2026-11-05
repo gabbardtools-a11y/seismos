@@ -12,7 +12,7 @@ import { ArrowLeft, ShieldCheck, Building2, Wrench, Activity, Layers, Waves, Zap
 import { SiteHeader } from "@/components/site/site-header";
 
 export const metadata = {
-  title: "Сейсмозащита зданий и сооружений · СРОСС®",
+  title: "Сейсмозащита зданий и сооружений — виды, принципы, технологии",
   description:
     "Сейсмозащита — что это такое, какие бывают виды и как они работают. Сейсмоизоляция, сейсмогашение, демпферы, маятниковые и резинометаллические опоры. Простым языком.",
 };

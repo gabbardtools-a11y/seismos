@@ -14,7 +14,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { EqGlobe } from "@/components/globe/eq-globe";
 
 export const metadata = {
-  title: "Сейсмо Глобус · СРОСС®",
+  title: "Сейсмо Глобус — интерактивный 3D-глобус землетрясений",
   description:
     "Интерактивный 3D-глобус землетрясений Земли в реальном времени. Эпицентры свежих событий по данным eqalert.ru, ГС РАН. Вращайте, приближайте, наводите на маркер — магнитуда, глубина и время события.",
 };
