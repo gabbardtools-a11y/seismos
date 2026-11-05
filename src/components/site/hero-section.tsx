@@ -8,14 +8,15 @@ import { SeismoSoundToggle } from "./seismo-sound-toggle";
 import { SeismogramLine } from "./seismogram-line";
 import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
 import { EqGlobe } from "@/components/globe/eq-globe";
+import { HeroGlobeFlow } from "./hero-globe-flow";
 import { getLang } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/translations";
 
 /**
  * HERO — главный экран.
- * Двухколоночная компоновка: слева текст (h1, миссия, сертификация, метрики, CTA),
- * справа — интерактивный 3D-глобус землетрясений в режиме «точки».
- * На мобильном — одна колонка: текст сверху, глобус снизу.
+ * Текст обтекает 3D-глобус (magazine-style): на десктопе глобус справа,
+ * текст огибает его как круг через CSS shape-outside. На мобильном —
+ * обычный одноколоночный поток: текст, потом глобус.
  */
 export async function HeroSection() {
   const lang = await getLang();
@@ -29,105 +30,67 @@ export async function HeroSection() {
       <SeismogramDivider lang={lang} />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 py-12 lg:py-16">
-        {/* Двухколоночная сетка: на десктопе — текст 7/12, глобус 5/12.
-            На мобильном — одна колонка, глобус под текстом. */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <HeroGlobeFlow>
+          {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
+          <h1 className="text-[22px] sm:text-[34px] lg:text-[40px] xl:text-[44px] leading-[1.2] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
+            {t("hero.h1", lang)}
+          </h1>
 
-          {/* === ЛЕВАЯ КОЛОНКА — ТЕКСТ === */}
-          <div className="lg:col-span-7 order-1">
-            {/* Главный заголовок — БОЛЬШИМИ БУКВАМИ */}
-            <h1 className="text-[22px] sm:text-[34px] lg:text-[40px] xl:text-[44px] leading-[1.2] font-bold tracking-[-0.01em] text-[#003366] mb-6 uppercase">
-              {t("hero.h1", lang)}
-            </h1>
+          {/* Описание под заголовком */}
+          <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-6">
+            {t("hero.lead", lang)}
+          </p>
 
-            {/* Описание под заголовком */}
-            <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-6">
-              {t("hero.lead", lang)}
+          {/* Подзаголовок — про СРОСС® и ЕАСА */}
+          <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-6">
+            {t("hero.missionPre", lang)} <strong className="text-[#003366]">СРОСС®</strong>{" "}
+            {t("hero.missionPost", lang)}
+          </p>
+
+          {/* Сертификация и экспертизы */}
+          <div className="bg-[#F8FBF9] border border-[#D6DCE3] rounded-xl p-5 mb-6">
+            <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
+              <strong className="text-[#003366]">Сейсмо сертификация и испытания зданий, сооружений, оборудования и материалов.</strong>{" "}
+              Любые виды разрешений и сертификатов. Лабораторные исследования и заключения экспертов.{" "}
+              <strong className="text-[#003366]">Все виды экспертиз от лучших экспертов сообщества в области сейсмологии, сейсмики и сейсмостойкого строительства.</strong>
             </p>
-
-            {/* Подзаголовок — про СРОСС® и ЕАСА */}
-            <p className="text-base sm:text-lg lg:text-xl text-[#4A6378] leading-relaxed mb-6">
-              {t("hero.missionPre", lang)} <strong className="text-[#003366]">СРОСС®</strong>{" "}
-              {t("hero.missionPost", lang)}
-            </p>
-
-            {/* Сертификация и экспертизы */}
-            <div className="bg-[#F8FBF9] border border-[#D6DCE3] rounded-xl p-5 mb-6">
-              <p className="text-sm sm:text-base text-[#4A6378] leading-relaxed">
-                <strong className="text-[#003366]">Сейсмо сертификация и испытания зданий, сооружений, оборудования и материалов.</strong>{" "}
-                Любые виды разрешений и сертификатов. Лабораторные исследования и заключения экспертов.{" "}
-                <strong className="text-[#003366]">Все виды экспертиз от лучших экспертов сообщества в области сейсмологии, сейсмики и сейсмостойкого строительства.</strong>
-              </p>
-            </div>
-
-            {/* Метрики */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-8 py-5 border-y border-[#D6DCE3]">
-              <Metric value="50+" label={t("hero.mYears", lang)} />
-              <Metric value="2009" label={<span><span className="text-[#7B1E2B] font-bold">seismo.ru</span> — {t("hero.mLaunch", lang)}</span>} />
-              <Metric value="9" label={t("hero.mRegions", lang)} />
-            </div>
-
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="bg-[#00549F] hover:bg-[#003366] text-white text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
-              >
-                <Link href="#map">
-                  <Map className="mr-2 h-4 w-4" />
-                  {t("hero.ctaMap", lang)}
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-[#00549F] text-[#00549F] hover:bg-[#E7EEF6] hover:text-[#003366] text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
-              >
-                <Link href="/seismo-globus">
-                  <Globe2 className="mr-2 h-4 w-4" />
-                  Открыть глобус
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
           </div>
 
-          {/* === ПРАВАЯ КОЛОНКА — ГЛОБУС ===
-              Без рамки и надписей: только вращающийся 3D-глобус,
-              внизу — ссылка «подробнее →» на страницу /seismo-globus. */}
-          <div className="lg:col-span-5 order-2">
-            <div className="relative">
-              <Suspense
-                fallback={
-                  <div className="flex items-center justify-center h-[280px] sm:h-[340px] lg:h-[420px] text-[#4A6378] text-sm">
-                    Загружаем глобус…
-                  </div>
-                }
-              >
-                <EqGlobe
-                  variant="minimal"
-                  initialLon={37.6} /* Москва — при старте повёрнут к России */
-                  autoRotateSpeed={0.4}
-                  heightClass="relative h-[280px] sm:h-[340px] lg:h-[420px] w-full"
-                  className="w-full"
-                />
-              </Suspense>
-            </div>
+          {/* Метрики */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-8 py-5 border-y border-[#D6DCE3]">
+            <Metric value="50+" label={t("hero.mYears", lang)} />
+            <Metric value="2009" label={<span><span className="text-[#7B1E2B] font-bold">seismo.ru</span> — {t("hero.mLaunch", lang)}</span>} />
+            <Metric value="9" label={t("hero.mRegions", lang)} />
+          </div>
 
-            <div className="mt-2 text-center">
-              <Link
-                href="/seismo-globus"
-                className="text-[11px] tracking-[0.14em] uppercase text-[#00549F] font-semibold hover:text-[#003366] hover:underline"
-              >
-                подробнее →
+          {/* CTA */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button
+              asChild
+              size="lg"
+              className="bg-[#00549F] hover:bg-[#003366] text-white text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
+            >
+              <Link href="#map">
+                <Map className="mr-2 h-4 w-4" />
+                {t("hero.ctaMap", lang)}
               </Link>
-            </div>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-[#00549F] text-[#00549F] hover:bg-[#E7EEF6] hover:text-[#003366] text-[13px] tracking-[0.14em] uppercase font-semibold h-12 px-7"
+            >
+              <Link href="/seismo-globus">
+                <Globe2 className="mr-2 h-4 w-4" />
+                Открыть глобус
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
-        </div>
+        </HeroGlobeFlow>
 
-        {/* SVG-карта ЕАЭС с красными точками столиц — под двухколоночным блоком */}
+        {/* SVG-карта ЕАЭС с красными точками столиц — под основным блоком */}
         <EAEMap />
       </div>
     </section>
