@@ -183,11 +183,11 @@ export function LandDots({
               specular="#1a1a1a"
             />
           ) : (
+            // Режим «точки»: океан — чистый голубой цвет (без спутниковой
+            // текстуры, иначе сквозь точки проступает коричнево-серая суша).
+            // baseTint по умолчанию #d8e6f8 — холодный светло-голубой океан.
             <meshBasicMaterial
-              map={texture}
               color={baseTint}
-              transparent
-              opacity={0.22}
               side={THREE.DoubleSide}
             />
           )}
