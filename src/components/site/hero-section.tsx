@@ -90,6 +90,12 @@ export async function HeroSection() {
           </div>
         </HeroGlobeFlow>
 
+        {/* === Ключевые направления — кликабельные слова из title ===
+            Каждое ключевое слово из meta.title ведёт на соответствующую
+            SEO-страницу. Помогает поисковикам понять структуру сайта и
+            перелинковывает главную с 34 SEO-страницами. */}
+        <KeywordLinks />
+
         {/* SVG-карта ЕАЭС с красными точками столиц — под основным блоком */}
         <EAEMap />
       </div>
@@ -105,6 +111,65 @@ function Metric({ value, label }: { value: string; label: React.ReactNode }) {
       </div>
       <div className="text-[10px] tracking-[0.14em] uppercase text-[#4A6378] mt-2">
         {label}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * KeywordLinks — блок кликабельных ключевых слов из title главной.
+ * Каждое слово — ссылка на соответствующую SEO-страницу.
+ *
+ * Соответствие слов из meta.title:
+ *   «Сейсмо» → главная (#)
+ *   «Сейсмобезопасность» → /obsledovanie-zdaniy-na-seysmostoykost
+ *   «сейсмозащита» → /seismoprotection
+ *   «сертификаты» → /seismo_sertifikat
+ *   «разрешения» → /sertifikat-sootvetstviya-seysmostoykosti
+ *   «экспертиза» → /ekspertiza-seysmostoykosti-zdaniya
+ *   «испытания» → /ispytaniya-na-seysmostoykost
+ *   «в лабораториях» → /protokol-ispytaniy-na-seysmostoykost
+ *
+ * Плюс дополнительные ключи из hero-фразы:
+ *   «сейсмоизоляторы» → /seysmoizolyatory-kupit
+ *   «сейсмоусиление» → /seysmousilenie-zdaniy
+ *   «расчёты» → /raschet-seysmostoykosti
+ *   «обследование» → /obsledovanie-zdaniy-na-seysmostoykost
+ *   «паспорт здания» → /passport-3d-stp
+ *   «мониторинг» → /audit-seysmicheskoy-bezopasnosti
+ */
+const KEYWORD_LINKS: { word: string; href: string }[] = [
+  { word: "Сейсмобезопасность", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+  { word: "сейсмозащита", href: "/seismoprotection" },
+  { word: "сертификаты", href: "/seismo_sertifikat" },
+  { word: "разрешения", href: "/sertifikat-sootvetstviya-seysmostoykosti" },
+  { word: "экспертиза", href: "/ekspertiza-seysmostoykosti-zdaniya" },
+  { word: "испытания", href: "/ispytaniya-na-seysmostoykost" },
+  { word: "в лабораториях", href: "/protokol-ispytaniy-na-seysmostoykost" },
+  { word: "сейсмоизоляторы", href: "/seysmoizolyatory-kupit" },
+  { word: "сейсмоусиление", href: "/seysmousilenie-zdaniy" },
+  { word: "расчёты", href: "/raschet-seysmostoykosti" },
+  { word: "обследование", href: "/obsledovanie-zdaniy-na-seysmostoykost" },
+  { word: "паспорт здания", href: "/passport-3d-stp" },
+  { word: "мониторинг", href: "/audit-seysmicheskoy-bezopasnosti" },
+];
+
+function KeywordLinks() {
+  return (
+    <div className="mt-10 mb-2 bg-[#F8FBF9] border border-[#D6DCE3] rounded-2xl p-5 sm:p-6">
+      <p className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-bold mb-3">
+        Ключевые направления — нажмите на любое
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {KEYWORD_LINKS.map(({ word, href }) => (
+          <Link
+            key={href}
+            href={href}
+            className="inline-flex items-center px-3.5 py-1.5 bg-white border border-[#00549F]/30 rounded-full text-[13px] font-semibold text-[#00549F] hover:bg-[#00549F] hover:text-white hover:border-[#00549F] transition-colors"
+          >
+            {word}
+          </Link>
+        ))}
       </div>
     </div>
   );
