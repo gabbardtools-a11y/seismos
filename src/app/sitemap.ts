@@ -12,7 +12,7 @@
  */
 import type { MetadataRoute } from "next";
 
-const BASE = "https://seismo.ru";
+const BASE = "https://seismos.ru";
 
 // Служебные страницы
 const STATIC_ROUTES = [

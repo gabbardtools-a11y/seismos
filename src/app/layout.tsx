@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t('meta.title', lang);
   const description = t('meta.desc', lang);
   return {
-    metadataBase: new URL("https://seismo.ru"),
+    metadataBase: new URL("https://seismos.ru"),
     title,
     description,
     keywords: [
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description: t('meta.ogDesc', lang),
-      url: "https://seismo.ru/",
+      url: "https://seismos.ru/",
       siteName: t('meta.siteName', lang),
       type: "website",
       locale: lang === 'ru' ? 'ru_RU' : lang === 'en' ? 'en_US' : 'zh_CN',

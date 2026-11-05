@@ -14,4 +14,4 @@ User-agent: *
 Allow: /
 
 # Карта сайта для поисковых систем
-Sitemap: https://seismo.ru/sitemap.xml
+Sitemap: https://seismos.ru/sitemap.xml

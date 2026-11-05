@@ -10,6 +10,10 @@ import { AuthorSection } from "@/components/site/author-section";
 import { PublicationsSection } from "@/components/site/publications-section";
 import { ContactsSection } from "@/components/site/contacts-section";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
