@@ -91,17 +91,17 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-[#D6DCE3]">
       {/* Тонкая верхняя полоса с международной привязкой */}
       <div className="bg-[#003366] text-white text-[11px] tracking-[0.18em] uppercase">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
-          <span className="hidden sm:inline font-medium opacity-80 flex items-center gap-2">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-3">
+          <div className="hidden sm:flex font-medium opacity-80 items-center gap-2 whitespace-nowrap min-w-0">
             {/* Вращающийся 3D-глобус (SVG + CSS-анимация) */}
-            <GlobeEmblem className="h-5 w-5" />
-            {t("top.intl")}
-          </span>
-          <span className="sm:hidden font-medium opacity-80 flex items-center gap-1.5">
-            <GlobeEmblem className="h-4 w-4" />
-            {t("top.intlShort")}
-          </span>
-          <div className="flex items-center gap-3">
+            <GlobeEmblem className="h-5 w-5 flex-shrink-0" />
+            <span className="truncate">{t("top.intl")}</span>
+          </div>
+          <div className="sm:hidden flex font-medium opacity-80 items-center gap-1.5 whitespace-nowrap min-w-0">
+            <GlobeEmblem className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">{t("top.intlShort")}</span>
+          </div>
+          <div className="flex items-center gap-3 flex-shrink-0">
             <LangSwitch lang={lang} switchLang={switchLang} compact />
           </div>
         </div>
