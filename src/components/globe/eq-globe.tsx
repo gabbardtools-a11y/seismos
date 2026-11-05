@@ -501,7 +501,7 @@ export function EqGlobe({
 
   const handlePointerMove = useCallback(
     (e: ReactPointerEvent<HTMLDivElement>) => {
-      if (isMinimal) return; // в minimal-режиме тултип не нужен
+      // Тултип работает в обоих режимах — отслеживаем позицию курсора
       const rect = e.currentTarget.getBoundingClientRect();
       mouseRef.current = {
         x: e.clientX - rect.left,
@@ -617,16 +617,15 @@ export function EqGlobe({
           <FogFollow />
           <OrbitControls
             enablePan={false}
-            // Зум колесом мыши при наведении на глобус; страница в этот
-            // момент не скроллится (OrbitControls перехватывает wheel).
-            // В minimal-режиме зум выключаем — иначе он перехватывает скролл страницы в hero.
+            // Зум колесом мыши выключаем в minimal-режиме — иначе OrbitControls
+            // перехватывает wheel и страница не скроллится в hero.
             enableZoom={!isMinimal}
             minDistance={2.1}
             maxDistance={4.6}
             zoomSpeed={0.8}
-            // В minimal-режиме вращение мышью выключаем — пусть глобус
-            // только крутится авто-анимацией, не мешая скроллу страницы.
-            enableRotate={!isMinimal}
+            // Вращение мышью включено в обоих режимах — пользователь может
+            // крутить глобус. Авто-вращение продолжает работать после отпускания.
+            enableRotate
             // Вертикальное вращение разблокировано: наклон «на зрителя» и
             // «от зрителя». Ограничиваем полярный угол, чтобы не переворачивать
             // глобус через полюс.
@@ -651,8 +650,8 @@ export function EqGlobe({
           </group>
         </Canvas>
 
-        {/* карточка события при наведении — только в full-режиме */}
-        {!isMinimal && hovered && (
+        {/* карточка события при наведении — рендерится в обоих режимах */}
+        {hovered && (
           <div
             ref={tooltipRef}
             className="pointer-events-none absolute left-0 top-0 z-20 w-[264px]"
