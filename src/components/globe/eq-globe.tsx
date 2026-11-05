@@ -595,10 +595,18 @@ export function EqGlobe({
           camera={{ position: cameraPosition, fov: 45 }}
           dpr={[1, 1.5]}
           flat
-          gl={{ antialias: true, alpha: false, powerPreference: "default" }}
+          gl={{
+            antialias: true,
+            // В minimal-режиме Canvas прозрачный — просвечивает фон страницы
+            // (например, .bg-paper-grid в hero). В full-режиме — непрозрачный
+            // (фиксированный бежевый фон из --globe-bg).
+            alpha: isMinimal,
+            powerPreference: "default",
+          }}
         >
-          <color attach="background" args={[background]} />
-          <fog attach="fog" args={[background, 2.6, 4.4]} />
+          {/* Фон сцены: в full-режиме — бежевый, в minimal — прозрачный */}
+          {!isMinimal && <color attach="background" args={[background]} />}
+          {!isMinimal && <fog attach="fog" args={[background, 2.6, 4.4]} />}
           {/* Свет нужен только реалистичной сфере (meshPhongMaterial);
               точки и маркеры используют неосвещаемые материалы. */}
           <ambientLight intensity={1.05} />
