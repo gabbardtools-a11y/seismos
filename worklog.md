@@ -280,3 +280,14 @@ Stage Summary:
 - VPS: 91.219.151.57, /var/www/seismos/, PM2: seismos, порт 3004
 - vps_ssh.py настроен на RSA (сломан) — нужен ed25519
 - Игнорировать TS ошибки (ignoreBuildErrors: true в next.config.ts)
+
+---
+Task ID: health-check
+Agent: cron-watchdog (read-only)
+Date: 2026-11-06 21:01 UTC
+Status: OK
+Prod: /=200, /api/earthquakes=200, /seismo-globus=200, /glossary=200, /oborudovanie=200
+Sitemap: 45 URL
+Git HEAD: abbd4ac (авто-коммит после моей капсулы v3)
+Drip: drip_state.json пустой — cron 506005 не отработал (concurrency limit), drip-страницы не созданы
+Dev: localhost:3000=200 (сервер жив)
