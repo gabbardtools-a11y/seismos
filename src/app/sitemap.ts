@@ -19,6 +19,7 @@ const STATIC_ROUTES = [
   "/",
   "/news",
   "/author",
+  "/glossary",
   "/seismoprotection",
   "/seismoizolyatory",
   "/sertifikaty",
