@@ -27,7 +27,7 @@ import {
 import { findNearestCity, formatLocation, type NearestCity } from "@/lib/geo/nearest-city";
 
 /* ------------------------------------------------------------------ */
-/* Данные: /api/earthquakes (серверный прокси к eqalert.ru)            */
+/* Данные: /api/earthquakes (серверный прокси к источнику данных)      */
 /* ------------------------------------------------------------------ */
 
 function useEarthquakes() {
@@ -732,12 +732,10 @@ export function EqGlobe({
               </dl>
 
               <a
-                href="https://eqalert.ru/earthquakes"
-                target="_blank"
-                rel="noreferrer"
+                href="#"
                 className="mt-2.5 inline-block text-[11px] font-medium text-globe-accent hover:underline"
               >
-                Подробнее на eqalert.ru →
+                Подробнее →
               </a>
             </div>
           </div>
@@ -747,7 +745,7 @@ export function EqGlobe({
         {!isMinimal && !data && (
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
             <div className="rounded-full border border-globe-border bg-white/80 px-4 py-1.5 text-xs text-foreground/60">
-              Загружаем данные eqalert.ru…
+              Загружаем данные…
             </div>
           </div>
         )}

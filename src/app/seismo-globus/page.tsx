@@ -1,7 +1,7 @@
 /**
  * Страница «Сейсмо Глобус» — интерактивный 3D-глобус землетрясений.
  *
- * Источник данных: eqalert.ru (через серверный прокси /api/earthquakes).
+ * Источник данных: ФИЦ ЕГС РАН (через серверный прокси /api/earthquakes).
  * Глобус построен на three.js + @react-three/fiber (компонент <EqGlobe />).
  * Визуальная палитра синхронизирована с сайтом через CSS-переменные
  * --globe-* (см. globals.css).
@@ -16,7 +16,7 @@ import { EqGlobe } from "@/components/globe/eq-globe";
 export const metadata = {
   title: "Сейсмо Глобус — интерактивный 3D-глобус землетрясений",
   description:
-    "Интерактивный 3D-глобус землетрясений Земли в реальном времени. Эпицентры свежих событий по данным eqalert.ru, ГС РАН. Вращайте, приближайте, наводите на маркер — магнитуда, глубина и время события.",
+    "Интерактивный 3D-глобус землетрясений Земли в реальном времени. Эпицентры свежих событий по данным ГС РАН. Вращайте, приближайте, наводите на маркер — магнитуда, глубина и время события.",
 };
 
 export default function SeismoGlobusPage() {
@@ -49,7 +49,7 @@ export default function SeismoGlobusPage() {
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed max-w-3xl">
             Интерактивный 3D-глобус землетрясений Земли в реальном времени.
             Пульсирующие маркеры — эпицентры последних событий по данным
-            eqalert.ru (ГС РАН). Размер и цвет точки зависят от магнитуды,
+            ГС РАН. Размер и цвет точки зависят от магнитуды,
             при наведении — карточка события с деталями. Вращайте мышью,
             приближайте колесом.
           </p>
@@ -63,10 +63,10 @@ export default function SeismoGlobusPage() {
           <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
             <div className="flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">
               <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
-              Live · данные eqalert.ru
+              Live · данные ГС РАН
             </div>
             <div className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378]">
-              Источник: ГС РАН · EQAlert
+              Источник: ФИЦ ЕГС РАН
             </div>
           </div>
 
@@ -91,7 +91,7 @@ export default function SeismoGlobusPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           <InfoCard
             title="Эпицентры в реальном времени"
-            text="Пульсирующие маркеры — свежие землетрясения по данным eqalert.ru. Цвет: оранжевый (M<4), красно-оранжевый (M 4–5.5), тёмно-красный (M≥5.5). Размер пропорционален магнитуде."
+            text="Пульсирующие маркеры — свежие землетрясения по данным ФИЦ ЕГС РАН. Цвет: оранжевый (M<4), красно-оранжевый (M 4–5.5), тёмно-красный (M≥5.5). Размер пропорционален магнитуде."
           />
           <InfoCard
             title="Два режима суши"
@@ -99,7 +99,7 @@ export default function SeismoGlobusPage() {
           />
           <InfoCard
             title="Обновление каждые 60 с"
-            text="Серверный прокси /api/earthquakes обращается к rest-api.eqalert.ru и кэширует ответ на 2 минуты. При недоступности источника отдаются последние сохранённые данные с пометкой «кэш»."
+            text="Серверный прокси /api/earthquakes обращается к источнику данных и кэширует ответ на 2 минуты. При недоступности источника отдаются последние сохранённые данные с пометкой «кэш»."
           />
         </div>
 
@@ -117,17 +117,8 @@ export default function SeismoGlobusPage() {
             способ увидеть, что Земля живая и постоянно движется.
           </p>
           <p className="text-[#4A6378] leading-relaxed">
-            Данные поступают из открытого сервиса{" "}
-            <a
-              href="https://eqalert.ru/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#00549F] hover:underline"
-            >
-              eqalert.ru
-            </a>{" "}
-            (ООО «Геофизические технологии» / Геофизическая служба РАН).
-            Обновление ленты — каждую минуту.
+            Данные предоставлены ФИЦ ЕГС РАН
+            (Геофизическая служба РАН). Обновление ленты — каждую минуту.
           </p>
         </div>
       </div>

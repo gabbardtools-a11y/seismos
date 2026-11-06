@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/site/site-header";
 
 /**
  * Страница подробностей о землетрясении.
- * Источник: eqalert.ru (ФИЦ ЕГС РАН) через наш прокси /api/eqalert.
+ * Источник: ФИЦ ЕГС РАН через наш прокси /api/eqalert.
  *
  * URL: /earthquake/<report_id>
  */
@@ -104,7 +104,6 @@ export default async function EarthquakeDetailPage({
 
   // Карта-ссылка на OSM
   const osmUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=8/${lat}/${lon}`;
-  const eqalertUrl = `https://eqalert.ru/events/${report.report_id}`;
 
   // Класс магнитуды
   const magClass = mag === null
@@ -272,15 +271,13 @@ export default async function EarthquakeDetailPage({
                 {t("quake.srcH", lang)}
               </div>
               <div className="text-lg font-bold mb-2">
-                eqalert.ru · ФИЦ ЕГС РАН
+                ФИЦ ЕГС РАН
               </div>
               <p className="text-sm text-white/80 leading-relaxed mb-4">
                 {t("quake.srcLead", lang)}
               </p>
               <a
-                href={eqalertUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="inline-flex items-center gap-2 bg-[#22C55E] hover:bg-[#1ea44a] text-white font-semibold text-sm px-4 py-2 rounded-lg transition-colors"
               >
                 {t("quake.openReport", lang)}

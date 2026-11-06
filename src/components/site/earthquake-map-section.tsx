@@ -78,15 +78,7 @@ export async function EarthquakeMapSection() {
             >
               USGS
             </a>{" "}
-            ·{" "}
-            <a
-              href="https://eqalert.ru"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#2D5F3F] hover:text-[#22C55E] underline underline-offset-2"
-            >
-              eqalert.ru
-            </a>{" "}
+            · ФИЦ ЕГС РАН{" "}
             · Public Domain
           </span>
           <span>
