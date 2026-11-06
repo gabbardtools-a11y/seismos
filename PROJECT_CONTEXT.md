@@ -2,7 +2,7 @@
 
 > **Этот файл — полная выжимка контекста проекта seismos.ru.**
 > Загрузи его в новый чат (или дай прочитать ИИ) — и работа продолжится
-> с того же места. Обновлено: 2026-11-06 (версия 2 — с cron, VPS, CSP).
+> с того же места. Обновлено: 2026-11-06 (версия 3 — санитизирована: IP исправлен, секреты убраны, force-push убран).
 
 ---
 
@@ -134,7 +134,7 @@
 - `next.config.ts` — standalone, poweredByHeader: false, security headers (CSP, HSTS, X-Frame-Options, etc.), ignoreBuildErrors: true
 - `Caddyfile` — reverse proxy :81 → localhost:3000, encode (zstd+brotli+gzip), security headers
 - `src/app/layout.tsx` — metadataBase: https://seismos.ru, OG image /og.png 1200×630
-- `src/app/sitemap.ts` — 44 URL (9 служебных + 34 SEO + /author + /glossary + /oborudovanie)
+- `src/app/sitemap.ts` — 45 URL (9 служебных + 34 SEO + /author + /glossary + /oborudovanie)
 - `public/robots.txt` — Sitemap: https://seismos.ru/sitemap.xml
 - `public/og.png` — OG-изображение 1200×630 (PIL-генератор: scripts/make_og_image.py)
 - `src/lib/i18n/translations.ts` — 10 языков (ru/en/zh/kk/hy/ka/tg/uz/ky/md)
@@ -153,12 +153,13 @@
 
 ### Git push (нужен SSH-ключ)
 ```bash
-# Ключ лежит в /tmp/my-project/scripts/seismos_deploy_ed25519
-# (в sandbox может пропадать — искать в /tmp/my-project/)
-cp /tmp/my-project/scripts/seismos_deploy_ed25519 /tmp/depkey
-chmod 600 /tmp/depkey
-pip install paramiko  # если нет
-GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.py git push --no-thin origin main
+# Деплой-ключ (ed25519) — НЕ в git. Хранится в облаке Z.ai.
+# В sandbox: найти в /tmp/my-project/scripts/ или загрузить из облака.
+# Отпечаток: SHA256:HEo1LyJZ+8O9MjkG9IWK92BNFpYMdA/69t712HbWQpA
+# Команда push (после получения ключа):
+#   cp <путь_к_ключу> /tmp/depkey && chmod 600 /tmp/depkey
+#   pip install paramiko
+#   GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.py git push --no-thin origin main
 ```
 
 ### Cron-задача (drip-publish)
@@ -166,7 +167,8 @@ GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.p
 - Расписание: каждый день в 09:00 МСК (06:00 UTC)
 - Действие: `python3 /home/z/my-project/scripts/seo/drip_day.py --count 10`
 - Создаёт 10 страниц, генерирует контент через LLM, коммитит, пушит
-- **Важно:** cron может конфликтовать с ручными коммитами → нужен `git pull --rebase` или force-push
+- **Важно:** cron может конфликтовать с ручными коммитами → ВСЕГДА `git pull --rebase` первым, force-push — только в крайнем случае
+- **Статус:** drip_state.json пустой, drip-страниц на проде нет (404). Cron ни разу не отработал успешно. Возможно нужно упростить (shell-скрипт без LLM) или перенастроить.
 
 ### Cron-задача (само-оживление / health-check)
 - Job ID: `509858`
@@ -177,16 +179,23 @@ GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.p
   3. Git статус: есть ли незакоммиченные изменения
   4. Dev-сервер: localhost:3000 — если упал, перезапускает
   5. Дописывает в worklog.md запись о проверке (формат Мастеров)
-- Если проблемы — пытается исправить (запустить drip, закоммитить, перезапустить)
+- Если проблемы — ДОКЛАДЫВАЕТ (запись в worklog + сообщение в чат), НЕ чинит пушем в main
 
 ### VPS доступ
-- **Хост:** `91.219.151.57` (продакшен seismos.ru)
+- **Хост:** `188.127.249.38` (продакшен seismos.ru)
 - **Папка:** `/var/www/seismos/`
 - **PM2:** `seismos` (порт 3004)
-- **Ключ:** `scripts/seismos_deploy_ed25519` (ed25519, НЕ RSA!)
-- **Проблема:** `scripts/vps_ssh.py` настроен на RSA (сломан) — нужно использовать ed25519
-- **Рабочий способ:** `paramiko.Ed25519Key.from_private_key_file('/tmp/depkey')` + `cli.connect(HOST, username='root', pkey=key)`
-- **Второй VPS:** `188.127.227.250` (пароль в `scripts/ssh_run_sh.py`) — может быть недоступен
+- **Ключ:** ed25519, отпечаток `SHA256:HEo1LyJZ+8O9MjkG9IWK92BNFpYMdA/69t712HbWQpA`
+  - НЕ в git. В облаке Z.ai + /tmp/my-project/scripts/ в sandbox
+  - `scripts/vps_ssh.py` настроен на RSA (сломан) — нужен ed25519
+  - Рабочий способ: `paramiko.Ed25519Key.from_private_key_file('/tmp/depkey')`
+- **Второй VPS:** `188.127.227.250` — устаревший, не используется
+
+### Хранение секретов
+- **Git репозиторий** — капсула БЕЗ секретов (нет ключей, паролей, токенов)
+- **Облако Z.ai** — полная версия капсулы с ключами и доступами (обновляется периодически)
+- **Sandbox** — ключ может лежать в `/tmp/my-project/scripts/seismos_deploy_ed25519` (выцветает при рецикле)
+- Отпечаток ключа (не секрет): `SHA256:HEo1LyJZ+8O9MjkG9IWK92BNFpYMdA/69t712HbWQpA`
 
 ### 3-уровневая система авто-восстановления
 1. **PROJECT_CONTEXT.md** — этот файл (27 КБ), в Git — переживает любой sandbox
@@ -247,7 +256,7 @@ git pull → прочитать PROJECT_CONTEXT.md → прочитать пос
 12. ✅ Страница /login (форма ЛК)
 13. ✅ Перелинковка 34 страниц (блок «Смотрите также»)
 14. ✅ JSON-LD (Organization, WebSite, BreadcrumbList, FAQPage, DefinedTermSet)
-15. ✅ Sitemap.xml (44 URL) + robots.txt
+15. ✅ Sitemap.xml (45 URL) + robots.txt
 16. ✅ OG-изображение 1200×630
 17. ✅ Security headers (CSP, HSTS, X-Frame-Options, etc.)
 18. ✅ Brotli + zstd сжатие (Caddy)
@@ -270,7 +279,7 @@ git pull → прочитать PROJECT_CONTEXT.md → прочитать пос
 
 ### Минорные (не критично)
 - [ ] Кейворд-стаффинг в H1 на /seismo_sertifikat («сейсмостойкости сейсмоустойчивости сейсмо-надежности сейсмо-прочности») — пользователь просил, оставить
-- [ ] lastmod в sitemap идентичны (все 44 URL с одной датой)
+- [ ] lastmod в sitemap идентичны (все 45 URL с одной датой)
 - [ ] russia-map-vector.svg — 398 КБ, можно оптимизировать (svgo)
 - [ ] earth_atmos_2048.jpg — 512 КБ, можно WebP
 - [ ] TypeScript ошибки в author-section.tsx, lazy-seismic-map.tsx (ignoreBuildErrors: true)
@@ -308,12 +317,13 @@ git pull → прочитать PROJECT_CONTEXT.md → прочитать пос
 cd /home/z/my-project && setsid nohup bun run dev > /dev/null 2>&1 &
 
 # Git push (нужен ключ)
-cp /tmp/my-project/scripts/seismos_deploy_ed25519 /tmp/depkey && chmod 600 /tmp/depkey
+# Получить ключ из облака Z.ai → /tmp/depkey
+chmod 600 /tmp/depkey
 pip install paramiko
 GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.py git push --no-thin origin main
 
-# Force push (если cron создал конфликт)
-GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.py git push -f origin main
+# Force push — ТОЛЬКО в крайнем случае! Сначала всегда pull --rebase
+# GIT_SSH_KEY=/tmp/depkey GIT_SSH=scripts/git_ssh_wrapper_pro.py git push -f origin main
 
 # Pull rebase (при конфликте с cron)
 GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.py git pull --rebase origin main
@@ -347,7 +357,7 @@ z-ai vision -p "Опиши..." -i "download/file.png" -o /tmp/check.json
 │   ├── app/
 │   │   ├── page.tsx                    # Главная
 │   │   ├── layout.tsx                  # RootLayout (metadataBase, OG, fonts)
-│   │   ├── sitemap.ts                  # 44 URL
+│   │   ├── sitemap.ts                  # 45 URL
 │   │   ├── globals.css                 # CSS-переменные, Tailwind
 │   │   ├── news/                       # Новости
 │   │   ├── seismo-globus/              # 3D-глобус (full)
