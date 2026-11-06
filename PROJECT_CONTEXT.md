@@ -2,7 +2,7 @@
 
 > **Этот файл — полная выжимка контекста проекта seismos.ru.**
 > Загрузи его в новый чат (или дай прочитать ИИ) — и работа продолжится
-> с того же места. Обновлено: 2026-11-06.
+> с того же места. Обновлено: 2026-11-06 (версия 2 — с cron, VPS, CSP).
 
 ---
 
@@ -168,6 +168,36 @@ GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.p
 - Создаёт 10 страниц, генерирует контент через LLM, коммитит, пушит
 - **Важно:** cron может конфликтовать с ручными коммитами → нужен `git pull --rebase` или force-push
 
+### Cron-задача (само-оживление / health-check)
+- Job ID: `509858`
+- Расписание: каждый час
+- Действие: читает PROJECT_CONTEXT.md + worklog.md, проверяет:
+  1. Прод seismos.ru (HTTP 200 на /, /seismo-globus, /glossary, /oborudovanie, /api/earthquakes)
+  2. Drip-publish: drip_state.json — сколько опубликовано из 60
+  3. Git статус: есть ли незакоммиченные изменения
+  4. Dev-сервер: localhost:3000 — если упал, перезапускает
+  5. Дописывает в worklog.md запись о проверке (формат Мастеров)
+- Если проблемы — пытается исправить (запустить drip, закоммитить, перезапустить)
+
+### VPS доступ
+- **Хост:** `91.219.151.57` (продакшен seismos.ru)
+- **Папка:** `/var/www/seismos/`
+- **PM2:** `seismos` (порт 3004)
+- **Ключ:** `scripts/seismos_deploy_ed25519` (ed25519, НЕ RSA!)
+- **Проблема:** `scripts/vps_ssh.py` настроен на RSA (сломан) — нужно использовать ed25519
+- **Рабочий способ:** `paramiko.Ed25519Key.from_private_key_file('/tmp/depkey')` + `cli.connect(HOST, username='root', pkey=key)`
+- **Второй VPS:** `188.127.227.250` (пароль в `scripts/ssh_run_sh.py`) — может быть недоступен
+
+### 3-уровневая система авто-восстановления
+1. **PROJECT_CONTEXT.md** — этот файл (27 КБ), в Git — переживает любой sandbox
+2. **worklog.md** — хронология задач (формат Мастеров), в Git
+3. **Cron 509858** — ежечасная проверка + авто-исправление
+
+**Алгоритм восстановления в новом чате:**
+```
+git pull → прочитать PROJECT_CONTEXT.md → прочитать последние записи worklog.md → продолжить работу
+```
+
 ---
 
 ## 5. СТИЛЬ И ДИЗАЙН
@@ -247,11 +277,27 @@ GIT_SSH_KEY=/tmp/depkey GIT_SSH=/home/z/my-project/scripts/git_ssh_wrapper_pro.p
 - [ ] Дублирующий ключ /news в навигации (СМИ убран, но возможно остался)
 
 ### Можно улучшить
-- [ ] Добавить термины из ГОСТ 16821-91 «Сейсморазведка» в глоссарий (PDF уже скачан в /tmp/gost.pdf, ~140 терминов)
+- [ ] Добавить термины из ГОСТ 16821-91 «Сейсморазведка» в глоссарий (PDF уже скачан в /tmp/gost.pdf, ~140 терминов, распарсен)
+- [ ] Поправить `scripts/vps_ssh.py` — настроить на ed25519 вместо RSA
 - [ ] Реальная страница ЛК (NextAuth + Prisma)
-- [ ] Поиск по сайту
+- [ ] Поиск по сайту (SearchAction в JSON-LD есть, реализации нет)
 - [ ] Форма обратной связи (с отправкой email)
 - [ ] Аналитика (Yandex.Metrika / Google Analytics)
+
+### CSP (Content Security Policy) — важно!
+В `next.config.ts` настроен CSP. Если добавляешь новые внешние ресурсы (CDN, API) — **обязательно** добавь их в CSP, иначе браузер заблокирует:
+- `script-src`: 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net
+- `style-src`: 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net
+- `connect-src`: 'self' https://rest-api.eqalert.ru https://earthquake.usgs.gov https://server.arcgisonline.com https://cdn.jsdelivr.net
+- `worker-src`: 'self' blob:
+- `img-src`: 'self' data: blob: https:
+
+**Прошлый инцидент:** CSP заблокировал Leaflet (leaflet.min.css с cdn.jsdelivr.net) → карта землетрясений не грузилась. Фикс: добавлен cdn.jsdelivr.net в style-src.
+
+### Карта землетрясений (мобильное)
+- `public/earthquake-map.html` — на мобильном (<768px) панель сворачивается под кнопку «Инфо»
+- Класс `collapsed` на `#panel`, переключается JS
+- На десктопе панель всегда развёрнута
 
 ---
 
