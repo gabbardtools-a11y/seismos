@@ -45,6 +45,19 @@
     background:var(--panel);border:1px solid var(--line);border-radius:16px;
     padding:14px 16px 12px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     box-shadow:var(--shadow)}
+  /* Кнопка «Инфо» — видна только на мобильном, сворачивает панель */
+  #panel-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1001;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:8px 14px;font-size:13px;font-weight:700;color:var(--txt);
+    cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:var(--shadow);align-items:center;gap:6px}
+  #panel-toggle .dot{width:8px;height:8px;border-radius:50%;background:#ff5c47;flex:none}
+  #panel-toggle .arrow{transition:transform .2s}
+  /* На экранах <768px — панель сворачивается по умолчанию */
+  @media(max-width:767px){
+    #panel-toggle{display:flex}
+    #panel.collapsed{display:none}
+  }
   #panel h1{margin:0 0 2px;font-size:16px;font-weight:700;letter-spacing:.2px;
     display:flex;align-items:center;gap:8px}
   #panel h1 .dot{width:9px;height:9px;border-radius:50%;background:#ff5c47;
@@ -155,7 +168,14 @@
 <body>
 <div id="map"></div>
 
-<header id="panel">
+<!-- Кнопка «Инфо» — видна на мобильном, сворачивает панель -->
+<button id="panel-toggle" type="button">
+  <span class="dot"></span>
+  Инфо
+  <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+
+<header id="panel" class="collapsed">
   <h1><span class="dot"></span>Карта землетрясений
     <button id="theme" type="button" aria-label="Сменить тему">
       <svg class="ic-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -268,6 +288,7 @@ var map = L.map('map', {
   minZoom: 1.5, maxZoom: 12, zoomSnap: .5,
   attributionControl: true
 });
+window._map = map;  /* для кнопки «Инфо» — invalidateSize при разворачивании */
 map.attributionControl.setPrefix(false);
 /* Подложки Esri Light/Dark Gray (без API-ключа) + слой подписей */
 map.createPane('labels');
@@ -779,6 +800,37 @@ function clearPreset(){
     });
     grid.appendChild(btn);
   });
+})();
+
+/* ── Кнопка «Инфо»: сворачивает/разворачивает панель на мобильном ── */
+(function(){
+  var toggle = document.getElementById('panel-toggle');
+  var panel = document.getElementById('panel');
+  var arrow = toggle ? toggle.querySelector('.arrow') : null;
+  if(!toggle || !panel) return;
+
+  toggle.addEventListener('click', function(){
+    var isCollapsed = panel.classList.toggle('collapsed');
+    if(arrow) arrow.style.transform = isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)';
+    toggle.querySelector('.dot').nextSibling.textContent = isCollapsed ? ' Инфо ' : ' Скрыть ';
+    // Если панель только что развернули — invalidateSize карты
+    if(!isCollapsed && window._map) setTimeout(function(){ window._map.invalidateSize(); }, 100);
+  });
+
+  // На десктопе (≥768px) — панель всегда развёрнута
+  var mq = window.matchMedia('(min-width: 768px)');
+  function checkDesktop(){
+    if(mq.matches){
+      panel.classList.remove('collapsed');
+      toggle.style.display = 'none';
+    } else {
+      toggle.style.display = 'flex';
+      panel.classList.add('collapsed');
+      if(arrow) arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+  checkDesktop();
+  mq.addEventListener('change', checkDesktop);
 })();
 
 </script>
