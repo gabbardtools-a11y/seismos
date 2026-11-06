@@ -9,7 +9,6 @@ import { SeismogramLine } from "./seismogram-line";
 import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
 import { EqGlobe } from "@/components/globe/eq-globe";
 import { HeroGlobeFlow } from "./hero-globe-flow";
-import { CapitalsCarousel } from "./capitals-carousel";
 import { getLang } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/translations";
 
@@ -31,9 +30,6 @@ export async function HeroSection() {
       <SeismogramDivider lang={lang} />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 py-8 lg:py-12">
-        {/* Карусель столиц ЕАЭС и СНГ — вверху hero, под полосой мониторинга */}
-        <CapitalsCarousel />
-
         <HeroGlobeFlow>
           {/* Главный заголовок — с одной первой заглавной буквой,
               СНГ и ЕАЭС остаются заглавными аббревиатурами */}
