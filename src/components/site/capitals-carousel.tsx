@@ -151,7 +151,7 @@ export function CapitalsCarousel() {
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div className="flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold">
           <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
-          ЕАЭС и СНГ — столицы сейсмически активных регионов
+          Карта филиалов — столицы сейсмически активных регионов
         </div>
         <span className="text-[11px] text-[#4A6378]/60">
           {activeIdx + 1} / {CAPITALS.length}

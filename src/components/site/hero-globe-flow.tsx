@@ -133,7 +133,7 @@ export function HeroGlobeFlow({ children }: { children: React.ReactNode }) {
         <div className="mb-6 bg-white/60 border border-[#D6DCE3] rounded-2xl p-4 sm:p-6">
           <div className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold mb-3 flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
-            ЕАЭС и СНГ — карта сейсмически активных регионов
+            Карта филиалов
           </div>
           <div className="relative rounded-xl overflow-hidden bg-white border border-[#E7EEF6]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -176,7 +176,7 @@ export function HeroGlobeFlow({ children }: { children: React.ReactNode }) {
       <div className="mt-8 mb-4 bg-white/60 border border-[#D6DCE3] rounded-2xl p-4">
         <div className="text-[11px] tracking-[0.14em] uppercase text-[#4A6378] font-semibold mb-3 flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-[#C8102E] animate-pulse" />
-          ЕАЭС и СНГ — карта
+          Карта филиалов
         </div>
         <div className="relative rounded-xl overflow-hidden bg-white border border-[#E7EEF6]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
