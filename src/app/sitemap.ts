@@ -18,6 +18,7 @@ const BASE = "https://seismos.ru";
 const STATIC_ROUTES = [
   "/",
   "/news",
+  "/author",
   "/seismoprotection",
   "/seismoizolyatory",
   "/sertifikaty",

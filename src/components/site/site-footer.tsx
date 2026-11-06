@@ -40,6 +40,7 @@ export async function SiteFooter() {
               <li><Link href="#directions" className="hover:text-white transition">{t("foot.fDirections", lang)}</Link></li>
               <li><Link href="#partners" className="hover:text-white transition">{t("foot.fPartners", lang)}</Link></li>
               <li><Link href="#publications" className="hover:text-white transition">{t("foot.fPublications", lang)}</Link></li>
+              <li><Link href="/author" className="hover:text-white transition">Автор системы</Link></li>
               <li><Link href="#contacts" className="hover:text-white transition">{t("foot.fContacts", lang)}</Link></li>
             </ul>
           </div>

@@ -74,7 +74,6 @@ export function SiteHeader() {
       label: t("nav.info"),
       children: [
         { label: t("nav.patents"), href: "#patents" },
-        { label: t("nav.author"), href: "#author" },
         { label: t("nav.publications"), href: "#publications" },
         { label: "Сейсмозащита", href: "/seismoprotection" },
         { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
