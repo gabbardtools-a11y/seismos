@@ -23,7 +23,7 @@ export async function SiteFooter() {
                   СРОСС<sup className="text-[9px] align-super">®</sup>
                 </div>
                 <div className="text-[10px] tracking-[0.16em] uppercase text-white/70">
-                  seismo.ru
+                  seismos.ru
                 </div>
               </div>
             </div>

@@ -60,7 +60,7 @@ export async function HeroSection() {
           {/* Метрики */}
           <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-8 py-5 border-y border-[#D6DCE3]">
             <Metric value="50+" label={t("hero.mYears", lang)} />
-            <Metric value="2009" label={<span><span className="text-[#7B1E2B] font-bold">seismo.ru</span> — {t("hero.mLaunch", lang)}</span>} />
+            <Metric value="2009" label={t("hero.mLaunch", lang)} />
             <Metric value="9" label={t("hero.mRegions", lang)} />
           </div>
 
