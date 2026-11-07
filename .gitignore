@@ -91,3 +91,8 @@ scripts/seismos-mail_key_v1
 scripts/robot-seismos
 *_key_v*
 *_deploy_ed25519
+
+# Drip-publish state (cron runtime, не для git)
+scripts/seo/drip_state.json
+logs/
+

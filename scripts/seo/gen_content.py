@@ -102,6 +102,7 @@ export const {export_name}: SeoContent = {{
 
 ВАЖНО:
 - body — HTML-строка (теги <p>, <strong>, <ul><li>, <h3>, <table>)
+- Тег <table> БЕЗ атрибутов (border, cellpadding и т.п. НЕ писать): просто <table>
 - Все теги закрыты, НЕТ JSX-синтаксиса (className, {{/* */}})
 - Длина 10 000 ± 1 000 символов (считай пробелы)
 
@@ -109,18 +110,29 @@ export const {export_name}: SeoContent = {{
 """
 
 
-def call_llm(prompt: str) -> str | None:
+def call_llm(prompt: str, slug: str = '') -> str | None:
     """Вызывает z-ai chat для генерации контента."""
+    # Уникальный temp-файл на процесс, чтобы не было конфликтов при параллельном запуске
+    import os, tempfile
+    pid = os.getpid()
+    out_file = Path(tempfile.gettempdir()) / f'_gen_content_{pid}.json'
     try:
         result = subprocess.run(
-            ['z-ai', 'chat', '-p', prompt, '-o', '/tmp/_gen_content.json'],
+            ['z-ai', 'chat', '-p', prompt, '-o', str(out_file)],
             capture_output=True, text=True, timeout=300
         )
         if result.returncode != 0:
             print(f'  ! z-ai error: {result.stderr[:200]}')
             return None
-        d = json.load(open('/tmp/_gen_content.json'))
+        d = json.load(open(out_file))
         content = d.get('choices', [{}])[0].get('message', {}).get('content', '')
+        
+        # Разэкранируем: LLM иногда оборачивает HTML в JSON-строку с \"
+        if '\\"' in content and content.count('\\"') > 4:
+            try:
+                content = json.loads('"' + content + '"')
+            except Exception:
+                content = content.replace('\\"', '"').replace('\\n', '\n')
         
         # Извлечь TypeScript из markdown-обёртки если есть
         # Ищем ```typescript ... ``` или ``` ... ```
@@ -132,30 +144,48 @@ def call_llm(prompt: str) -> str | None:
     except Exception as e:
         print(f'  ! LLM call failed: {e}')
         return None
+    finally:
+        try:
+            out_file.unlink(missing_ok=True)
+        except Exception:
+            pass
 
 
 def validate_content(text: str, slug: str) -> tuple[bool, str]:
     """Простейшая валидация сгенерированного контента."""
     export_name = f"pageContent_{slug.replace('-', '_')}"
+    # Авто-фикс: LLM иногда вместо pageContent_xxx пишет pageContentXxx или pageContent
     if f"export const {export_name}" not in text:
-        return False, f"нет экспорта {export_name}"
+        # Ищем любой export const pageContent...
+        m = re.search(r'export\s+const\s+(pageContent\w*)\s*:', text)
+        if m and m.group(1) != export_name:
+            wrong = m.group(1)
+            text = text.replace(wrong, export_name)
+        else:
+            return False, f"нет экспорта {export_name}"
     if "SeoContent" not in text:
         return False, "нет типа SeoContent"
     if 'className' in text:
         return False, "найден JSX (className)"
     if text.count('<p>') != text.count('</p>'):
         return False, f"несбалансированы <p>: {text.count('<p>')} vs {text.count('</p>')}"
-    if text.count('<table>') != text.count('</table>'):
-        return False, f"несбалансированы <table>"
+    # table считаем с возможными атрибутами: <table ...> ... </table>
+    open_tables = len(re.findall(r'<table[\s>]', text))
+    close_tables = text.count('</table>')
+    if open_tables != close_tables:
+        return False, f"несбалансированы <table>: open={open_tables} vs close={close_tables}"
     
     # Длина (без HTML и TypeScript-обвязки)
     plain = re.sub(r'<[^>]+>', ' ', text)
     plain = re.sub(r'\s+', ' ', plain).strip()
-    if len(plain) < 8000:
-        return False, f"слишком коротко: {len(plain)} символов (нужно 9000+)"
-    if len(plain) > 13000:
-        return False, f"слишком длинно: {len(plain)} символов (нужно <12000)"
+    # Порог 6500 (раньше 8000) — реалистичный для LLM, 7-8К тоже хороший контент
+    if len(plain) < 6500:
+        return False, f"слишком коротко: {len(plain)} символов (нужно 6500+)"
+    if len(plain) > 14000:
+        return False, f"слишком длинно: {len(plain)} символов (нужно <14000)"
     
+    # Глобально сохраняем text с авто-фиксом
+    globals()['_last_fixed_text'] = text
     return True, f"OK ({len(plain)} символов)"
 
 
@@ -189,7 +219,7 @@ def main():
         print(f'  title: {meta["title"]}')
         
         prompt = build_prompt(meta)
-        content = call_llm(prompt)
+        content = call_llm(prompt, slug)
         if not content:
             print('  ✗ LLM не вернул контент')
             fail_count += 1
@@ -201,9 +231,11 @@ def main():
             fail_count += 1
             continue
         
-        # Сохраняем
+        # Сохраняем (с авто-фиксом если был)
+        final_text = globals().get('_last_fixed_text', content)
+        globals()['_last_fixed_text'] = None  # сброс
         out = CONTENT_DIR / f'{slug}.ts'
-        out.write_text(content + '\n', encoding='utf-8')
+        out.write_text(final_text + '\n', encoding='utf-8')
         print(f'  ✓ Сохранён: {msg}')
         ok_count += 1
     

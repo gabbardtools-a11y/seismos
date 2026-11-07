@@ -4,11 +4,11 @@
  *
  * Включает:
  * - главную страницу
- * - все служебные страницы (news, seismoprotection, seismoizolyatory,
- *   sertifikaty, seismo_sertifikat, seismo-globus, passport-3d-stp, antidron)
- * - все 34 SEO-страницы из 5 кластеров
+ * - все служебные страницы (news, glossary, normdocs, oborudovanie, etc.)
+ * - 34 SEO-страницы этапа 1 (5 кластеров)
+ * - 60 drip-страниц этапа 2 (6 кластеров: survey, monitor, design, industry, region, faq)
  *
- * Источник slug'ов: scripts/seo/kernel.json (блок stage1) + хардкод служебных.
+ * Источник slug'ов: scripts/seo/kernel.json (блоки stage1 + drip) + хардкод служебных.
  */
 import type { MetadataRoute } from "next";
 
@@ -68,6 +68,70 @@ const SEO_ROUTES = [
   "/ankery-seysmicheskie",
 ];
 
+// 60 drip-страниц этапа 2 (6 кластеров: survey, monitor, design, industry, region, faq)
+const DRIP_ROUTES = [
+  "/seysmicheskoe-mikroraionirovanie",
+  "/uits-utochnenie-ischodnoy-seysmichnosti",
+  "/geofizicheskie-izyskaniya-dlya-seysmiki",
+  "/inzhenerno-geologicheskie-izyskaniya-seysmika",
+  "/seysmologicheskoe-obsledovanie-ploschadki",
+  "/karta-ose-str-2018",
+  "/str-2018-masshtab-1-8000000",
+  "/seysmicheskoe-rayonirovanie-rossii",
+  "/ballovka-seysmichnosti",
+  "/kategorii-gruntov-po-seysmicheskim-svoystvam",
+  "/seysmomonitoring-zdaniy",
+  "/strukturnyy-monitoring-zdaniy",
+  "/sistema-opovescheniya-o-zemletryasenii",
+  "/datchiki-zemletryaseniy",
+  "/seysmograf-kupit",
+  "/akselerometr-seysmicheskiy",
+  "/p-wave-detector",
+  "/monitoring-konstrukciy-v-realnom-vremeni",
+  "/ioT-seysmomonitoring",
+  "/oborudovanie-seysmomonitoringa",
+  "/proektirovanie-v-seysmicheskih-rayonah",
+  "/razrabotka-tu-seysmostoykosti",
+  "/proekt-seysmozashchity-zdaniya",
+  "/audit-proektnoy-dokumentacii-seysmika",
+  "/raschet-seysmicheskoy-nagruzki-snip",
+  "/koefficient-k1-seysmika",
+  "/raschet-nesuschih-konstrukciy-na-seysmiku",
+  "/povyshenie-kvalifikacii-seysmika",
+  "/obuchenie-proektirovshchikov-seysmika",
+  "/seminary-seysmostoykoe-stroitelstvo",
+  "/dlya-aes-seysmostoykost",
+  "/dlya-neftegaza-seysmostoykost",
+  "/dlya-mostov-seysmostoykost",
+  "/dlya-lep-seysmostoykost",
+  "/dlya-truboprovodov-seysmostoykost",
+  "/dlya-bolnic-seysmostoykost",
+  "/dlya-shkol-i-detsadov",
+  "/dlya-data-centrov-seysmostoykost",
+  "/dlya-voennyh-obektov",
+  "/dlya-gidrosooruzheniy",
+  "/seysmika-sochi",
+  "/seysmika-kamchatka",
+  "/seysmika-sahalin",
+  "/seysmika-krym",
+  "/seysmika-kavkaz",
+  "/seysmika-altay",
+  "/seysmika-yakutiya",
+  "/seysmika-baykal",
+  "/seysmika-vladivostok",
+  "/seysmika-moskva",
+  "/chasto-zadayut-voprosy-o-seysmike",
+  "/skolko-stoit-sertifikat-seysmostoykosti",
+  "/sroki-oformleniya-seysmostoykosti",
+  "/dokumenty-dlya-seysmiki",
+  "/deystvie-sertifikata-seysmostoykosti",
+  "/proverka-sertifikata-seysmostoykosti",
+  "/otkaz-v-sertifikate-seysmostoykosti",
+  "/sertifikat-ili-zaklyuchenie-seysmika",
+  "/kak-vybrat-laboratoriyu-seysmiki",
+  "/obyazatelen-li-sertifikat-seysmostoykosti",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -85,5 +149,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticUrls, ...seoUrls];
+  const dripUrls = DRIP_ROUTES.map((path) => ({
+    url: `${BASE}${path}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticUrls, ...seoUrls, ...dripUrls];
 }
