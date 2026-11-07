@@ -291,3 +291,13 @@ Sitemap: 45 URL
 Git HEAD: abbd4ac (авто-коммит после моей капсулы v3)
 Drip: drip_state.json пустой — cron 506005 не отработал (concurrency limit), drip-страницы не созданы
 Dev: localhost:3000=200 (сервер жив)
+
+---
+Task ID: health-check
+Agent: cron-watchdog (read-only)
+Date: 2026-11-07 03:01 UTC (11:01 +08:00)
+Status: OK
+Prod: /=200, /api/earthquakes=200
+Sitemap: 45 URL (норма)
+Git HEAD: 6007061 (auto-commit от cron 2026-11-06 21:01 UTC, рабочее дерево чистое)
+Drip: drip_state.json пустой — cron 506005 по-прежнему не отработал (concurrency limit Z.ai), drip-страницы не созданы. Известная проблема, не ухудшилась.
