@@ -29,11 +29,13 @@ export async function HeroSection() {
       <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F] z-10" />
 
       {/* === Фоновая волновая анимация (ParticleWave) ===
-          Объёмная сейсмическая волна из ~27К GPU-точек на прозрачном canvas.
+          Объёмная сейсмическая волна из ~20К GPU-точек на прозрачном canvas.
           Красно-белая палитра (#C8102E / #FFFFFF) символизирует колебания
-          земной коры. Реагирует на движение мыши (усиление амплитуды). */}
+          земной коры. Реагирует на движение мыши (усиление амплитуды около
+          курсора). pointer-events: auto — но контент hero в z-10 принимает
+          клики на приоритетных элементах (CTA, поиск, ссылки). */}
       <ParticleWave
-        className="absolute inset-0 h-full w-full pointer-events-none"
+        className="absolute inset-0 h-full w-full z-0"
         colorCore="#C8102E"
         colorEdge="#FFFFFF"
         colorShadow="#FF3C00"

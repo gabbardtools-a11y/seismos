@@ -1,0 +1,475 @@
+{
+  "_comment": "Семантическое ядро по динамике и прочности конструкций — область, родственная сейсмике, вибрации, взрывам. Извлечено из multiphysics.ru/napravleniia/dynamics.htm (АО «ЦИФРА») и обогащено интернетом + рерайт 90%+ уникальности. Создано: 2026-11-08.",
+  "_format": {
+    "slug": "URL-слаг страницы (без /, латиница через дефис)",
+    "title": "Заголовок страницы с ключевыми словами",
+    "cluster": "Кластер: dyn-strength | dyn-fatigue | dyn-buckling | dyn-fracture | dyn-vibro | dyn-fea | dyn-composite | dyn-opt | dyn-thermal | dyn-acoustics",
+    "primary_kw": "Главный ключевой запрос",
+    "secondary_kw": "Доп. ключи через | (3-5 шт)",
+    "intent": "commercial | informational | navigational"
+  },
+  "stage1": [
+    {
+      "slug": "raschet-na-prochnost-sosudov-davleniya",
+      "title": "Расчёт на прочность сосудов давления по ГОСТ 14249 и ГОСТ Р 52857",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт на прочность сосудов давления",
+      "secondary_kw": "ГОСТ 14249|ГОСТ Р 52857|допускаемые напряжения|обечайки|днища|ТР ТС 032",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "raschet-ustalostnoy-prochnosti",
+      "title": "Расчёт усталостной прочности конструкций — ГОСТ 25.504, кривые Вёлера",
+      "cluster": "dyn-fatigue",
+      "primary_kw": "расчёт усталостной прочности",
+      "secondary_kw": "ГОСТ 25.504|предел выносливости|кривая Вёлера|правило Майнера|концентрация напряжений",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "malotsiklovaya-ustalost-sosudov",
+      "title": "Малоцикловая усталость сосудов — ГОСТ 25859, расчёт амплитуды",
+      "cluster": "dyn-fatigue",
+      "primary_kw": "малоцикловая усталость сосудов",
+      "secondary_kw": "ГОСТ 25859|ГОСТ Р 52857.6|МЦУ|амплитуда напряжений|пуски-остановки",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "raschet-na-ustoychivost",
+      "title": "Расчёт на устойчивость конструкций — формула Эйлера, гибкость",
+      "cluster": "dyn-buckling",
+      "primary_kw": "расчёт на устойчивость",
+      "secondary_kw": "формула Эйлера|гибкость|критическое напряжение|потеря устойчивости|Ясинский",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "raschet-treschinostoykosti",
+      "title": "Расчёт трещиностойкости — механика разрушения, K_IC, J-интеграл",
+      "cluster": "dyn-fracture",
+      "primary_kw": "расчёт трещиностойкости",
+      "secondary_kw": "K_IC|J-интеграл|механика разрушения|ГОСТ 25.506|BS 7910|API 579",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "moddalnyy-analiz-konstrukciy",
+      "title": "Модальный анализ конструкций — собственные частоты и формы",
+      "cluster": "dyn-vibro",
+      "primary_kw": "модальный анализ конструкций",
+      "secondary_kw": "собственные частоты|формы колебаний|FEA|ANSYS|отстройка от резонанса",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "raschet-na-seysmostoykost-ansys",
+      "title": "Расчёт на сейсмостойкость в ANSYS — спектральный метод, акселерограммы",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт на сейсмостойкость в ANSYS",
+      "secondary_kw": "спектр ответа|акселерограмма|модальный анализ|SRSS|CQC|СП 14.13330",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "topologicheskaya-optimizaciya",
+      "title": "Топологическая оптимизация конструкций — SIMP, BESO, программы",
+      "cluster": "dyn-opt",
+      "primary_kw": "топологическая оптимизация",
+      "secondary_kw": "SIMP|BESO|ANSYS|Abaqus Tosca|Altair OptiStruct|3D-печать",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "raschet-kompozitnyh-materialov",
+      "title": "Расчёт композиционных материалов — слоистые пластики, CLT, Hashin",
+      "cluster": "dyn-composite",
+      "primary_kw": "расчёт композиционных материалов",
+      "secondary_kw": "CLT|Hashin|Tsai-Wu|углепластик|слоистый композит|Abaqus",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "cfd-modelirovanie-ansys-fluent",
+      "title": "CFD-моделирование в ANSYS Fluent — течения, теплообмен, кавитация",
+      "cluster": "dyn-fea",
+      "primary_kw": "CFD-моделирование в ANSYS Fluent",
+      "secondary_kw": "ANSYS CFX|OpenFOAM|k-epsilon|k-omega SST|LES|турбулентность",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    }
+  ],
+  "drip": [
+    {
+      "slug": "raschet-prochnosti-truboprovodov-aes",
+      "title": "Расчёт прочности трубопроводов АЭС по ПНАЭ Г-7-002",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт прочности трубопроводов АЭС",
+      "secondary_kw": "ПНАЭ Г-7-002|классы безопасности|НУЭ|ННУЭ|гипотетические аварии|РД 10-400",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-kranovyh-metallokonstrukciy",
+      "title": "Расчёт крановых металлоконструкций по ГОСТ 32307",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт крановых металлоконструкций",
+      "secondary_kw": "ГОСТ 32307|ISO 7143|классы A0-A8|усталость|FEM 1.001|EN 13001",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-flantsevyh-soedineniy",
+      "title": "Расчёт фланцевых соединений сосудов давления по ГОСТ Р 52857.4",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт фланцевых соединений",
+      "secondary_kw": "ГОСТ Р 52857.4|прокладки|затяжка|герметичность|температурные нагрузки|релаксация",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-apparatov-vozdushnogo-ohlazhdeniya",
+      "title": "Расчёт аппаратов воздушного охлаждения по ГОСТ Р 52857.9",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт аппаратов воздушного охлаждения",
+      "secondary_kw": "ГОСТ Р 52857.9|АВО|трубные решётки|вентиляторы|компенсаторы|тепломеханика",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-teploobmennyh-apparatov",
+      "title": "Расчёт теплообменных аппаратов — ГОСТ Р 52857.7, кожухотрубчатые",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт теплообменных аппаратов",
+      "secondary_kw": "ГОСТ Р 52857.7|кожухотрубчатые|трубные решётки|TEMA|температурные напряжения|компенсаторы",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-koronnyh-obuchaek",
+      "title": "Расчёт корпусов и обечаек сосудов давления — ГОСТ Р 52857.2",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт обечаек сосудов",
+      "secondary_kw": "ГОСТ Р 52857.2|цилиндрические|конические|выпуклые днища|внешнее давление|устойчивость",
+      "intent": "commercial"
+    },
+    {
+      "slug": "ocenka-radiatsionnogo-resursa-aes",
+      "title": "Оценка радиационного ресурса корпусных сталей АЭС",
+      "cluster": "dyn-fracture",
+      "primary_kw": "радиационный ресурс АЭС",
+      "secondary_kw": "корпус реактора|15Х2НМФА|хрупкое разрушение|температура перехода|ПНАЭ Г-7-002|дозиметрия",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-hrupkoe-razrushenie",
+      "title": "Расчёт на хрупкое разрушение — K_IC, температура вязко-хрупкого перехода",
+      "cluster": "dyn-fracture",
+      "primary_kw": "расчёт на хрупкое разрушение",
+      "secondary_kw": "K_IC|вязко-хрупкий переход|ударная вязкость KCV|ГОСТ 9454|суда Либерти|водородное охрупчивание",
+      "intent": "commercial"
+    },
+    {
+      "slug": "veroyatnostnyy-raschet-na-prochnost",
+      "title": "Вероятностный расчёт на прочность — FORM/SORM, Monte Carlo, 6σ",
+      "cluster": "dyn-opt",
+      "primary_kw": "вероятностный расчёт на прочность",
+      "secondary_kw": "FORM|SORM|Monte Carlo|Six Sigma|DFSS|ANSYS DesignXplorer|надёжность",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-vynoslivost-svarnyh-shvov",
+      "title": "Расчёт на выносливость сварных швов — Eurocode 3 EN 1993-1-9",
+      "cluster": "dyn-fatigue",
+      "primary_kw": "расчёт на выносливость сварных швов",
+      "secondary_kw": "Eurocode 3|EN 1993-1-9|классы деталей 36-160 МПа|IIW|концентрация|остаточные напряжения",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-ustalost-valov-i-osey",
+      "title": "Расчёт на усталость валов и осей — ГОСТ 25.504",
+      "cluster": "dyn-fatigue",
+      "primary_kw": "расчёт на усталость валов",
+      "secondary_kw": "ГОСТ 25.504|концентрация напряжений|масштабный фактор|поверхностное упрочнение|азотирование",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-zubchatyh-peredach-na-vynoslivost",
+      "title": "Расчёт зубчатых передач на усталость — ГОСТ 21354",
+      "cluster": "dyn-fatigue",
+      "primary_kw": "расчёт зубчатых передач на усталость",
+      "secondary_kw": "ГОСТ 21354|контактные напряжения|изгиб|HE|FE|ISO 6336",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-ustoychivost-obolochek",
+      "title": "Расчёт на устойчивость оболочек — трубы, резервуары, сосуды",
+      "cluster": "dyn-buckling",
+      "primary_kw": "расчёт на устойчивость оболочек",
+      "secondary_kw": "ASME BPVC|внешнее давление|ГОСТ 14249|шпангоуты|несовершенства|критическое давление",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-poteri-ustoychivosti-plastin",
+      "title": "Расчёт потери устойчивости пластин — обшивка, стенки балок",
+      "cluster": "dyn-buckling",
+      "primary_kw": "потеря устойчивости пластин",
+      "secondary_kw": "сжатие|сдвиг|ребра жёсткости|Еврокод 3|EN 1993-1-5|class 4|тонкостенные сечения",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-vetrovyh-nagruzok-na-sooruzheniya",
+      "title": "Расчёт ветровых нагрузок на сооружения — СП 20.13330",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт ветровых нагрузок",
+      "secondary_kw": "СП 20.13330|вихревые возбуждения|галопирование|ASCE 7|EN 1991-1-4|CFD",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-udarnye-nagruzki",
+      "title": "Расчёт конструкций на ударные нагрузки — ГОСТ 30631, MIL-STD-810",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт на ударные нагрузки",
+      "secondary_kw": "ГОСТ 30631|MIL-STD-810|ударный спектр|SRS|явная схема|LS-DYNA",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-aksiidentnye-nagruzki-en-1991-1-7",
+      "title": "Расчёт на аварийные нагрузки по EN 1991-1-7 — Eurocode 1",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт на аварийные нагрузки",
+      "secondary_kw": "EN 1991-1-7|Eurocode 1|удар|взрыв|прогрессирующее обрушение|категории последствий",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-vynuzhdennyh-kolebaniy",
+      "title": "Расчёт вынужденных колебаний конструкций — резонанс, отстройка",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт вынужденных колебаний",
+      "secondary_kw": "резонанс|коэффициент динамического усиления|демпфирование|запретные зоны|динамический гаситель",
+      "intent": "commercial"
+    },
+    {
+      "slug": "gidrouprugost-konstrukciy",
+      "title": "Гидроупругость конструкций — взаимодействие потока и деформируемого тела",
+      "cluster": "dyn-fea",
+      "primary_kw": "гидроупругость конструкций",
+      "secondary_kw": "флаттер|галопирование|турбулентность|CFD-FEA|крыло самолёта|трубы",
+      "intent": "commercial"
+    },
+    {
+      "slug": "termomehanicheskiy-raschet",
+      "title": "Термомеханический расчёт конструкций — термонапряжения, термоудар",
+      "cluster": "dyn-thermal",
+      "primary_kw": "термомеханический расчёт",
+      "secondary_kw": "термонапряжения|коэффициент теплового расширения|термоудар|Invar|связанный анализ|ANSYS",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-polzuchest",
+      "title": "Расчёт на ползучесть — ГОСТ Р 52857.4, лопатки турбин, паропроводы",
+      "cluster": "dyn-thermal",
+      "primary_kw": "расчёт на ползучесть",
+      "secondary_kw": "ГОСТ Р 52857.4|закон Нортона|T > 0.4 T_пл|ASME BPVC|лопатки турбин|EN 13445",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-ugleroplastika",
+      "title": "Расчёт углепластика — слоистые пластики, CLT, разрушение",
+      "cluster": "dyn-composite",
+      "primary_kw": "расчёт углепластика",
+      "secondary_kw": "CFRP|CLT|Hashin|Tsai-Wu|Boeing 787|авиация|3D-печать",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-stekloplastika",
+      "title": "Расчёт стеклопластика — трубопроводы, ёмкости, лопасти",
+      "cluster": "dyn-composite",
+      "primary_kw": "расчёт стеклопластика",
+      "secondary_kw": "GFRP|трубы|лопасти ветряков|слоистые|ISO 14692|AWWA D45",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-korrozionnoe-rastreskivanie",
+      "title": "Расчёт на коррозионное растрескивание под напряжением — КРН",
+      "cluster": "dyn-fracture",
+      "primary_kw": "коррозионное растрескивание под напряжением",
+      "secondary_kw": "КРН|SCC|NACE MR0175|H2S|хлориды|водородное охрупчивание|BS 7910",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-ciklicheskie-nagruzki-mashin",
+      "title": "Расчёт на циклические нагрузки деталей машин — ГОСТ 25.504",
+      "cluster": "dyn-fatigue",
+      "primary_kw": "расчёт на циклические нагрузки",
+      "secondary_kw": "ГОСТ 25.504|асимметрия цикла R|диаграмма Смита|Goodman|Gerber|пульсирующий цикл",
+      "intent": "commercial"
+    },
+    {
+      "slug": "cfd-raschet-vetrovyh-nagruzok",
+      "title": "CFD-расчёт ветровых нагрузок на здания — OpenFOAM, ANSYS Fluent",
+      "cluster": "dyn-fea",
+      "primary_kw": "CFD-расчёт ветровых нагрузок",
+      "secondary_kw": "OpenFOAM|ANSYS Fluent|DES|LES|вихревые дорожки|Karman|ASCE 7",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-ostatochnyh-napryazheniy",
+      "title": "Расчёт остаточных напряжений — сварка, термообработка, контроль",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт остаточных напряжений",
+      "secondary_kw": "сварочные напряжения|метод высвобождения|рентген|УЗК|отпуск|виброобработка",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-zhestkost",
+      "title": "Расчёт на жёсткость конструкций — перемещения, деформации",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт на жёсткость",
+      "secondary_kw": "перемещения|прогибы|допускаемые перемещения|СП 16.13330|SLS|EN 1990",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-turbin-na-prochnost",
+      "title": "Расчёт турбин на прочность — лопатки, роторы, корпуса",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт турбин на прочность",
+      "secondary_kw": "лопатки|ротор|ползучесть|усталость|собственные частоты|ASME BPVC",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-litologicheskih-modeley-materialov",
+      "title": "Сложные модели материалов в МКЭ — пластичность, ползучесть, усталость",
+      "cluster": "dyn-fea",
+      "primary_kw": "модели материалов в МКЭ",
+      "secondary_kw": "Johnson-Cook|Holmquist-Johnson-Cook|RHT|Chaboche|модель Гурсона|повреждённость",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-pesochnogo-vzryva-cherez-cfd",
+      "title": "CFD-расчёт вентиляции — газоудаление, дымоудаление, аварийная вентиляция",
+      "cluster": "dyn-fea",
+      "primary_kw": "CFD-расчёт вентиляции",
+      "secondary_kw": "ANSYS Fluent|дымоудаление|FDS|пожар|тепло|CO|эвакуация|СНиП 41-01",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-akusticheskogo-shuma-mashin",
+      "title": "Расчёт акустического шума машин — виброакустика, SEA, NVH",
+      "cluster": "dyn-acoustics",
+      "primary_kw": "расчёт акустического шума машин",
+      "secondary_kw": "SEA|LMS Virtual.Lab|Actran|NVH|авто|звукоизоляция|ISO 3744",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-zvukoizolyacii-sten",
+      "title": "Расчёт звукоизоляции стен — закон массы, двойные стенки",
+      "cluster": "dyn-acoustics",
+      "primary_kw": "расчёт звукоизоляции стен",
+      "secondary_kw": "закон массы|R = 20 log(m·f) − 47|ISO 717-1|СП 51.13330|ударный шум|ISO 717-2",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-kavitacii-v-nasosah",
+      "title": "Расчёт кавитации в насосах — CFD, эрозия, NPSH",
+      "cluster": "dyn-fea",
+      "primary_kw": "расчёт кавитации в насосах",
+      "secondary_kw": "Schnerr-Sauer|Zwart-Gerber-Belamri|NPSH|CFD|ANSYS CFX|эрозия лопаток",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-dinamiki-gruzopodemnyh-kranov",
+      "title": "Расчёт динамики грузоподъёмных кранов — нагрузки, устойчивость",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт динамики кранов",
+      "secondary_kw": "FEM 1.001|EN 13001|ГОСТ 32307|ветровые|торможение|динамический коэффициент",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-pyezoelektricheskih-datchikov",
+      "title": "Расчёт пьезоэлектрических датчиков — PZT, акселерометры, energy harvesting",
+      "cluster": "dyn-composite",
+      "primary_kw": "расчёт пьезоэлектрических датчиков",
+      "secondary_kw": "PZT|COMSOL|d_33|k_33|акселерометр|energy harvesting|оптоволокно",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-shem-razrusheniya-bs-7910",
+      "title": "Расчёт схем разрушения по BS 7910 — FAD, дефекты, остаточный ресурс",
+      "cluster": "dyn-fracture",
+      "primary_kw": "расчёт по BS 7910",
+      "secondary_kw": "Failure Assessment Diagram|FAD|дефекты|API 579|остаточный ресурс|FITNET",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-prochnost-ferm-i-ram",
+      "title": "Расчёт на прочность ферм и рам — СП 16.13330, EN 1993",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт на прочность ферм",
+      "secondary_kw": "СП 16.13330|EN 1993|стальные конструкции|сварные узлы|болтовые соединения|устойчивость",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-zhelezobetonnyh-konstrukciy",
+      "title": "Расчёт железобетонных конструкций — СП 63.13330, EN 1992",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт железобетонных конструкций",
+      "secondary_kw": "СП 63.13330|EN 1992|B500|A500|трещиностойкость|прогибы|ползучесть бетона",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-nesuschih-obolemochek-aes",
+      "title": "Расчёт несущих оболочек АЭС — контайнмент, корпус реактора",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт оболочек АЭС",
+      "secondary_kw": "контайнмент|корпус реактора|ПНАЭ Г-7-002|LOCA|внутреннее давление|сейсмика",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-vremennyh-nagruzok-na-perekritya",
+      "title": "Расчёт временных нагрузок на перекрытия — СП 20.13330",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт нагрузок на перекрытия",
+      "secondary_kw": "СП 20.13330|полезная нагрузка|длительная|кратковременная|сочетания|EN 1991-1-1",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-prochnost-sudovyh-konstrukciy",
+      "title": "Расчёт на прочность судовых конструкций — Регистр судоходства",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт судовых конструкций",
+      "secondary_kw": "РМРС|корпус|волновые нагрузки|усталость|устойчивость пластин|Det Norske Veritas",
+      "intent": "commercial"
+    },
+    {
+      "slug": "verifikaciya-raschetnyh-modeley",
+      "title": "Верификация расчётных МКЭ-моделей — сходимость, эксперимент",
+      "cluster": "dyn-fea",
+      "primary_kw": "верификация расчётных моделей",
+      "secondary_kw": "сходимость по сетке|верификация|валидация|NAFEMS|ISO 9001|эксперимент",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-prochnost-neftetedobvyayuschego-oborudovaniya",
+      "title": "Расчёт нефтегазового оборудования — морские платформы, НПС",
+      "cluster": "dyn-strength",
+      "primary_kw": "расчёт нефтегазового оборудования",
+      "secondary_kw": "API 2A|морские платформы|DNV-OS-C101|NACE MR0175|трубопроводы|усталость от волн",
+      "intent": "commercial"
+    },
+    {
+      "slug": "raschet-na-prochnost-kompressornyh-ustanovok",
+      "title": "Расчёт на прочность компрессорных установок — API 617, 618",
+      "cluster": "dyn-vibro",
+      "primary_kw": "расчёт компрессорных установок",
+      "secondary_kw": "API 617|API 618|центробежные|поршневые|вибрация|крутильные колебания|балансировка",
+      "intent": "commercial"
+    }
+  ]
+}

@@ -81,6 +81,8 @@ export function SiteHeader() {
         { label: "Нормативы по вибро", href: "/normdocs-vibro" },
         { label: "Глоссарий взрывов", href: "/glossary-blast" },
         { label: "Нормативы по взрывам", href: "/normdocs-blast" },
+        { label: "Динамика и прочность", href: "/glossary-dyn" },
+        { label: "Нормативы по динамике", href: "/normdocs-dyn" },
         { label: "Оборудование", href: "/oborudovanie" },
         { label: "Сейсмозащита", href: "/seismoprotection" },
         { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },

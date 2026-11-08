@@ -25,6 +25,8 @@ const STATIC_ROUTES = [
   "/normdocs-vibro",
   "/glossary-blast",
   "/normdocs-blast",
+  "/glossary-dyn",
+  "/normdocs-dyn",
   "/oborudovanie",
   "/seismoprotection",
   "/seismoizolyatory",

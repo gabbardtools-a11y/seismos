@@ -20,6 +20,8 @@ import { vibroTerms } from "@/content/seo/glossary-vibro";
 import { vibroDocs } from "@/content/seo/normdocs-vibro";
 import { blastTerms } from "@/content/seo/glossary-blast";
 import { blastDocs } from "@/content/seo/normdocs-blast";
+import { dynTerms } from "@/content/seo/glossary-dyn";
+import { dynDocs } from "@/content/seo/normdocs-dyn";
 import { equipmentCatalog } from "@/content/equipment/catalog";
 import { SearchClient } from "./search-client";
 
@@ -42,6 +44,8 @@ const STATIC_PAGES: { title: string; href: string; description: string }[] = [
   { title: "Нормативы по вибро", href: "/normdocs-vibro", description: "ГОСТ 12.1.012, ГОСТ ИСО 10816, ISO 4866, СанПиН — 11 документов по вибрации" },
   { title: "Глоссарий взрывов", href: "/glossary-blast", description: "45 терминов по взрывным воздействиям, ударным волнам, взрывозащите" },
   { title: "Нормативы по взрывам", href: "/normdocs-blast", description: "ГОСТ Р 22.0.07, EN 1991-1-7, UFC 3-340-02, NFPA 68 — 12 документов" },
+  { title: "Динамика и прочность", href: "/glossary-dyn", description: "48 терминов по динамике, прочности, усталости, разрушению, МКЭ, CFD, мультифизике" },
+  { title: "Нормативы по динамике", href: "/normdocs-dyn", description: "ГОСТ 14249, ПНАЭ Г-7-002, РД 10-400, ISO 2394, EN 1990 — 12 документов" },
   { title: "Каталог оборудования", href: "/oborudovanie", description: "35 единиц испытательного и сейсмометрического оборудования" },
   { title: "Автор системы", href: "/author", description: "Акбиев Рустам Тоганович" },
   { title: "Личный кабинет", href: "/login", description: "Вход в личный кабинет СРОСС®" },
@@ -210,6 +214,38 @@ function searchAll(query: string): SearchResult[] {
     }
   }
 
+  // 2f. Глоссарий динамики и прочности
+  for (const term of dynTerms) {
+    const haystack = norm(
+      [term.term, term.definition.replace(/<[^>]+>/g, " "), ...(term.synonyms ?? [])].join(" ")
+    );
+    if (haystack.includes(q)) {
+      results.push({
+        type: "glossary",
+        title: term.term,
+        href: `/glossary-dyn#${slugify(term.term)}`,
+        snippet: term.definition.replace(/<[^>]+>/g, " ").trim().slice(0, 200) + "…",
+        meta: `Динамика и прочность · ${term.category}`,
+      });
+    }
+  }
+
+  // 2g. Нормативные документы по динамике и прочности
+  for (const doc of dynDocs) {
+    const haystack = norm(
+      [doc.code, doc.title, doc.description.replace(/<[^>]+>/g, " "), ...(doc.keywords ?? [])].join(" ")
+    );
+    if (haystack.includes(q)) {
+      results.push({
+        type: "normdoc",
+        title: doc.code,
+        href: `/normdocs-dyn#${slugify(doc.code)}`,
+        snippet: doc.title + ". " + doc.description.replace(/<[^>]+>/g, " ").trim().slice(0, 160) + "…",
+        meta: `Нормативы по динамике · ${doc.category} · ${doc.year} · ${doc.status}`,
+      });
+    }
+  }
+
   for (const cat of equipmentCatalog) {
     for (const item of cat.items) {
       const haystack = norm(
@@ -304,10 +340,10 @@ export default async function SearchPage({
             <span>Поиск по сайту</span>
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
-            Поиск ведётся по глоссарию сейсмологии (77 терминов), вибрации (45),
-            взрывов (45), нормативным документам по сейсмике (8), вибро (11) и
-            взрывам (12), каталогу оборудования (35), 34 SEO-страницам и разделам
-            сайта.
+            Поиск ведётся по глоссарию сейсмологии (77), вибрации (45), взрывов (45)
+            и динамики/прочности (48), нормативным документам по 4 областям
+            (сейсмика 8, вибро 11, взрывы 12, динамика 12), каталогу оборудования
+            (35), SEO-страницам и разделам сайта.
           </p>
         </div>
 
