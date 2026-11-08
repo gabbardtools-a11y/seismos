@@ -10,6 +10,7 @@ import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
 import { EqGlobe } from "@/components/globe/eq-globe";
 import { HeroGlobeFlow } from "./hero-globe-flow";
 import { HeroSearch } from "./hero-search";
+import ParticleWave from "./particle-wave";
 import { getLang } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/translations";
 
@@ -25,15 +26,37 @@ export async function HeroSection() {
   return (
     <section id="hero" className="relative overflow-hidden bg-paper-grid">
       {/* Декоративная боковая полоса слева */}
-      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F]" />
+      <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#00549F] z-10" />
+
+      {/* === Фоновая волновая анимация (ParticleWave) ===
+          Объёмная сейсмическая волна из ~27К GPU-точек на прозрачном canvas.
+          Красно-белая палитра (#C8102E / #FFFFFF) символизирует колебания
+          земной коры. Реагирует на движение мыши (усиление амплитуды). */}
+      <ParticleWave
+        className="absolute inset-0 h-full w-full pointer-events-none"
+        colorCore="#C8102E"
+        colorEdge="#FFFFFF"
+        colorShadow="#FF3C00"
+        waveLines={36}
+        dotsPerLine={560}
+        amplitude={0.18}
+        frequency={18}
+        speed={0.25}
+        particleSize={4}
+        interactive={true}
+        introDuration={1.8}
+        scrollIntensity={0.4}
+      />
 
       {/* Полоса сейсмомониторинга — сверху, под шапкой */}
-      <SeismogramDivider lang={lang} />
+      <div className="relative z-10">
+        <SeismogramDivider lang={lang} />
 
-      {/* Длинная строка поиска — под сейсмомонитором */}
-      <HeroSearch />
+        {/* Длинная строка поиска — под сейсмомонитором */}
+        <HeroSearch />
+      </div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-12 py-8 lg:py-12">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 py-8 lg:py-12">
         <HeroGlobeFlow>
           {/* Главный заголовок — с одной первой заглавной буквой,
               СНГ и ЕАЭС остаются заглавными аббревиатурами */}
