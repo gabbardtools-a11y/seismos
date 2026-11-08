@@ -21,6 +21,8 @@ const STATIC_ROUTES = [
   "/author",
   "/glossary",
   "/normdocs",
+  "/glossary-vibro",
+  "/normdocs-vibro",
   "/oborudovanie",
   "/seismoprotection",
   "/seismoizolyatory",

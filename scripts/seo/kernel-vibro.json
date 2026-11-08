@@ -1,0 +1,427 @@
+{
+  "_comment": "Семантическое ядро по вибрации, вибростойкости, виброизоляции — область, близкая к сейсмовоздействиям. Используется drip-publish для генерации SEO-страниц (по 10 в день, 10К±1К символов, уникальность 90%+). Источник терминов: src/content/seo/glossary-vibro.ts. Источник нормативных документов: src/content/seo/normdocs-vibro.ts. Создано: 2026-11-08.",
+  "_format": {
+    "slug": "URL-слаг страницы (без /, латиница через дефис)",
+    "title": "Заголовок страницы с ключевыми словами (для H1 и <title>)",
+    "cluster": "Кластер: vibro-iso | vibro-tests | vibro-monitoring | vibro-buildings | vibro-health",
+    "primary_kw": "Главный ключевой запрос",
+    "secondary_kw": "Доп. ключи через | (3-5 шт)",
+    "intent": "commercial | informational | navigational"
+  },
+  "stage1": [
+    {
+      "slug": "vibrostoykost-oborudovaniya",
+      "title": "Вибростойкость оборудования — испытания и сертификация по ГОСТ 30631",
+      "cluster": "vibro-tests",
+      "primary_kw": "вибростойкость оборудования",
+      "secondary_kw": "ГОСТ 30631|сертификация вибростойкости|испытания на вибропрочность|вибрационные нагрузки",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vibroizolyaciya-oborudovaniya",
+      "title": "Виброизоляция оборудования — расчёт, подбор и монтаж виброизоляторов",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляция оборудования",
+      "secondary_kw": "виброизоляторы|амортизаторы|коэффициент передачи|собственная частота|демпфирование",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vibroprochnost-konstrukciy",
+      "title": "Вибропрочность конструкций — расчёт на усталость и испытания",
+      "cluster": "vibro-tests",
+      "primary_kw": "вибропрочность конструкций",
+      "secondary_kw": "усталостная прочность|кривая Вёлера|метод Майнера|концентраторы напряжений|ресурсные испытания",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vibrodiagnostika-mashin",
+      "title": "Вибродиагностика машин — спектральный анализ и выявление дефектов",
+      "cluster": "vibro-monitoring",
+      "primary_kw": "вибродиагностика машин",
+      "secondary_kw": "спектр вибрации|FFT|дефекты подшипников|дисбаланс|расцентровка|ГОСТ ИСО 10816",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vibromonitoring-zdaniy",
+      "title": "Вибромониторинг зданий — системы контроля и оценка состояния",
+      "cluster": "vibro-monitoring",
+      "primary_kw": "вибромониторинг зданий",
+      "secondary_kw": "ГОСТ 31319|ГОСТ Р 52806|ISO 4866|собственные частоты|накопление повреждений",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "izmerenie-vibracii",
+      "title": "Измерение вибрации — методы, датчики, приборы и обработка сигналов",
+      "cluster": "vibro-tests",
+      "primary_kw": "измерение вибрации",
+      "secondary_kw": "акселерометр|виброметр|СКЗ виброскорости|октавный фильтр|FFT",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "rezonans-konstrukciy",
+      "title": "Резонанс конструкций — причины, последствия и методы отстройки",
+      "cluster": "vibro-buildings",
+      "primary_kw": "резонанс конструкций",
+      "secondary_kw": "собственная частота|динамический гаситель|модальный анализ|запретные частоты|усталость",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "dempfirovanie-kolebaniy",
+      "title": "Демпфирование колебаний — способы увеличения и расчёт коэффициента",
+      "cluster": "vibro-iso",
+      "primary_kw": "демпфирование колебаний",
+      "secondary_kw": "коэффициент демпфирования|логарифмический декремент|вязкоупругие демпферы|рассеяние энергии|резонансная амплитуда",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "spektr-vibracii",
+      "title": "Спектр вибрации — амплитудный, фазовый, энергетический анализ",
+      "cluster": "vibro-tests",
+      "primary_kw": "спектр вибрации",
+      "secondary_kw": "преобразование Фурье|FFT|октавный анализ|PSD|узкополосный спектр",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "sluchaynaya-vibraciya",
+      "title": "Случайная вибрация — испытания по PSD и расчёт отклика",
+      "cluster": "vibro-tests",
+      "primary_kw": "случайная вибрация",
+      "secondary_kw": "PSD|спектральная плотность мощности|MIL-STD-810|ГОСТ 30631|усталостный расчёт",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    }
+  ],
+  "drip": [
+    {
+      "slug": "vibroizolyatory-dlya-nasosov",
+      "title": "Виброизоляторы для насосов — подбор по частоте и нагрузке",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляторы для насосов",
+      "secondary_kw": "пружинные виброизоляторы|резиновые амортизаторы|собственная частота|статический прогиб",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibroizolyatory-dlya-ventilyatorov",
+      "title": "Виброизоляция вентиляторов — выбор и монтаж виброподвесок",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляция вентиляторов",
+      "secondary_kw": "резиновые виброизоляторы|виброподвески|воздуховоды|гибкие вставки|вибрация крышных вентиляторов",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibroizolyaciya-kompressorov",
+      "title": "Виброизоляция компрессоров — пружинные и пневматические опоры",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляция компрессоров",
+      "secondary_kw": "пружинные опоры|пневмовиброизоляторы|низкочастотная вибрация|воздушные ресиверы|фундаменты",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibroizolyaciya-holodilnikov",
+      "title": "Виброизоляция холодильных машин и чиллеров",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляция холодильных машин",
+      "secondary_kw": "чиллеры|гибкие вставки|резиновые коврики|пружинные виброизоляторы|шум",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibroizolyaciya-transformatorov",
+      "title": "Виброизоляция трансформаторов — снижение шума и вибрации",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляция трансформаторов",
+      "secondary_kw": "силовые трансформаторы|виброшум|резинометаллические опоры|звукоизоляция|100 Гц",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibroizolyaciya-dgs",
+      "title": "Виброизоляция дизель-генераторных установок (ДГУ)",
+      "cluster": "vibro-iso",
+      "primary_kw": "виброизоляция дизель-генераторов",
+      "secondary_kw": "ДГУ|пружинные виброизоляторы|резиновые коврики|фундамент|собственная частота 3 Гц",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibrostendy-elektrodinamicheskie",
+      "title": "Электродинамические вибростенды — характеристики и применение",
+      "cluster": "vibro-tests",
+      "primary_kw": "электродинамический вибростенд",
+      "secondary_kw": "тяговое усилие|частотный диапазон|ICP|контроль профиля|ускорение 100 g",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibrostendy-gidravlicheskie",
+      "title": "Гидравлические вибростенды — большие перемещения и низкие частоты",
+      "cluster": "vibro-tests",
+      "primary_kw": "гидравлический вибростенд",
+      "secondary_kw": "сервогидравлический|перемещение 100 мм|низкочастотная вибрация|сейсмические испытания|shake table",
+      "intent": "commercial"
+    },
+    {
+      "slug": "ispytaniya-na-vibroprochnost",
+      "title": "Испытания на вибропрочность — методы и стандарты",
+      "cluster": "vibro-tests",
+      "primary_kw": "испытания на вибропрочность",
+      "secondary_kw": "ГОСТ 30631|усталость|ресурсные испытания|кривая Вёлера|контроль качества",
+      "intent": "commercial"
+    },
+    {
+      "slug": "ispytaniya-na-transportnuyu-vibraciyu",
+      "title": "Испытания на транспортную вибрацию — ISTA, ГОСТ, MIL-STD",
+      "cluster": "vibro-tests",
+      "primary_kw": "испытания на транспортную вибрацию",
+      "secondary_kw": "ISTA|ГОСТ Р 52761|упаковка|логистика|профили нагружения|PSD",
+      "intent": "commercial"
+    },
+    {
+      "slug": "udarnye-ispytaniya",
+      "title": "Ударные испытания — полусинус, трапеция, пилообразная форма",
+      "cluster": "vibro-tests",
+      "primary_kw": "ударные испытания",
+      "secondary_kw": "полусинус|ударный спектр|SRS|MIL-STD-810|ГОСТ 30631|пиковое ускорение",
+      "intent": "commercial"
+    },
+    {
+      "slug": "akselerometry-pyezoelektricheskie",
+      "title": "Пьезоэлектрические акселерометры — выбор и применение",
+      "cluster": "vibro-tests",
+      "primary_kw": "пьезоэлектрический акселерометр",
+      "secondary_kw": "ICP|IEPE|чувствительность|резонансная частота|температурный диапазон|калибровка",
+      "intent": "commercial"
+    },
+    {
+      "slug": "akselerometry-mems",
+      "title": "MEMS-акселерометры — низкочастотная вибрация и постоянные ускорения",
+      "cluster": "vibro-tests",
+      "primary_kw": "MEMS-акселерометр",
+      "secondary_kw": "ёмкостный|низкочастотная вибрация|DC|бюджетный|микромашинный|IoT",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibrometry-izmeritelnye",
+      "title": "Измерительные виброметры — классы точности и применение",
+      "cluster": "vibro-tests",
+      "primary_kw": "измерительный виброметр",
+      "secondary_kw": "класс 1|ГОСТ ИСО 8041|поверка|СКЗ виброскорости|частотный диапазон",
+      "intent": "commercial"
+    },
+    {
+      "slug": "modalnyy-analiz-konstrukciy",
+      "title": "Модальный анализ конструкций — эксперимент и расчёт FEA",
+      "cluster": "vibro-tests",
+      "primary_kw": "модальный анализ",
+      "secondary_kw": "собственные частоты|формы колебаний|FEA|ударный молоток|ISO 7626",
+      "intent": "commercial"
+    },
+    {
+      "slug": "balansirovka-rotorov",
+      "title": "Балансировка роторов — классы точности по ГОСТ ИСО 1940",
+      "cluster": "vibro-tests",
+      "primary_kw": "балансировка роторов",
+      "secondary_kw": "дисбаланс|ГОСТ ИСО 1940|класс G|остаточный дисбаланс|балансировочный станок",
+      "intent": "commercial"
+    },
+    {
+      "slug": "pdu-vibraciya-na-rabochih-mestah",
+      "title": "ПДУ вибрации на рабочих местах — ГОСТ 12.1.012 и СанПиН",
+      "cluster": "vibro-health",
+      "primary_kw": "ПДУ вибрации",
+      "secondary_kw": "ГОСТ 12.1.012|СанПиН 1.2.3685|общая вибрация|локальная вибрация|Роспотребнадзор",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibraciya-v-zhilyh-zdaniyah",
+      "title": "Вибрация в жилых зданиях — нормы и измерения по ГОСТ 31319",
+      "cluster": "vibro-buildings",
+      "primary_kw": "вибрация в жилых зданиях",
+      "secondary_kw": "ГОСТ 31319|ГОСТ Р 52806|транспортная вибрация|ПДК|жалобы жильцов",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibraciya-ot-transporta",
+      "title": "Вибрация от транспорта — расчёт и защита зданий",
+      "cluster": "vibro-buildings",
+      "primary_kw": "вибрация от транспорта",
+      "secondary_kw": "железная дорога|метро|автомобили|ISO 4866|виброизоляция фундаментов",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibraciya-promyshlennyh-zdaniy",
+      "title": "Вибрация промышленных зданий — источники и оценка воздействия",
+      "cluster": "vibro-buildings",
+      "primary_kw": "вибрация промышленных зданий",
+      "secondary_kw": "ГОСТ Р 52806|промышленные источники|усталостные трещины|мониторинг|СП 22.13330",
+      "intent": "informational"
+    },
+    {
+      "slug": "mikroseysmika-ploschadki",
+      "title": "Микросейсмика площадки — H/V-метод и SPAC-анализ",
+      "cluster": "vibro-monitoring",
+      "primary_kw": "микросейсмика площадки",
+      "secondary_kw": "H/V-метод|Nakamura|SPAC|сейсмическое микрорайонирование|собственная частота грунта",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vc-kriterii-vibrochuvstvitelnosti",
+      "title": "VC-критерии виброчувствительности оборудования — IEST",
+      "cluster": "vibro-buildings",
+      "primary_kw": "VC-критерии",
+      "secondary_kw": "IEST|литографы|электронные микроскопы|VC-A|VC-D|активная виброзащита",
+      "intent": "informational"
+    },
+    {
+      "slug": "aktivnaya-vibrozashchita",
+      "title": "Активная виброзащита — системы AVC для высокоточного оборудования",
+      "cluster": "vibro-iso",
+      "primary_kw": "активная виброзащита",
+      "secondary_kw": "AVC|пьезоактюаторы|FXLMS|виброизоляция литографов|DSP-контроллер",
+      "intent": "commercial"
+    },
+    {
+      "slug": "krutilnaya-vibraciya-valov",
+      "title": "Крутильная вибрация валов — измерение и методы снижения",
+      "cluster": "vibro-monitoring",
+      "primary_kw": "крутильная вибрация",
+      "secondary_kw": "коленчатый вал|тензорезистор|демпфер крутильных колебаний|маховик|редуктор",
+      "intent": "informational"
+    },
+    {
+      "slug": "akusticheskaya-emissiya",
+      "title": "Акустическая эмиссия — контроль конструкций и материалов",
+      "cluster": "vibro-monitoring",
+      "primary_kw": "акустическая эмиссия",
+      "secondary_kw": "АЭ|трещинообразование|коррозия|ГОСТ 27655|триангуляция|Ростехнадзор",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vyazkouprugie-dempfery",
+      "title": "Вязкоупругие демпферы — расчёт и применение в сейсмозащите",
+      "cluster": "vibro-iso",
+      "primary_kw": "вязкоупругий демпфер",
+      "secondary_kw": "полимерные демпферы|tg дельта|модуль потерь|сейсмоизоляция зданий|температурная редукция",
+      "intent": "commercial"
+    },
+    {
+      "slug": "dinamicheskiy-gasitel-kolebaniy",
+      "title": "Динамический гаситель колебаний — расчёт и настройка TMD",
+      "cluster": "vibro-iso",
+      "primary_kw": "динамический гаситель колебаний",
+      "secondary_kw": "TMD|tuned mass damper|настройка|мосты|высотные здания|Тайбэй 101",
+      "intent": "informational"
+    },
+    {
+      "slug": "pruzhinnye-vibroizolyatory",
+      "title": "Пружинные виброизоляторы — характеристики и применение",
+      "cluster": "vibro-iso",
+      "primary_kw": "пружинный виброизолятор",
+      "secondary_kw": "низкочастотная виброизоляция|статический прогиб|собственная частота 1 Гц|демпфер",
+      "intent": "commercial"
+    },
+    {
+      "slug": "rezinovye-vibroizolyatory",
+      "title": "Резиновые виброизоляторы — выбор и эксплуатация",
+      "cluster": "vibro-iso",
+      "primary_kw": "резиновый виброизолятор",
+      "secondary_kw": "резинометаллические|эластомер|старение резины|температурный диапазон|демпфирование",
+      "intent": "commercial"
+    },
+    {
+      "slug": "pnevmaticheskie-vibroizolyatory",
+      "title": "Пневматические виброизоляторы — воздушные пружины для высокоточного оборудования",
+      "cluster": "vibro-iso",
+      "primary_kw": "пневматический виброизолятор",
+      "secondary_kw": "air spring|автоматическое нивелирование|литографы|собственная частота 0,5 Гц|метрология",
+      "intent": "commercial"
+    },
+    {
+      "slug": "spektr-otveta-na-udar",
+      "title": "Ударный спектр (SRS) — расчёт и применение при испытаниях",
+      "cluster": "vibro-tests",
+      "primary_kw": "ударный спектр",
+      "secondary_kw": "SRS|shock response spectrum|первичный|остаточный|синтез удара|NASA-STD-7003",
+      "intent": "informational"
+    },
+    {
+      "slug": "preobrazovanie-fure-fft",
+      "title": "Быстрое преобразование Фурье (FFT) — основы и применение в виброметрии",
+      "cluster": "vibro-tests",
+      "primary_kw": "быстрое преобразование Фурье",
+      "secondary_kw": "FFT|БПФ|окно Хэннинга|частота дискретизации|разрешение по частоте|Nyquist",
+      "intent": "informational"
+    },
+    {
+      "slug": "oktavnye-filtry-vibracii",
+      "title": "Октавные и третьоктавные фильтры — анализ вибрации по полосам",
+      "cluster": "vibro-tests",
+      "primary_kw": "октавный фильтр",
+      "secondary_kw": "третьоктавный|ISO 2631|восприятие человека|спектральный анализ|ГОСТ 31191",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibrobolezn-profilaktika",
+      "title": "Вибрационная болезнь — причины, симптомы и профилактика",
+      "cluster": "vibro-health",
+      "primary_kw": "вибрационная болезнь",
+      "secondary_kw": "ангиотрофоневроз|локальная вибрация|СанПиН|средства защиты рук|экспозиция A(8)",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibraciya-ruchnogo-instrumenta",
+      "title": "Вибрация ручного инструмента — измерение и снижение",
+      "cluster": "vibro-health",
+      "primary_kw": "вибрация ручного инструмента",
+      "secondary_kw": "перфораторы|отбойные молотки|болгарки|локальная вибрация|ГОСТ 31192|СанПиН",
+      "intent": "informational"
+    },
+    {
+      "slug": "vibroizolyaciya-pola",
+      "title": "Виброизоляция пола — плавающие полы и материалы",
+      "cluster": "vibro-buildings",
+      "primary_kw": "виброизоляция пола",
+      "secondary_kw": "плавающий пол|минеральная вата|пробка|звукоизоляция|ударный шум|ISO 717",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibroizolyaciya-fundamentov",
+      "title": "Виброизоляция фундаментов — расчёт и проектирование по СП 22.13330",
+      "cluster": "vibro-buildings",
+      "primary_kw": "виброизоляция фундаментов",
+      "secondary_kw": "СП 22.13330|фундаменты под машины|динамические нагрузки|осадка|грунты",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibrokalibrovka-akselerometrov",
+      "title": "Виброкалибровка акселерометров — методы и эталоны",
+      "cluster": "vibro-tests",
+      "primary_kw": "виброкалибровка",
+      "secondary_kw": "поверка|эталон|интерферометрия|ГОСТ 8.138|ISO 16063|ВНИИМ",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vibrometry-pribory-kontrolya",
+      "title": "Виброметры — приборы контроля вибрации машин и зданий",
+      "cluster": "vibro-tests",
+      "primary_kw": "виброметр",
+      "secondary_kw": "контроль вибрации|СКЗ|виброскорость|виброускорение|ГОСТ ИСО 8041|поверка",
+      "intent": "commercial"
+    }
+  ]
+}

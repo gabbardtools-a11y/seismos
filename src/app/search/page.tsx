@@ -16,6 +16,8 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { glossaryTerms } from "@/content/seo/glossary";
 import { normDocs } from "@/content/seo/normdocs";
+import { vibroTerms } from "@/content/seo/glossary-vibro";
+import { vibroDocs } from "@/content/seo/normdocs-vibro";
 import { equipmentCatalog } from "@/content/equipment/catalog";
 import { SearchClient } from "./search-client";
 
@@ -34,6 +36,8 @@ const STATIC_PAGES: { title: string; href: string; description: string }[] = [
   { title: "Сейсмо Глобус", href: "/seismo-globus", description: "Интерактивный 3D-глобус землетрясений" },
   { title: "Глоссарий", href: "/glossary", description: "77 терминов по сейсмологии и сейсмике" },
   { title: "Нормативные документы", href: "/normdocs", description: "ГОСТ, СП, СНиП, НП — 8 документов" },
+  { title: "Глоссарий вибрации", href: "/glossary-vibro", description: "45 терминов по вибрации, вибростойкости, виброизоляции" },
+  { title: "Нормативы по вибро", href: "/normdocs-vibro", description: "ГОСТ 12.1.012, ГОСТ ИСО 10816, ISO 4866, СанПиН — 11 документов по вибрации" },
   { title: "Каталог оборудования", href: "/oborudovanie", description: "35 единиц испытательного и сейсмометрического оборудования" },
   { title: "Автор системы", href: "/author", description: "Акбиев Рустам Тоганович" },
   { title: "Личный кабинет", href: "/login", description: "Вход в личный кабинет СРОСС®" },
@@ -138,6 +142,38 @@ function searchAll(query: string): SearchResult[] {
     }
   }
 
+  // 2b. Вибро-глоссарий
+  for (const term of vibroTerms) {
+    const haystack = norm(
+      [term.term, term.definition.replace(/<[^>]+>/g, " "), ...(term.synonyms ?? [])].join(" ")
+    );
+    if (haystack.includes(q)) {
+      results.push({
+        type: "glossary",
+        title: term.term,
+        href: `/glossary-vibro#${slugify(term.term)}`,
+        snippet: term.definition.replace(/<[^>]+>/g, " ").trim().slice(0, 200) + "…",
+        meta: `Глоссарий вибро · ${term.category}`,
+      });
+    }
+  }
+
+  // 2c. Нормативные документы по вибро
+  for (const doc of vibroDocs) {
+    const haystack = norm(
+      [doc.code, doc.title, doc.description.replace(/<[^>]+>/g, " "), ...(doc.keywords ?? [])].join(" ")
+    );
+    if (haystack.includes(q)) {
+      results.push({
+        type: "normdoc",
+        title: doc.code,
+        href: `/normdocs-vibro#${slugify(doc.code)}`,
+        snippet: doc.title + ". " + doc.description.replace(/<[^>]+>/g, " ").trim().slice(0, 160) + "…",
+        meta: `Нормативы по вибро · ${doc.category} · ${doc.year} · ${doc.status}`,
+      });
+    }
+  }
+
   for (const cat of equipmentCatalog) {
     for (const item of cat.items) {
       const haystack = norm(
@@ -232,9 +268,10 @@ export default async function SearchPage({
             <span>Поиск по сайту</span>
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
-            Поиск ведётся по глоссарию (77 терминов), нормативным документам
-            (ГОСТ, СП, СНиП, НП), каталогу оборудования (35 единиц), 34
-            SEO-страницам и разделам сайта.
+            Поиск ведётся по глоссарию сейсмологии (77 терминов), глоссарию
+            вибрации (45 терминов), нормативным документам по сейсмике (8) и
+            вибро (11), каталогу оборудования (35), 34 SEO-страницам и разделам
+            сайта.
           </p>
         </div>
 
