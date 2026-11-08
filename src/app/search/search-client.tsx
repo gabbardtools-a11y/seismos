@@ -182,6 +182,12 @@ export function SearchClient({
               "резонанс",
               "FFT",
               "ISO 10816",
+              "ударная волна",
+              "взрывостойкость",
+              "BLEVE",
+              "детонация",
+              "P-I диаграмма",
+              "EN 1991-1-7",
             ].map((suggestion) => (
               <button
                 key={suggestion}

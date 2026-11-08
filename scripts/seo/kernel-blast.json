@@ -1,0 +1,443 @@
+{
+  "_comment": "Семантическое ядро по взрывным воздействиям, ударным волнам, взрывозащите и взрывостойкости — область, родственная сейсмике. Используется drip-publish для генерации SEO-страниц (по 10 в день, 10К±1К символов, уникальность 90%+). Источник терминов: src/content/seo/glossary-blast.ts. Источник нормативных документов: src/content/seo/normdocs-blast.ts. Создано: 2026-11-08.",
+  "_format": {
+    "slug": "URL-слаг страницы (без /, латиница через дефис)",
+    "title": "Заголовок страницы с ключевыми словами (для H1 и <title>)",
+    "cluster": "Кластер: blast-loading | blast-protection | blast-tests | blast-buildings | blast-safety",
+    "primary_kw": "Главный ключевой запрос",
+    "secondary_kw": "Доп. ключи через | (3-5 шт)",
+    "intent": "commercial | informational | navigational"
+  },
+  "stage1": [
+    {
+      "slug": "vzryvostoykost-zdaniy",
+      "title": "Взрывостойкость зданий — расчёт и проектирование по EN 1991-1-7",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость зданий",
+      "secondary_kw": "EN 1991-1-7|ударная волна|избыточное давление|P-I диаграмма|прогрессирующее обрушение",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "udarnaya-volna-parametry",
+      "title": "Ударная волна взрыва — параметры, расчёт, воздействие на конструкции",
+      "cluster": "blast-loading",
+      "primary_kw": "ударная волна взрыва",
+      "secondary_kw": "избыточное давление|импульс|фронт|формулы Садовского|Ренкина-Гюгонио",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vzryvozashchita-zdaniy",
+      "title": "Взрывозащита зданий — методы, проектирование, нормативы",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывозащита зданий",
+      "secondary_kw": "взрывные клапаны|сбросные панели|барьеры|EN 1991-1-7|UFC 3-340-02",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "protivovzryvnye-ukrytiya",
+      "title": "Противовзрывные укрытия — проектирование по UFC 3-340-02",
+      "cluster": "blast-protection",
+      "primary_kw": "противовзрывное укрытие",
+      "secondary_kw": "UFC 3-340-02|железобетон|защитные сооружения|ΔP+|категории защиты",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vzryvozashchitnoe-osteklenie",
+      "title": "Взрывозащитное остекление — триплекс, поликарбонат, плёнки",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывозащитное остекление",
+      "secondary_kw": "триплекс|PVB|поликарбонат|ASTM F1642|ISO 16933|P-I диаграмма",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "kategorirovanie-pomescheniy-po-vzryvu",
+      "title": "Категорирование помещений по взрывопожарной опасности — СП 12.13130",
+      "cluster": "blast-safety",
+      "primary_kw": "категорирование помещений по взрыву",
+      "secondary_kw": "СП 12.13130|категория А|категория Б|НКПР|избыточное давление 5 кПа",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "vzryvnye-klapany",
+      "title": "Взрывные клапаны — расчёт площади сброса по NFPA 68 и EN 14491",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывной клапан",
+      "secondary_kw": "NFPA 68|EN 14491|сброс давления|дефлаграция|K_st|пыли",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "pi-diagramma-vzryv",
+      "title": "P-I диаграмма взрыва — расчёт и применение для конструкций",
+      "cluster": "blast-loading",
+      "primary_kw": "P-I диаграмма взрыва",
+      "secondary_kw": "pressure-impulse|изодинамическая кривая|квазистатика|импульс|уровни повреждения",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "trotilovyy-ekvivalent",
+      "title": "Тротиловый эквивалент взрыва — расчёт и применение",
+      "cluster": "blast-loading",
+      "primary_kw": "тротиловый эквивалент",
+      "secondary_kw": "TNT-эквивалент|энергия взрыва|формулы Садовского|VCE|BLEVE",
+      "intent": "informational",
+      "canonical_to": null,
+      "exists": false
+    },
+    {
+      "slug": "raschet-na-vzryvnye-nagruzki",
+      "title": "Расчёт конструкций на взрывные нагрузки — МКЭ, LS-DYNA, методы",
+      "cluster": "blast-loading",
+      "primary_kw": "расчёт на взрывные нагрузки",
+      "secondary_kw": "LS-DYNA|МКЭ|динамическое нагружение|Johnson-Cook|Holmquist-Johnson-Cook",
+      "intent": "commercial",
+      "canonical_to": null,
+      "exists": false
+    }
+  ],
+  "drip": [
+    {
+      "slug": "vzryvostoikost-zhelezobetona",
+      "title": "Взрывостойкость железобетонных конструкций — расчёт и усиление",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость железобетона",
+      "secondary_kw": "скол спины|фибробетон|двухстороннее армирование|UFC 3-340-02|толщина стен",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-stalnyh-konstrukciy",
+      "title": "Взрывостойкость стальных конструкций — расчёт и защита",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость стальных конструкций",
+      "secondary_kw": "предел текучести|устойчивость стенок|пластические деформации|Johnson-Cook|барьеры",
+      "intent": "commercial"
+    },
+    {
+      "slug": "gazovye-vzryvy-v-pomescheniyah",
+      "title": "Газовые взрывы в помещениях — расчёт и предотвращение",
+      "cluster": "blast-loading",
+      "primary_kw": "газовый взрыв в помещении",
+      "secondary_kw": "НКПР|ВКПР|метан|пропан|взрывные клапаны|СП 12.13130",
+      "intent": "informational"
+    },
+    {
+      "slug": "bleve-vzryv-rezervuarov",
+      "title": "BLEVE — взрыв резервуаров со сжиженным газом, расчёт и защита",
+      "cluster": "blast-loading",
+      "primary_kw": "BLEVE взрыв",
+      "secondary_kw": "сжиженный газ|огненный шар|тепловое излучение|теплоизоляция|орошение водой",
+      "intent": "informational"
+    },
+    {
+      "slug": "vce-obemnyy-vzryv",
+      "title": "VCE — объёмный взрыв парового облака, моделирование и расчёт",
+      "cluster": "blast-loading",
+      "primary_kw": "VCE объёмный взрыв",
+      "secondary_kw": "vapor cloud explosion|TNO Multi-Energy|BST|DDT|нефтехимия",
+      "intent": "informational"
+    },
+    {
+      "slug": "deflagraciya-i-detonaciya",
+      "title": "Дефлаграция и детонация — различия, переход DDT, опасность",
+      "cluster": "blast-loading",
+      "primary_kw": "дефлаграция и детонация",
+      "secondary_kw": "DDT|скорость пламени|турбулентизация|препятствия|взрывозащита",
+      "intent": "informational"
+    },
+    {
+      "slug": "pylevye-vzryvy",
+      "title": "Пылевые взрывы — причины, K_st, защита по EN 14491",
+      "cluster": "blast-safety",
+      "primary_kw": "пылевой взрыв",
+      "secondary_kw": "K_st|St 1|St 2|St 3|EN 14491|сфера Зарта|мука|уголь|алюминий",
+      "intent": "informational"
+    },
+    {
+      "slug": "vzryvostoikost-ostekleniya-raschet",
+      "title": "Расчёт взрывостойкого остекления — P-I диаграммы, классы защиты",
+      "cluster": "blast-protection",
+      "primary_kw": "расчёт взрывостойкого остекления",
+      "secondary_kw": "ASTM F1642|ISO 16933|EN 13541|триплекс|поликарбонат|классы ER",
+      "intent": "commercial"
+    },
+    {
+      "slug": "protivovzryvnye-barery",
+      "title": "Противовзрывные барьеры — типы, расчёт, применение",
+      "cluster": "blast-protection",
+      "primary_kw": "противовзрывной барьер",
+      "secondary_kw": "blast wall|земляные валы|водяные барьеры|CFD|нефтехимия|военные объекты",
+      "intent": "commercial"
+    },
+    {
+      "slug": "skol-spiny-betona",
+      "title": "Скол спины железобетона — причины, защита, фибробетон",
+      "cluster": "blast-buildings",
+      "primary_kw": "скол спины бетона",
+      "secondary_kw": "spalling|волна растяжения|фибробетон|двухсторонняя арматура|демпфирующий слой",
+      "intent": "informational"
+    },
+    {
+      "slug": "barotravma-cheloveka",
+      "title": "Баротравма человека при взрыве — пороги, симптомы, защита",
+      "cluster": "blast-safety",
+      "primary_kw": "баротравма при взрыве",
+      "secondary_kw": "primary blast injury|легкие|барабанная перепонка|избыточное давление|противовзрывное укрытие",
+      "intent": "informational"
+    },
+    {
+      "slug": "zony-porazheniya-vzryva",
+      "title": "Зоны поражения взрыва — расчёт радиусов, классификация",
+      "cluster": "blast-loading",
+      "primary_kw": "зоны поражения взрыва",
+      "secondary_kw": "полные разрушения|сильные|средние|слабые|формулы Садовского|ГОСТ Р 22.0.07",
+      "intent": "informational"
+    },
+    {
+      "slug": "bezopasnoe-rasstoyanie-vzryv",
+      "title": "Безопасное расстояние от взрыва — расчёт по ПБ и UFC",
+      "cluster": "blast-safety",
+      "primary_kw": "безопасное расстояние от взрыва",
+      "secondary_kw": "standoff distance|ПБ 13-407|Q-D кривые|UFC 3-340-02|ОПО",
+      "intent": "informational"
+    },
+    {
+      "slug": "effekt-domino-vzryv",
+      "title": "Эффект домино при взрыве — анализ и предотвращение",
+      "cluster": "blast-safety",
+      "primary_kw": "эффект домино взрыв",
+      "secondary_kw": "каскадная авария|HAZOP|QRA|РБ 03-69|нефтехимия|барьеры",
+      "intent": "informational"
+    },
+    {
+      "slug": "vzryvoopasnye-veschestva",
+      "title": "Взрывоопасные вещества — классификация, хранение, перевозка",
+      "cluster": "blast-safety",
+      "primary_kw": "взрывоопасные вещества",
+      "secondary_kw": "ВВ|ТНТ|гексоген|аммиачная селитра|ЕПБ|ФЗ-116|Ростехнадзор",
+      "intent": "informational"
+    },
+    {
+      "slug": "ex-oborudovanie",
+      "title": "Ex-оборудование для взрывоопасных зон — ГОСТ 31610 (IEC 60079)",
+      "cluster": "blast-safety",
+      "primary_kw": "Ex-оборудование",
+      "secondary_kw": "ГОСТ 31610|IEC 60079|Ex d|Ex i|Ex p|Ex e|ATEX|IECEx",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-metallurgii",
+      "title": "Взрывостойкость металлургических производств — расчёт и защита",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость металлургии",
+      "secondary_kw": "расплавы металлов|дуговые печи|ЦПМ|кислородные станции|барьеры",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-aes",
+      "title": "Взрывостойкость АЭС — водородная безопасность, контайнмент",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость АЭС",
+      "secondary_kw": "водород|контайнмент|НП-001-15|Чернобыль|Фукусима|парокатализаторы",
+      "intent": "informational"
+    },
+    {
+      "slug": "vzryvostoikost-neftehimii",
+      "title": "Взрывостойкость нефтехимических производств — РБ 03-69",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость нефтехимии",
+      "secondary_kw": "РБ 03-69|QRA|HAZOP|резервуары|ЛВУГ|трубопроводы|эффект домино",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvnye-raboty-gornye",
+      "title": "Взрывные работы в горном деле — безопасность, нормы, ПБ 13-407",
+      "cluster": "blast-safety",
+      "primary_kw": "взрывные работы горные",
+      "secondary_kw": "ПБ 13-407|аммонит|ANFO|скважины|заряды|сейсмическое воздействие|радиус опасной зоны",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-kriticheskoy-infrastruktury",
+      "title": "Взрывостойкость критической инфраструктуры — посольства, банки, ЦОД",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость критической инфраструктуры",
+      "secondary_kw": "UFC 3-340-02|ASCE 59|посольства|ЦОД|банки|СВУ|standoff distance",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-voennyh-obektov",
+      "title": "Взрывостойкость военных объектов — UFC, бункеры, хранилища",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость военных объектов",
+      "secondary_kw": "UFC 3-340-02|бункеры|хранилища боеприпасов|кумулятивная струя|осколки",
+      "intent": "commercial"
+    },
+    {
+      "slug": "modelirovanie-vzryva-cfd",
+      "title": "CFD-моделирование взрыва — FLACS, ANSYS Fluent, OpenFOAM",
+      "cluster": "blast-loading",
+      "primary_kw": "CFD-моделирование взрыва",
+      "secondary_kw": "FLACS|ANSYS Fluent|OpenFOAM|TNO Multi-Energy|турбулентное ускорение пламени",
+      "intent": "commercial"
+    },
+    {
+      "slug": "izbytochnoe-davlenie-vzryva-raschet",
+      "title": "Избыточное давление взрыва — расчёт по формулам Садовского",
+      "cluster": "blast-loading",
+      "primary_kw": "избыточное давление взрыва",
+      "secondary_kw": "Садовский|приведённое расстояние|тротиловый эквивалент|зоны разрушения|ГОСТ Р 22.0.07",
+      "intent": "informational"
+    },
+    {
+      "slug": "impuls-vzryva-raschet",
+      "title": "Импульс взрыва — расчёт, P-I диаграммы, влияние на конструкции",
+      "cluster": "blast-loading",
+      "primary_kw": "импульс взрыва",
+      "secondary_kw": "I+|ударная волна|баллистическое нагружение|P-I диаграмма|хрупкие конструкции",
+      "intent": "informational"
+    },
+    {
+      "slug": "kvazistaticheskoe-nagruzhenie-vzryv",
+      "title": "Квазистатическое нагружение конструкций взрывом — расчёт",
+      "cluster": "blast-loading",
+      "primary_kw": "квазистатическое нагружение взрывом",
+      "secondary_kw": "t+ больше T|массивные конструкции|железобетон|P_max|UFC 3-340-02",
+      "intent": "informational"
+    },
+    {
+      "slug": "impulsnoe-nagruzhenie-vzryv",
+      "title": "Импульсное нагружение конструкций взрывом — методы расчёта",
+      "cluster": "blast-loading",
+      "primary_kw": "импульсное нагружение взрывом",
+      "secondary_kw": "t+ меньше T|лёгкие конструкции|теорема импульса|I+/m|начальная скорость",
+      "intent": "informational"
+    },
+    {
+      "slug": "otrazhennaya-udarnaya-volna",
+      "title": "Отражённая ударная волна — регулярное и нерегулярное отражение",
+      "cluster": "blast-loading",
+      "primary_kw": "отражённая ударная волна",
+      "secondary_kw": "регулярное отражение|нерегулярное|волна Маха|коэффициент отражения|преграда",
+      "intent": "informational"
+    },
+    {
+      "slug": "vzryvoopasnye-zony",
+      "title": "Взрывоопасные зоны — классификация по ГОСТ 31610 / IEC 60079",
+      "cluster": "blast-safety",
+      "primary_kw": "взрывоопасные зоны",
+      "secondary_kw": "зона 0|зона 1|зона 2|зона 20|зона 21|зона 22|IEC 60079|Ex-оборудование",
+      "intent": "informational"
+    },
+    {
+      "slug": "vzryvostoikost-pylesemovyh-ustanovok",
+      "title": "Взрывозащита пылеулавливающих установок — сброс, подавление, изоляция",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывозащита пылеуловителей",
+      "secondary_kw": "EN 14491|сброс давления|подавление взрыва|изоляция|фильтры|циклоны",
+      "intent": "commercial"
+    },
+    {
+      "slug": "deklaraciya-promyshlennoy-bezopasnosti",
+      "title": "Декларация промышленной безопасности — ФЗ-116, разработка",
+      "cluster": "blast-safety",
+      "primary_kw": "декларация промышленной безопасности",
+      "secondary_kw": "ФЗ-116|Ростехнадзор|ОПО|ПЛАС|анализ риска|РБ 03-69",
+      "intent": "commercial"
+    },
+    {
+      "slug": "plav-podavlenie-vzryva",
+      "title": "Системы подавления взрыва — химические, быстродействующие",
+      "cluster": "blast-protection",
+      "primary_kw": "подавление взрыва",
+      "secondary_kw": "химическое подавление|быстродействующие форсунки|датчики давления|EN 14373|порошок",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvoizolyaciya-truboprovodov",
+      "title": "Взрывоизоляция трубопроводов — клапаны, затворы, EN 15089",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывоизоляция трубопроводов",
+      "secondary_kw": "быстродействующие клапаны|EN 15089|изоляция|препятствие DDT|газовые магистрали",
+      "intent": "commercial"
+    },
+    {
+      "slug": "ogneupornaya-zashchita-vzryv",
+      "title": "Огнезащита и взрывозащита конструкций — покрытия, материалы",
+      "cluster": "blast-protection",
+      "primary_kw": "огнезащита и взрывозащита",
+      "secondary_kw": "огнезащитные покрытия|вспучивающиеся|базальтовые плиты|тепловой поток|огненный шар",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-steklyannyh-paketov",
+      "title": "Взрывостойкость стеклопакетов — расчёт, классы, монтаж",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывостойкость стеклопакетов",
+      "secondary_kw": "ламинированное стекло|PVB|классы G1-G5|ASTM F1642|остекление фасадов",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvoizolyaciya-apparatov",
+      "title": "Взрывоизоляция аппаратов — мембраны, разрывные предохранители",
+      "cluster": "blast-protection",
+      "primary_kw": "взрывоизоляция аппаратов",
+      "secondary_kw": "разрывные мембраны|предохранители|EN 14797|сброс давления|реакторы",
+      "intent": "commercial"
+    },
+    {
+      "slug": "proektirovanie-protivovzryvnoy-zashchity",
+      "title": "Проектирование противовзрывной защиты зданий — методика, расчёт",
+      "cluster": "blast-protection",
+      "primary_kw": "проектирование противовзрывной защиты",
+      "secondary_kw": "EN 1991-1-7|UFC 3-340-02|категории последствий|progressive collapse|P-I",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-mostov-i-tonneley",
+      "title": "Взрывостойкость мостов и тоннелей — расчёт и защита",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость мостов и тоннелей",
+      "secondary_kw": "СВУ|туннели|пилон|вантовые мосты|CFD|UFC 3-340-02|критическая инфраструктура",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-elektricheskih-podstanciy",
+      "title": "Взрывостойкость электрических подстанций — расчёт и защита",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость подстанций",
+      "secondary_kw": "масляные трансформаторы|короткое замыкание|барьеры|UFC|критическая инфраструктура",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-zernovyh-elevatorov",
+      "title": "Взрывостойкость зерновых элеваторов — пылевые взрывы, защита",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость элеваторов",
+      "secondary_kw": "пылевые взрывы|зерновая пыль|St 1|силосы|взрывные клапаны|EN 14491",
+      "intent": "commercial"
+    },
+    {
+      "slug": "vzryvostoikost-ugolnyh-shaht",
+      "title": "Взрывостойкость угольных шахт — метан, угольная пыль, защита",
+      "cluster": "blast-buildings",
+      "primary_kw": "взрывостойкость угольных шахт",
+      "secondary_kw": "метан|угольная пыль|PB 05-786|подавление взрыва|изоляция|горные выработки",
+      "intent": "commercial"
+    }
+  ]
+}

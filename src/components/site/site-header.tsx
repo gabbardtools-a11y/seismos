@@ -79,6 +79,8 @@ export function SiteHeader() {
         { label: "Нормативные документы", href: "/normdocs" },
         { label: "Глоссарий вибрации", href: "/glossary-vibro" },
         { label: "Нормативы по вибро", href: "/normdocs-vibro" },
+        { label: "Глоссарий взрывов", href: "/glossary-blast" },
+        { label: "Нормативы по взрывам", href: "/normdocs-blast" },
         { label: "Оборудование", href: "/oborudovanie" },
         { label: "Сейсмозащита", href: "/seismoprotection" },
         { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
