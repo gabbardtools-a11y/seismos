@@ -9,6 +9,7 @@ import { SeismogramLine } from "./seismogram-line";
 import { SEISMOGRAM_TILE_PATH, SEISMOGRAM_DUP_PATH } from "./seismogram-path";
 import { EqGlobe } from "@/components/globe/eq-globe";
 import { HeroGlobeFlow } from "./hero-globe-flow";
+import { HeroSearch } from "./hero-search";
 import { getLang } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/translations";
 
@@ -28,6 +29,9 @@ export async function HeroSection() {
 
       {/* Полоса сейсмомониторинга — сверху, под шапкой */}
       <SeismogramDivider lang={lang} />
+
+      {/* Длинная строка поиска — под сейсмомонитором */}
+      <HeroSearch />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 py-8 lg:py-12">
         <HeroGlobeFlow>
