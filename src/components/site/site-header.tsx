@@ -75,6 +75,7 @@ export function SiteHeader() {
       children: [
         { label: t("nav.patents"), href: "#patents" },
         { label: t("nav.publications"), href: "#publications" },
+        { label: "Справочники", href: "/spravochniki" },
         { label: "Глоссарий", href: "/glossary" },
         { label: "Нормативные документы", href: "/normdocs" },
         { label: "Глоссарий вибрации", href: "/glossary-vibro" },

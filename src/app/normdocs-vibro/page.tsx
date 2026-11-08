@@ -75,6 +75,8 @@ export default function NormDocsVibroPage() {
             На главную
           </Link>
           <span className="text-[#D6DCE3]">·</span>
+          <Link href="/spravochniki" className="hover:text-[#00549F]">Справочники</Link>
+          <span className="text-[#D6DCE3]">·</span>
           <Link href="/normdocs" className="hover:text-[#00549F]">Нормативы по сейсмике</Link>
           <span className="text-[#D6DCE3]">·</span>
           <span className="text-[#003366]">Нормативы по вибро</span>

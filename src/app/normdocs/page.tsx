@@ -76,6 +76,10 @@ export default function NormDocsPage() {
             На главную
           </Link>
           <span className="text-[#D6DCE3]">·</span>
+          <Link href="/spravochniki" className="hover:text-[#00549F]">
+            Справочники
+          </Link>
+          <span className="text-[#D6DCE3]">·</span>
           <Link href="/glossary" className="hover:text-[#00549F]">
             Глоссарий
           </Link>

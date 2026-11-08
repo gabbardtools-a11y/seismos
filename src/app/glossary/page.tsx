@@ -13,6 +13,7 @@
  */
 import Link from "next/link";
 import { ArrowLeft, BookOpen } from "lucide-react";
+import { SeismoIcon } from "@/components/site/domain-icons";
 
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -61,6 +62,8 @@ export default function GlossaryPage() {
             На главную
           </Link>
           <span className="text-[#D6DCE3]">·</span>
+          <Link href="/spravochniki" className="hover:text-[#00549F]">Справочники</Link>
+          <span className="text-[#D6DCE3]">·</span>
           <span className="text-[#003366]">Глоссарий</span>
         </div>
 
@@ -71,7 +74,7 @@ export default function GlossaryPage() {
             <span className="eyebrow text-[#2D5F3F]">Справочник</span>
           </div>
           <h1 className="text-[28px] sm:text-[34px] lg:text-[38px] font-bold tracking-[-0.01em] text-[#003366] leading-[1.15] mb-3 flex items-start gap-3">
-            <BookOpen className="h-9 w-9 text-[#00549F] flex-none mt-1" />
+            <SeismoIcon className="h-9 w-9 text-[#00549F] flex-none mt-1" />
             <span>Глоссарий терминов по сейсмологии и сейсмике</span>
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">

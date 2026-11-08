@@ -36,6 +36,7 @@ export const metadata = {
 // Служебные страницы для поиска
 const STATIC_PAGES: { title: string; href: string; description: string }[] = [
   { title: "Главная", href: "/", description: "Сейсмобезопасность и сейсмозащита зданий и сооружений" },
+  { title: "Справочники", href: "/spravochniki", description: "Единая точка входа в 4 справочника: сейсмология, вибрация, взрывы, динамика" },
   { title: "Новости землетрясений", href: "/news", description: "Парсинг из 8 источников, мониторинг сейсмоактивности" },
   { title: "Сейсмо Глобус", href: "/seismo-globus", description: "Интерактивный 3D-глобус землетрясений" },
   { title: "Глоссарий", href: "/glossary", description: "77 терминов по сейсмологии и сейсмике" },

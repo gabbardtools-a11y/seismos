@@ -7,6 +7,7 @@
  */
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Activity } from "lucide-react";
+import { VibroIcon } from "@/components/site/domain-icons";
 
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -16,9 +17,9 @@ import { vibroTerms } from "@/content/seo/glossary-vibro";
 export const metadata = {
   title: "Глоссарий терминов по вибрации и вибростойкости — СРОСС®",
   description:
-    "Глоссарий 45 терминов по вибрации, вибростойкости, виброизоляции, спектральному анализу: вибрация, резонанс, демпфирование, FFT, акселерометр, вибростенд, ударный спектр, ГОСТ 12.1.012, ISO 10816. Определения с примерами.",
+    "Глоссарий 70 терминов по вибрации, вибростойкости, виброизоляции, вибродиагностике машин: вибрация, резонанс, демпфирование, FFT, акселерометр, вибростенд, ударный спектр, ГОСТ 12.1.012, ISO 10816. Определения с примерами.",
   keywords:
-    "глоссарий вибрация, термины вибростойкость, виброизоляция, резонанс, демпфирование, FFT, акселерометр, вибростенд, ударный спектр, спектральная плотность PSD, ГОСТ 12.1.012, ISO 10816, вибродиагностика, вибромониторинг",
+    "глоссарий вибрация, термины вибростойкость, виброизоляция, резонанс, демпфирование, FFT, акселерометр, вибростенд, ударный спектр, спектральная плотность PSD, ГОСТ 12.1.012, ISO 10816, вибродиагностика, вибромониторинг, подшипники качения, BPFO, BPFI, oil whirl, орбита ротора, кепстр, синхронное усреднение, метод огибающей, метод ударных импульсов, дисбаланс, расцентровка, помпаж",
   alternates: { canonical: "/glossary-vibro" },
 };
 
@@ -28,7 +29,7 @@ const glossaryVibroLd = {
   "@type": "DefinedTermSet",
   name: "Глоссарий терминов по вибрации и вибростойкости",
   description:
-    "45 терминов по вибрации, вибростойкости, виброизоляции с развёрнутыми определениями.",
+    "70 терминов по вибрации, вибростойкости, виброизоляции, вибродиагностике машин с развёрнутыми определениями.",
   url: "https://seismos.ru/glossary-vibro",
   hasDefinedTerm: vibroTerms.map((t) => ({
     "@type": "DefinedTerm",
@@ -55,6 +56,8 @@ export default function GlossaryVibroPage() {
             На главную
           </Link>
           <span className="text-[#D6DCE3]">·</span>
+          <Link href="/spravochniki" className="hover:text-[#00549F]">Справочники</Link>
+          <span className="text-[#D6DCE3]">·</span>
           <Link href="/glossary" className="hover:text-[#00549F]">Глоссарий сейсмологии</Link>
           <span className="text-[#D6DCE3]">·</span>
           <span className="text-[#003366]">Глоссарий вибрации</span>
@@ -67,16 +70,17 @@ export default function GlossaryVibroPage() {
             <span className="eyebrow text-[#B45309]">Справочник</span>
           </div>
           <h1 className="text-[28px] sm:text-[34px] lg:text-[38px] font-bold tracking-[-0.01em] text-[#003366] leading-[1.15] mb-3 flex items-start gap-3">
-            <Activity className="h-9 w-9 text-[#B45309] flex-none mt-1" />
+            <VibroIcon className="h-9 w-9 text-[#B45309] flex-none mt-1" />
             <span>Глоссарий терминов по вибрации и вибростойкости</span>
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
-            45 развёрнутых определений в 9 категориях: основные понятия,
+            70 развёрнутых определений в 10 категориях: основные понятия,
             кинематические параметры, динамика и резонанс, спектр и анализ,
             источники вибрации, виброизоляция, испытания, воздействие на
-            человека и здания. Область, близкая к сейсмовоздействиям —
-            вибрация рассматривается как широкополосное динамическое
-            воздействие. Сопутствующий справочник —{" "}
+            человека и здания, дополнительные термины, вибродиагностика машин
+            (по мотивам vibration.ru — Балтех/ИНКОТЕС). Область, близкая к
+            сейсмовоздействиям — вибрация рассматривается как широкополосное
+            динамическое воздействие. Сопутствующий справочник —{" "}
             <Link
               href="/normdocs-vibro"
               className="text-[#00549F] font-semibold hover:text-[#003366] underline decoration-[#00549F]/30 underline-offset-2"

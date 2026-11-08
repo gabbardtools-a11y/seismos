@@ -4,6 +4,7 @@
  */
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Activity } from "lucide-react";
+import { DynIcon } from "@/components/site/domain-icons";
 
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -50,6 +51,8 @@ export default function GlossaryDynPage() {
             На главную
           </Link>
           <span className="text-[#D6DCE3]">·</span>
+          <Link href="/spravochniki" className="hover:text-[#00549F]">Справочники</Link>
+          <span className="text-[#D6DCE3]">·</span>
           <Link href="/glossary" className="hover:text-[#00549F]">Глоссарий сейсмологии</Link>
           <span className="text-[#D6DCE3]">·</span>
           <span className="text-[#003366]">Динамика и прочность</span>
@@ -61,7 +64,7 @@ export default function GlossaryDynPage() {
             <span className="eyebrow text-[#4A6378]">Справочник</span>
           </div>
           <h1 className="text-[28px] sm:text-[34px] lg:text-[38px] font-bold tracking-[-0.01em] text-[#003366] leading-[1.15] mb-3 flex items-start gap-3">
-            <Activity className="h-9 w-9 text-[#4A6378] flex-none mt-1" />
+            <DynIcon className="h-9 w-9 text-[#4A6378] flex-none mt-1" />
             <span>Глоссарий по динамике и прочности конструкций</span>
           </h1>
           <p className="text-base sm:text-lg text-[#4A6378] leading-relaxed">
