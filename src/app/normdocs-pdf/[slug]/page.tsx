@@ -36,15 +36,19 @@ export function generateStaticParams() {
   return normDocsFull.map((d) => ({ slug: d.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const doc = normDocsFull.find((d) => d.slug === params.slug);
-  if (!doc) return { title: "Документ не найден" };
-  return {
-    title: `${doc.code} — ${doc.shortTitle} | PDF скачать`,
-    description: `${doc.code} «${doc.title}». ${doc.description} Полный текст документа, скачать PDF.`,
-    keywords: `${doc.code}, ${doc.shortTitle}, скачать PDF, текст ГОСТ, нормативный документ`,
-    alternates: { canonical: `/normdocs-pdf/${doc.slug}` },
-  };
+export function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  // В Next.js 16 params — Promise. Но generateMetadata может быть sync,
+  // поэтому используем обёртку.
+  return params.then((p) => {
+    const doc = normDocsFull.find((d) => d.slug === p.slug);
+    if (!doc) return { title: "Документ не найден" };
+    return {
+      title: `${doc.code} — ${doc.shortTitle} | PDF скачать`,
+      description: `${doc.code} «${doc.title}». ${doc.description} Полный текст документа, скачать PDF.`,
+      keywords: `${doc.code}, ${doc.shortTitle}, скачать PDF, текст ГОСТ, нормативный документ`,
+      alternates: { canonical: `/normdocs-pdf/${doc.slug}` },
+    };
+  });
 }
 
 // JSON-LD: CreativeWork + BreadcrumbList
@@ -120,15 +124,18 @@ function extractSubsections(content: string): { num: string; title: string }[] {
   return result.slice(0, 30);
 }
 
-export default function NormDocPage({ params }: { params: { slug: string } }) {
-  const doc = normDocsFull.find((d) => d.slug === params.slug);
+export default async function NormDocPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const doc = normDocsFull.find((d) => d.slug === slug);
   if (!doc) notFound();
 
-  // Загрузить JSON с текстом
-  const jsonPath = path.join(process.cwd(), doc.jsonPath);
+  // Загрузить JSON с текстом из public/normdocs-data/
+  // (public/ гарантированно доступен в standalone-сборке Next.js)
   let data: DocData;
   try {
-    const raw = fs.readFileSync(jsonPath, "utf-8");
+    // На сервере — читаем из файловой системы public/
+    const fullPath = path.join(process.cwd(), "public", "normdocs-data", `${doc.slug}.json`);
+    const raw = fs.readFileSync(fullPath, "utf-8");
     data = JSON.parse(raw);
   } catch {
     return (

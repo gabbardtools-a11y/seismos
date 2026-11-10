@@ -17,10 +17,11 @@
 type IconProps = {
   className?: string;
   title?: string;
+  style?: React.CSSProperties;
 };
 
 /** Сейсмо — разлом тектонической плиты с эпицентром (звезда) */
-export function SeismoIcon({ className, title = "Сейсмо" }: IconProps) {
+export function SeismoIcon({ className, title = "Сейсмо", style }: IconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -30,6 +31,7 @@ export function SeismoIcon({ className, title = "Сейсмо" }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
       role="img"
       aria-label={title}
     >
@@ -53,7 +55,7 @@ export function SeismoIcon({ className, title = "Сейсмо" }: IconProps) {
 }
 
 /** Вибро — синусоида с точками-частицами */
-export function VibroIcon({ className, title = "Вибро" }: IconProps) {
+export function VibroIcon({ className, title = "Вибро", style }: IconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -63,6 +65,7 @@ export function VibroIcon({ className, title = "Вибро" }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
       role="img"
       aria-label={title}
     >
@@ -89,7 +92,7 @@ export function VibroIcon({ className, title = "Вибро" }: IconProps) {
 }
 
 /** Взрыв — расходящиеся ударные волны с эпицентром */
-export function BlastIcon({ className, title = "Взрыв" }: IconProps) {
+export function BlastIcon({ className, title = "Взрыв", style }: IconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -99,6 +102,7 @@ export function BlastIcon({ className, title = "Взрыв" }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
       role="img"
       aria-label={title}
     >
@@ -120,7 +124,7 @@ export function BlastIcon({ className, title = "Взрыв" }: IconProps) {
 }
 
 /** Динамика — осциллограмма напряжений + FEM-сетка */
-export function DynIcon({ className, title = "Динамика" }: IconProps) {
+export function DynIcon({ className, title = "Динамика", style }: IconProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -130,6 +134,7 @@ export function DynIcon({ className, title = "Динамика" }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      style={style}
       role="img"
       aria-label={title}
     >
@@ -156,7 +161,24 @@ export function DynIcon({ className, title = "Динамика" }: IconProps) {
 }
 
 /** Компактный набор: связка иконка + название для обзорной страницы */
-export const DOMAINS = [
+type DomainConfig = {
+  id: "seismo" | "vibro" | "blast" | "dyn";
+  name: string;
+  full: string;
+  Icon: React.ComponentType<IconProps>;
+  color: string;
+  bgColor: string;
+  description: string;
+  glossaryHref: string;
+  glossaryCount: number;
+  glossaryCategories: number;
+  normdocsHref: string;
+  normdocsCount: number;
+  normdocsCategories: string[];
+  keywords: readonly string[];
+};
+
+export const DOMAINS: readonly DomainConfig[] = [
   {
     id: "seismo",
     name: "Сейсмо",
