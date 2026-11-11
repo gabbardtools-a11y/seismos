@@ -11,6 +11,7 @@
  * Источник slug'ов: scripts/seo/kernel.json (блоки stage1 + drip) + хардкод служебных.
  */
 import type { MetadataRoute } from "next";
+import { normDocsFull } from "@/content/seo/normdocs-full";
 
 const BASE = "https://seismos.ru";
 
@@ -163,5 +164,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticUrls, ...seoUrls, ...dripUrls];
+  // Библиотека нормативных PDF — слаги из реестра normdocs-full (динамические)
+  const normdocsUrls = normDocsFull.map((d) => ({
+    url: `${BASE}/normdocs-pdf/${d.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticUrls, ...seoUrls, ...dripUrls, ...normdocsUrls];
 }
