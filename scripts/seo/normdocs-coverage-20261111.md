@@ -1,0 +1,206 @@
+# ПОКРЫТИЕ БИБЛИОТЕКИ НОРМДОКОВ — скан 11.11.2026 (R240+)
+
+Инструмент: скан упоминаний ГОСТ/СП/СНиП/НП/ПНАЭ/ПБ/РД/ISO/СанПиН по src/content/seo + src/app.
+Библиотека: 32 документов (32). Форм упоминаний на сайте: 221; связано со страницами: 51; без страницы: 170.
+
+Стратегия дедупликации: editions одного СП/ГОСТ (напр. СП 14.13330.2010/.2011/.2019/.2021) — алиасом на страницу актуальной редакции через normDocByCode; международные ISO — предпочтительна российская адаптация, ISO-оригинал алиасом.
+
+## ЯДРО следующих партий (есть карточки на обзорных /normdocs* страницах)
+
+- ГОСТ 25.502
+- ГОСТ 25546
+- ГОСТ 27751 (+ ещё 1 форм-алиасов)
+- ГОСТ Р 52857.2
+- ГОСТ Р 52857.4
+- ГОСТ Р 52857.6 (+ ещё 1 форм-алиасов)
+- РД 03-380
+- ГОСТ 9454
+- ГОСТ 27.002
+- СНиП 2.02.01 (+ ещё 1 форм-алиасов)
+- СП 22.13330.2016
+- ГОСТ Р 52761
+- ГОСТ Р 52777
+- ГОСТ 30630.1.2 (+ ещё 4 форм-алиасов)
+- СанПиН 1.2.3685-21
+- ISO 4866 (+ ещё 1 форм-алиасов)
+- ГОСТ Р 22.0.05
+- ГОСТ Р 53195 (+ ещё 1 форм-алиасов)
+- ГОСТ 31438
+- ПБ 03-593
+- ПБ 13-407
+- СНиП II-11-77*
+- СП 5.13130.2009
+- ФЗ № 123
+
+## ПОЛНЫЙ СПИСОК НЕПОКРЫТЫХ (формы упоминаний → файл)
+
+- ISO 10303 <- passport-3d-stp.ts
+- ISO 10816 <- glossary-vibro.ts
+- ISO 10816-1 <- normdocs-full.ts
+- ISO 12135 <- normdocs-dyn.ts
+- ISO 13373 <- glossary-vibro.ts
+- ISO 16063 <- glossary-vibro.ts
+- ISO 16750 <- glossary-vibro.ts
+- ISO 16933 <- glossary-blast.ts
+- ISO 17776 <- normdocs-blast.ts
+- ISO 1940 <- glossary-vibro.ts
+- ISO 1940-1 <- normdocs-full.ts
+- ISO 20332 <- normdocs-dyn.ts
+- ISO 20332:2008 <- normdocs-dyn.ts
+- ISO 21940 <- glossary-vibro.ts
+- ISO 22111 <- normdocs-dyn.ts
+- ISO 2394 <- glossary-dyn.ts
+- ISO 2631 <- glossary-vibro.ts
+- ISO 2631-1 <- normdocs-vibro.ts
+- ISO 2631-1:1997 <- normdocs-full.ts
+- ISO 2631-2 <- normdocs-vibro.ts
+- ISO 4866 <- glossary-vibro.ts
+- ISO 4866:2010 <- normdocs-vibro.ts
+- ISO 717-1 <- glossary-dyn.ts
+- ISO 717-2 <- glossary-dyn.ts
+- ISO 7626 <- glossary-vibro.ts
+- ISO 7919 <- glossary-vibro.ts
+- ISO 8041:2005 <- normdocs-full.ts
+- ГОСТ 12.1.003 <- glossary-dyn.ts
+- ГОСТ 17516 <- page.tsx
+- ГОСТ 2.056-2014 <- passport-3d-stp.ts
+- ГОСТ 2.106-96 <- glossary.ts
+- ГОСТ 20.57.406 <- glossary-vibro.ts
+- ГОСТ 25.502 <- normdocs-dyn.ts
+- ГОСТ 25546 <- normdocs-dyn.ts
+- ГОСТ 27.002 <- glossary-dyn.ts
+- ГОСТ 27655 <- glossary-vibro.ts
+- ГОСТ 27751 <- glossary-dyn.ts
+- ГОСТ 27751-2014 <- antiseysmicheskie-meropriyatiya.ts
+- ГОСТ 27772-88 <- dlya-truboprovodov-seysmostoykost.ts
+- ГОСТ 3.1105-84 <- geofizicheskie-izyskaniya-dlya-seysmiki.ts
+- ГОСТ 30108-94 <- seysmicheskoe-mikroraionirovanie.ts
+- ГОСТ 30168-96 <- seysmika-krym.ts
+- ГОСТ 30247 <- glossary-vibro.ts
+- ГОСТ 30546 <- kategoriya-seysmostoykosti-i-ii-np-031.ts
+- ГОСТ 30630.1.2 <- vibroispytaniya-oborudovaniya.ts
+- ГОСТ 30630.1.3 <- vibroispytaniya-oborudovaniya.ts
+- ГОСТ 30630.1.5 <- vibroispytaniya-oborudovaniya.ts
+- ГОСТ 30630.1.7 <- vibroispytaniya-oborudovaniya.ts
+- ГОСТ 30630.3 <- seysmicheskie-ispytaniya.ts
+- ГОСТ 31191 <- glossary-vibro.ts
+- ГОСТ 31438 <- glossary-blast.ts
+- ГОСТ 31610 <- glossary-blast.ts
+- ГОСТ 31937-2011 <- audit-seysmicheskoy-bezopasnosti.ts
+- ГОСТ 32307-2013 <- normdocs-dyn.ts
+- ГОСТ 33133-2014 <- inzhenerno-geologicheskie-izyskaniya-seysmika.ts
+- ГОСТ 33259-2014 <- obuchenie-proektirovshchikov-seysmika.ts
+- ГОСТ 8.138 <- glossary-vibro.ts
+- ГОСТ 9454 <- glossary-dyn.ts
+- ГОСТ ИСО 13373 <- glossary-vibro.ts
+- ГОСТ ИСО 1940-1 <- glossary-vibro.ts
+- ГОСТ ИСО 7919 <- glossary-vibro.ts
+- ГОСТ Р 10.0.02-2019 <- passport-3d-stp.ts
+- ГОСТ Р 22.0.05 <- normdocs-blast.ts
+- ГОСТ Р 30546 <- sertifikat-sootvetstviya-seysmostoykosti.ts
+- ГОСТ Р 51166-2019 <- proverka-sertifikata-seysmostoykosti.ts
+- ГОСТ Р 51185-98 <- seysmicheskoe-rayonirovanie-rossii.ts
+- ГОСТ Р 52761 <- glossary-vibro.ts
+- ГОСТ Р 52777 <- glossary-vibro.ts
+- ГОСТ Р 52857 <- normdocs-dyn.ts
+- ГОСТ Р 52857.1-12 <- normdocs-dyn.ts
+- ГОСТ Р 52857.2 <- glossary-dyn.ts
+- ГОСТ Р 52857.4 <- glossary-dyn.ts
+- ГОСТ Р 52857.6 <- glossary-dyn.ts
+- ГОСТ Р 52857.6-2007 <- normdocs-dyn.ts
+- ГОСТ Р 52931-2008 <- razrabotka-tu-seysmostoykosti.ts
+- ГОСТ Р 52933-2008 <- razrabotka-tu-seysmostoykosti.ts
+- ГОСТ Р 53153-2008 <- seysmika-vladivostok.ts
+- ГОСТ Р 53156-2008 <- dlya-bolnic-seysmostoykost.ts
+- ГОСТ Р 53157 <- glossary-dyn.ts
+- ГОСТ Р 53157-2008 <- seysmika-krym.ts
+- ГОСТ Р 53157.1-2020 <- raschet-nesuschih-konstrukciy-na-seysmiku.ts
+- ГОСТ Р 53158-2020 <- dokumenty-dlya-seysmiki.ts
+- ГОСТ Р 53165.1-2008 <- dlya-neftegaza-seysmostoykost.ts
+- ГОСТ Р 53195 <- glossary-blast.ts
+- ГОСТ Р 53195-2010 <- normdocs-blast.ts
+- ГОСТ Р 53228-2009 <- sroki-oformleniya-seysmostoykosti.ts
+- ГОСТ Р 53325-2019 <- raschet-seysmicheskoy-nagruzki-snip.ts
+- ГОСТ Р 53778 <- passport-3d-stp.ts
+- ГОСТ Р 53778-2010 <- audit-proektnoy-dokumentacii-seysmika.ts
+- ГОСТ Р 55212 <- glossary-blast.ts
+- ГОСТ Р 56725 <- dempery-seysmicheskie.ts
+- ГОСТ Р 56725-2015 <- dempery-seysmicheskie.ts
+- ГОСТ Р 56820.1-2015 <- kak-vybrat-laboratoriyu-seysmiki.ts
+- ГОСТ Р 56820.2-2015 <- kak-vybrat-laboratoriyu-seysmiki.ts
+- ГОСТ Р 57353 <- page.tsx
+- ГОСТ Р 57353-2016 <- ankery-seysmicheskie.ts
+- ГОСТ Р 57354 <- page.tsx
+- ГОСТ Р 57354-2016 <- rezinometallicheskie-seysmoizolyatory.ts
+- ГОСТ Р 57615-2017 <- seysmograf-kupit.ts
+- ГОСТ Р 57648-2017 <- str-2018-masshtab-1-8000000.ts
+- ГОСТ Р 57656-2017 <- uits-utochnenie-ischodnoy-seysmichnosti.ts
+- ГОСТ Р 57660-2017 <- seysmika-baykal.ts
+- ГОСТ Р 57661-2017 <- dlya-voennyh-obektov.ts
+- ГОСТ Р 58002-2018 <- strukturnyy-monitoring-zdaniy.ts
+- ГОСТ Р 58092 <- otkaz-v-sertifikate-seysmostoykosti.ts
+- ГОСТ Р 58092-2018 <- otkaz-v-sertifikate-seysmostoykosti.ts
+- ГОСТ Р 58107-2018 <- seysmika-kavkaz.ts
+- ГОСТ Р 58117-2018 <- akselerometr-seysmicheskiy.ts
+- ГОСТ Р 58133 <- dlya-mostov-seysmostoykost.ts
+- ГОСТ Р 58133-2018 <- dlya-mostov-seysmostoykost.ts
+- ГОСТ Р 58139-2018 <- chasto-zadayut-voprosy-o-seysmike.ts
+- ГОСТ Р 58147.1-2018 <- monitoring-konstrukciy-v-realnom-vremeni.ts
+- ГОСТ Р 58148-2018 <- sistema-opovescheniya-o-zemletryasenii.ts
+- ГОСТ Р 58155-2018 <- oborudovanie-seysmomonitoringa.ts
+- ГОСТ Р 58158-2018 <- dlya-shkol-i-detsadov.ts
+- ГОСТ Р 58179-2018 <- dlya-gidrosooruzheniy.ts
+- ГОСТ Р 58391-2018 <- dlya-lep-seysmostoykost.ts
+- ГОСТ Р 58396-2019 <- audit-proektnoy-dokumentacii-seysmika.ts
+- ГОСТ Р 58472-2019 <- ballovka-seysmichnosti.ts
+- ГОСТ Р 58496-2019 <- proekt-seysmozashchity-zdaniya.ts
+- ГОСТ Р 58734-2019 <- dlya-truboprovodov-seysmostoykost.ts
+- ГОСТ Р 58755 <- dlya-aes-seysmostoykost.ts
+- ГОСТ Р 58755-2019 <- dlya-aes-seysmostoykost.ts
+- ГОСТ Р 8.800 <- glossary-vibro.ts
+- ЕН 14253:2003 <- normdocs-full.ts
+- ПБ 03-576 <- normdocs-dyn.ts
+- ПБ 03-593 <- glossary-blast.ts
+- ПБ 13-407 <- glossary-blast.ts
+- ПНАЭ Г-7-002 <- glossary-dyn.ts
+- РД 03-380 <- normdocs-dyn.ts
+- РД 03-4 <- dlya-aes-seysmostoykost.ts
+- РД 03-608 <- dlya-neftegaza-seysmostoykost.ts
+- РД 09-102 <- dlya-truboprovodov-seysmostoykost.ts
+- РД 10-400 <- glossary-dyn.ts
+- СНиП 2.02.01 <- normdocs-vibro.ts
+- СНиП 2.02.01-83* <- inzhenerno-geologicheskie-izyskaniya-seysmika.ts
+- СНиП 3.02.01-87 <- inzhenerno-geologicheskie-izyskaniya-seysmika.ts
+- СНиП II-11-77* <- glossary-blast.ts
+- СНиП II-7-81 <- dlya-bolnic-seysmostoykost.ts
+- СНиП II-7-81. <- antiseysmicheskie-meropriyatiya.ts
+- СП 14.13330.2010 <- normdocs-full.ts
+- СП 14.13330.2011 <- karta-ose-str-2018.ts
+- СП 14.13330.2019 <- koefficient-k1-seysmika.ts
+- СП 14.13330.2021 <- audit-proektnoy-dokumentacii-seysmika.ts
+- СП 15.13330.2012 <- antiseysmicheskie-meropriyatiya.ts
+- СП 158.1325800.2019 <- dlya-bolnic-seysmostoykost.ts
+- СП 16.13330.2017 <- antiseysmicheskie-meropriyatiya.ts
+- СП 16.13330.2022 <- audit-proektnoy-dokumentacii-seysmika.ts
+- СП 164.1325800.2014 <- seysmousilenie-konstrukciy-uglevoloknom.ts
+- СП 22.13330.2011 <- page.tsx
+- СП 22.13330.2016 <- antiseysmicheskie-meropriyatiya.ts
+- СП 24.13330.2011 <- passport-3d-stp.ts
+- СП 256.1325800.2016 <- dlya-bolnic-seysmostoykost.ts
+- СП 30.13330.2020 <- passport-3d-stp.ts
+- СП 31.13330.2012 <- passport-3d-stp.ts
+- СП 32.13330.2018 <- passport-3d-stp.ts
+- СП 35.13330.2011 <- seysmomonitoring-zdaniy.ts
+- СП 38.13330.2018 <- dlya-gidrosooruzheniy.ts
+- СП 38.13330.2019 <- dlya-voennyh-obektov.ts
+- СП 381.13330.2021 <- uits-utochnenie-ischodnoy-seysmichnosti.ts
+- СП 383.1325800.2018 <- monitoring-konstrukciy-v-realnom-vremeni.ts
+- СП 47.13330.2022 <- inzhenerno-geologicheskie-izyskaniya-seysmika.ts
+- СП 5.13130.2009 <- sistema-opovescheniya-o-zemletryasenii.ts
+- СП 542.1325800.2024 <- page.tsx
+- СП 59.13330.2016 <- passport-3d-stp.ts
+- СП 60.13330.2020 <- passport-3d-stp.ts
+- СП 62.13330.2011 <- passport-3d-stp.ts
+- СП 63.13330.2018 <- antiseysmicheskie-meropriyatiya.ts
+- СанПиН 1.2.3685-21 <- normdocs-vibro.ts
+- ФЗ № 123 <- otkaz-v-sertifikate-seysmostoykosti.ts
