@@ -82,30 +82,7 @@ export function SiteHeader() {
     { label: t("nav.partners"), href: "#partners" },
     {
       label: t("nav.info"),
-      children: [
-        // === Нормативная база ===
-        { label: "Библиотека PDF (54 дока)", href: "/normdocs-pdf", group: "Нормативная база" },
-        { label: "Сейсмо — карточки", href: "/normdocs", group: "Нормативная база" },
-        { label: "Вибро — карточки", href: "/normdocs-vibro", group: "Нормативная база" },
-        { label: "Взрывы — карточки", href: "/normdocs-blast", group: "Нормативная база" },
-        { label: "Динамика — карточки", href: "/normdocs-dyn", group: "Нормативная база" },
-        // === Глоссарии ===
-        { label: "Глоссарий общий", href: "/glossary", group: "Глоссарии" },
-        { label: "Глоссарий вибрации", href: "/glossary-vibro", group: "Глоссарии" },
-        { label: "Глоссарий взрывов", href: "/glossary-blast", group: "Глоссарии" },
-        { label: "Динамика и прочность", href: "/glossary-dyn", group: "Глоссарии" },
-        // === Справочники и разделы ===
-        { label: "Справочники", href: "/spravochniki", group: "Справочники и разделы" },
-        { label: "Оборудование", href: "/oborudovanie", group: "Справочники и разделы" },
-        { label: "Сейсмозащита", href: "/seismoprotection", group: "Справочники и разделы" },
-        { label: "Сейсмоизоляторы", href: "/seismoizolyatory", group: "Справочники и разделы" },
-        { label: "Сертификаты", href: "/sertifikaty", group: "Справочники и разделы" },
-        { label: "Сейсмо Глобус", href: "/seismo-globus", group: "Справочники и разделы" },
-        { label: "Антидроновая защита", href: "/antidron", group: "Справочники и разделы" },
-        // === О проекте ===
-        { label: t("nav.patents"), href: "#patents", group: "О проекте" },
-        { label: t("nav.publications"), href: "#publications", group: "О проекте" },
-      ],
+      href: "/info",
     },
     { label: t("nav.contacts"), href: "#contacts" },
   ];
