@@ -61,35 +61,50 @@ export function SiteHeader() {
     { label: "Сейсмические анкеры", href: "/ankery-seysmicheskie", group: "Сейсмоизоляторы и материалы" },
   ];
 
+  // Меню «Услуги» — систематизация: 5 направлений вместо 37 ссылок.
+  // Каждое → лендинг /services/[group], откуда переходы на конкретные услуги.
+  const SERVICE_GROUPS: NavChild[] = [
+    { label: "Сертификация сейсмостойкости", href: "/services/sertifikaciya", group: "Направления" },
+    { label: "Испытания и расчёты", href: "/services/ispytaniya-i-raschety", group: "Направления" },
+    { label: "Обследование и изыскания", href: "/services/obsledovanie-i-izyskaniya", group: "Направления" },
+    { label: "Сейсмозащита и усиление", href: "/services/seysmozashchita-i-usilenie", group: "Направления" },
+    { label: "Сейсмоизоляторы и материалы", href: "/services/seysmoizolyatory-i-materialy", group: "Направления" },
+  ];
+
   const NAV_ITEMS: NavItem[] = [
     { label: t("nav.system"), href: "#about" },
     { label: t("nav.directions"), href: "#directions" },
     {
       label: "Услуги",
-      children: SEO_LINKS,
+      children: SERVICE_GROUPS,
     },
     { label: t("nav.news"), href: "/news" },
     { label: t("nav.partners"), href: "#partners" },
     {
       label: t("nav.info"),
       children: [
-        { label: t("nav.patents"), href: "#patents" },
-        { label: t("nav.publications"), href: "#publications" },
-        { label: "Справочники", href: "/spravochniki" },
-        { label: "Глоссарий", href: "/glossary" },
-        { label: "Нормативные документы", href: "/normdocs" },
-        { label: "Глоссарий вибрации", href: "/glossary-vibro" },
-        { label: "Нормативы по вибро", href: "/normdocs-vibro" },
-        { label: "Глоссарий взрывов", href: "/glossary-blast" },
-        { label: "Нормативы по взрывам", href: "/normdocs-blast" },
-        { label: "Динамика и прочность", href: "/glossary-dyn" },
-        { label: "Нормативы по динамике", href: "/normdocs-dyn" },
-        { label: "Оборудование", href: "/oborudovanie" },
-        { label: "Сейсмозащита", href: "/seismoprotection" },
-        { label: "Сейсмоизоляторы", href: "/seismoizolyatory" },
-        { label: "Сейсмо Глобус", href: "/seismo-globus" },
-        { label: "Сертификаты", href: "/sertifikaty" },
-        { label: "Антидроновая защита", href: "/antidron" },
+        // === Нормативная база ===
+        { label: "Библиотека PDF (54 дока)", href: "/normdocs-pdf", group: "Нормативная база" },
+        { label: "Сейсмо — карточки", href: "/normdocs", group: "Нормативная база" },
+        { label: "Вибро — карточки", href: "/normdocs-vibro", group: "Нормативная база" },
+        { label: "Взрывы — карточки", href: "/normdocs-blast", group: "Нормативная база" },
+        { label: "Динамика — карточки", href: "/normdocs-dyn", group: "Нормативная база" },
+        // === Глоссарии ===
+        { label: "Глоссарий общий", href: "/glossary", group: "Глоссарии" },
+        { label: "Глоссарий вибрации", href: "/glossary-vibro", group: "Глоссарии" },
+        { label: "Глоссарий взрывов", href: "/glossary-blast", group: "Глоссарии" },
+        { label: "Динамика и прочность", href: "/glossary-dyn", group: "Глоссарии" },
+        // === Справочники и разделы ===
+        { label: "Справочники", href: "/spravochniki", group: "Справочники и разделы" },
+        { label: "Оборудование", href: "/oborudovanie", group: "Справочники и разделы" },
+        { label: "Сейсмозащита", href: "/seismoprotection", group: "Справочники и разделы" },
+        { label: "Сейсмоизоляторы", href: "/seismoizolyatory", group: "Справочники и разделы" },
+        { label: "Сертификаты", href: "/sertifikaty", group: "Справочники и разделы" },
+        { label: "Сейсмо Глобус", href: "/seismo-globus", group: "Справочники и разделы" },
+        { label: "Антидроновая защита", href: "/antidron", group: "Справочники и разделы" },
+        // === О проекте ===
+        { label: t("nav.patents"), href: "#patents", group: "О проекте" },
+        { label: t("nav.publications"), href: "#publications", group: "О проекте" },
       ],
     },
     { label: t("nav.contacts"), href: "#contacts" },
