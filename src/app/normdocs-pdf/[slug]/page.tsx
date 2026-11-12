@@ -96,7 +96,7 @@ function renderTextWithLinks(text: string): string {
 
   // Регулярка для поиска ГОСТ/СП/СНиП в тексте
   const refRegex =
-    /(ГОСТ\s+(?:Р\s+)?[А-Яа-я]+(?:\s+ISO\s+\d+(?:-\d+)?)?\s*[\d.\-]+(?:-\d+)?|СП\s+\d+\.\d+(?:\.\d+)?|СНиП\s+[IVXLCDM.\d\-]+(?:\*?)|НП\s+\d+(?:-\d+)?|ПНАЭ\s+Г-\d-\d+)/g;
+    /(ГОСТ\s+(?:Р\s+)?[А-Яа-я]+(?:\s+ISO\s+\d+(?:-\d+)?)?\s*[\d.\-]+(?:-\d+)?|СП\s+\d+\.\d+(?:\.\d+)?|СНиП\s+[IVXLCDM.\d\-]+(?:\*?)|НП\s+\d+(?:-\d+)?|ПНАЭ\s+Г-\d-\d+|РД\s+\d+(?:-\d+){0,2}|ПБ\s+\d+(?:-\d+){0,2}|ФЗ\s+№?\s*\d+|ISO\s+\d+(?:-\d+)?|СанПиН\s+\d+\.\d+\.\d+-\d+|ЕН\s+\d+(?::\d+)?)/g;
 
   html = html.replace(refRegex, (match) => {
     const slug = findDocByCode(match);
